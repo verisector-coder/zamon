@@ -735,7 +735,12 @@ function buildFooter(){
     <div class="gf-pitch"><b>ZAMON</b> — ${L.hero_eyebrow}. ${L.s1p}</div>
     <div class="gf-dir">
       <div class="gf-col"><div class="gf-brand">${MARK}ZAMON</div><p class="gf-about">${tr({ru:"Авторизованный премиальный магазин техники Apple в Таджикистане.",tj:"Мағозаи расмии премиалии техникаи Apple дар Тоҷикистон.",en:"An authorized premium Apple store in Tajikistan."})}</p>
-        <div class="gf-socials"><a href="#">📷</a><a href="#">✈️</a><a href="#">▶️</a><a href="#">💬</a></div></div>
+        <div class="gf-socials">
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg></a>
+          <a href="#" aria-label="Telegram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 3-9.5 9.5"/><path d="M22 3 15 21l-3.5-7.5L4 10l18-7Z"/></svg></a>
+          <a href="#" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.5A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-2.8.7.7-2.7-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.7.9c-.1.1-.3.2-.5 0-.7-.3-1.4-.7-2-1.4-.4-.5-.7-1-.9-1.4-.1-.2 0-.4.1-.5l.4-.5c.1-.1.1-.2.2-.4 0-.1 0-.3 0-.4l-.7-1.7c-.2-.4-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.7.7-.9 1.6-.6 2.6.3 1.1 1 2.1 1.2 2.4 1.7 2.5 3.6 3.3 4.8 3.6.6.2 1.1.2 1.5.1.5-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1l-.3-.2Z"/></svg></a>
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.8 3.7-3.8 1.1 0 2.2.2 2.2.2v2.4h-1.2c-1.2 0-1.6.8-1.6 1.5V12h2.7l-.4 2.9h-2.3v7A10 10 0 0 0 22 12Z"/></svg></a>
+        </div></div>
       ${fcol(L.f_shop,[["iPhone","iphone.html"],["Mac","mac.html"],["iPad","ipad.html"],["Apple Watch","watch.html"],["AirPods","airpods.html"],[L.m_acc,"accessories.html"]])}
       ${fcol(L.f_store,[["Trade-In","trade-in.html"],[L.m_credit,"trade-in.html"],[tr({ru:"Сравнить модели",tj:"Муқоисаи моделҳо",en:"Compare models"}),"compare.html"],[tr({ru:"Доставка",tj:"Расонидан",en:"Delivery"}),"index.html#services"],["AppleCare+","trade-in.html"]])}
       ${fcol(L.f_account,[[tr({ru:"Мой аккаунт",tj:"Аккаунти ман",en:"My Account"}),"account.html"],[tr({ru:"Корзина",tj:"Сабад",en:"Bag"}),"cart.html"],[tr({ru:"Заказы",tj:"Фармоишҳо",en:"Orders"}),"account.html"]])}

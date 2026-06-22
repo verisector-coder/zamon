@@ -4,6 +4,8 @@
    ============================================================ */
 const A="https://www.apple.com";
 const SCH=k=>"https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/"+k+"?wid=900&hei=900&fmt=png-alpha";
+/* request a smaller image for small tiles (store CDN supports wid/hei params; apple.com /v/ images are fixed-size) */
+function shrinkCDN(url,w){if(url&&/storeimages\.cdn-apple\.com/.test(url))return url.replace(/wid=\d+/,"wid="+w).replace(/hei=\d+/,"hei="+w);return url;}
 function imgFallback(img){
   const box=img.closest(".media,.ci-img,.lc-media,.buy-media,.info-media,.cfg-media,.phero,.fimg,.promo");
   if(!box||box.classList.contains("phero")||box.classList.contains("fimg")||box.classList.contains("promo")){img.style.visibility="hidden";return;}
@@ -1109,7 +1111,7 @@ const STOREBAR=[
 ];
 function renderStoreBar(){
   const box=document.getElementById("storebar");if(!box)return;
-  box.innerHTML=`<div class="storebar-row">`+STOREBAR.map(s=>`<a class="sb-item" href="${s.page}"><div class="sb-ic"><img src="${s.img}" alt="${s.name}" loading="lazy" decoding="async" onerror="imgFallback(this)"></div><span>${s.name}</span></a>`).join("")+`</div>`;
+  box.innerHTML=`<div class="storebar-row">`+STOREBAR.map(s=>`<a class="sb-item" href="${s.page}"><div class="sb-ic"><img src="${shrinkCDN(s.img,260)}" alt="${s.name}" loading="lazy" decoding="async" onerror="imgFallback(this)"></div><span>${s.name}</span></a>`).join("")+`</div>`;
 }
 /* ===== Apple chapternav-style lineup row (all models of a category) ===== */
 function lineupRow(cat){
@@ -1117,7 +1119,7 @@ function lineupRow(cat){
   return `<div class="lineup-wrap">
     <button class="lr-arrow prev" aria-label="prev" hidden>${ARROW_L}</button>
     <div class="lineup-row">${items.map(p=>`<a class="lr-item reveal" href="${productUrl(p)}">
-    <div class="lr-media"${p.tint?` style="background:${p.tint}"`:""}>${p.new?`<span class="lr-new">NEW</span>`:""}<img src="${p.lineImg||mainImg(p)}" data-emoji="${p.emoji}" alt="${p.name}" loading="lazy" decoding="async" onerror="imgFallback(this)"></div>
+    <div class="lr-media"${p.tint?` style="background:${p.tint}"`:""}>${p.new?`<span class="lr-new">NEW</span>`:""}<img src="${shrinkCDN(p.lineImg||mainImg(p),460)}" data-emoji="${p.emoji}" alt="${p.name}" loading="lazy" decoding="async" onerror="imgFallback(this)"></div>
     <div class="lr-name">${p.name}</div>
     <div class="lr-from">${t("from")}${num(p.price)} ${t("cur")}</div>
     <span class="lr-cta">${t("learn")} ${ARROW_R}</span></a>`).join("")}</div>

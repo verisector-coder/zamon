@@ -1109,7 +1109,7 @@ const STOREBAR=[
 ];
 function renderStoreBar(){
   const box=document.getElementById("storebar");if(!box)return;
-  box.innerHTML=`<div class="storebar-row">`+STOREBAR.map(s=>`<a class="sb-item" href="${s.page}"><div class="sb-ic"><img src="${s.img}" alt="${s.name}" loading="lazy" onerror="imgFallback(this)"></div><span>${s.name}</span></a>`).join("")+`</div>`;
+  box.innerHTML=`<div class="storebar-row">`+STOREBAR.map(s=>`<a class="sb-item" href="${s.page}"><div class="sb-ic"><img src="${s.img}" alt="${s.name}" loading="lazy" decoding="async" onerror="imgFallback(this)"></div><span>${s.name}</span></a>`).join("")+`</div>`;
 }
 /* ===== Apple chapternav-style lineup row (all models of a category) ===== */
 function lineupRow(cat){
@@ -1117,7 +1117,7 @@ function lineupRow(cat){
   return `<div class="lineup-wrap">
     <button class="lr-arrow prev" aria-label="prev" hidden>${ARROW_L}</button>
     <div class="lineup-row">${items.map(p=>`<a class="lr-item reveal" href="${productUrl(p)}">
-    <div class="lr-media"${p.tint?` style="background:${p.tint}"`:""}>${p.new?`<span class="lr-new">NEW</span>`:""}<img src="${p.lineImg||mainImg(p)}" data-emoji="${p.emoji}" alt="${p.name}" loading="lazy" onerror="imgFallback(this)"></div>
+    <div class="lr-media"${p.tint?` style="background:${p.tint}"`:""}>${p.new?`<span class="lr-new">NEW</span>`:""}<img src="${p.lineImg||mainImg(p)}" data-emoji="${p.emoji}" alt="${p.name}" loading="lazy" decoding="async" onerror="imgFallback(this)"></div>
     <div class="lr-name">${p.name}</div>
     <div class="lr-from">${t("from")}${num(p.price)} ${t("cur")}</div>
     <span class="lr-cta">${t("learn")} ${ARROW_R}</span></a>`).join("")}</div>

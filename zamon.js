@@ -724,11 +724,15 @@ function buildShell(){
     </header>`;
   const mobile=`<div class="mobile-menu" id="mobileMenu">${NAVITEMS.map(([id,key,href])=>`<a href="${href}">${t(key)}</a>`).join("")}</div>`;
   document.body.insertAdjacentHTML("afterbegin",skip+topbar+nav+mobile);
-  document.body.insertAdjacentHTML("beforeend",buildFooter()+buildOverlays());
+  document.body.insertAdjacentHTML("beforeend",buildFooter()+buildOverlays()+
+    `<button class="scrolltop" id="scrollTop" aria-label="Наверх" title="Наверх"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg></button>`);
   // mark main content for skip link
   const main=document.querySelector("body > section");
   if(main){if(!main.id)main.id="maincontent";main.setAttribute("tabindex","-1");
     const sl=document.querySelector(".skip-link");if(sl)sl.setAttribute("href","#"+main.id);}
+  const st=document.getElementById("scrollTop");
+  if(st){st.onclick=()=>window.scrollTo({top:0,behavior:"smooth"});
+    let stT=false;addEventListener("scroll",()=>{if(!stT){requestAnimationFrame(()=>{st.classList.toggle("show",scrollY>700);stT=false;});stT=true;}},{passive:true});}
 }
 function fcol(title,links){return `<div class="gf-col"><h5>${title}</h5>${links.map(([l,h])=>`<a href="${h||"#"}">${l}</a>`).join("")}</div>`;}
 function buildFooter(){

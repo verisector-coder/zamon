@@ -912,6 +912,13 @@ html[data-theme="dark"] .pcard{background:var(--surface)}
 
 /* ===== TOAST ===== */
 .toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(140px);background:var(--text);color:var(--bg);padding:14px 24px;border-radius:980px;font-weight:600;font-size:.92rem;z-index:2000;transition:transform .45s var(--ease);box-shadow:var(--shadow-lg)}
+/* scroll-to-top (bottom-left to avoid the bottom-right buy pill) */
+.scrolltop{position:fixed;left:20px;bottom:24px;z-index:1500;width:46px;height:46px;border-radius:50%;border:1px solid var(--border-2);background:var(--nav-bg);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);color:var(--text);cursor:pointer;display:grid;place-items:center;box-shadow:var(--shadow);opacity:0;transform:translateY(16px) scale(.92);pointer-events:none;transition:opacity .3s var(--ease),transform .3s var(--ease)}
+.scrolltop.show{opacity:1;transform:none;pointer-events:auto}
+.scrolltop.show:hover{transform:translateY(-3px)}
+.scrolltop svg{width:22px;height:22px}
+@media(max-width:560px){.scrolltop{left:16px;bottom:76px;width:42px;height:42px}}
+@media (prefers-reduced-motion:reduce){.scrolltop{transition:opacity .2s}}
 .toast.show{transform:translateX(-50%) translateY(0)}
 
 /* ===== reveal / mobile menu ===== */

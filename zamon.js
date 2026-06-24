@@ -56,6 +56,19 @@ const PRODUCTS=[
    {n:{ru:"Цитрус",tj:"Ситрусӣ",en:"Citrus"},hex:"#e6cf4e",img:SCH("macbook-neo-citrus-cto-hero-202603")},
    {n:{ru:"Индиго",tj:"Индиго",en:"Indigo"},hex:"#3b4a7e",img:SCH("macbook-neo-indigo-cto-hero-202603")},
    {n:{ru:"Серебристый",tj:"Нуқрагӣ",en:"Silver"},hex:"#dcdee0",img:SCH("macbook-neo-silver-cto-hero-202603")}]},
+ {id:18,line:"Mac",name:"iMac",cat:"laptop",price:17990,old:0,rating:5,new:true,emoji:"🖥️",
+  lineImg:SCH("imac-blue-selection-hero-202410"),
+  tag:{ru:"Яркий настольный Mac на чипе M4",tj:"Mac-и мизи рангоранг бо чипи M4",en:"A vivid all-in-one desktop with M4"},
+  colors:[
+   {n:{ru:"Синий",tj:"Кабуд",en:"Blue"},hex:"#4a6b9a",img:SCH("imac-blue-selection-hero-202410")},
+   {n:{ru:"Зелёный",tj:"Сабз",en:"Green"},hex:"#3f7a5e",img:SCH("imac-green-selection-hero-202410")},
+   {n:{ru:"Розовый",tj:"Гулобӣ",en:"Pink"},hex:"#d98a93",img:SCH("imac-pink-selection-hero-202410")},
+   {n:{ru:"Жёлтый",tj:"Зард",en:"Yellow"},hex:"#e3c34a",img:SCH("imac-yellow-selection-hero-202410")},
+   {n:{ru:"Серебристый",tj:"Нуқрагӣ",en:"Silver"},hex:"#dcdee0",img:SCH("imac-silver-selection-hero-202410")}]},
+ {id:19,line:"Mac",name:"Mac mini",cat:"laptop",price:9990,old:0,rating:5,new:true,emoji:"🖥️",
+  lineImg:SCH("mac-mini-select-202410"),
+  tag:{ru:"Компактный настольный Mac на чипе M4",tj:"Mac-и мизи ҷайбӣ бо чипи M4",en:"Compact desktop Mac with M4"},
+  colors:[{n:{ru:"Серебристый",tj:"Нуқрагӣ",en:"Silver"},hex:"#dcdee0",img:SCH("mac-mini-select-202410")}]},
  {id:8,line:"iPad",name:"iPad Pro",cat:"tablet",price:13990,old:0,rating:5,new:true,emoji:"📲",modelPage:"ipad-pro.html",
   tag:{ru:"Чип M5 · Ultra Retina XDR",tj:"Чипи M5 · Ultra Retina XDR",en:"M5 · Ultra Retina XDR"},
   colors:[{n:{ru:"Серебристый",tj:"Нуқрагӣ",en:"Silver"},hex:"#dcdee0",img:A+"/v/ipad-pro/aw/images/overview/design/design_hero_endframe__0uk1xnayimay_large.png"}]},
@@ -168,7 +181,7 @@ P(7).colors=[
 /* AirPods 4 — clean product image (was a lifestyle photo) */
 P(13).colors=[{n:{ru:"Белый",tj:"Сафед",en:"White"},hex:"#f2f2f2",img:WG("airpods-4-anc-select-202409")}];
 /* storage / config options [sizeGB, +price] */
-const STORAGE={1:[[256,0],[512,2200],[1024,4800]],2:[[256,0],[512,2200]],3:[[256,0],[512,2000]],4:[[128,0],[256,1500]],5:[[128,0],[256,1500]],6:[[512,0],[1024,5000],[2048,12000]],7:[[256,0],[512,2500],[1024,6000]],8:[[256,0],[512,2500],[1024,6000]],9:[[128,0],[256,2000]],16:[[256,0],[512,2200]]};
+const STORAGE={1:[[256,0],[512,2200],[1024,4800]],2:[[256,0],[512,2200]],3:[[256,0],[512,2000]],4:[[128,0],[256,1500]],5:[[128,0],[256,1500]],6:[[512,0],[1024,5000],[2048,12000]],7:[[256,0],[512,2500],[1024,6000]],8:[[256,0],[512,2500],[1024,6000]],9:[[128,0],[256,2000]],16:[[256,0],[512,2200]],18:[[256,0],[512,2200],[1024,4800]],19:[[256,0],[512,2200],[1024,4800]]};
 PRODUCTS.forEach(p=>{const s=STORAGE[p.id];if(s)p.storage=s.map(([gb,add])=>({gb,add}));});
 /* submodel variants (size / Pro·Pro Max) [label, +price, sub] */
 const VARIANTS={
@@ -335,7 +348,7 @@ function renderFeatures(){
 const SPECS={
  1:{chip:"A19 Pro",display:"6.3″ OLED",battery:"до 33 ч"},2:{chip:"A19 Pro",display:"6.5″ OLED",battery:"до 27 ч"},
  3:{chip:"A19",display:"6.3″ OLED",battery:"до 30 ч"},4:{chip:"A19",display:"6.1″ OLED",battery:"до 26 ч"},5:{chip:"A18",display:"6.1″ OLED",battery:"до 22 ч"},
- 6:{chip:"M5 Pro / M5 Max",display:"14″ или 16″ XDR",battery:"до 24 ч"},7:{chip:"M4",display:"15″ Retina",battery:"до 18 ч"},16:{chip:"M5",display:"13″ Retina",battery:"до 18 ч"},
+ 6:{chip:"M5 Pro / M5 Max",display:"14″ или 16″ XDR",battery:"до 24 ч"},7:{chip:"M4",display:"15″ Retina",battery:"до 18 ч"},16:{chip:"M5",display:"13″ Retina",battery:"до 18 ч"},18:{chip:"M4",display:"24″ 4.5K Retina"},19:{chip:"M4",display:"—"},
  8:{chip:"M5",display:"13″ XDR",battery:"до 10 ч"},9:{chip:"M3",display:"11″ Retina",battery:"до 10 ч"},
  10:{chip:"S11",display:"49 мм Ti",battery:"до 42 ч"},11:{chip:"S11",display:"46 мм",battery:"до 24 ч"},15:{chip:"S10",display:"44 мм OLED",battery:"до 18 ч"},
  12:{chip:"H3 · ANC",display:"USB-C",battery:"до 8 ч"},13:{chip:"H2",display:"USB-C",battery:"до 5 ч"},14:{chip:"H1 · ANC",display:"Over-ear",battery:"до 20 ч"}

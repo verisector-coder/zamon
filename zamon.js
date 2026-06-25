@@ -126,7 +126,7 @@ delete P(10).card;P(10).tint="linear-gradient(180deg,#e6e8ec,#d3d7dd)";
 P(10).colors=[
  {n:{ru:"Натуральный титан",tj:"Титани табиӣ",en:"Natural Titanium"},hex:"#b9b2a8",img:WCASE("49","titanium","natural","","ultra3")},
  {n:{ru:"Чёрный титан",tj:"Титани сиёҳ",en:"Black Titanium"},hex:"#39383c",img:WCASE("49","titanium","black","","ultra3")}];
-P(10).gallery=[WG("ultra-case-unselect-gallery-2-202509"),WG("ultra-case-unselect-gallery-3-202509")];
+P(10).gallery=[WG("ultra-case-unselect-gallery-1-202509"),WG("ultra-case-unselect-gallery-2-202509"),WG("ultra-case-unselect-gallery-3-202509")];
 P(10).bandImgs=[WG("ultra-band-unselect-gallery-1-202509"),WG("ultra-band-unselect-gallery-2-202509"),WG("ultra-band-unselect-gallery-3-202509")];
 P(10).bands=[
  {n:{ru:"Trail Loop",tj:"Trail Loop",en:"Trail Loop"},hex:"#3a3a3d",add:0,desc:{ru:"Лёгкий тканый — для бега и тренировок.",tj:"Бофтаи сабук — барои давидан.",en:"Light woven band for running and workouts."}},
@@ -153,7 +153,7 @@ P(11).variants=[
  {n:{ru:"42 мм",tj:"42 мм",en:"42mm"},add:0,sub:{ru:"Компактный размер",tj:"Андозаи ҷайбӣ",en:"Compact size"}},
  {n:{ru:"46 мм",tj:"46 мм",en:"46mm"},add:800,sub:{ru:"Большой дисплей",tj:"Дисплейи калон",en:"Larger display"}}];
 P(11).bands=WBANDS_S;
-P(11).gallery=[WG("s11-case-unselect-gallery-2-202509"),WG("s11-case-unselect-gallery-3-202509")];
+P(11).gallery=[WG("s11-case-unselect-gallery-1-202509"),WG("s11-case-unselect-gallery-2-202509"),WG("s11-case-unselect-gallery-3-202509")];
 P(11).bandImgs=[WG("s11-band-unselect-gallery-1-202509")];
 /* Watch SE 3 (new — matches Apple lineup) */
 PRODUCTS.push({id:15,line:"Apple Watch",name:"Watch SE 3",cat:"watch",price:6490,old:0,rating:5,new:false,emoji:"⌚",
@@ -164,7 +164,7 @@ PRODUCTS.push({id:15,line:"Apple Watch",name:"Watch SE 3",cat:"watch",price:6490
  variants:[
   {n:{ru:"40 мм",tj:"40 мм",en:"40mm"},add:0,sub:{ru:"Компактный размер",tj:"Андозаи ҷайбӣ",en:"Compact size"}},
   {n:{ru:"44 мм",tj:"44 мм",en:"44mm"},add:500,sub:{ru:"Большой дисплей",tj:"Дисплейи калон",en:"Larger display"}}],
- bands:[WBANDS_S[0],WBANDS_S[1]],bandImgs:[WG("s11-band-unselect-gallery-1-202509")]});
+ bands:[WBANDS_S[0],WBANDS_S[1]],gallery:[WG("s11-case-unselect-gallery-1-202509"),WG("s11-case-unselect-gallery-2-202509")]});
 /* iPad Pro — clean per-finish images (store CDN), like watch */
 P(8).colors=[
  {n:{ru:"Серый космос",tj:"Хокистарӣ",en:"Space Black"},hex:"#3a3a3c",img:WG("ipad-pro-11-select-wifi-spaceblack-202405")},
@@ -1237,6 +1237,8 @@ function renderConfigurator(){
 
   function gallery(){
     const cols=curCols();const angles=p.gallery||[];
+    // watches: lead with the full watch (case + band), then the case-finish detail, then angles
+    if(p.cat==="watch"&&angles.length)return [angles[0],cols[CFG.ci].img].concat(angles.slice(1)).filter(Boolean).slice(0,5);
     return [cols[CFG.ci].img].concat(angles).filter(Boolean).slice(0,5);
   }
   function calc(){

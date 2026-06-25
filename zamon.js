@@ -1236,7 +1236,6 @@ function renderConfigurator(){
   const siblings=PRODUCTS.filter(s=>s.cat===cat);
 
   function gallery(){
-    if(CFG.focus==="band"&&p.bandImgs&&p.bandImgs.length)return p.bandImgs.slice(0,4);
     const cols=curCols();const angles=p.gallery||[];
     return [cols[CFG.ci].img].concat(angles).filter(Boolean).slice(0,5);
   }

@@ -865,7 +865,7 @@ html[data-theme="dark"] .pcard{background:var(--surface)}
 .cfg-q{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
 .cfg-opt .o-sub{font-size:.8rem;color:var(--text-2);margin-top:3px;line-height:1.35}
 .cfg-curname{font-size:.86rem;color:var(--text-2);margin-top:12px;font-weight:500}
-.cfg-banddot{display:inline-block;width:16px;height:16px;border-radius:50%;border:1px solid rgba(0,0,0,.15);margin-right:9px;vertical-align:-3px}
+.cfg-banddot{display:inline-block;width:38px;height:16px;border-radius:8px;border:1px solid rgba(0,0,0,.15);margin-right:11px;vertical-align:-3px;box-shadow:inset 0 -3px 6px rgba(0,0,0,.18),inset 0 2px 4px rgba(255,255,255,.25)}
 .cfg-help{margin-top:12px;background:var(--bg-alt);border-radius:12px;padding:0 16px}
 .cfg-help summary{list-style:none;cursor:pointer;padding:13px 0;font-size:.88rem;font-weight:600;color:var(--accent);display:flex;align-items:center;gap:8px}
 .cfg-help summary::-webkit-details-marker{display:none}

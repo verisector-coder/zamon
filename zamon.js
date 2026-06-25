@@ -59,6 +59,11 @@ const PRODUCTS=[
  {id:18,line:"Mac",name:"iMac",cat:"laptop",price:17990,old:0,rating:5,new:true,emoji:"🖥️",
   lineImg:SCH("imac-blue-selection-hero-202410"),
   tag:{ru:"Яркий настольный Mac на чипе M4",tj:"Mac-и мизи рангоранг бо чипи M4",en:"A vivid all-in-one desktop with M4"},
+  highlights:[
+   {ic:"⚡",big:"M4",lbl:{ru:"Чип",tj:"Чип",en:"Chip"}},
+   {ic:"🖥️",big:"24″ 4.5K",lbl:{ru:"Дисплей Retina",tj:"Дисплейи Retina",en:"Retina display"}},
+   {ic:"🎨",big:{ru:"5 цветов",tj:"5 ранг",en:"5 colors"},lbl:{ru:"Дизайн",tj:"Дизайн",en:"Design"}}],
+  box:[{ic:"🖥️",n:"iMac"},{ic:"⌨️",n:{ru:"Magic Keyboard",tj:"Magic Keyboard",en:"Magic Keyboard"}},{ic:"🖱️",n:{ru:"Magic Mouse",tj:"Magic Mouse",en:"Magic Mouse"}},{ic:"🔌",n:{ru:"Кабель питания",tj:"Сими барқ",en:"Power cable"}}],
   colors:[
    {n:{ru:"Синий",tj:"Кабуд",en:"Blue"},hex:"#4a6b9a",img:SCH("imac-blue-selection-hero-202410")},
    {n:{ru:"Зелёный",tj:"Сабз",en:"Green"},hex:"#3f7a5e",img:SCH("imac-green-selection-hero-202410")},
@@ -68,6 +73,11 @@ const PRODUCTS=[
  {id:19,line:"Mac",name:"Mac mini",cat:"laptop",price:9990,old:0,rating:5,new:true,emoji:"🖥️",
   lineImg:SCH("mac-mini-select-202410"),
   tag:{ru:"Компактный настольный Mac на чипе M4",tj:"Mac-и мизи ҷайбӣ бо чипи M4",en:"Compact desktop Mac with M4"},
+  highlights:[
+   {ic:"⚡",big:"M4",lbl:{ru:"Чип",tj:"Чип",en:"Chip"}},
+   {ic:"📦",big:{ru:"12,7 см",tj:"12,7 см",en:"12.7 cm"},lbl:{ru:"Компактный корпус",tj:"Корпуси ҷайбӣ",en:"Compact design"}},
+   {ic:"💾",big:{ru:"до 1 ТБ",tj:"то 1 ТБ",en:"up to 1 TB"},lbl:{ru:"Память SSD",tj:"Хотираи SSD",en:"SSD storage"}}],
+  box:[{ic:"🖥️",n:"Mac mini"},{ic:"🔌",n:{ru:"Кабель питания",tj:"Сими барқ",en:"Power cable"}},{ic:"📄",n:{ru:"Документация",tj:"Ҳуҷҷатҳо",en:"Documentation"}}],
   colors:[{n:{ru:"Серебристый",tj:"Нуқрагӣ",en:"Silver"},hex:"#dcdee0",img:SCH("mac-mini-select-202410")}]},
  {id:8,line:"iPad",name:"iPad Pro",cat:"tablet",price:13990,old:0,rating:5,new:true,emoji:"📲",modelPage:"ipad-pro.html",
   tag:{ru:"Чип M5 · Ultra Retina XDR",tj:"Чипи M5 · Ultra Retina XDR",en:"M5 · Ultra Retina XDR"},
@@ -1355,7 +1365,7 @@ function buildWITB(p){
     audio:[{ic:p.emoji||"🎧",n:p.name},{ic:"🔋",n:{ru:"Зарядный кейс",tj:"Ғилофи шарж",en:"Charging case"}},cable],
     watch:[{ic:p.emoji||"⌚",n:p.name},{ic:"⌚",n:{ru:"Ремешок",tj:"Тасма",en:"Band"}},{ic:"🧲",n:{ru:"Магнитный зарядный кабель",tj:"Сими магнитии шарж",en:"Magnetic charge cable"}}]
   };
-  const witb=witbMap[p.cat]||witbMap.phone;
+  const witb=p.box||witbMap[p.cat]||witbMap.phone;
   return `<section class="sec alt"><div class="wrap"><div class="sec-head reveal"><h2>${tr({ru:"В коробке",tj:"Дар қуттӣ",en:"In the box"})}</h2></div>
     <div class="witb-grid">${witb.map(w=>`<div class="witb-item reveal"><div class="witb-ic">${w.ic}</div><div class="witb-n">${typeof w.n==="string"?w.n:tr(w.n)}</div></div>`).join("")}</div></div></section>`;
 }
@@ -1396,9 +1406,10 @@ function renderProduct(){
     :p.cat==="watch"?[tr({ru:"Чип",tj:"Чип",en:"Chip"}),tr({ru:"Корпус",tj:"Корпус",en:"Case"}),tr({ru:"Батарея",tj:"Батарея",en:"Battery"})]
     :[t("spec_chip"),t("spec_display"),t("spec_battery")];
   const ficons=p.cat==="audio"?["🎧","🔌","🔋"]:p.cat==="watch"?["⌚","📐","🔋"]:["⚡","🖥️","🔋"];
-  const fvals=[sp.chip,sp.display,sp.battery];
-  const feats=(sp.chip&&sp.display&&sp.battery)?`<section class="sec alt"><div class="wrap"><div class="sec-head reveal"><h2>${t("pp_highlights")}</h2><p class="sec-sub">${tr({ru:"Главное об устройстве — коротко.",tj:"Асосӣ дар бораи дастгоҳ.",en:"The key things at a glance."})}</p></div>
-    <div class="prod-feats">${fvals.map((v,i)=>`<div class="pf-card reveal"><div class="pf-ic">${ficons[i]}</div><div class="pf-big">${v}</div><div class="pf-lbl">${flbl[i]}</div></div>`).join("")}</div></div></section>`:"";
+  const SLV=x=>x==null?"":(typeof x==="string"?x:tr(x));
+  const featData=p.highlights||((sp.chip&&sp.display&&sp.battery)?[{ic:ficons[0],big:sp.chip,lbl:flbl[0]},{ic:ficons[1],big:sp.display,lbl:flbl[1]},{ic:ficons[2],big:sp.battery,lbl:flbl[2]}]:null);
+  const feats=featData?`<section class="sec alt"><div class="wrap"><div class="sec-head reveal"><h2>${t("pp_highlights")}</h2><p class="sec-sub">${tr({ru:"Главное об устройстве — коротко.",tj:"Асосӣ дар бораи дастгоҳ.",en:"The key things at a glance."})}</p></div>
+    <div class="prod-feats">${featData.map(f=>`<div class="pf-card reveal"><div class="pf-ic">${f.ic}</div><div class="pf-big">${SLV(f.big)}</div><div class="pf-lbl">${SLV(f.lbl)}</div></div>`).join("")}</div></div></section>`:"";
   const benefits=[{ic:"🛡️",h:t("s1h"),p:t("s1p")},{ic:"💳",h:t("s3h"),p:t("s3p")},{ic:"🚚",h:t("s2h"),p:t("s2p")}];
   const why=`<section class="sec"><div class="wrap"><div class="sec-head reveal"><h2>${tr({ru:"Почему ZAMON",tj:"Чаро ZAMON",en:"Why ZAMON"})}</h2></div>
     <div class="why-adv">${benefits.map(w=>`<div class="wa reveal"><div class="wa-ic">${w.ic}</div><h4>${w.h}</h4><p>${w.p}</p></div>`).join("")}</div></div></section>`;

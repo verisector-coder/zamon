@@ -1260,6 +1260,7 @@ function renderConfigurator(){
       <div><div class="o-name">${name}</div>${sub?`<div class="o-sub">${sub}</div>`:""}</div>
       ${price!=null?`<div class="o-price">${price}</div>`:""}</div>`;
     const plus=n=>n>0?"+"+fmtPrice(n):t("cfg_incl");
+    const finishSw=`<div class="cfg-colors">${cols.map((cc,i)=>`<div class="cfg-color ${i===CFG.ci?"active":""}" data-ci="${i}"><span class="cc-dot" style="background:${cc.hex}"></span><span class="cc-name">${tr(cc.n)}</span></div>`).join("")}</div>${cols.length>1?`<div class="cfg-curname">${tr(col.n)}</div>`:""}`;
 
     root.innerHTML=`
     <div class="cfg-top">
@@ -1281,15 +1282,14 @@ function renderConfigurator(){
       ${mats?`<div class="cfg-group"><div class="cfg-q">${t("cfg_material")} <span>${t("cfg_material_sub")}</span></div>
         ${mats.map((m,i)=>`<div class="cfg-mat ${i===CFG.mi?"active":""}" data-mi="${i}">
           <div class="cm-head"><div><b>${tr(m.n)}</b><div class="cm-from">${t("from")}${fmtPrice(m.fromPrice)}</div></div><div class="o-price">${m.add>0?"+"+fmtPrice(m.add):t("cfg_incl")}</div></div>
-          <div class="cm-desc">${tr(m.desc)}</div></div>`).join("")}</div>`:""}
+          <div class="cm-desc">${tr(m.desc)}</div></div>`).join("")}
+        <div class="cfg-finish-row"><div class="cfg-sublabel">${t("cfg_finish")}${cols.length>1?" — "+tr(col.n):""}</div>${finishSw}</div></div>`:""}
 
       ${p.variants?`<div class="cfg-group"><div class="cfg-q">${t("cfg_size")} <span>${t("cfg_size_sub")}</span></div>
         ${p.variants.map((v,i)=>optRow(i===CFG.vi,`data-vi="${i}"`,tr(v.n),tr(v.sub),plus(v.add))).join("")}
         <details class="cfg-help"><summary>${t("cfg_help_size")}</summary><p>${t("cfg_help_size_txt")}</p></details></div>`:""}
 
-      <div class="cfg-group"><div class="cfg-q">${t("cfg_finish")} <span>${t("cfg_finish_sub")}</span></div>
-        <div class="cfg-colors">${cols.map((cc,i)=>`<div class="cfg-color ${i===CFG.ci?"active":""}" data-ci="${i}"><span class="cc-dot" style="background:${cc.hex}"></span><span class="cc-name">${tr(cc.n)}</span></div>`).join("")}</div>
-        ${cols.length>1?`<div class="cfg-curname">${tr(col.n)}</div>`:""}</div>
+      ${!mats?`<div class="cfg-group"><div class="cfg-q">${t("cfg_finish")} <span>${t("cfg_finish_sub")}</span></div>${finishSw}</div>`:""}
 
       ${p.bands?`<div class="cfg-group"><div class="cfg-q">${t("cfg_band")} <span>${t("cfg_band_sub")}</span></div>
         ${p.bands.map((b,i)=>optRow(i===CFG.bi,`data-bi="${i}"`,`<span class="cfg-banddot" style="background:${b.hex}"></span>${tr(b.n)}`,b.desc?tr(b.desc):"",plus(b.add))).join("")}

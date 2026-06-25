@@ -93,12 +93,18 @@ const PRODUCTS=[
   colors:[{n:{ru:"Чёрный",tj:"Сиёҳ",en:"Black"},hex:"#2b2b2e",img:A+"/v/apple-watch-series-11/c/images/overview/product-viewer/product_design_endframe__d7wjctwjpbo2_large.jpg"}]},
  {id:12,line:"AirPods",name:"AirPods Pro 3",cat:"audio",price:2490,old:0,rating:5,new:true,emoji:"🎧",modelPage:"airpods-pro.html",
   tag:{ru:"Шумоподавление нового поколения",tj:"Бартарафсозии садо насли нав",en:"Next-gen noise cancellation"},
+  box:[{ic:"🎧",n:"AirPods Pro 3"},{ic:"🔋",n:{ru:"Зарядный кейс MagSafe",tj:"Ғилофи шаржи MagSafe",en:"MagSafe Charging Case"}},{ic:"👂",n:{ru:"Амбушюры, 4 размера",tj:"Амбушюрҳо, 4 андоза",en:"Ear tips, 4 sizes"}},{ic:"🔌",n:{ru:"Кабель USB‑C",tj:"Сими USB‑C",en:"USB‑C cable"}}],
   colors:[{n:{ru:"Белый",tj:"Сафед",en:"White"},hex:"#f2f2f2",img:A+"/v/airpods/ae/images/overview/hero_endframe__calpooy4ucr6_large_2x.jpg"}]},
  {id:13,line:"AirPods",name:"AirPods 4",cat:"audio",price:1590,old:0,rating:4,new:false,emoji:"🎧",
   tag:{ru:"Удобная посадка и чистый звук",tj:"Шинонидани бароҳат ва садои тоза",en:"Comfy fit, crisp sound"},
   colors:[{n:{ru:"Белый",tj:"Сафед",en:"White"},hex:"#f2f2f2",img:A+"/v/airpods/ae/images/overview/hero__gb4d3fd8jnu6_large_2x.jpg"}]},
  {id:14,line:"AirPods",name:"AirPods Max",cat:"audio",price:5990,old:0,rating:5,new:false,emoji:"🎧",
   tag:{ru:"Наушники высшего класса",tj:"Гӯшмонакҳои дараҷаи олӣ",en:"Premium over-ear sound"},
+  highlights:[
+   {ic:"🎧",big:"H1",lbl:{ru:"Чип",tj:"Чип",en:"Chip"}},
+   {ic:"🔇",big:{ru:"ANC",tj:"ANC",en:"ANC"},lbl:{ru:"Шумоподавление",tj:"Бартарафсозии садо",en:"Noise cancellation"}},
+   {ic:"🔋",big:{ru:"до 20 ч",tj:"то 20 соат",en:"up to 20h"},lbl:{ru:"Время работы",tj:"Батарея",en:"Battery"}}],
+  box:[{ic:"🎧",n:"AirPods Max"},{ic:"👜",n:{ru:"Чехол Smart Case",tj:"Ғилофи Smart Case",en:"Smart Case"}},{ic:"🔌",n:{ru:"Кабель USB‑C",tj:"Сими USB‑C",en:"USB‑C cable"}}],
   colors:[
    {n:{ru:"Синий",tj:"Кабуд",en:"Blue"},hex:"#5d7d99",img:A+"/v/airpods/ae/images/overview/airpods_max_blue__fsfaleh1smuu_large.png"},
    {n:{ru:"Чёрный",tj:"Сиёҳ",en:"Midnight"},hex:"#2b2b2e",img:A+"/v/airpods/ae/images/overview/airpods_max_black__x3byrd2venmu_large.png"},

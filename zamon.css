@@ -530,7 +530,10 @@ html[data-theme="dark"] .pcard{background:var(--surface)}
 .ck-grid{display:grid;grid-template-columns:1fr 340px;gap:34px;align-items:start}
 .ck-fields{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:24px}
 .ck-fields .field:nth-child(4),.ck-fields .field:nth-child(5){grid-column:1/-1}
-.ck-q{font-size:1.15rem;font-weight:600;margin:6px 0 12px}
+.ck-q{font-size:1.15rem;font-weight:600;margin:18px 0 12px}
+.ck-q:first-of-type{margin-top:0}
+.ck-intro{margin:-6px 0 26px;font-size:1rem}
+.field .req{color:#ff3b30}
 .ck-nav{display:flex;gap:12px;margin-top:26px}
 .ck-nav .btn{flex:1;justify-content:center}
 .ck-review{display:grid;grid-template-columns:1fr 1fr;gap:14px}

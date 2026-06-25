@@ -978,7 +978,7 @@ let CK=null;
 function renderCheckout(){
   const root=document.getElementById("checkout");if(!root)return;
   document.title="ZAMON — "+t("co_title");
-  if(!CK)CK={step:1,done:false,order:null,d:{name:"",phone:"",city:"",addr:"",email:"",delivery:"courier",pay:t("co_pay3")}};
+  if(!CK)CK={done:false,order:null,d:{name:"",phone:"",city:"",addr:"",delivery:"courier",pay:t("co_pay1")}};
   if(CK.done&&CK.order){
     const o=CK.order;
     root.innerHTML=`<div class="ck-done"><div class="ok-ico">✓</div><h1>${t("co_ok_h")}</h1>
@@ -987,35 +987,28 @@ function renderCheckout(){
       <div class="ck-done-act"><a class="btn btn-primary" href="account.html">${t("ck_to_acc")}</a><a class="btn btn-soft" href="index.html">${t("co_ok_btn")}</a></div></div>`;
     return;
   }
-  if(!cart.length){root.innerHTML=`<div class="cp-empty"><div class="ec-ico">🛍️</div><h2>${t("cart_empty")}</h2><p>${t("cart_empty_sub")}</p><a class="btn btn-primary" href="index.html#catalog">${t("cp_continue")}</a></div>`;return;}
-  const steps=["ck_step1","ck_step2","ck_step3"];
-  const prog=`<div class="ck-steps">${steps.map((s,i)=>`<div class="ck-st ${i+1===CK.step?"active":""} ${i+1<CK.step?"done":""}"><span class="ck-stn">${i+1<CK.step?"✓":i+1}</span>${t(s)}</div>`).join("")}</div>`;
-  const D=CK.d;const field=(k,lbl,ph,type)=>`<div class="field"><label>${lbl}</label><input data-f="${k}" type="${type||"text"}" value="${(D[k]||"").replace(/"/g,"&quot;")}" placeholder="${ph}"></div>`;
-  const opt=(active,attr,name,sub,price)=>`<div class="cfg-opt ${active?"active":""}" ${attr}><div><div class="o-name">${name}</div>${sub?`<div class="o-sub">${sub}</div>`:""}</div>${price?`<div class="o-price">${price}</div>`:""}</div>`;
-  let body="";
-  if(CK.step===1){
-    body=`<div class="ck-fields">${field("name",t("co_name"),"Ahmad Rahimov")}${field("phone",t("co_phone"),"+992 90 000 00 00","tel")}
-      ${field("city",t("co_city"),t("region"))}${field("addr",t("ck_addr"),"ул. Рудаки 25, кв. 4")}${field("email",t("ck_email"),"mail@example.com","email")}</div>
-      <div class="ck-q">${t("ck_method")}</div>
-      ${opt(D.delivery==="courier",`data-deliv="courier"`,t("ck_courier"),t("ck_courier_s"),null)}
-      ${opt(D.delivery==="pickup",`data-deliv="pickup"`,t("ck_pickup"),t("ck_pickup_s"),null)}`;
-  }else if(CK.step===2){
-    body=`<div class="ck-q">${t("co_pay")}</div>
-      ${opt(D.pay===t("co_pay3"),`data-pay="${t("co_pay3")}"`,t("co_pay3"),t("cfg_pay_inst_sub"),null)}
-      ${opt(D.pay===t("co_pay1"),`data-pay="${t("co_pay1")}"`,t("co_pay1"),"",null)}
-      ${opt(D.pay===t("co_pay2"),`data-pay="${t("co_pay2")}"`,t("co_pay2"),"",null)}`;
-  }else{
-    body=`<div class="ck-review">
-      <div class="ck-rev-card"><h4>${t("ck_contact")}</h4><p>${D.name||"—"}<br>${D.phone||"—"}${D.email?"<br>"+D.email:""}</p></div>
-      <div class="ck-rev-card"><h4>${t("ck_deliv")}</h4><p>${D.delivery==="courier"?t("ck_courier"):t("ck_pickup")}<br>${D.city||""} ${D.addr||""}</p></div>
-      <div class="ck-rev-card"><h4>${t("co_pay")}</h4><p>${D.pay}</p></div>
-      <div class="ck-rev-card full"><h4>${t("ck_items")}</h4>${cart.map(c=>{const p=P(c.id);return p?`<div class="ck-ri"><span>${p.name} × ${c.qty}</span><span>${fmtPrice(priceOf(c)*c.qty)}</span></div>`:"";}).join("")}</div></div>`;
-  }
+  if(!cart.length){root.innerHTML=`<div class="cp-empty"><div class="ec-ico">🛍️</div><h2>${t("cart_empty")}</h2><p>${t("cart_empty_sub")}</p><a class="btn btn-primary" href="index.html">${t("cp_continue")}</a></div>`;return;}
+  const D=CK.d;
+  const field=(k,lbl,ph,type,req)=>`<div class="field"><label>${lbl}${req?` <span class="req">*</span>`:""}</label><input data-f="${k}" type="${type||"text"}" value="${(D[k]||"").replace(/"/g,"&quot;")}" placeholder="${ph}"></div>`;
+  const opt=(active,attr,name,sub)=>`<div class="cfg-opt ${active?"active":""}" ${attr}><div><div class="o-name">${name}</div>${sub?`<div class="o-sub">${sub}</div>`:""}</div></div>`;
+  const courier=D.delivery==="courier";
+  const body=`
+    <div class="ck-q">${t("ck_contact")}</div>
+    <div class="ck-fields">${field("name",t("co_name"),"Ahmad Rahimov",null,true)}${field("phone",t("co_phone"),"+992 90 000 00 00","tel",true)}</div>
+    <div class="ck-q">${t("ck_method")}</div>
+    ${opt(courier,`data-deliv="courier"`,t("ck_courier"),t("ck_courier_s"))}
+    ${opt(!courier,`data-deliv="pickup"`,t("ck_pickup"),t("ck_pickup_s"))}
+    ${courier?`<div class="ck-fields">${field("city",t("co_city"),t("region"),null,true)}${field("addr",t("ck_addr"),"ул. Рудаки 25, кв. 4",null,true)}</div>`:""}
+    <div class="ck-q">${t("co_pay")}</div>
+    ${opt(D.pay===t("co_pay1"),`data-pay="${t("co_pay1")}"`,t("co_pay1"),tr({ru:"Наличными при получении",tj:"Нақд ҳангоми гирифтан",en:"Cash on delivery"}))}
+    ${opt(D.pay===t("co_pay2"),`data-pay="${t("co_pay2")}"`,t("co_pay2"),tr({ru:"Картой при получении",tj:"Корт ҳангоми гирифтан",en:"Card on delivery"}))}
+    ${opt(D.pay===t("co_pay3"),`data-pay="${t("co_pay3")}"`,t("co_pay3"),t("cfg_pay_inst_sub"))}`;
   const total=cartSum();
-  root.innerHTML=`<div class="ck-head"><h1>${t("co_title")}</h1><a class="ck-cancel" href="cart.html">${t("ck_back")} →</a></div>${prog}
+  root.innerHTML=`<div class="ck-head"><h1>${t("co_title")}</h1><a class="ck-cancel" href="cart.html">${t("ck_back")} →</a></div>
+    <p class="ck-intro msub">${t("co_sub")}</p>
     <div class="ck-grid"><div class="ck-main">${body}
-      <div class="ck-nav">${CK.step>1?`<button class="btn btn-soft" id="ckBack">${t("ck_back")}</button>`:`<a class="btn btn-soft" href="cart.html">${t("ck_back")}</a>`}
-        <button class="btn btn-primary" id="ckNext">${CK.step<3?t("ck_next"):t("ck_place")}</button></div></div>
+      <div class="ck-nav"><a class="btn btn-soft" href="cart.html">${t("ck_back")}</a>
+        <button class="btn btn-primary" id="ckNext">${t("ck_place")}</button></div></div>
       <aside class="ck-sum"><h3>${t("cp_summary")}</h3>
         ${cart.map(c=>{const p=P(c.id);if(!p)return"";const col=p.colors[c.color]||p.colors[0];return `<div class="ck-sli"><div class="ck-sli-img"><img src="${p.card||col.img}" data-emoji="${p.emoji}" alt="${p.name}" onerror="imgFallback(this)"></div><div class="ck-sli-i"><span>${p.name}</span><small>${tr(col.n)} · ${c.qty} ${t("pieces")}</small></div><b>${fmtPrice(priceOf(c)*c.qty)}</b></div>`;}).join("")}
         <div class="ck-ship">✓ <span>${t("ship_free")}</span></div>
@@ -1023,11 +1016,9 @@ function renderCheckout(){
   root.querySelectorAll("[data-f]").forEach(i=>i.oninput=()=>{D[i.dataset.f]=i.value;});
   root.querySelectorAll("[data-deliv]").forEach(o=>o.onclick=()=>{D.delivery=o.dataset.deliv;renderCheckout();});
   root.querySelectorAll("[data-pay]").forEach(o=>o.onclick=()=>{D.pay=o.dataset.pay;renderCheckout();});
-  const bk=root.querySelector("#ckBack");if(bk)bk.onclick=()=>{CK.step--;renderCheckout();};
   root.querySelector("#ckNext").onclick=()=>{
-    if(CK.step===1){if(!D.name||!D.phone||!D.city||!D.addr){toast(tr({ru:"Заполните все поля",tj:"Ҳама майдонҳоро пур кунед",en:"Please fill in all fields"}));return;}}
-    if(CK.step<3){CK.step++;renderCheckout();return;}
-    // place order
+    if(!D.name||!D.phone){toast(tr({ru:"Укажите имя и телефон",tj:"Ном ва телефонро нависед",en:"Enter name and phone"}));return;}
+    if(courier&&(!D.city||!D.addr)){toast(tr({ru:"Укажите город и адрес доставки",tj:"Шаҳр ва суроғаро нависед",en:"Enter city and delivery address"}));return;}
     const o={no:"Z"+Date.now().toString().slice(-7),ts:Date.now(),items:cart.map(c=>({id:c.id,color:c.color,qty:c.qty,price:priceOf(c)})),total:cartSum(),d:Object.assign({},D)};
     orders.unshift(o);saveOrders();cart=[];saveCart();updateCount();renderCart();
     CK.done=true;CK.order=o;renderCheckout();window.scrollTo(0,0);

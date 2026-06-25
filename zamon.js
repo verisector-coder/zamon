@@ -1237,8 +1237,7 @@ function renderConfigurator(){
 
   function gallery(){
     const cols=curCols();const angles=p.gallery||[];
-    // watches: lead with the full watch (case + band), then the case-finish detail, then angles
-    if(p.cat==="watch"&&angles.length)return [angles[0],cols[CFG.ci].img].concat(angles.slice(1)).filter(Boolean).slice(0,5);
+    // main image recolors per finish (cols[ci]); watch-with-band shots follow as angles
     return [cols[CFG.ci].img].concat(angles).filter(Boolean).slice(0,5);
   }
   function calc(){
@@ -1265,7 +1264,7 @@ function renderConfigurator(){
     root.innerHTML=`
     <div class="cfg-top">
       <a class="cfg-back" href="${li.buyPage||"index.html"}"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg> ${t("cfg_back")}</a>
-      ${siblings.length>1?`<div class="cfg-models">${siblings.map(s=>`<button class="cfg-mtab ${s.id===CFG.pid?"active":""}" data-pid="${s.id}">${s.name}</button>`).join("")}</div>`:""}
+      ${siblings.length>1&&cat!=="watch"?`<div class="cfg-models">${siblings.map(s=>`<button class="cfg-mtab ${s.id===CFG.pid?"active":""}" data-pid="${s.id}">${s.name}</button>`).join("")}</div>`:""}
     </div>
 
     <div class="cfg-stage"><div class="cfg-gallery">

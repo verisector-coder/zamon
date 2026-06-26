@@ -21,10 +21,24 @@ function notifyShop(o){
 /* request a smaller image for small tiles (store CDN supports wid/hei params; apple.com /v/ images are fixed-size) */
 function shrinkCDN(url,w){if(url&&/storeimages\.cdn-apple\.com/.test(url))return url.replace(/wid=\d+/,"wid="+w).replace(/hei=\d+/,"hei="+w);return url;}
 function imgFallback(img){
-  const box=img.closest(".media,.ci-img,.lc-media,.buy-media,.info-media,.cfg-media,.phero,.fimg,.promo");
+  img.classList.add("img-loaded");if(img.parentElement)img.parentElement.classList.add("img-ready");
+  const box=img.closest(".media,.ci-img,.lc-media,.lr-media,.bg-media,.mc-img,.buy-media,.info-media,.cfg-media,.phero,.fimg,.promo");
   if(!box||box.classList.contains("phero")||box.classList.contains("fimg")||box.classList.contains("promo")){img.style.visibility="hidden";return;}
   box.classList.add("media-fb");box.setAttribute("data-fb",img.getAttribute("data-emoji")||"📦");img.remove();
 }
+/* smooth image loading: fade each product image in when it arrives, hide its skeleton shimmer */
+document.addEventListener("load",function(e){
+  var el=e.target;
+  if(el&&el.tagName==="IMG"&&el.hasAttribute("data-emoji")){
+    el.classList.add("img-loaded");
+    if(el.parentElement)el.parentElement.classList.add("img-ready");
+  }
+},true);
+function zRevealImgs(){
+  var imgs=document.querySelectorAll('img[data-emoji]:not(.img-loaded)');
+  for(var i=0;i<imgs.length;i++){var im=imgs[i];if(im.complete&&im.naturalWidth>0){im.classList.add("img-loaded");if(im.parentElement)im.parentElement.classList.add("img-ready");}}
+}
+setInterval(zRevealImgs,700);
 
 /* ===== PRODUCTS ===== */
 const PRODUCTS=[

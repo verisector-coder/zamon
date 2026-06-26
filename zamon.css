@@ -982,3 +982,14 @@ a.ci-link:hover{color:var(--accent-2)}
 @media (max-width:860px){.gnav-links{display:none}.burger{display:grid}.megamenu{display:none}.feature{grid-template-columns:1fr}.feature .fc{order:2;padding:40px}.feature.right .fc{order:2}.feature .fimg{min-height:300px}.feature .fimg img{max-height:300px}.services{grid-template-columns:1fr 1fr}.tgrid{grid-template-columns:1fr}.gf-dir{grid-template-columns:repeat(2,1fr)}}
 @media (max-width:560px){.sec{padding:60px 0}.services{grid-template-columns:1fr}.showcase-2{grid-template-columns:1fr}.lcard,.pcard{width:80vw;min-width:80vw}.color-opts{grid-template-columns:1fr}.gf-dir{grid-template-columns:1fr 1fr}.hero-stats{gap:30px}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}.car-track{scroll-behavior:auto}}
+
+/* ===== SMOOTH IMAGE LOADING (skeleton shimmer + fade-in) ===== */
+.lr-media,.bg-media,.lc-media,.mc-img,.media,.sr-img,.ck-sli-img,.ao-img{position:relative;overflow:hidden}
+.lr-media::after,.bg-media::after,.lc-media::after,.mc-img::after,.media::after,.sr-img::after,.ck-sli-img::after,.ao-img::after{content:"";position:absolute;inset:0;z-index:0;background:linear-gradient(90deg,transparent 0,rgba(0,0,0,.05) 50%,transparent 100%);transform:translateX(-100%);animation:zShimmer 1.25s ease-in-out infinite;transition:opacity .35s ease;pointer-events:none}
+.img-ready::after{opacity:0;animation:none}
+[data-theme="dark"] .lr-media::after,[data-theme="dark"] .bg-media::after,[data-theme="dark"] .lc-media::after,[data-theme="dark"] .mc-img::after,[data-theme="dark"] .media::after,[data-theme="dark"] .sr-img::after,[data-theme="dark"] .ck-sli-img::after,[data-theme="dark"] .ao-img::after{background:linear-gradient(90deg,transparent 0,rgba(255,255,255,.07) 50%,transparent 100%)}
+@keyframes zShimmer{100%{transform:translateX(100%)}}
+img[data-emoji]{position:relative;z-index:1;opacity:0;transition:opacity .5s ease}
+img[data-emoji].img-loaded{opacity:1}
+/* reduced-motion: never keep images hidden, no shimmer */
+@media (prefers-reduced-motion:reduce){img[data-emoji]{opacity:1}.lr-media::after,.bg-media::after,.lc-media::after,.mc-img::after,.media::after,.sr-img::after,.ck-sli-img::after,.ao-img::after{display:none}}

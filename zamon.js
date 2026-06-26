@@ -39,6 +39,14 @@ function zRevealImgs(){
   for(var i=0;i<imgs.length;i++){var im=imgs[i];if(im.complete&&im.naturalWidth>0){im.classList.add("img-loaded");if(im.parentElement)im.parentElement.classList.add("img-ready");}}
 }
 setInterval(zRevealImgs,700);
+/* ===== SEO: Schema.org structured data (JSON-LD) ===== */
+function setLD(key,obj){var id="ld-"+key;var ex=document.getElementById(id);if(ex)ex.remove();var s=document.createElement("script");s.id=id;s.type="application/ld+json";s.text=JSON.stringify(obj);document.head.appendChild(s);}
+function siteLD(){
+  setLD("org",{"@context":"https://schema.org","@type":"Store","name":"ZAMON","url":"https://zamon.app/","logo":"https://zamon.app/favicon.svg","image":"https://zamon.app/favicon.svg","telephone":"+992982227635","priceRange":"$$$","address":{"@type":"PostalAddress","addressLocality":"Душанбе","addressCountry":"TJ"},"areaServed":{"@type":"Country","name":"Tajikistan"},"sameAs":["https://wa.me/992982227635","https://t.me/vensurel"]});
+  setLD("web",{"@context":"https://schema.org","@type":"WebSite","name":"ZAMON","url":"https://zamon.app/","inLanguage":["ru","tg","en"]});
+}
+try{siteLD();}catch(e){}
+function productLD(p){try{setLD("product",{"@context":"https://schema.org","@type":"Product","name":p.name,"image":mainImg(p),"description":tr(p.tag||{ru:p.name,tj:p.name,en:p.name}),"sku":"ZAMON-"+p.id,"brand":{"@type":"Brand","name":"Apple"},"category":p.line||p.cat,"offers":{"@type":"Offer","priceCurrency":"TJS","price":p.price,"availability":"https://schema.org/InStock","url":location.href,"seller":{"@type":"Organization","name":"ZAMON"}}});}catch(e){}}
 
 /* ===== PRODUCTS ===== */
 const PRODUCTS=[
@@ -558,7 +566,8 @@ const ICON_PAUSE='<svg viewBox="0 0 24 24"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/
 function renderModelPage(){
   const root=document.getElementById("modelpage");if(!root)return;
   const m=MODELS[root.dataset.model];if(!m)return;
-  document.title="ZAMON — "+m.name;
+  document.title=tr({ru:"Купить "+m.name+" в Душанбе",tj:m.name+"-ро дар Душанбе харед",en:"Buy "+m.name+" in Dushanbe"})+" — ZAMON";
+  {const mp=P(m.productId);if(mp)productLD(mp);}
   const specs=TECHSPECS[root.dataset.model];
   const subnav=`<div class="psubnav"><div class="psubnav-in"><span class="pn-name">${m.name}</span>
     <a href="#mhl">${t("pp_highlights")}</a>${m.explorer?`<a href="#mxplor">${tr({ru:"Поближе",tj:"Аз наздик",en:"Closer look"})}</a>`:""}${specs?`<a href="#mspecs">${t("spec_nav")}</a>`:""}
@@ -1430,7 +1439,8 @@ const ARROW_R='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke
 function renderProduct(){
   const root=document.getElementById("product");if(!root)return;
   const id=+(new URLSearchParams(location.search).get("id")||1);const p=P(id)||PRODUCTS[0];
-  document.title="ZAMON — "+p.name;
+  document.title=tr({ru:"Купить "+p.name+" в Душанбе",tj:p.name+"-ро дар Душанбе харед",en:"Buy "+p.name+" in Dushanbe"})+" — ZAMON";
+  productLD(p);
   const li=LIcat(p.cat)||{};const key=li.key;const pd=PAGEDATA[key];const cols=p.buyColors||p.colors;
   const mkey=Object.keys(MODELS).find(k=>MODELS[k].productId===id);const ts=mkey?TECHSPECS[mkey]:null;
   const sp=SPECS[id]||{};const SL=x=>typeof x==="string"?x:tr(x);

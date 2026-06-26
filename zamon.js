@@ -980,16 +980,28 @@ function orderDate(ts){try{return new Date(ts).toLocaleDateString(LANG==="en"?"e
 
 /* ===== MULTI-STEP CHECKOUT (checkout.html) ===== */
 let CK=null;
+function buildOrderMsg(o){
+  const lines=o.items.map(it=>{const p=P(it.id);if(!p)return"";const col=p.colors[it.color]||p.colors[0];return "• "+p.name+" ("+tr(col.n)+") × "+it.qty;}).filter(Boolean).join("\n");
+  const dd=o.d;
+  const deliv=dd.delivery==="courier"?(tr({ru:"Курьер",tj:"Курьер",en:"Courier"})+": "+dd.city+", "+dd.addr):tr({ru:"Самовывоз",tj:"Худбардорӣ",en:"Pickup"});
+  return tr({ru:"🛒 НОВЫЙ ЗАКАЗ ZAMON",tj:"🛒 ФАРМОИШИ НАВ ZAMON",en:"🛒 NEW ZAMON ORDER"})+" №"+o.no+"\n\n"
+    +"👤 "+dd.name+"\n📞 "+dd.phone+"\n🚚 "+deliv+"\n💳 "+dd.pay+"\n\n"
+    +lines+"\n\n"+t("co_total")+": "+fmtPrice(o.total);
+}
 function renderCheckout(){
   const root=document.getElementById("checkout");if(!root)return;
   document.title="ZAMON — "+t("co_title");
   if(!CK)CK={done:false,order:null,d:{name:"",phone:"",city:"",addr:"",delivery:"courier",pay:t("co_pay1")}};
   if(CK.done&&CK.order){
     const o=CK.order;
+    const wm=o.waMsg||buildOrderMsg(o);
     root.innerHTML=`<div class="ck-done"><div class="ok-ico">✓</div><h1>${t("co_ok_h")}</h1>
-      <p class="ck-onum">${t("order_num")} <b>${o.no}</b></p><p class="msub">${t("co_ok_p")}</p>
+      <p class="ck-onum">${t("order_num")} <b>${o.no}</b></p>
+      <p class="msub">${tr({ru:"Чтобы мы приняли заказ — отправьте его менеджеру в WhatsApp. Откроется чат с уже готовым сообщением, просто нажмите «Отправить».",tj:"Барои қабули фармоиш — онро ба менеҷер дар WhatsApp фиристед. Чат бо паёми тайёр кушода мешавад, танҳо «Фиристодан»-ро пахш кунед.",en:"To confirm your order, send it to our manager on WhatsApp. A chat opens with a ready message — just press Send."})}</p>
       <div class="ck-done-total"><span>${t("co_total")}</span><b>${fmtPrice(o.total)}</b></div>
-      <div class="ck-done-act"><a class="btn btn-primary" href="account.html">${t("ck_to_acc")}</a><a class="btn btn-soft" href="index.html">${t("co_ok_btn")}</a></div></div>`;
+      <a class="btn btn-wa lg ck-done-wa" href="${waLink(wm)}" target="_blank">${tr({ru:"Отправить заказ в WhatsApp",tj:"Фармоишро ба WhatsApp фиристед",en:"Send order on WhatsApp"})}</a>
+      <a class="btn btn-soft ck-done-tg" href="${tgLink}" target="_blank">${tr({ru:"Или написать в Telegram",tj:"Ё ба Telegram нависед",en:"Or message on Telegram"})}</a>
+      <div class="ck-done-act"><a class="btn btn-ghost" href="account.html">${t("ck_to_acc")}</a><a class="btn btn-ghost" href="index.html">${t("co_ok_btn")}</a></div></div>`;
     return;
   }
   if(!cart.length){root.innerHTML=`<div class="cp-empty"><div class="ec-ico">🛍️</div><h2>${t("cart_empty")}</h2><p>${t("cart_empty_sub")}</p><a class="btn btn-primary" href="index.html">${t("cp_continue")}</a></div>`;return;}
@@ -1025,8 +1037,11 @@ function renderCheckout(){
     if(!D.name||!D.phone){toast(tr({ru:"Укажите имя и телефон",tj:"Ном ва телефонро нависед",en:"Enter name and phone"}));return;}
     if(courier&&(!D.city||!D.addr)){toast(tr({ru:"Укажите город и адрес доставки",tj:"Шаҳр ва суроғаро нависед",en:"Enter city and delivery address"}));return;}
     const o={no:"Z"+Date.now().toString().slice(-7),ts:Date.now(),items:cart.map(c=>({id:c.id,color:c.color,qty:c.qty,price:priceOf(c)})),total:cartSum(),d:Object.assign({},D)};
+    o.waMsg=buildOrderMsg(o);
     orders.unshift(o);saveOrders();cart=[];saveCart();updateCount();renderCart();
-    CK.done=true;CK.order=o;renderCheckout();window.scrollTo(0,0);
+    CK.done=true;CK.order=o;
+    try{window.open(waLink(o.waMsg),"_blank");}catch(e){}
+    renderCheckout();window.scrollTo(0,0);
   };
 }
 

@@ -49,6 +49,10 @@ h1,h2,h3{letter-spacing:-.025em;line-height:1.06;font-weight:700}
 .btn-dark{background:var(--text);color:var(--bg)}
 .btn-dark:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
 .btn.lg{padding:16px 34px;font-size:1.08rem}
+.btn-wa{background:#25d366;color:#fff;gap:9px}
+.cp-wa{margin-top:10px;width:100%;justify-content:center}
+.btn-wa:hover{background:#1fbe5a;transform:translateY(-2px);box-shadow:0 12px 30px rgba(37,211,102,.42)}
+.prod-wa{margin-top:8px}
 .link-arrow{color:var(--accent);font-weight:500;display:inline-flex;align-items:center;gap:4px}
 .link-arrow:hover{color:var(--accent-2)}
 /* tactile press feedback (Apple-style compression) */

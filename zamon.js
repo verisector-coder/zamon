@@ -4,6 +4,10 @@
    ============================================================ */
 const A="https://www.apple.com";
 const SCH=k=>"https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/"+k+"?wid=900&hei=900&fmt=png-alpha";
+/* ===== shop contacts (real) ===== */
+const SHOP_WA="992982227635",SHOP_TG="vensurel",SHOP_PHONE="+992 98 222 76 35";
+const waLink=text=>"https://wa.me/"+SHOP_WA+(text?"?text="+encodeURIComponent(text):"");
+const tgLink="https://t.me/"+SHOP_TG;
 /* request a smaller image for small tiles (store CDN supports wid/hei params; apple.com /v/ images are fixed-size) */
 function shrinkCDN(url,w){if(url&&/storeimages\.cdn-apple\.com/.test(url))return url.replace(/wid=\d+/,"wid="+w).replace(/hei=\d+/,"hei="+w);return url;}
 function imgFallback(img){
@@ -771,10 +775,9 @@ function buildFooter(){
     <div class="gf-dir">
       <div class="gf-col"><div class="gf-brand">${MARK}ZAMON</div><p class="gf-about">${tr({ru:"Авторизованный премиальный магазин техники Apple в Таджикистане.",tj:"Мағозаи расмии премиалии техникаи Apple дар Тоҷикистон.",en:"An authorized premium Apple store in Tajikistan."})}</p>
         <div class="gf-socials">
-          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg></a>
-          <a href="#" aria-label="Telegram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 3-9.5 9.5"/><path d="M22 3 15 21l-3.5-7.5L4 10l18-7Z"/></svg></a>
-          <a href="#" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.5A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-2.8.7.7-2.7-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.7.9c-.1.1-.3.2-.5 0-.7-.3-1.4-.7-2-1.4-.4-.5-.7-1-.9-1.4-.1-.2 0-.4.1-.5l.4-.5c.1-.1.1-.2.2-.4 0-.1 0-.3 0-.4l-.7-1.7c-.2-.4-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.7.7-.9 1.6-.6 2.6.3 1.1 1 2.1 1.2 2.4 1.7 2.5 3.6 3.3 4.8 3.6.6.2 1.1.2 1.5.1.5-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1l-.3-.2Z"/></svg></a>
-          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.8 3.7-3.8 1.1 0 2.2.2 2.2.2v2.4h-1.2c-1.2 0-1.6.8-1.6 1.5V12h2.7l-.4 2.9h-2.3v7A10 10 0 0 0 22 12Z"/></svg></a>
+          <a href="${waLink()}" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.5A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-2.8.7.7-2.7-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.7.9c-.1.1-.3.2-.5 0-.7-.3-1.4-.7-2-1.4-.4-.5-.7-1-.9-1.4-.1-.2 0-.4.1-.5l.4-.5c.1-.1.1-.2.2-.4 0-.1 0-.3 0-.4l-.7-1.7c-.2-.4-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.7.7-.9 1.6-.6 2.6.3 1.1 1 2.1 1.2 2.4 1.7 2.5 3.6 3.3 4.8 3.6.6.2 1.1.2 1.5.1.5-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1l-.3-.2Z"/></svg></a>
+          <a href="${tgLink}" target="_blank" rel="noopener" aria-label="Telegram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 3-9.5 9.5"/><path d="M22 3 15 21l-3.5-7.5L4 10l18-7Z"/></svg></a>
+          <a href="tel:${SHOP_PHONE.replace(/\s/g,"")}" aria-label="Телефон"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.7 2Z"/></svg></a>
         </div></div>
       ${fcol(L.f_shop,[["iPhone","iphone.html"],["Mac","mac.html"],["iPad","ipad.html"],["Apple Watch","watch.html"],["AirPods","airpods.html"],[L.m_acc,"accessories.html"]])}
       ${fcol(L.f_store,[["Trade-In","trade-in.html"],[L.m_credit,"trade-in.html"],[tr({ru:"Сравнить модели",tj:"Муқоисаи моделҳо",en:"Compare models"}),"compare.html"],[tr({ru:"Доставка",tj:"Расонидан",en:"Delivery"}),"index.html#services"],["AppleCare+","trade-in.html"]])}
@@ -877,6 +880,7 @@ function renderCartPage(){
   document.title="ZAMON — "+t("cart_title");
   if(!cart.length){box.innerHTML=`<div class="cp-empty"><div class="ec-ico">🛍️</div><h2>${t("cart_empty")}</h2><p>${t("cart_empty_sub")}</p><a class="btn btn-primary" href="index.html#catalog">${t("cp_continue")}</a></div>`;return;}
   const total=cartSum();
+  const waCartMsg=tr({ru:"Здравствуйте! Хочу заказать:",tj:"Салом! Мехоҳам фармоиш диҳам:",en:"Hi! I'd like to order:"})+"\n"+cart.map(c=>{const p=P(c.id);return p?"• "+p.name+" × "+c.qty:"";}).filter(Boolean).join("\n")+"\n"+tr({ru:"Итого: ",tj:"Ҳамагӣ: ",en:"Total: "})+fmtPrice(total);
   box.innerHTML=`<div class="cp-head"><h1>${t("cart_title")}</h1><span>${cart.reduce((s,c)=>s+c.qty,0)} ${t("pieces")}</span></div>
    <div class="cp-grid"><div class="cp-items">${cart.map((c,i)=>{const p=P(c.id);if(!p)return"";const col=p.colors[c.color]||p.colors[0];
      return `<div class="cp-item"><div class="cp-img"><img src="${p.card||col.img}" data-emoji="${p.emoji}" alt="${p.name}" onerror="imgFallback(this)"></div>
@@ -887,7 +891,8 @@ function renderCartPage(){
        <div class="cp-ship">✓ <span>${t("ship_free")}</span></div>
        <div class="cp-grand"><span>${t("co_total")}</span><span>${fmtPrice(total)}</span></div>
        <button class="btn btn-primary" id="cpCheckout">${t("cart_checkout")}</button>
-       <a class="cp-cont" href="index.html#catalog">${t("cp_continue")} →</a></aside></div>`;
+       <a class="btn btn-wa cp-wa" href="${waLink(waCartMsg)}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.5A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-2.8.7.7-2.7-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.7.9c-.1.1-.3.2-.5 0-.7-.3-1.4-.7-2-1.4-.4-.5-.7-1-.9-1.4-.1-.2 0-.4.1-.5l.4-.5c.1-.1.1-.2.2-.4 0-.1 0-.3 0-.4l-.7-1.7c-.2-.4-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.7.7-.9 1.6-.6 2.6.3 1.1 1 2.1 1.2 2.4 1.7 2.5 3.6 3.3 4.8 3.6.6.2 1.1.2 1.5.1.5-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1l-.3-.2Z"/></svg> ${tr({ru:"Заказать в WhatsApp",tj:"Фармоиш дар WhatsApp",en:"Order on WhatsApp"})}</a>
+       <a class="cp-cont" href="index.html">${t("cp_continue")} →</a></aside></div>`;
   box.querySelectorAll("[data-inc]").forEach(b=>b.onclick=()=>{cart[+b.dataset.inc].qty++;saveCart();updateCount();renderCart();});
   box.querySelectorAll("[data-dec]").forEach(b=>b.onclick=()=>{const i=+b.dataset.dec;cart[i].qty--;if(cart[i].qty<=0)cart.splice(i,1);saveCart();updateCount();renderCart();});
   box.querySelectorAll("[data-rm]").forEach(b=>b.onclick=()=>{cart.splice(+b.dataset.rm,1);saveCart();updateCount();renderCart();});
@@ -1393,6 +1398,7 @@ function renderProduct(){
     <h1>${p.name}</h1><p class="psub">${tr(p.tag)}</p>
     <p class="pprice">${t("from")}${fmtPrice(p.price)} · ${t("from")}${fmtPrice(monthly(p.price))}${t("mo")} · ${t("co_pay3")}</p>
     <div class="phero-cta"><a class="btn btn-primary lg" href="buy.html?id=${id}">${t("pp_buy")}</a><button class="btn btn-ghost lg" id="prodAdd">${t("buy_add")}</button></div>
+    <a class="btn btn-wa lg prod-wa" href="${waLink(tr({ru:"Здравствуйте! Хочу заказать ",tj:"Салом! Мехоҳам фармоиш диҳам ",en:"Hi! I'd like to order "})+p.name+" — "+t("from")+fmtPrice(p.price)+".")}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.5A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-2.8.7.7-2.7-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.7.9c-.1.1-.3.2-.5 0-.7-.3-1.4-.7-2-1.4-.4-.5-.7-1-.9-1.4-.1-.2 0-.4.1-.5l.4-.5c.1-.1.1-.2.2-.4 0-.1 0-.3 0-.4l-.7-1.7c-.2-.4-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.7.7-.9 1.6-.6 2.6.3 1.1 1 2.1 1.2 2.4 1.7 2.5 3.6 3.3 4.8 3.6.6.2 1.1.2 1.5.1.5-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1l-.3-.2Z"/></svg> ${tr({ru:"Заказать в WhatsApp",tj:"Фармоиш дар WhatsApp",en:"Order on WhatsApp"})}</a>
     ${cols.length>1?`<div class="prod-sw">${cols.map((c,i)=>`<button class="psw ${i===0?"active":""}" data-pi="${i}" style="background:${c.hex}" title="${tr(c.n)}" aria-label="${tr(c.n)}"></button>`).join("")}</div>`:""}
     <img class="phero-img" id="prodImg" src="${cols[0].img}" data-emoji="${p.emoji}" alt="${p.name}" onerror="imgFallback(this)"></section>`;
   let specsHtml;

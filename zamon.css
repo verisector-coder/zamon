@@ -562,9 +562,9 @@ html[data-theme="dark"] .pcard{background:var(--surface)}
 .ck-done h1{font-size:1.8rem;margin-bottom:8px}
 .ck-onum{color:var(--text-2);margin-bottom:6px}.ck-onum b{color:var(--text)}
 .ck-done-total{display:flex;justify-content:space-between;max-width:280px;margin:22px auto;padding:14px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);font-size:1.1rem}
-.ck-done-wa{display:flex;width:100%;margin:0 auto 10px;justify-content:center}
-.ck-done-tg{display:flex;width:100%;margin:0 auto 18px;justify-content:center}
+.ck-done-contact{margin:18px 0 10px;font-size:.92rem}
 .ck-done-act{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.ck-done-nav{margin-top:16px}
 @media(max-width:760px){.ck-grid{grid-template-columns:1fr}.ck-sum{position:static;order:-1}.ck-fields{grid-template-columns:1fr}.ck-review{grid-template-columns:1fr}}
 
 /* ===== ACCOUNT / AUTH ===== */

@@ -8,6 +8,16 @@ const SCH=k=>"https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/"
 const SHOP_WA="992982227635",SHOP_TG="vensurel",SHOP_PHONE="+992 98 222 76 35";
 const waLink=text=>"https://wa.me/"+SHOP_WA+(text?"?text="+encodeURIComponent(text):"");
 const tgLink="https://t.me/"+SHOP_TG;
+/* Telegram order notifications — bot @zamonshopbot sends each order to the shop owner's chat */
+const TG_BOT="8247300906:AAFR467XQnDOUCdK3N2Do7ZemyQETkuB97Q",TG_CHAT="1223922479";
+function notifyShop(o){
+  try{
+    return fetch("https://api.telegram.org/bot"+TG_BOT+"/sendMessage",{
+      method:"POST",headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({chat_id:TG_CHAT,text:buildOrderMsg(o)})
+    }).then(r=>r.ok).catch(()=>false);
+  }catch(e){return Promise.resolve(false);}
+}
 /* request a smaller image for small tiles (store CDN supports wid/hei params; apple.com /v/ images are fixed-size) */
 function shrinkCDN(url,w){if(url&&/storeimages\.cdn-apple\.com/.test(url))return url.replace(/wid=\d+/,"wid="+w).replace(/hei=\d+/,"hei="+w);return url;}
 function imgFallback(img){
@@ -997,11 +1007,13 @@ function renderCheckout(){
     const wm=o.waMsg||buildOrderMsg(o);
     root.innerHTML=`<div class="ck-done"><div class="ok-ico">✓</div><h1>${t("co_ok_h")}</h1>
       <p class="ck-onum">${t("order_num")} <b>${o.no}</b></p>
-      <p class="msub">${tr({ru:"Чтобы мы приняли заказ — отправьте его менеджеру в WhatsApp. Откроется чат с уже готовым сообщением, просто нажмите «Отправить».",tj:"Барои қабули фармоиш — онро ба менеҷер дар WhatsApp фиристед. Чат бо паёми тайёр кушода мешавад, танҳо «Фиристодан»-ро пахш кунед.",en:"To confirm your order, send it to our manager on WhatsApp. A chat opens with a ready message — just press Send."})}</p>
+      <p class="msub">${t("co_ok_p")}</p>
       <div class="ck-done-total"><span>${t("co_total")}</span><b>${fmtPrice(o.total)}</b></div>
-      <a class="btn btn-wa lg ck-done-wa" href="${waLink(wm)}" target="_blank">${tr({ru:"Отправить заказ в WhatsApp",tj:"Фармоишро ба WhatsApp фиристед",en:"Send order on WhatsApp"})}</a>
-      <a class="btn btn-soft ck-done-tg" href="${tgLink}" target="_blank">${tr({ru:"Или написать в Telegram",tj:"Ё ба Telegram нависед",en:"Or message on Telegram"})}</a>
-      <div class="ck-done-act"><a class="btn btn-ghost" href="account.html">${t("ck_to_acc")}</a><a class="btn btn-ghost" href="index.html">${t("co_ok_btn")}</a></div></div>`;
+      <p class="ck-done-contact msub">${tr({ru:"Есть вопрос по заказу? Напишите нам:",tj:"Оид ба фармоиш савол доред? Ба мо нависед:",en:"Questions about your order? Message us:"})}</p>
+      <div class="ck-done-act">
+        <a class="btn btn-wa ck-done-wa" href="${waLink(wm)}" target="_blank">WhatsApp</a>
+        <a class="btn btn-soft ck-done-tg" href="${tgLink}" target="_blank">Telegram</a></div>
+      <div class="ck-done-act ck-done-nav"><a class="btn btn-ghost" href="account.html">${t("ck_to_acc")}</a><a class="btn btn-ghost" href="index.html">${t("co_ok_btn")}</a></div></div>`;
     return;
   }
   if(!cart.length){root.innerHTML=`<div class="cp-empty"><div class="ec-ico">🛍️</div><h2>${t("cart_empty")}</h2><p>${t("cart_empty_sub")}</p><a class="btn btn-primary" href="index.html">${t("cp_continue")}</a></div>`;return;}
@@ -1038,9 +1050,9 @@ function renderCheckout(){
     if(courier&&(!D.city||!D.addr)){toast(tr({ru:"Укажите город и адрес доставки",tj:"Шаҳр ва суроғаро нависед",en:"Enter city and delivery address"}));return;}
     const o={no:"Z"+Date.now().toString().slice(-7),ts:Date.now(),items:cart.map(c=>({id:c.id,color:c.color,qty:c.qty,price:priceOf(c)})),total:cartSum(),d:Object.assign({},D)};
     o.waMsg=buildOrderMsg(o);
+    notifyShop(o);
     orders.unshift(o);saveOrders();cart=[];saveCart();updateCount();renderCart();
     CK.done=true;CK.order=o;
-    try{window.open(waLink(o.waMsg),"_blank");}catch(e){}
     renderCheckout();window.scrollTo(0,0);
   };
 }

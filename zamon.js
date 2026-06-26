@@ -1541,14 +1541,15 @@ function renderContact(){
   document.title="ZAMON — "+tr({ru:"Контакты",tj:"Тамос",en:"Contact"});
   const info=[
    {ic:"📍",h:{ru:"Адрес",tj:"Суроға",en:"Address"},v:{ru:"г. Душанбе, проспект Рудаки 25",tj:"ш. Душанбе, хиёбони Рӯдакӣ 25",en:"Dushanbe, Rudaki Avenue 25"}},
-   {ic:"📞",h:{ru:"Телефон",tj:"Телефон",en:"Phone"},v:{ru:"+992 90 000 00 00",tj:"+992 90 000 00 00",en:"+992 90 000 00 00"}},
-   {ic:"✉️",h:{ru:"Эл. почта",tj:"Почта",en:"Email"},v:{ru:"info@zamon.tj",tj:"info@zamon.tj",en:"info@zamon.tj"}},
+   {ic:"📞",h:{ru:"Телефон",tj:"Телефон",en:"Phone"},v:SHOP_PHONE,href:"tel:"+SHOP_PHONE.replace(/\s/g,"")},
+   {ic:"💬",h:{ru:"WhatsApp",tj:"WhatsApp",en:"WhatsApp"},v:SHOP_PHONE,href:waLink()},
+   {ic:"✈️",h:{ru:"Telegram",tj:"Telegram",en:"Telegram"},v:"@"+SHOP_TG,href:tgLink},
    {ic:"🕘",h:{ru:"Часы работы",tj:"Соатҳои корӣ",en:"Hours"},v:{ru:"Ежедневно 9:00 – 21:00",tj:"Ҳар рӯз 9:00 – 21:00",en:"Daily 9:00 – 21:00"}}];
   box.innerHTML=`<div class="sec-head reveal"><span class="sec-tag">${tr({ru:"Контакты",tj:"Тамос",en:"Contact"})}</span>
     <h1>${tr({ru:"Мы всегда на связи",tj:"Мо ҳамеша дар тамос",en:"We're always here"})}</h1>
     <p class="sec-sub">${tr({ru:"Приходите в магазин или напишите нам — ответим быстро.",tj:"Ба мағоза биёед ё нависед.",en:"Visit the store or message us — we reply fast."})}</p></div>
     <div class="contact-grid">
-      <div class="contact-info">${info.map(i=>`<div class="ci-row reveal"><div class="ci-ic">${i.ic}</div><div><div class="ci-h">${tr(i.h)}</div><div class="ci-v">${tr(i.v)}</div></div></div>`).join("")}
+      <div class="contact-info">${info.map(i=>{const val=typeof i.v==="string"?i.v:tr(i.v);return `<div class="ci-row reveal"><div class="ci-ic">${i.ic}</div><div><div class="ci-h">${tr(i.h)}</div>${i.href?`<a class="ci-v ci-link" href="${i.href}"${i.href.startsWith("http")?' target="_blank" rel="noopener"':""}>${val}</a>`:`<div class="ci-v">${val}</div>`}</div></div>`;}).join("")}
         <div class="contact-map reveal"><div class="map-pin">📍</div><span>${tr({ru:"Душанбе · Рудаки 25",tj:"Душанбе · Рӯдакӣ 25",en:"Dushanbe · Rudaki 25"})}</span></div></div>
       <form class="contact-form reveal" id="contactForm">
         <h3>${tr({ru:"Напишите нам",tj:"Ба мо нависед",en:"Send a message"})}</h3>

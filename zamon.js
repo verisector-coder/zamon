@@ -604,7 +604,7 @@ function renderModelPage(){
       <div class="mf-media"><img src="${it.img}" alt="${tr(it.label)}" loading="lazy" onerror="this.style.display='none'"></div></div>`).join("")}</div></section>`;
   const cta=`<section class="sec" id="mwhy"><div class="wrap" style="text-align:center">
     <h2 style="font-size:clamp(2rem,4vw,3rem);margin-bottom:14px">${tr({ru:"Готовы к покупке?",tj:"Ба харид тайёред?",en:"Ready to buy?"})}</h2>
-    <p style="color:var(--text-2);max-width:520px;margin:0 auto 24px">${tr({ru:"Оригинал, официальная гарантия, кредит 0% и доставка за 24 часа по Таджикистану.",tj:"Аслӣ, кафолати расмӣ, қарзи 0% ва расонидан дар 24 соат.",en:"Genuine, official warranty, 0% financing and 24-hour delivery across Tajikistan."})}</p>
+    <p style="color:var(--text-2);max-width:520px;margin:0 auto 24px">${tr({ru:"Оригинал, официальная гарантия, кредит 0% и быстрая доставка по Душанбе.",tj:"Аслӣ, кафолати расмӣ, қарзи 0% ва расонидани зуд дар Душанбе.",en:"Genuine, official warranty, 0% financing and fast delivery across Dushanbe."})}</p>
     <button class="btn btn-primary lg" data-buy="${m.productId}">${t("pp_buy")} · ${fmtPrice(m.price)}</button></div></section>`;
   const SL=x=>typeof x==="string"?x:tr(x);
   const sp=!specs?"":`<section class="sec alt" id="mspecs"><div class="wrap"><div class="sec-head reveal"><h2>${t("spec_h")}</h2></div>
@@ -648,13 +648,13 @@ function initExplorer(){
 
 /* ===== I18N ===== */
 const I18N={
- ru:{bar:"🚚 Бесплатная доставка по Таджикистану от 500 сом. · Кредит 0% · Trade-In",region:"Таджикистан",
+ ru:{bar:"🚚 Бесплатная доставка по Душанбе от 500 сом. · Кредит 0% · Trade-In",region:"Таджикистан",
   n_store:"Магазин",n_mac:"Mac",n_ipad:"iPad",n_iphone:"iPhone",n_watch:"Watch",n_airpods:"AirPods",n_acc:"Аксессуары",n_support:"Поддержка",
   cur:"сом.",from:"от ",mo:"/мес",add:"Купить",buy_now:"Купить",learn:"Узнать подробнее",details:"Подробнее",pieces:"шт.",remove:"Удалить",close:"Закрыть",gb:"ГБ",tb:"ТБ",cfg_storage:"Память",cfg_storage_sub:"Сколько места вам нужно?",
   m_explore:"Обзор",m_shop:"Магазин",m_more:"Ещё",m_all:"Все модели",m_compare:"Сравнить",m_acc:"Аксессуары",m_trade:"Trade-In",m_credit:"Кредит 0%",m_support:"Поддержка",
-  cart_title:"Корзина",cart_items:"Товаров",cart_total:"Итого",cart_checkout:"Оформить заказ",cart_clear:"Очистить корзину",cart_empty:"Ваша корзина пуста",cart_empty_sub:"Добавьте устройства из каталога",ship_free:"Бесплатная доставка по Таджикистану",
+  cart_title:"Корзина",cart_items:"Товаров",cart_total:"Итого",cart_checkout:"Оформить заказ",cart_clear:"Очистить корзину",cart_empty:"Ваша корзина пуста",cart_empty_sub:"Добавьте устройства из каталога",ship_free:"Бесплатная доставка по Душанбе",
   co_title:"Оформление заказа",co_sub:"Заполните данные — мы перезвоним для подтверждения.",co_name:"Имя и фамилия",co_phone:"Телефон",co_city:"Город",co_pay:"Способ оплаты",co_pay1:"Наличными при получении",co_pay2:"Картой при получении",co_pay3:"Кредит 0%",co_total:"К оплате",co_submit:"Подтвердить заказ",co_ok_h:"Заказ принят!",co_ok_p:"Спасибо за покупку в ZAMON. Менеджер свяжется с вами в течение 15 минут.",co_ok_btn:"Отлично",
-  buy_color:"Цвет",buy_add:"Добавить в корзину",buy_perk1:"Бесплатная доставка по стране",buy_perk2:"Гарантия 1 год",buy_perk3:"Возврат 14 дней",
+  buy_color:"Цвет",buy_add:"Добавить в корзину",buy_perk1:"Бесплатная доставка по Душанбе",buy_perk2:"Гарантия 1 год",buy_perk3:"Возврат 14 дней",
   cfg_model:"Модель",cfg_model_sub:"Какая вам подходит?",cfg_finish:"Цвет",cfg_finish_sub:"Выберите любимый.",cfg_add:"Добавить в корзину",cfg_total:"Итого",
   cfg_size:"Размер",cfg_size_sub:"Выберите размер.",cfg_storage_label:"Память",cfg_incl:"Включено",cfg_band:"Ремешок",cfg_band_sub:"Подберите свой стиль.",cfg_material:"Корпус",cfg_material_sub:"Начнём с материала и цвета.",
   cfg_help_size:"Не знаете, какой размер выбрать?",cfg_help_size_txt:"Больший размер — больше дисплей и ёмкость батареи. Меньший — компактнее и легче. Оба одинаково мощные.",cfg_help_band:"Какой ремешок подойдёт?",cfg_help_band_txt:"Спортивный — универсальный на каждый день. Sport Loop — мягкий и дышащий для тренировок. Миланская петля — элегантная сталь с магнитом. Плетёный — эластичный, без застёжки.",
@@ -671,31 +671,31 @@ const I18N={
   cp_continue:"Продолжить покупки",cp_summary:"Сумма заказа",cp_view:"Перейти в корзину",
   nf_h:"Страница не найдена",nf_p:"Похоже, этой страницы не существует или она была перемещена. Вернитесь на главную и продолжите покупки.",nf_btn:"На главную",
   skip:"Перейти к содержанию",a_search:"Поиск",a_theme:"Сменить тему",a_cart:"Корзина",a_menu:"Меню",
-  ck_step1:"Доставка",ck_step2:"Оплата",ck_step3:"Подтверждение",ck_addr:"Адрес доставки",ck_method:"Способ получения",ck_courier:"Курьер — 24 часа",ck_courier_s:"Бесплатно от 500 сом.",ck_pickup:"Самовывоз",ck_pickup_s:"Магазин в Душанбе, сегодня",ck_next:"Далее",ck_back:"Назад",ck_place:"Подтвердить заказ",ck_review:"Проверьте заказ",ck_contact:"Контакт",ck_deliv:"Доставка",ck_items:"Товары",ck_email:"Эл. почта (необязательно)",order_num:"Заказ №",ck_to_acc:"Мои заказы",
+  ck_step1:"Доставка",ck_step2:"Оплата",ck_step3:"Подтверждение",ck_addr:"Адрес доставки",ck_method:"Способ получения",ck_courier:"Курьер по Душанбе",ck_courier_s:"Бесплатно от 500 сом.",ck_pickup:"Самовывоз",ck_pickup_s:"Магазин в Душанбе, сегодня",ck_next:"Далее",ck_back:"Назад",ck_place:"Подтвердить заказ",ck_review:"Проверьте заказ",ck_contact:"Контакт",ck_deliv:"Доставка",ck_items:"Товары",ck_email:"Эл. почта (необязательно)",order_num:"Заказ №",ck_to_acc:"Мои заказы",
   acc_title:"Аккаунт",acc_login:"Вход",acc_register:"Регистрация",acc_email:"Эл. почта",acc_pass:"Пароль",acc_name:"Имя",acc_signin:"Войти",acc_signup:"Создать аккаунт",acc_logout:"Выйти",acc_profile:"Профиль",acc_orders:"Заказы",acc_wish:"Избранное",acc_no_orders:"У вас пока нет заказов",acc_no_wish:"В избранном пока пусто",acc_welcome:"С возвращением",acc_login_sub:"Войдите, чтобы видеть заказы и избранное.",acc_reg_sub:"Создайте аккаунт ZAMON за минуту.",acc_to_login:"Уже есть аккаунт? Войти",acc_to_reg:"Нет аккаунта? Зарегистрироваться",acc_status:"В обработке",acc_member:"Клиент ZAMON",wished:"Добавлено в избранное",unwished:"Удалено из избранного",
   added:"Добавлено в корзину",nl_done:"Спасибо! Промокод на скидку 10% отправлен 🎉",cleared:"Корзина очищена",
   f_shop:"Покупки",f_account:"Аккаунт",f_store:"Магазин ZAMON",f_biz:"Для бизнеса",f_about:"О ZAMON",
   f_disc:"Apple, логотип Apple, iPhone, iPad, Mac, Apple Watch и AirPods — товарные знаки Apple Inc. ZAMON — независимый магазин-реселлер. Цены указаны в сомони (TJS). Изображения приведены для ознакомления.",
   f_copy:"© 2026 ZAMON. Все права защищены.",f_made:"Сделано с ❤️ в Таджикистане",
-  hero_eyebrow:"Apple Premium Store · Таджикистан",hero_sub:"Только оригинальная техника Apple с официальной гарантией. Кредит 0%, Trade-In и доставка за 24 часа — по всему Таджикистану.",hero_cta1:"Перейти в каталог",hero_cta2:"Почему ZAMON →",
-  chip1:"100% оригинал",chip2:"Гарантия 2 года",chip3:"Кредит 0%",chip4:"Доставка 24ч",
-  stat1:"Клиентов в Таджикистане",stat2:"% оригинальная техника",stat3:"часа доставка по стране",
+  hero_eyebrow:"Apple Premium Store · Таджикистан",hero_sub:"Только оригинальная техника Apple с официальной гарантией. Кредит 0%, Trade-In и быстрая доставка по Душанбе.",hero_cta1:"Перейти в каталог",hero_cta2:"Почему ZAMON →",
+  chip1:"100% оригинал",chip2:"Гарантия 2 года",chip3:"Кредит 0%",chip4:"Доставка по Душанбе",
+  stat1:"Довольных клиентов",stat2:"% оригинальная техника",stat3:"часа — доставка по Душанбе",
   why_tag:"Почему ZAMON",why_h:"Чем мы отличаемся от других",why_p:"Мы не просто продаём технику Apple — мы отвечаем за каждое устройство.",
-  cmp_zamon:"ZAMON",cmp_other:"Обычный магазин",cmp1:"Оригинальная техника Apple",cmp2:"Официальная гарантия",cmp3:"Кредит 0% и Trade-In",cmp4:"Доставка по стране за 24 часа",cmp5:"Поддержка на 3 языках 24/7",
+  cmp_zamon:"ZAMON",cmp_other:"Обычный магазин",cmp1:"Оригинальная техника Apple",cmp2:"Официальная гарантия",cmp3:"Кредит 0% и Trade-In",cmp4:"Быстрая доставка по Душанбе",cmp5:"Поддержка на 3 языках 24/7",
   sc_tag:"Линейка Apple",sc_h:"Вся техника Apple — у нас",
   srv_tag:"Наш сервис",srv_h:"Премиальный сервис на каждом шаге",
   faq_tag:"Вопросы и ответы",faq_h:"Покупка Apple в Душанбе — частые вопросы",
-  s1h:"Только оригинал",s1p:"100% официальная техника Apple с гарантией.",s2h:"Доставка за 24 часа",s2p:"По всему Таджикистану. Бесплатно от 500 сомони.",s3h:"Кредит 0%",s3p:"Рассрочка до 12 месяцев без переплат.",s4h:"Trade-In",s4p:"Обмен старого устройства со скидкой до 6 000 сом.",s5h:"Поддержка 24/7",s5p:"Эксперты ZAMON помогут на трёх языках.",s6h:"AppleCare+",s6p:"Расширенная гарантия и защита от повреждений.",
+  s1h:"Только оригинал",s1p:"100% официальная техника Apple с гарантией.",s2h:"Доставка по Душанбе",s2p:"В день заказа. Бесплатно от 500 сом.",s3h:"Кредит 0%",s3p:"Рассрочка до 12 месяцев без переплат.",s4h:"Trade-In",s4p:"Обмен старого устройства со скидкой до 6 000 сом.",s5h:"Поддержка 24/7",s5p:"Эксперты ZAMON помогут на трёх языках.",s6h:"AppleCare+",s6p:"Расширенная гарантия и защита от повреждений.",
   line_h:"Изучите всю линейку",line_all:"Сравнить все модели →",
   catalog_h:"Все модели",cat_all:"Все",pp_lineup:"Линейка",pp_buy:"Купить",pp_overview:"Обзор",pp_why:"Преимущества",pp_specs:"Главное",pp_highlights:"Главное",cmp_h:"Сравните модели",spec_price:"Цена",spec_chip:"Чип",spec_display:"Экран",spec_battery:"Батарея"},
 
- tj:{bar:"🚚 Расонидани ройгон дар Тоҷикистон аз 500 сом. · Қарзи 0% · Trade-In",region:"Тоҷикистон",
+ tj:{bar:"🚚 Расонидани ройгон дар Душанбе аз 500 сом. · Қарзи 0% · Trade-In",region:"Тоҷикистон",
   n_store:"Мағоза",n_mac:"Mac",n_ipad:"iPad",n_iphone:"iPhone",n_watch:"Watch",n_airpods:"AirPods",n_acc:"Лавозимот",n_support:"Дастгирӣ",
   cur:"сом.",from:"аз ",mo:"/моҳ",add:"Харидан",buy_now:"Харидан",learn:"Муфассал",details:"Муфассал",pieces:"дона",remove:"Тоза кардан",close:"Пӯшидан",gb:"ГБ",tb:"ТБ",cfg_storage:"Хотира",cfg_storage_sub:"Чӣ қадар ҷой лозим аст?",
   m_explore:"Обзор",m_shop:"Мағоза",m_more:"Боз",m_all:"Ҳама моделҳо",m_compare:"Муқоиса",m_acc:"Лавозимот",m_trade:"Trade-In",m_credit:"Қарзи 0%",m_support:"Дастгирӣ",
-  cart_title:"Сабад",cart_items:"Молҳо",cart_total:"Ҳамагӣ",cart_checkout:"Ба расмият даровардан",cart_clear:"Холӣ кардан",cart_empty:"Сабади шумо холист",cart_empty_sub:"Аз феҳрист дастгоҳ илова кунед",ship_free:"Расонидани ройгон дар Тоҷикистон",
+  cart_title:"Сабад",cart_items:"Молҳо",cart_total:"Ҳамагӣ",cart_checkout:"Ба расмият даровардан",cart_clear:"Холӣ кардан",cart_empty:"Сабади шумо холист",cart_empty_sub:"Аз феҳрист дастгоҳ илова кунед",ship_free:"Расонидани ройгон дар Душанбе",
   co_title:"Ба расмият даровардан",co_sub:"Маълумотро пур кунед — занг мезанем.",co_name:"Ном ва насаб",co_phone:"Телефон",co_city:"Шаҳр",co_pay:"Тарзи пардохт",co_pay1:"Нақд ҳангоми гирифтан",co_pay2:"Корт ҳангоми гирифтан",co_pay3:"Қарзи 0%",co_total:"Барои пардохт",co_submit:"Тасдиқи фармоиш",co_ok_h:"Фармоиш қабул шуд!",co_ok_p:"Ташаккур! Менеҷер дар давоми 15 дақиқа тамос мегирад.",co_ok_btn:"Аъло",
-  buy_color:"Ранг",buy_add:"Ба сабад илова",buy_perk1:"Расонидани ройгон",buy_perk2:"Кафолати 1 сол",buy_perk3:"Баргардонидан 14 рӯз",
+  buy_color:"Ранг",buy_add:"Ба сабад илова",buy_perk1:"Расонидани ройгон дар Душанбе",buy_perk2:"Кафолати 1 сол",buy_perk3:"Баргардонидан 14 рӯз",
   cfg_model:"Модел",cfg_model_sub:"Кадомаш ба шумо мувофиқ аст?",cfg_finish:"Ранг",cfg_finish_sub:"Дӯстдоштаатонро интихоб кунед.",cfg_add:"Ба сабад илова",cfg_total:"Ҳамагӣ",
   cfg_size:"Андоза",cfg_size_sub:"Андозаро интихоб кунед.",cfg_storage_label:"Хотира",cfg_incl:"Дохил аст",cfg_band:"Тасма",cfg_band_sub:"Услуби худро интихоб кунед.",cfg_material:"Корпус",cfg_material_sub:"Аз мавод ва ранг сар мекунем.",
   cfg_help_size:"Намедонед кадом андоза?",cfg_help_size_txt:"Андозаи калонтар — дисплей ва батареяи калонтар. Хурдтар — ҷайбӣ ва сабуктар. Ҳарду баробар пурқувватанд.",cfg_help_band:"Кадом тасма мувофиқ аст?",cfg_help_band_txt:"Варзишӣ — барои ҳар рӯз. Sport Loop — нарм барои машқ. Миланӣ — пӯлоди шево. Бофта — бе баст.",
@@ -712,31 +712,31 @@ const I18N={
   cp_continue:"Идомаи харид",cp_summary:"Маблағи фармоиш",cp_view:"Ба сабад гузаштан",
   nf_h:"Саҳифа ёфт нашуд",nf_p:"Чунин менамояд, ки ин саҳифа вуҷуд надорад ё кӯчонида шудааст. Ба саҳифаи асосӣ баргардед.",nf_btn:"Ба асосӣ",
   skip:"Ба мундариҷа гузаштан",a_search:"Ҷустуҷӯ",a_theme:"Тағйири мавзӯъ",a_cart:"Сабад",a_menu:"Меню",
-  ck_step1:"Расонидан",ck_step2:"Пардохт",ck_step3:"Тасдиқ",ck_addr:"Суроғаи расонидан",ck_method:"Тарзи гирифтан",ck_courier:"Курьер — 24 соат",ck_courier_s:"Ройгон аз 500 сом.",ck_pickup:"Худбардорӣ",ck_pickup_s:"Мағоза дар Душанбе, имрӯз",ck_next:"Минбаъд",ck_back:"Бозгашт",ck_place:"Тасдиқи фармоиш",ck_review:"Фармоишро санҷед",ck_contact:"Тамос",ck_deliv:"Расонидан",ck_items:"Молҳо",ck_email:"Почтаи электронӣ (ихтиёрӣ)",order_num:"Фармоиш №",ck_to_acc:"Фармоишҳои ман",
+  ck_step1:"Расонидан",ck_step2:"Пардохт",ck_step3:"Тасдиқ",ck_addr:"Суроғаи расонидан",ck_method:"Тарзи гирифтан",ck_courier:"Курьер дар Душанбе",ck_courier_s:"Ройгон аз 500 сом.",ck_pickup:"Худбардорӣ",ck_pickup_s:"Мағоза дар Душанбе, имрӯз",ck_next:"Минбаъд",ck_back:"Бозгашт",ck_place:"Тасдиқи фармоиш",ck_review:"Фармоишро санҷед",ck_contact:"Тамос",ck_deliv:"Расонидан",ck_items:"Молҳо",ck_email:"Почтаи электронӣ (ихтиёрӣ)",order_num:"Фармоиш №",ck_to_acc:"Фармоишҳои ман",
   acc_title:"Аккаунт",acc_login:"Воридшавӣ",acc_register:"Бақайдгирӣ",acc_email:"Почтаи электронӣ",acc_pass:"Парол",acc_name:"Ном",acc_signin:"Ворид шудан",acc_signup:"Сохтани аккаунт",acc_logout:"Баромад",acc_profile:"Профил",acc_orders:"Фармоишҳо",acc_wish:"Дӯстдошта",acc_no_orders:"Шумо ҳоло фармоиш надоред",acc_no_wish:"Дӯстдоштаҳо холӣ аст",acc_welcome:"Хуш омадед",acc_login_sub:"Барои дидани фармоишҳо ворид шавед.",acc_reg_sub:"Дар як дақиқа аккаунти ZAMON созед.",acc_to_login:"Аллакай аккаунт доред? Ворид шавед",acc_to_reg:"Аккаунт надоред? Бақайд гиред",acc_status:"Дар коркард",acc_member:"Мизоҷи ZAMON",wished:"Ба дӯстдошта илова шуд",unwished:"Аз дӯстдошта хориҷ шуд",
   added:"Ба сабад илова шуд",nl_done:"Ташаккур! Промокоди 10% фиристода шуд 🎉",cleared:"Сабад холӣ шуд",
   f_shop:"Харидҳо",f_account:"Аккаунт",f_store:"Мағозаи ZAMON",f_biz:"Барои бизнес",f_about:"Дар бораи ZAMON",
   f_disc:"Apple ва тамғаҳои дигар моликияти Apple Inc. мебошанд. ZAMON мағозаи мустақили реселлер аст. Нархҳо бо сомонӣ (TJS). Тасвирҳо барои шиносоӣ.",
   f_copy:"© 2026 ZAMON. Ҳамаи ҳуқуқҳо ҳифз шудаанд.",f_made:"Бо ❤️ дар Тоҷикистон сохта шуд",
-  hero_eyebrow:"Apple Premium Store · Тоҷикистон",hero_sub:"Танҳо техникаи аслии Apple бо кафолати расмӣ. Қарзи 0%, Trade-In ва расонидан дар 24 соат — ба тамоми Тоҷикистон.",hero_cta1:"Ба феҳрист",hero_cta2:"Чаро ZAMON →",
-  chip1:"100% аслӣ",chip2:"Кафолати 2 сол",chip3:"Қарзи 0%",chip4:"Расонидан 24с",
-  stat1:"Мизоҷон дар Тоҷикистон",stat2:"% техникаи аслӣ",stat3:"соат расонидан",
+  hero_eyebrow:"Apple Premium Store · Тоҷикистон",hero_sub:"Танҳо техникаи аслии Apple бо кафолати расмӣ. Қарзи 0%, Trade-In ва расонидани зуд дар Душанбе.",hero_cta1:"Ба феҳрист",hero_cta2:"Чаро ZAMON →",
+  chip1:"100% аслӣ",chip2:"Кафолати 2 сол",chip3:"Қарзи 0%",chip4:"Расонидан дар Душанбе",
+  stat1:"Мизоҷони мамнун",stat2:"% техникаи аслӣ",stat3:"соат — расонидан дар Душанбе",
   why_tag:"Чаро ZAMON",why_h:"Чӣ моро аз дигарон фарқ мекунад",why_p:"Мо на танҳо техникаи Apple мефурӯшем — мо барои ҳар дастгоҳ ҷавобгар ҳастем.",
-  cmp_zamon:"ZAMON",cmp_other:"Мағозаи оддӣ",cmp1:"Техникаи аслии Apple",cmp2:"Кафолати расмӣ",cmp3:"Қарзи 0% ва Trade-In",cmp4:"Расонидан дар 24 соат",cmp5:"Дастгирӣ бо 3 забон 24/7",
+  cmp_zamon:"ZAMON",cmp_other:"Мағозаи оддӣ",cmp1:"Техникаи аслии Apple",cmp2:"Кафолати расмӣ",cmp3:"Қарзи 0% ва Trade-In",cmp4:"Расонидани зуд дар Душанбе",cmp5:"Дастгирӣ бо 3 забон 24/7",
   sc_tag:"Хатти Apple",sc_h:"Тамоми техникаи Apple — дар мо",
   srv_tag:"Хизмати мо",srv_h:"Хизматрасонии олӣ дар ҳар қадам",
   faq_tag:"Саволу ҷавоб",faq_h:"Хариди Apple дар Душанбе — саволҳои маъмул",
-  s1h:"Танҳо аслӣ",s1p:"100% техникаи расмии Apple бо кафолат.",s2h:"Расонидан дар 24 соат",s2p:"Ба тамоми Тоҷикистон. Ройгон аз 500 сомонӣ.",s3h:"Қарзи 0%",s3p:"Кредит то 12 моҳ бе пардохти иловагӣ.",s4h:"Trade-In",s4p:"Иваз бо тахфифи то 6 000 сом.",s5h:"Дастгирӣ 24/7",s5p:"Коршиносони ZAMON ба се забон кӯмак мекунанд.",s6h:"AppleCare+",s6p:"Кафолати васеъ ва ҳифз аз осеб.",
+  s1h:"Танҳо аслӣ",s1p:"100% техникаи расмии Apple бо кафолат.",s2h:"Расонидан дар Душанбе",s2p:"Дар рӯзи фармоиш. Ройгон аз 500 сом.",s3h:"Қарзи 0%",s3p:"Кредит то 12 моҳ бе пардохти иловагӣ.",s4h:"Trade-In",s4p:"Иваз бо тахфифи то 6 000 сом.",s5h:"Дастгирӣ 24/7",s5p:"Коршиносони ZAMON ба се забон кӯмак мекунанд.",s6h:"AppleCare+",s6p:"Кафолати васеъ ва ҳифз аз осеб.",
   line_h:"Тамоми хатти маҳсулот",line_all:"Муқоисаи ҳама →",
   catalog_h:"Ҳама моделҳо",cat_all:"Ҳама",pp_lineup:"Хатти маҳсулот",pp_buy:"Харидан",pp_overview:"Обзор",pp_why:"Бартариҳо",pp_specs:"Асосӣ",pp_highlights:"Асосӣ",cmp_h:"Моделҳоро муқоиса кунед",spec_price:"Нарх",spec_chip:"Чип",spec_display:"Экран",spec_battery:"Батарея"},
 
- en:{bar:"🚚 Free delivery across Tajikistan from 500 TJS · 0% financing · Trade-In",region:"Tajikistan",
+ en:{bar:"🚚 Free delivery across Dushanbe from 500 TJS · 0% financing · Trade-In",region:"Tajikistan",
   n_store:"Store",n_mac:"Mac",n_ipad:"iPad",n_iphone:"iPhone",n_watch:"Watch",n_airpods:"AirPods",n_acc:"Accessories",n_support:"Support",
   cur:"TJS",from:"from ",mo:"/mo",add:"Buy",buy_now:"Buy",learn:"Learn more",details:"Learn more",pieces:"pcs",remove:"Remove",close:"Close",gb:"GB",tb:"TB",cfg_storage:"Storage",cfg_storage_sub:"How much space do you need?",
   m_explore:"Explore",m_shop:"Shop",m_more:"More",m_all:"All models",m_compare:"Compare",m_acc:"Accessories",m_trade:"Trade-In",m_credit:"0% financing",m_support:"Support",
-  cart_title:"Bag",cart_items:"Items",cart_total:"Total",cart_checkout:"Checkout",cart_clear:"Clear bag",cart_empty:"Your bag is empty",cart_empty_sub:"Add devices from the catalog",ship_free:"Free delivery across Tajikistan",
+  cart_title:"Bag",cart_items:"Items",cart_total:"Total",cart_checkout:"Checkout",cart_clear:"Clear bag",cart_empty:"Your bag is empty",cart_empty_sub:"Add devices from the catalog",ship_free:"Free delivery across Dushanbe",
   co_title:"Checkout",co_sub:"Fill in your details — we'll call to confirm.",co_name:"Full name",co_phone:"Phone",co_city:"City",co_pay:"Payment method",co_pay1:"Cash on delivery",co_pay2:"Card on delivery",co_pay3:"0% financing",co_total:"To pay",co_submit:"Confirm order",co_ok_h:"Order received!",co_ok_p:"Thank you for shopping at ZAMON. Our manager will contact you within 15 minutes.",co_ok_btn:"Great",
-  buy_color:"Color",buy_add:"Add to Bag",buy_perk1:"Free nationwide delivery",buy_perk2:"1-year warranty",buy_perk3:"14-day returns",
+  buy_color:"Color",buy_add:"Add to Bag",buy_perk1:"Free delivery in Dushanbe",buy_perk2:"1-year warranty",buy_perk3:"14-day returns",
   cfg_model:"Model",cfg_model_sub:"Which is best for you?",cfg_finish:"Finish",cfg_finish_sub:"Pick your favorite.",cfg_add:"Add to Bag",cfg_total:"Total",
   cfg_size:"Size",cfg_size_sub:"Choose your size.",cfg_storage_label:"Storage",cfg_incl:"Included",cfg_band:"Band",cfg_band_sub:"Find your style.",cfg_material:"Case",cfg_material_sub:"Start with your material and finish.",
   cfg_help_size:"Need help choosing a size?",cfg_help_size_txt:"A larger size means a bigger display and battery. A smaller one is more compact and lighter. Both are equally powerful.",cfg_help_band:"Which band is right for you?",cfg_help_band_txt:"Sport Band — versatile for everyday. Sport Loop — soft and breathable for workouts. Milanese Loop — elegant steel with a magnet. Braided — stretchy, no clasp.",
@@ -753,21 +753,21 @@ const I18N={
   cp_continue:"Continue shopping",cp_summary:"Order summary",cp_view:"View bag",
   nf_h:"Page not found",nf_p:"This page doesn't seem to exist or may have moved. Head back to the homepage to keep shopping.",nf_btn:"Back to home",
   skip:"Skip to content",a_search:"Search",a_theme:"Toggle theme",a_cart:"Bag",a_menu:"Menu",
-  ck_step1:"Delivery",ck_step2:"Payment",ck_step3:"Review",ck_addr:"Delivery address",ck_method:"Delivery method",ck_courier:"Courier — 24 hours",ck_courier_s:"Free from 500 TJS",ck_pickup:"Store pickup",ck_pickup_s:"Dushanbe store, today",ck_next:"Continue",ck_back:"Back",ck_place:"Place order",ck_review:"Review your order",ck_contact:"Contact",ck_deliv:"Delivery",ck_items:"Items",ck_email:"Email (optional)",order_num:"Order №",ck_to_acc:"My orders",
+  ck_step1:"Delivery",ck_step2:"Payment",ck_step3:"Review",ck_addr:"Delivery address",ck_method:"Delivery method",ck_courier:"Courier in Dushanbe",ck_courier_s:"Free from 500 TJS",ck_pickup:"Store pickup",ck_pickup_s:"Dushanbe store, today",ck_next:"Continue",ck_back:"Back",ck_place:"Place order",ck_review:"Review your order",ck_contact:"Contact",ck_deliv:"Delivery",ck_items:"Items",ck_email:"Email (optional)",order_num:"Order №",ck_to_acc:"My orders",
   acc_title:"Account",acc_login:"Sign in",acc_register:"Register",acc_email:"Email",acc_pass:"Password",acc_name:"Name",acc_signin:"Sign in",acc_signup:"Create account",acc_logout:"Sign out",acc_profile:"Profile",acc_orders:"Orders",acc_wish:"Saved",acc_no_orders:"You have no orders yet",acc_no_wish:"Your saved list is empty",acc_welcome:"Welcome back",acc_login_sub:"Sign in to see your orders and saved items.",acc_reg_sub:"Create your ZAMON account in a minute.",acc_to_login:"Already have an account? Sign in",acc_to_reg:"No account? Register",acc_status:"Processing",acc_member:"ZAMON customer",wished:"Added to saved",unwished:"Removed from saved",
   added:"Added to bag",nl_done:"Thank you! Your 10% promo code has been sent 🎉",cleared:"Bag cleared",
   f_shop:"Shop and Learn",f_account:"Account",f_store:"The ZAMON Store",f_biz:"For Business",f_about:"About ZAMON",
   f_disc:"Apple and other marks are trademarks of Apple Inc. ZAMON is an independent reseller. Prices in somoni (TJS). Images for reference only.",
   f_copy:"© 2026 ZAMON. All rights reserved.",f_made:"Made with ❤️ in Tajikistan",
-  hero_eyebrow:"Apple Premium Store · Tajikistan",hero_sub:"Only genuine Apple products with official warranty. 0% financing, Trade-In and 24-hour delivery — across all of Tajikistan.",hero_cta1:"Go to catalog",hero_cta2:"Why ZAMON →",
-  chip1:"100% genuine",chip2:"2-year warranty",chip3:"0% financing",chip4:"24h delivery",
-  stat1:"Customers in Tajikistan",stat2:"% genuine products",stat3:"hour delivery",
+  hero_eyebrow:"Apple Premium Store · Tajikistan",hero_sub:"Only genuine Apple products with official warranty. 0% financing, Trade-In and fast delivery across Dushanbe.",hero_cta1:"Go to catalog",hero_cta2:"Why ZAMON →",
+  chip1:"100% genuine",chip2:"2-year warranty",chip3:"0% financing",chip4:"Dushanbe delivery",
+  stat1:"Happy customers",stat2:"% genuine products",stat3:"hour — Dushanbe delivery",
   why_tag:"Why ZAMON",why_h:"What sets us apart",why_p:"We don't just sell Apple — we stand behind every single device.",
-  cmp_zamon:"ZAMON",cmp_other:"Ordinary store",cmp1:"Genuine Apple products",cmp2:"Official warranty",cmp3:"0% financing & Trade-In",cmp4:"24-hour nationwide delivery",cmp5:"24/7 support in 3 languages",
+  cmp_zamon:"ZAMON",cmp_other:"Ordinary store",cmp1:"Genuine Apple products",cmp2:"Official warranty",cmp3:"0% financing & Trade-In",cmp4:"Fast Dushanbe delivery",cmp5:"24/7 support in 3 languages",
   sc_tag:"The Apple lineup",sc_h:"All of Apple — right here",
   srv_tag:"Our service",srv_h:"Premium service at every step",
   faq_tag:"Questions & answers",faq_h:"Buying Apple in Dushanbe — FAQ",
-  s1h:"Genuine only",s1p:"100% official Apple products with warranty.",s2h:"24-hour delivery",s2p:"Across Tajikistan. Free from 500 somoni.",s3h:"0% financing",s3p:"Installments up to 12 months, no overpayments.",s4h:"Trade-In",s4p:"Trade your old device, save up to 6,000 TJS.",s5h:"24/7 support",s5p:"ZAMON experts help in three languages.",s6h:"AppleCare+",s6p:"Extended warranty and damage protection.",
+  s1h:"Genuine only",s1p:"100% official Apple products with warranty.",s2h:"Dushanbe delivery",s2p:"Same day. Free from 500 somoni.",s3h:"0% financing",s3p:"Installments up to 12 months, no overpayments.",s4h:"Trade-In",s4p:"Trade your old device, save up to 6,000 TJS.",s5h:"24/7 support",s5p:"ZAMON experts help in three languages.",s6h:"AppleCare+",s6p:"Extended warranty and damage protection.",
   line_h:"Explore the lineup",line_all:"Compare all models →",
   catalog_h:"All models",cat_all:"All",pp_lineup:"The lineup",pp_buy:"Buy",pp_overview:"Overview",pp_why:"Why",pp_specs:"Highlights",pp_highlights:"Get the highlights",cmp_h:"Compare models",spec_price:"Price",spec_chip:"Chip",spec_display:"Display",spec_battery:"Battery"}
 };
@@ -1246,8 +1246,8 @@ const FAQS=[
   a:{ru:"В магазине ZAMON — оригинальные iPhone всех моделей с доставкой по Душанбе и всему Таджикистану. Оформить заказ можно прямо на сайте, в WhatsApp или Telegram, с оплатой при получении.",tj:"Дар мағозаи ZAMON — iPhone-ҳои аслии ҳама моделҳо бо расонидан ба Душанбе ва тамоми Тоҷикистон. Фармоишро дар сайт, WhatsApp ё Telegram бо пардохт ҳангоми гирифтан додан мумкин аст.",en:"At ZAMON — original iPhones of every model with delivery across Dushanbe and all of Tajikistan. Order on the site, WhatsApp or Telegram, pay on delivery."}},
  {q:{ru:"Техника оригинальная? Есть гарантия?",tj:"Молҳо аслӣ ҳастанд? Кафолат ҳаст?",en:"Is the tech genuine? Is there a warranty?"},
   a:{ru:"Да. В ZAMON только оригинальная техника Apple с официальной гарантией. На каждое устройство распространяется гарантия и сервисная поддержка.",tj:"Бале. Дар ZAMON танҳо техникаи аслии Apple бо кафолати расмӣ. Ба ҳар дастгоҳ кафолат ва дастгирии хизматрасонӣ дода мешавад.",en:"Yes. ZAMON sells only genuine Apple products with official warranty and service support on every device."}},
- {q:{ru:"Как работает доставка по Таджикистану?",tj:"Расонидан дар Тоҷикистон чӣ тавр кор мекунад?",en:"How does delivery across Tajikistan work?"},
-  a:{ru:"По Душанбе — быстрая доставка курьером, по всему Таджикистану — за 24 часа. Стоимость зависит от региона, по Душанбе доставка бесплатна от 500 сомони.",tj:"Дар Душанбе — расонидани зуди курьерӣ, дар тамоми Тоҷикистон — дар 24 соат. Нарх аз минтақа вобаста аст, дар Душанбе аз 500 сомонӣ ройгон.",en:"Within Dushanbe — fast courier delivery; across Tajikistan — within 24 hours. Cost depends on the region; free in Dushanbe from 500 somoni."}},
+ {q:{ru:"Как работает доставка по Душанбе?",tj:"Расонидан дар Душанбе чӣ тавр кор мекунад?",en:"How does delivery across Dushanbe work?"},
+  a:{ru:"Курьером по всему Душанбе — часто в день заказа. Стоимость зависит от района, по городу бесплатно от 500 сомони.",tj:"Бо курьер дар тамоми Душанбе — аксаран дар рӯзи фармоиш. Нарх аз ноҳия вобаста аст, дар шаҳр аз 500 сомонӣ ройгон.",en:"By courier across Dushanbe — often same day. Cost depends on the district; free in the city from 500 somoni."}},
  {q:{ru:"Какие способы оплаты?",tj:"Тарзҳои пардохт кадомҳоянд?",en:"What payment methods are available?"},
   a:{ru:"Оплата наличными или картой при получении. Также доступна рассрочка и кредит 0%.",tj:"Пардохт нақд ё бо корт ҳангоми гирифтан. Ҳамчунин рассрочка ва қарзи 0% дастрас аст.",en:"Cash or card on delivery. Installments and 0% credit are also available."}},
  {q:{ru:"Можно купить в рассрочку (кредит 0%)?",tj:"Бо рассрочка (қарзи 0%) харидан мумкин аст?",en:"Can I buy in installments (0% credit)?"},
@@ -1461,7 +1461,7 @@ function buildWITB(p){
 }
 function buildBuyerFAQ(){
   const pfaq=[
-    {q:{ru:"Сколько идёт доставка?",tj:"Расонидан чанд вақт мегирад?",en:"How long is delivery?"},a:{ru:"Доставим за 24 часа по Душанбе и по всему Таджикистану. По городу часто привозим в день заказа, бесплатно от 500 сомони.",tj:"Дар 24 соат аз рӯи тамоми Тоҷикистон мерасонем. Дар шаҳр аксар вақт ҳамон рӯз, ройгон аз 500 сом.",en:"We deliver within 24 hours across Tajikistan — often same-day in the city, free from 500 TJS."}},
+    {q:{ru:"Сколько идёт доставка?",tj:"Расонидан чанд вақт мегирад?",en:"How long is delivery?"},a:{ru:"Доставляем курьером по всему Душанбе, часто в день заказа. Бесплатно от 500 сомони.",tj:"Бо курьер дар тамоми Душанбе мерасонем, аксаран дар рӯзи фармоиш. Ройгон аз 500 сом.",en:"We deliver by courier across Dushanbe, often same day. Free from 500 TJS."}},
     {q:{ru:"Это оригинал с гарантией?",tj:"Ин аслӣ бо кафолат аст?",en:"Is it genuine with warranty?"},a:{ru:"Да. Только оригинальная техника Apple с официальной гарантией. AppleCare+ можно добавить при оформлении для расширенной защиты.",tj:"Бале. Танҳо техникаи аслии Apple бо кафолати расмӣ. AppleCare+-ро ҳангоми харид илова кардан мумкин.",en:"Yes. Only genuine Apple products with official warranty. AppleCare+ can be added at checkout."}},
     {q:{ru:"Можно купить в рассрочку?",tj:"Бо қарз харидан мумкин аст?",en:"Can I pay in instalments?"},a:{ru:"Да, кредит 0% до 24 месяцев. Ежемесячный платёж рассчитывается автоматически при оформлении заказа.",tj:"Бале, қарзи 0% то 24 моҳ. Пардохти моҳона худкор ҳисоб мешавад.",en:"Yes, 0% financing up to 24 months. The monthly payment is calculated automatically at checkout."}},
     {q:{ru:"Примете старое устройство в зачёт?",tj:"Дастгоҳи кӯҳнаро қабул мекунед?",en:"Do you accept trade-ins?"},a:{ru:"Да. По Trade-In оценим ваше устройство и вычтем его стоимость из цены нового — выгода до 6 000 сомони.",tj:"Бале. Аз рӯи Trade-In дастгоҳатонро баҳо медиҳем ва аз нарх кам мекунем — то 6 000 сом.",en:"Yes. With Trade-In we appraise your device and deduct its value from the new one — save up to 6,000 TJS."}}];
@@ -1509,7 +1509,7 @@ function renderProduct(){
   const faqSec=buildBuyerFAQ();
   const witbSec=buildWITB(p);
   const cta=`<section class="sec"><div class="wrap" style="text-align:center"><h2 style="font-size:clamp(1.8rem,4vw,2.6rem);margin-bottom:14px">${tr({ru:"Готовы к покупке?",tj:"Ба харид тайёред?",en:"Ready to buy?"})}</h2>
-    <p style="color:var(--text-2);max-width:520px;margin:0 auto 22px">${tr({ru:"Оригинал, официальная гарантия, кредит 0% и доставка за 24 часа по Таджикистану.",tj:"Аслӣ, кафолати расмӣ, қарзи 0% ва расонидан дар 24 соат.",en:"Genuine, official warranty, 0% financing and 24-hour delivery."})}</p>
+    <p style="color:var(--text-2);max-width:520px;margin:0 auto 22px">${tr({ru:"Оригинал, официальная гарантия, кредит 0% и быстрая доставка по Душанбе.",tj:"Аслӣ, кафолати расмӣ, қарзи 0% ва расонидани зуд дар Душанбе.",en:"Genuine, official warranty, 0% financing and 24-hour delivery."})}</p>
     <div class="phero-cta" style="justify-content:center"><a class="btn btn-primary lg" href="buy.html?id=${id}">${t("pp_buy")} · ${fmtPrice(p.price)}</a><a class="btn btn-ghost lg" href="${li.page||"index.html"}">${t("details")} →</a></div></div></section>`;
   root.innerHTML=hero+feats+why+specsSec+witbSec+faqSec+cta;
   root.querySelectorAll("[data-pi]").forEach(b=>b.onclick=()=>{const i=+b.dataset.pi;document.getElementById("prodImg").src=cols[i].img;root.querySelectorAll("[data-pi]").forEach(s=>s.classList.toggle("active",s===b));});
@@ -1654,12 +1654,12 @@ function renderAbout(){
   document.title="ZAMON — "+tr({ru:"О нас",tj:"Дар бораи мо",en:"About"});
   const vals=[
    {ic:"💯",h:{ru:"Только оригинал",tj:"Танҳо аслӣ",en:"Genuine only"},p:{ru:"100% официальная техника Apple с гарантией. Никаких компромиссов.",tj:"100% техникаи расмии Apple.",en:"100% official Apple products. No compromises."}},
-   {ic:"🤝",h:{ru:"Доверие клиентов",tj:"Боварии мизоҷон",en:"Customer trust"},p:{ru:"Более 50 000 довольных клиентов по всему Таджикистану.",tj:"Зиёда аз 50 000 мизоҷон.",en:"Over 50,000 happy customers across Tajikistan."}},
+   {ic:"🤝",h:{ru:"Доверие клиентов",tj:"Боварии мизоҷон",en:"Customer trust"},p:{ru:"Более 1000 довольных клиентов в Душанбе — и мы только растём.",tj:"Зиёда аз 1000 мизоҷон дар Душанбе — ва мо танҳо меафзоем.",en:"Over 1,000 happy customers in Dushanbe — and we are just growing."}},
    {ic:"⚡",h:{ru:"Премиальный сервис",tj:"Хизмати олӣ",en:"Premium service"},p:{ru:"Доставка за 24 часа, кредит 0%, Trade-In и поддержка 24/7.",tj:"Расонидан 24с, қарзи 0%, дастгирӣ 24/7.",en:"24-hour delivery, 0% financing, Trade-In and 24/7 support."}}];
   box.innerHTML=`<div class="about-hero reveal"><span class="sec-tag">${tr({ru:"О ZAMON",tj:"Дар бораи ZAMON",en:"About ZAMON"})}</span>
     <h1>${tr({ru:"Apple, которому доверяют в Таджикистане",tj:"Apple, ки дар Тоҷикистон бовар мекунанд",en:"The Apple store Tajikistan trusts"})}</h1>
     <p>${tr({ru:"ZAMON — авторизованный премиальный магазин техники Apple. Мы не просто продаём устройства — мы отвечаем за каждое, от выбора до сервиса.",tj:"ZAMON — мағозаи расмии премиалии Apple. Мо барои ҳар дастгоҳ ҷавобгар ҳастем.",en:"ZAMON is an authorized premium Apple store. We don't just sell devices — we stand behind every one."})}</p></div>
-    <div class="about-stats reveal"><div><div class="num" data-count="50000">0</div><span>${t("stat1")}</span></div><div><div class="num" data-count="100">0</div><span>${t("stat2")}</span></div><div><div class="num" data-count="24">0</div><span>${t("stat3")}</span></div></div>
+    <div class="about-stats reveal"><div><div class="num" data-count="1000">0</div><span>${t("stat1")}</span></div><div><div class="num" data-count="100">0</div><span>${t("stat2")}</span></div><div><div class="num" data-count="2">0</div><span>${t("stat3")}</span></div></div>
     <div class="about-vals">${vals.map(v=>`<div class="about-val reveal"><div class="av-ic">${v.ic}</div><h3>${tr(v.h)}</h3><p>${tr(v.p)}</p></div>`).join("")}</div>
     <div class="sup-cta reveal"><h3>${tr({ru:"Готовы выбрать своё устройство?",tj:"Тайёред дастгоҳатонро интихоб кунед?",en:"Ready to choose your device?"})}</h3>
       <a class="btn btn-primary lg" href="index.html#catalog">${t("hero_cta1")}</a></div>`;

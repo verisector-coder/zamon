@@ -1005,3 +1005,6 @@ img[data-emoji].img-loaded{opacity:1}
 .faq-item[open] .faq-ic{transform:rotate(45deg)}
 .faq-a{padding:0 4px 24px;color:var(--text-2);line-height:1.65;max-width:720px;animation:faqIn .3s ease}
 @keyframes faqIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+
+/* hero videos: no poster — show matching hero bg until first frame (no image flash) */
+.mh-video,.phero-video{background:transparent}

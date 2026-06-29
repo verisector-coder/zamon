@@ -587,7 +587,7 @@ function renderModelPage(){
     <a href="#mhl">${t("pp_highlights")}</a>${m.explorer?`<a href="#mxplor">${tr({ru:"Поближе",tj:"Аз наздик",en:"Closer look"})}</a>`:""}${specs?`<a href="#mspecs">${t("spec_nav")}</a>`:""}
     <a class="pn-buy" href="buy.html?id=${m.productId}">${t("pp_buy")}</a></div></div>`;
   const mhMedia=m.heroVideo
-    ? `<video class="mh-img mh-video" autoplay muted loop playsinline preload="auto" poster="${m.heroImg}" aria-label="${m.name}"><source src="${m.heroVideo}" type="video/mp4"></video>`
+    ? `<video class="mh-img mh-video" autoplay muted loop playsinline preload="auto" aria-label="${m.name}"><source src="${m.heroVideo}" type="video/mp4"></video>`
     : `<img class="mh-img" src="${m.heroImg}" alt="${m.name}" onerror="imgFallback(this)">`;
   const heroFull=`<section class="mhero ${m.light?"light":""}"><div class="mh-eyebrow">${m.eyebrow}</div><h1>${tr(m.title)}</h1>
     ${mhMedia}</section>`;
@@ -1311,7 +1311,7 @@ function renderProductHero(){
   const firstId=(PRODUCTS.find(p=>p.cat===li.cat)||{}).id||1;
   el.className="phero "+(li.dark?"dark":"light");
   const media=li.heroVideo
-    ? `<video class="phero-img phero-video" autoplay muted loop playsinline preload="auto" poster="${li.img}" aria-label="${li.name}"><source src="${li.heroVideo}" type="video/mp4"></video>`
+    ? `<video class="phero-img phero-video" autoplay muted loop playsinline preload="auto" aria-label="${li.name}"><source src="${li.heroVideo}" type="video/mp4"></video>`
     : `<img class="phero-img" data-emoji="${li.emoji}" src="${li.img}" alt="${li.name}" onerror="imgFallback(this)">`;
   el.innerHTML=`${li.new?`<div class="pe">NEW</div>`:""}<h1>${li.name}</h1><p class="psub">${tr(li.tagline)}</p>
     <p class="pprice">${tr(li.desc)}</p>

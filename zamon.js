@@ -816,6 +816,7 @@ function buildShell(){
   const mobile=`<div class="mobile-menu" id="mobileMenu">${NAVITEMS.map(([id,key,href])=>`<a href="${href}">${t(key)}</a>`).join("")}</div>`;
   document.body.insertAdjacentHTML("afterbegin",skip+topbar+nav+mobile);
   document.body.insertAdjacentHTML("beforeend",buildFooter()+buildOverlays()+
+    `<a class="wa-float" href="${waLink(tr({ru:"Здравствуйте! Хочу задать вопрос о покупке в ZAMON.",tj:"Салом! Дар бораи харид дар ZAMON савол дорам.",en:"Hello! I have a question about buying at ZAMON."}))}" target="_blank" rel="noopener" aria-label="WhatsApp" title="${tr({ru:"Написать в WhatsApp",tj:"Ба WhatsApp нависед",en:"Message on WhatsApp"})}"><svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 .5C7.4.5.5 7.4.5 16c0 2.8.7 5.4 2 7.7L.5 31.5l8-2.1c2.2 1.2 4.8 1.9 7.5 1.9 8.6 0 15.5-6.9 15.5-15.5S24.6.5 16 .5zm0 28.3c-2.4 0-4.7-.6-6.7-1.8l-.5-.3-4.8 1.3 1.3-4.7-.3-.5C3.8 20.8 3.2 18.4 3.2 16 3.2 8.9 8.9 3.2 16 3.2S28.8 8.9 28.8 16 23.1 28.8 16 28.8zm7.3-9.6c-.4-.2-2.4-1.2-2.7-1.3-.4-.1-.6-.2-.9.2-.3.4-1 1.3-1.2 1.5-.2.2-.4.3-.8.1-.4-.2-1.7-.6-3.2-2-1.2-1.1-2-2.4-2.2-2.8-.2-.4 0-.6.2-.8.2-.2.4-.4.5-.7.2-.2.2-.4.4-.7.1-.3 0-.5 0-.7-.1-.2-.9-2.2-1.3-3-.3-.8-.6-.7-.9-.7h-.7c-.2 0-.6.1-1 .5-.3.4-1.3 1.3-1.3 3.1s1.3 3.6 1.5 3.9c.2.3 2.6 4 6.3 5.6.9.4 1.6.6 2.1.8.9.3 1.7.2 2.3.1.7-.1 2.4-1 2.7-1.9.3-.9.3-1.7.2-1.9-.1-.2-.3-.3-.7-.5z"/></svg></a>`+
     `<button class="scrolltop" id="scrollTop" aria-label="Наверх" title="Наверх"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg></button>`);
   // mark main content for skip link
   const main=document.querySelector("body > section");
@@ -908,6 +909,7 @@ function applyLang(l){
   if(document.getElementById("storebar"))renderStoreBar();
   if(document.getElementById("showcaseBox"))renderShowcase();
   if(document.getElementById("faqBox"))renderFAQ();
+  if(document.getElementById("guarantees"))renderGuarantees();
   if(document.getElementById("catalog"))renderCatalog();
   if(document.getElementById("buygrid"))renderBuyGrid();
   if(document.getElementById("phero")){renderProductHero();renderSubnav();renderHighlights();renderFeatures();renderWhyProd();initSubnavSpy();}
@@ -1263,6 +1265,16 @@ const FAQS=[
  {q:{ru:"Как сделать заказ в ZAMON?",tj:"Дар ZAMON чӣ тавр фармоиш додан мумкин аст?",en:"How do I place an order at ZAMON?"},
   a:{ru:"Добавьте товар в корзину и оформите заказ на сайте, либо напишите нам в WhatsApp (+992 98 222 76 35) или Telegram (@vensurel) — поможем с выбором и доставкой.",tj:"Молро ба сабад илова кунед ва дар сайт фармоиш диҳед, ё ба мо дар WhatsApp (+992 98 222 76 35) ё Telegram (@vensurel) нависед — дар интихоб ва расонидан кӯмак мекунем.",en:"Add an item to the cart and check out on the site, or message us on WhatsApp (+992 98 222 76 35) or Telegram (@vensurel) — we'll help with the choice and delivery."}}
 ];
+/* ===== GUARANTEES (risk-reversal, trust) ===== */
+const GUARANTEES=[
+ {ic:"💳",h:{ru:"Оплата при получении",tj:"Пардохт ҳангоми гирифтан",en:"Pay on delivery"},p:{ru:"Платите наличными или картой, только когда заказ у вас в руках.",tj:"Нақд ё бо корт танҳо вақте фармоиш дар дасти шумост.",en:"Pay by cash or card only when the order is in your hands."}},
+ {ic:"🔍",h:{ru:"Проверка перед оплатой",tj:"Санҷиш пеш аз пардохт",en:"Inspect before paying"},p:{ru:"Осмотрите и протестируйте устройство до оплаты.",tj:"Дастгоҳро пеш аз пардохт бинед ва санҷед.",en:"Check and test the device before you pay."}},
+ {ic:"↩️",h:{ru:"Возврат 14 дней",tj:"Бозгашти 14 рӯз",en:"14-day returns"},p:{ru:"Не подошло — вернём деньги в течение 14 дней.",tj:"Мувофиқ нашуд — дар 14 рӯз пулро бармегардонем.",en:"Changed your mind? Refund within 14 days."}},
+ {ic:"✅",h:{ru:"100% оригинал",tj:"100% аслӣ",en:"100% genuine"},p:{ru:"Только официальная техника Apple с гарантией 1 год.",tj:"Танҳо техникаи расмии Apple бо кафолати 1 сол.",en:"Only official Apple products with a 1-year warranty."}}
+];
+function guaranteesHTML(){return `<div class="guarantees">`+GUARANTEES.map(g=>`<div class="grt reveal"><div class="grt-ic">${g.ic}</div><div class="grt-t"><div class="grt-h">${tr(g.h)}</div><div class="grt-p">${tr(g.p)}</div></div></div>`).join("")+`</div>`;}
+function trustRowHTML(){return `<div class="trust-row">`+GUARANTEES.map(g=>`<span class="trust-i">${g.ic} ${tr(g.h)}</span>`).join("")+`</div>`;}
+function renderGuarantees(){const box=document.getElementById("guarantees");if(!box)return;box.innerHTML=`<div class="sec-head reveal"><span class="sec-tag">${tr({ru:"Покупайте без риска",tj:"Бе хавф харидед",en:"Shop with no risk"})}</span><h2>${tr({ru:"Почему с нами спокойно",tj:"Чаро бо мо бехатар аст",en:"Why buying with us is safe"})}</h2></div>`+guaranteesHTML();}
 function renderFAQ(){
   const box=document.getElementById("faqBox");if(!box)return;
   box.innerHTML=FAQS.map((f,i)=>`<details class="faq-item"${i===0?" open":""}><summary>${tr(f.q)}<span class="faq-ic">+</span></summary><div class="faq-a">${tr(f.a)}</div></details>`).join("");
@@ -1488,6 +1500,7 @@ function renderProduct(){
     <p class="pprice">${t("from")}${fmtPrice(p.price)}</p>
     <div class="phero-cta"><a class="btn btn-primary lg" href="buy.html?id=${id}">${t("pp_buy")}</a><button class="btn btn-ghost lg" id="prodAdd">${t("buy_add")}</button></div>
     <a class="btn btn-wa lg prod-wa" href="${waLink(tr({ru:"Здравствуйте! Хочу заказать ",tj:"Салом! Мехоҳам фармоиш диҳам ",en:"Hi! I'd like to order "})+p.name+" — "+t("from")+fmtPrice(p.price)+".")}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.5A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-2.8.7.7-2.7-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.7.9c-.1.1-.3.2-.5 0-.7-.3-1.4-.7-2-1.4-.4-.5-.7-1-.9-1.4-.1-.2 0-.4.1-.5l.4-.5c.1-.1.1-.2.2-.4 0-.1 0-.3 0-.4l-.7-1.7c-.2-.4-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.7.7-.9 1.6-.6 2.6.3 1.1 1 2.1 1.2 2.4 1.7 2.5 3.6 3.3 4.8 3.6.6.2 1.1.2 1.5.1.5-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1l-.3-.2Z"/></svg> ${tr({ru:"Заказать в WhatsApp",tj:"Фармоиш дар WhatsApp",en:"Order on WhatsApp"})}</a>
+    ${trustRowHTML()}
     ${cols.length>1?`<div class="prod-sw">${cols.map((c,i)=>`<button class="psw ${i===0?"active":""}" data-pi="${i}" style="background:${c.hex}" title="${tr(c.n)}" aria-label="${tr(c.n)}"></button>`).join("")}</div>`:""}
     <img class="phero-img" id="prodImg" src="${cols[0].img}" data-emoji="${p.emoji}" alt="${p.name}" onerror="imgFallback(this)"></section>`;
   let specsHtml;
@@ -1756,6 +1769,7 @@ document.addEventListener("DOMContentLoaded",()=>{
   if(document.getElementById("storebar"))renderStoreBar();
   if(document.getElementById("showcaseBox"))renderShowcase();
   if(document.getElementById("faqBox"))renderFAQ();
+  if(document.getElementById("guarantees"))renderGuarantees();
   if(document.getElementById("catalog"))renderCatalog();
   if(document.getElementById("buygrid"))renderBuyGrid();
   if(document.getElementById("phero")){renderProductHero();renderSubnav();renderHighlights();renderFeatures();renderWhyProd();initSubnavSpy();}

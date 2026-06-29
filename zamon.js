@@ -52,8 +52,16 @@ function productLD(p){try{setLD("product",{"@context":"https://schema.org","@typ
    Итог = цена_Apple_USD × курс × наценка. Чтобы обновить — поменяй ДВА числа ниже,
    все цены (карточки, корзина, конфигуратор, рассрочка) пересчитаются автоматически. */
 const USD_TJS=9.5;   // курс доллара к сомони (с запасом на колебания)
-const MARGIN=1.30;   // наценка +30% к цене Apple
-const tjs=usd=>Math.round(usd*USD_TJS*MARGIN/10)*10;   // USD → сомони, округление до 10
+/* Ступенчатая наценка: чем дороже модель — тем ниже %, чтобы дорогие позиции
+   оставались конкурентными. Меняй проценты здесь — все цены пересчитаются. */
+function marginFor(usd){
+  if(usd>=1500) return 1.13;   // топ (MacBook Pro и т.п.) — +13%
+  if(usd>=1000) return 1.16;   // дорогие (флагманы) — +16%
+  if(usd>=600)  return 1.20;   // средние — +20%
+  if(usd>=200)  return 1.25;   // недорогие — +25%
+  return 1.30;                 // аксессуары — +30%
+}
+const tjs=usd=>Math.round(usd*USD_TJS*marginFor(usd)/10)*10;   // USD → сомони, округление до 10
 /* Официальные цены Apple США (USD) за базовую конфигурацию (память) */
 const APPLE_USD={1:1099,2:999,3:799,4:599,5:699,6:1599,7:1199,8:999,9:599,10:799,11:399,12:249,13:129,14:549,15:249,16:1099,18:1299,19:599,101:29,102:99,103:129,104:39,105:49,106:49};
 
@@ -604,7 +612,7 @@ function renderModelPage(){
       <div class="mf-media"><img src="${it.img}" alt="${tr(it.label)}" loading="lazy" onerror="this.style.display='none'"></div></div>`).join("")}</div></section>`;
   const cta=`<section class="sec" id="mwhy"><div class="wrap" style="text-align:center">
     <h2 style="font-size:clamp(2rem,4vw,3rem);margin-bottom:14px">${tr({ru:"Готовы к покупке?",tj:"Ба харид тайёред?",en:"Ready to buy?"})}</h2>
-    <p style="color:var(--text-2);max-width:520px;margin:0 auto 24px">${tr({ru:"Оригинал, официальная гарантия, кредит 0% и быстрая доставка по Душанбе.",tj:"Аслӣ, кафолати расмӣ, қарзи 0% ва расонидани зуд дар Душанбе.",en:"Genuine, official warranty, 0% financing and fast delivery across Dushanbe."})}</p>
+    <p style="color:var(--text-2);max-width:520px;margin:0 auto 24px">${tr({ru:"Оригинал, официальная гарантия и быстрая доставка по Душанбе.",tj:"Аслӣ, кафолати расмӣ ва расонидани зуд дар Душанбе.",en:"Genuine, official warranty and fast delivery across Dushanbe."})}</p>
     <button class="btn btn-primary lg" data-buy="${m.productId}">${t("pp_buy")} · ${fmtPrice(m.price)}</button></div></section>`;
   const SL=x=>typeof x==="string"?x:tr(x);
   const sp=!specs?"":`<section class="sec alt" id="mspecs"><div class="wrap"><div class="sec-head reveal"><h2>${t("spec_h")}</h2></div>
@@ -648,7 +656,7 @@ function initExplorer(){
 
 /* ===== I18N ===== */
 const I18N={
- ru:{bar:"🚚 Бесплатная доставка по Душанбе от 500 сом. · Кредит 0% · Trade-In",region:"Таджикистан",
+ ru:{bar:"🚚 Бесплатная доставка по Душанбе от 500 сом. · Оплата при получении · Trade-In",region:"Таджикистан",
   n_store:"Магазин",n_mac:"Mac",n_ipad:"iPad",n_iphone:"iPhone",n_watch:"Watch",n_airpods:"AirPods",n_acc:"Аксессуары",n_support:"Поддержка",
   cur:"сом.",from:"от ",mo:"/мес",c_cod:"Оплата при получении",c_warr:"Гарантия 1 год",add:"Купить",buy_now:"Купить",learn:"Узнать подробнее",details:"Подробнее",pieces:"шт.",remove:"Удалить",close:"Закрыть",gb:"ГБ",tb:"ТБ",cfg_storage:"Память",cfg_storage_sub:"Сколько места вам нужно?",
   m_explore:"Обзор",m_shop:"Магазин",m_more:"Ещё",m_all:"Все модели",m_compare:"Сравнить",m_acc:"Аксессуары",m_trade:"Trade-In",m_credit:"Кредит 0%",m_support:"Поддержка",
@@ -677,19 +685,19 @@ const I18N={
   f_shop:"Покупки",f_account:"Аккаунт",f_store:"Магазин ZAMON",f_biz:"Для бизнеса",f_about:"О ZAMON",
   f_disc:"Apple, логотип Apple, iPhone, iPad, Mac, Apple Watch и AirPods — товарные знаки Apple Inc. ZAMON — независимый магазин-реселлер. Цены указаны в сомони (TJS). Изображения приведены для ознакомления.",
   f_copy:"© 2026 ZAMON. Все права защищены.",f_made:"Сделано с ❤️ в Таджикистане",
-  hero_eyebrow:"Apple Premium Store · Таджикистан",hero_sub:"Только оригинальная техника Apple с официальной гарантией. Кредит 0%, Trade-In и быстрая доставка по Душанбе.",hero_cta1:"Перейти в каталог",hero_cta2:"Почему ZAMON →",
-  chip1:"100% оригинал",chip2:"Гарантия 2 года",chip3:"Кредит 0%",chip4:"Доставка по Душанбе",
+  hero_eyebrow:"Apple Premium Store · Таджикистан",hero_sub:"Только оригинальная техника Apple с официальной гарантией. Trade-In, оплата при получении и быстрая доставка по Душанбе.",hero_cta1:"Перейти в каталог",hero_cta2:"Почему ZAMON →",
+  chip1:"100% оригинал",chip2:"Гарантия 1 год",chip3:"Оплата при получении",chip4:"Доставка по Душанбе",
   stat1:"Довольных клиентов",stat2:"% оригинальная техника",stat3:"часа — доставка по Душанбе",
   why_tag:"Почему ZAMON",why_h:"Чем мы отличаемся от других",why_p:"Мы не просто продаём технику Apple — мы отвечаем за каждое устройство.",
-  cmp_zamon:"ZAMON",cmp_other:"Обычный магазин",cmp1:"Оригинальная техника Apple",cmp2:"Официальная гарантия",cmp3:"Кредит 0% и Trade-In",cmp4:"Быстрая доставка по Душанбе",cmp5:"Поддержка на 3 языках 24/7",
+  cmp_zamon:"ZAMON",cmp_other:"Обычный магазин",cmp1:"Оригинальная техника Apple",cmp2:"Официальная гарантия",cmp3:"Trade-In — обмен с выгодой",cmp4:"Быстрая доставка по Душанбе",cmp5:"Поддержка на 3 языках 24/7",
   sc_tag:"Линейка Apple",sc_h:"Вся техника Apple — у нас",
   srv_tag:"Наш сервис",srv_h:"Премиальный сервис на каждом шаге",
   faq_tag:"Вопросы и ответы",faq_h:"Покупка Apple в Душанбе — частые вопросы",
-  s1h:"Только оригинал",s1p:"100% официальная техника Apple с гарантией.",s2h:"Доставка по Душанбе",s2p:"В день заказа. Бесплатно от 500 сом.",s3h:"Кредит 0%",s3p:"Рассрочка до 12 месяцев без переплат.",s4h:"Trade-In",s4p:"Обмен старого устройства со скидкой до 6 000 сом.",s5h:"Поддержка 24/7",s5p:"Эксперты ZAMON помогут на трёх языках.",s6h:"AppleCare+",s6p:"Расширенная гарантия и защита от повреждений.",
+  s1h:"Только оригинал",s1p:"100% официальная техника Apple с гарантией.",s2h:"Доставка по Душанбе",s2p:"В день заказа. Бесплатно от 500 сом.",s3h:"Оплата при получении",s3p:"Платите только когда получили заказ на руки.",s4h:"Trade-In",s4p:"Обмен старого устройства со скидкой до 6 000 сом.",s5h:"Поддержка 24/7",s5p:"Эксперты ZAMON помогут на трёх языках.",s6h:"Проверка перед оплатой",s6p:"Осмотрите и проверьте устройство до оплаты.",
   line_h:"Изучите всю линейку",line_all:"Сравнить все модели →",
   catalog_h:"Все модели",cat_all:"Все",pp_lineup:"Линейка",pp_buy:"Купить",pp_overview:"Обзор",pp_why:"Преимущества",pp_specs:"Главное",pp_highlights:"Главное",cmp_h:"Сравните модели",spec_price:"Цена",spec_chip:"Чип",spec_display:"Экран",spec_battery:"Батарея"},
 
- tj:{bar:"🚚 Расонидани ройгон дар Душанбе аз 500 сом. · Қарзи 0% · Trade-In",region:"Тоҷикистон",
+ tj:{bar:"🚚 Расонидани ройгон дар Душанбе аз 500 сом. · Пардохт ҳангоми гирифтан · Trade-In",region:"Тоҷикистон",
   n_store:"Мағоза",n_mac:"Mac",n_ipad:"iPad",n_iphone:"iPhone",n_watch:"Watch",n_airpods:"AirPods",n_acc:"Лавозимот",n_support:"Дастгирӣ",
   cur:"сом.",from:"аз ",mo:"/моҳ",c_cod:"Пардохт ҳангоми гирифтан",c_warr:"Кафолати 1 сол",add:"Харидан",buy_now:"Харидан",learn:"Муфассал",details:"Муфассал",pieces:"дона",remove:"Тоза кардан",close:"Пӯшидан",gb:"ГБ",tb:"ТБ",cfg_storage:"Хотира",cfg_storage_sub:"Чӣ қадар ҷой лозим аст?",
   m_explore:"Обзор",m_shop:"Мағоза",m_more:"Боз",m_all:"Ҳама моделҳо",m_compare:"Муқоиса",m_acc:"Лавозимот",m_trade:"Trade-In",m_credit:"Қарзи 0%",m_support:"Дастгирӣ",
@@ -718,19 +726,19 @@ const I18N={
   f_shop:"Харидҳо",f_account:"Аккаунт",f_store:"Мағозаи ZAMON",f_biz:"Барои бизнес",f_about:"Дар бораи ZAMON",
   f_disc:"Apple ва тамғаҳои дигар моликияти Apple Inc. мебошанд. ZAMON мағозаи мустақили реселлер аст. Нархҳо бо сомонӣ (TJS). Тасвирҳо барои шиносоӣ.",
   f_copy:"© 2026 ZAMON. Ҳамаи ҳуқуқҳо ҳифз шудаанд.",f_made:"Бо ❤️ дар Тоҷикистон сохта шуд",
-  hero_eyebrow:"Apple Premium Store · Тоҷикистон",hero_sub:"Танҳо техникаи аслии Apple бо кафолати расмӣ. Қарзи 0%, Trade-In ва расонидани зуд дар Душанбе.",hero_cta1:"Ба феҳрист",hero_cta2:"Чаро ZAMON →",
-  chip1:"100% аслӣ",chip2:"Кафолати 2 сол",chip3:"Қарзи 0%",chip4:"Расонидан дар Душанбе",
+  hero_eyebrow:"Apple Premium Store · Тоҷикистон",hero_sub:"Танҳо техникаи аслии Apple бо кафолати расмӣ. Trade-In, пардохт ҳангоми гирифтан ва расонидани зуд дар Душанбе.",hero_cta1:"Ба феҳрист",hero_cta2:"Чаро ZAMON →",
+  chip1:"100% аслӣ",chip2:"Кафолати 1 сол",chip3:"Пардохт ҳангоми гирифтан",chip4:"Расонидан дар Душанбе",
   stat1:"Мизоҷони мамнун",stat2:"% техникаи аслӣ",stat3:"соат — расонидан дар Душанбе",
   why_tag:"Чаро ZAMON",why_h:"Чӣ моро аз дигарон фарқ мекунад",why_p:"Мо на танҳо техникаи Apple мефурӯшем — мо барои ҳар дастгоҳ ҷавобгар ҳастем.",
-  cmp_zamon:"ZAMON",cmp_other:"Мағозаи оддӣ",cmp1:"Техникаи аслии Apple",cmp2:"Кафолати расмӣ",cmp3:"Қарзи 0% ва Trade-In",cmp4:"Расонидани зуд дар Душанбе",cmp5:"Дастгирӣ бо 3 забон 24/7",
+  cmp_zamon:"ZAMON",cmp_other:"Мағозаи оддӣ",cmp1:"Техникаи аслии Apple",cmp2:"Кафолати расмӣ",cmp3:"Trade-In — иваз бо фоида",cmp4:"Расонидани зуд дар Душанбе",cmp5:"Дастгирӣ бо 3 забон 24/7",
   sc_tag:"Хатти Apple",sc_h:"Тамоми техникаи Apple — дар мо",
   srv_tag:"Хизмати мо",srv_h:"Хизматрасонии олӣ дар ҳар қадам",
   faq_tag:"Саволу ҷавоб",faq_h:"Хариди Apple дар Душанбе — саволҳои маъмул",
-  s1h:"Танҳо аслӣ",s1p:"100% техникаи расмии Apple бо кафолат.",s2h:"Расонидан дар Душанбе",s2p:"Дар рӯзи фармоиш. Ройгон аз 500 сом.",s3h:"Қарзи 0%",s3p:"Кредит то 12 моҳ бе пардохти иловагӣ.",s4h:"Trade-In",s4p:"Иваз бо тахфифи то 6 000 сом.",s5h:"Дастгирӣ 24/7",s5p:"Коршиносони ZAMON ба се забон кӯмак мекунанд.",s6h:"AppleCare+",s6p:"Кафолати васеъ ва ҳифз аз осеб.",
+  s1h:"Танҳо аслӣ",s1p:"100% техникаи расмии Apple бо кафолат.",s2h:"Расонидан дар Душанбе",s2p:"Дар рӯзи фармоиш. Ройгон аз 500 сом.",s3h:"Пардохт ҳангоми гирифтан",s3p:"Танҳо ҳангоми ба даст гирифтани фармоиш пардохт кунед.",s4h:"Trade-In",s4p:"Иваз бо тахфифи то 6 000 сом.",s5h:"Дастгирӣ 24/7",s5p:"Коршиносони ZAMON ба се забон кӯмак мекунанд.",s6h:"Санҷиш пеш аз пардохт",s6p:"Дастгоҳро пеш аз пардохт бинед ва санҷед.",
   line_h:"Тамоми хатти маҳсулот",line_all:"Муқоисаи ҳама →",
   catalog_h:"Ҳама моделҳо",cat_all:"Ҳама",pp_lineup:"Хатти маҳсулот",pp_buy:"Харидан",pp_overview:"Обзор",pp_why:"Бартариҳо",pp_specs:"Асосӣ",pp_highlights:"Асосӣ",cmp_h:"Моделҳоро муқоиса кунед",spec_price:"Нарх",spec_chip:"Чип",spec_display:"Экран",spec_battery:"Батарея"},
 
- en:{bar:"🚚 Free delivery across Dushanbe from 500 TJS · 0% financing · Trade-In",region:"Tajikistan",
+ en:{bar:"🚚 Free delivery across Dushanbe from 500 TJS · Pay on delivery · Trade-In",region:"Tajikistan",
   n_store:"Store",n_mac:"Mac",n_ipad:"iPad",n_iphone:"iPhone",n_watch:"Watch",n_airpods:"AirPods",n_acc:"Accessories",n_support:"Support",
   cur:"TJS",from:"from ",mo:"/mo",c_cod:"Pay on delivery",c_warr:"1-year warranty",add:"Buy",buy_now:"Buy",learn:"Learn more",details:"Learn more",pieces:"pcs",remove:"Remove",close:"Close",gb:"GB",tb:"TB",cfg_storage:"Storage",cfg_storage_sub:"How much space do you need?",
   m_explore:"Explore",m_shop:"Shop",m_more:"More",m_all:"All models",m_compare:"Compare",m_acc:"Accessories",m_trade:"Trade-In",m_credit:"0% financing",m_support:"Support",
@@ -759,15 +767,15 @@ const I18N={
   f_shop:"Shop and Learn",f_account:"Account",f_store:"The ZAMON Store",f_biz:"For Business",f_about:"About ZAMON",
   f_disc:"Apple and other marks are trademarks of Apple Inc. ZAMON is an independent reseller. Prices in somoni (TJS). Images for reference only.",
   f_copy:"© 2026 ZAMON. All rights reserved.",f_made:"Made with ❤️ in Tajikistan",
-  hero_eyebrow:"Apple Premium Store · Tajikistan",hero_sub:"Only genuine Apple products with official warranty. 0% financing, Trade-In and fast delivery across Dushanbe.",hero_cta1:"Go to catalog",hero_cta2:"Why ZAMON →",
-  chip1:"100% genuine",chip2:"2-year warranty",chip3:"0% financing",chip4:"Dushanbe delivery",
+  hero_eyebrow:"Apple Premium Store · Tajikistan",hero_sub:"Only genuine Apple products with official warranty. Trade-In, pay on delivery and fast delivery across Dushanbe.",hero_cta1:"Go to catalog",hero_cta2:"Why ZAMON →",
+  chip1:"100% genuine",chip2:"1-year warranty",chip3:"Pay on delivery",chip4:"Dushanbe delivery",
   stat1:"Happy customers",stat2:"% genuine products",stat3:"hour — Dushanbe delivery",
   why_tag:"Why ZAMON",why_h:"What sets us apart",why_p:"We don't just sell Apple — we stand behind every single device.",
-  cmp_zamon:"ZAMON",cmp_other:"Ordinary store",cmp1:"Genuine Apple products",cmp2:"Official warranty",cmp3:"0% financing & Trade-In",cmp4:"Fast Dushanbe delivery",cmp5:"24/7 support in 3 languages",
+  cmp_zamon:"ZAMON",cmp_other:"Ordinary store",cmp1:"Genuine Apple products",cmp2:"Official warranty",cmp3:"Trade-In with great value",cmp4:"Fast Dushanbe delivery",cmp5:"24/7 support in 3 languages",
   sc_tag:"The Apple lineup",sc_h:"All of Apple — right here",
   srv_tag:"Our service",srv_h:"Premium service at every step",
   faq_tag:"Questions & answers",faq_h:"Buying Apple in Dushanbe — FAQ",
-  s1h:"Genuine only",s1p:"100% official Apple products with warranty.",s2h:"Dushanbe delivery",s2p:"Same day. Free from 500 somoni.",s3h:"0% financing",s3p:"Installments up to 12 months, no overpayments.",s4h:"Trade-In",s4p:"Trade your old device, save up to 6,000 TJS.",s5h:"24/7 support",s5p:"ZAMON experts help in three languages.",s6h:"AppleCare+",s6p:"Extended warranty and damage protection.",
+  s1h:"Genuine only",s1p:"100% official Apple products with warranty.",s2h:"Dushanbe delivery",s2p:"Same day. Free from 500 somoni.",s3h:"Pay on delivery",s3p:"Pay only when the order is in your hands.",s4h:"Trade-In",s4p:"Trade your old device, save up to 6,000 TJS.",s5h:"24/7 support",s5p:"ZAMON experts help in three languages.",s6h:"Inspect before paying",s6p:"Check and test the device before you pay.",
   line_h:"Explore the lineup",line_all:"Compare all models →",
   catalog_h:"All models",cat_all:"All",pp_lineup:"The lineup",pp_buy:"Buy",pp_overview:"Overview",pp_why:"Why",pp_specs:"Highlights",pp_highlights:"Get the highlights",cmp_h:"Compare models",spec_price:"Price",spec_chip:"Chip",spec_display:"Display",spec_battery:"Battery"}
 };
@@ -830,7 +838,7 @@ function buildFooter(){
           <a href="tel:${SHOP_PHONE.replace(/\s/g,"")}" aria-label="Телефон"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.7 2Z"/></svg></a>
         </div></div>
       ${fcol(L.f_shop,[["iPhone","iphone.html"],["Mac","mac.html"],["iPad","ipad.html"],["Apple Watch","watch.html"],["AirPods","airpods.html"],[L.m_acc,"accessories.html"]])}
-      ${fcol(L.f_store,[["Trade-In","trade-in.html"],[L.m_credit,"trade-in.html"],[tr({ru:"Сравнить модели",tj:"Муқоисаи моделҳо",en:"Compare models"}),"compare.html"],[tr({ru:"Доставка",tj:"Расонидан",en:"Delivery"}),"index.html#services"],["AppleCare+","trade-in.html"]])}
+      ${fcol(L.f_store,[["Trade-In","trade-in.html"],[tr({ru:"Сравнить модели",tj:"Муқоисаи моделҳо",en:"Compare models"}),"compare.html"],[tr({ru:"Доставка",tj:"Расонидан",en:"Delivery"}),"index.html#services"],[tr({ru:"Аксессуары",tj:"Лавозимот",en:"Accessories"}),"accessories.html"]])}
       ${fcol(L.f_account,[[tr({ru:"Мой аккаунт",tj:"Аккаунти ман",en:"My Account"}),"account.html"],[tr({ru:"Корзина",tj:"Сабад",en:"Bag"}),"cart.html"],[tr({ru:"Заказы",tj:"Фармоишҳо",en:"Orders"}),"account.html"]])}
       ${fcol(L.f_about,[[tr({ru:"О нас",tj:"Дар бораи мо",en:"About us"}),"about.html"],[tr({ru:"Поддержка",tj:"Дастгирӣ",en:"Support"}),"support.html"],[tr({ru:"Контакты",tj:"Тамос",en:"Contact"}),"contact.html"],[tr({ru:"Магазины в Душанбе",tj:"Мағозаҳо дар Душанбе",en:"Stores in Dushanbe"}),"contact.html"]])}
     </div>
@@ -869,7 +877,7 @@ function buildMega(menu){
   return `<div class="mega-left">
       <div class="mega-col"><h5>${t("m_explore")}</h5><a class="big" href="${li.page}">${li.name}</a>
         <a href="${li.buyPage||li.page}">${t("m_all")}</a><a href="compare.html">${t("m_compare")}</a><a href="support.html">${t("m_support")}</a></div>
-      <div class="mega-col"><h5>${t("m_shop")}</h5><a href="trade-in.html">${t("m_trade")}</a><a href="trade-in.html">${t("m_credit")}</a><a href="index.html#services">AppleCare+</a><a href="accessories.html">${t("m_acc")}</a></div>
+      <div class="mega-col"><h5>${t("m_shop")}</h5><a href="trade-in.html">${t("m_trade")}</a><a href="compare.html">${t("m_compare")}</a><a href="accessories.html">${t("m_acc")}</a></div>
     </div>
     <div class="mega-cards">${cards}</div>`;
 }
@@ -1001,7 +1009,7 @@ function openBuy(id){
       <div class="buy-info">${p.new?`<div class="bnew">NEW</div>`:""}<h3>${p.name}</h3><div class="bdesc">${tr(p.tag)}</div>
       ${cols.length>1?`<div class="blabel">${t("buy_color")} — <span>${tr(col.n)}</span></div><div class="color-opts">${cols.map((c,i)=>`<div class="color-opt ${i===ci?"active":""}" data-ci="${i}"><span class="cdot" style="background:${c.hex}"></span>${tr(c.n)}</div>`).join("")}</div>`:""}
       ${p.storage?`<div class="blabel">${t("cfg_storage")} — <span>${stLabel(p.storage[si].gb)}</span></div><div class="color-opts">${p.storage.map((st,i)=>`<div class="color-opt ${i===si?"active":""}" data-si="${i}"><b>${stLabel(st.gb)}</b></div>`).join("")}</div>`:""}
-      <div class="buy-price">${fmtPrice(price)}</div><div class="buy-mo">${t("from")}${num(monthly(price))} ${t("cur")}${t("mo")} · ${t("co_pay3")}</div>
+      <div class="buy-price">${fmtPrice(price)}</div>
       <div class="buy-perks"><div class="perk"><span class="pi">🚚</span>${t("buy_perk1")}</div><div class="perk"><span class="pi">🛡️</span>${t("buy_perk2")}</div><div class="perk"><span class="pi">↩️</span>${t("buy_perk3")}</div></div>
       <div class="buy-actions"><button class="btn btn-soft" id="buyAdd">${t("buy_add")}</button><button class="btn btn-primary" id="buyNow">${t("buy_now")}</button></div></div></div>`;
     mi.querySelectorAll("[data-close]").forEach(b=>b.onclick=closeModal);
@@ -1071,8 +1079,7 @@ function renderCheckout(){
     ${courier?`<div class="ck-fields">${field("city",t("co_city"),t("region"),null,true)}${field("addr",t("ck_addr"),"ул. Рудаки 25, кв. 4",null,true)}</div>`:""}
     <div class="ck-q">${t("co_pay")}</div>
     ${opt(D.pay===t("co_pay1"),`data-pay="${t("co_pay1")}"`,t("co_pay1"),tr({ru:"Наличными при получении",tj:"Нақд ҳангоми гирифтан",en:"Cash on delivery"}))}
-    ${opt(D.pay===t("co_pay2"),`data-pay="${t("co_pay2")}"`,t("co_pay2"),tr({ru:"Картой при получении",tj:"Корт ҳангоми гирифтан",en:"Card on delivery"}))}
-    ${opt(D.pay===t("co_pay3"),`data-pay="${t("co_pay3")}"`,t("co_pay3"),t("cfg_pay_inst_sub"))}`;
+    ${opt(D.pay===t("co_pay2"),`data-pay="${t("co_pay2")}"`,t("co_pay2"),tr({ru:"Картой при получении",tj:"Корт ҳангоми гирифтан",en:"Card on delivery"}))}`;
   const total=cartSum();
   root.innerHTML=`<div class="ck-head"><h1>${t("co_title")}</h1><a class="ck-cancel" href="cart.html">${t("ck_back")} →</a></div>
     <p class="ck-intro msub">${t("co_sub")}</p>
@@ -1120,7 +1127,7 @@ function renderAccount(){
       :emptyBlock("📦",t("acc_no_orders"));
   }else{
     const items=wishlist.map(id=>P(id)).filter(Boolean);
-    content=items.length?`<div class="buy-grid-cards">${items.map(p=>`<div class="bgcard" data-id="${p.id}"><button class="wish-btn on" data-wish="${p.id}" aria-label="${t("acc_wish")}">♥</button><div class="bg-media"><img src="${mainImg(p)}" data-emoji="${p.emoji}" alt="${p.name}" loading="lazy" onerror="imgFallback(this)"></div><h3>${p.name}</h3><div class="bg-sw"></div><div class="bg-price">${t("from")}${num(p.price)} ${t("cur")}<small>${t("from")}${num(monthly(p.price))} ${t("cur")}${t("mo")} · 0%</small></div><button class="add" data-buy="${p.id}">${t("pp_buy")}</button></div>`).join("")}</div>`
+    content=items.length?`<div class="buy-grid-cards">${items.map(p=>`<div class="bgcard" data-id="${p.id}"><button class="wish-btn on" data-wish="${p.id}" aria-label="${t("acc_wish")}">♥</button><div class="bg-media"><img src="${mainImg(p)}" data-emoji="${p.emoji}" alt="${p.name}" loading="lazy" onerror="imgFallback(this)"></div><h3>${p.name}</h3><div class="bg-sw"></div><div class="bg-price">${t("from")}${num(p.price)} ${t("cur")}</div><button class="add" data-buy="${p.id}">${t("pp_buy")}</button></div>`).join("")}</div>`
       :emptyBlock("🤍",t("acc_no_wish"));
   }
   root.innerHTML=`<div class="acc-head"><h1>${t("acc_title")}</h1><span>${user.name}</span></div>
@@ -1190,7 +1197,7 @@ function renderLineup(){
   track.innerHTML=PRODUCTS.filter(p=>p.cat===cat).map(p=>`<div class="lcard" data-id="${p.id}">
     <div class="lc-media"${p.tint?` style="background:${p.tint}"`:""}>${p.new?`<div class="lc-badge">NEW</div>`:""}<img src="${mainImg(p)}" data-emoji="${p.emoji}" alt="${p.name}" loading="lazy" onerror="imgFallback(this)"></div>
     <div class="lc-body">${swatchHtml(p,"lc-sw",true)}<h3>${p.name}</h3><div class="lc-desc">${tr(p.tag)}</div>
-    <div class="lc-price"><b>${t("from")}${num(p.price)} ${t("cur")}</b><br>${t("from")}${num(monthly(p.price))} ${t("cur")}${t("mo")} · 0%</div></div></div>`).join("");
+    <div class="lc-price"><b>${t("from")}${num(p.price)} ${t("cur")}</b></div></div></div>`).join("");
   const car=track.closest(".carousel");initCarousel(car,document.getElementById(car.dataset.dots||"lineupDots"));
 }
 
@@ -1250,9 +1257,9 @@ const FAQS=[
  {q:{ru:"Как работает доставка по Душанбе?",tj:"Расонидан дар Душанбе чӣ тавр кор мекунад?",en:"How does delivery across Dushanbe work?"},
   a:{ru:"Курьером по всему Душанбе — часто в день заказа. Стоимость зависит от района, по городу бесплатно от 500 сомони.",tj:"Бо курьер дар тамоми Душанбе — аксаран дар рӯзи фармоиш. Нарх аз ноҳия вобаста аст, дар шаҳр аз 500 сомонӣ ройгон.",en:"By courier across Dushanbe — often same day. Cost depends on the district; free in the city from 500 somoni."}},
  {q:{ru:"Какие способы оплаты?",tj:"Тарзҳои пардохт кадомҳоянд?",en:"What payment methods are available?"},
-  a:{ru:"Оплата наличными или картой при получении. Также доступна рассрочка и кредит 0%.",tj:"Пардохт нақд ё бо корт ҳангоми гирифтан. Ҳамчунин рассрочка ва қарзи 0% дастрас аст.",en:"Cash or card on delivery. Installments and 0% credit are also available."}},
- {q:{ru:"Можно купить в рассрочку (кредит 0%)?",tj:"Бо рассрочка (қарзи 0%) харидан мумкин аст?",en:"Can I buy in installments (0% credit)?"},
-  a:{ru:"Да, на большинство товаров доступна рассрочка с кредитом 0% — удобный срок выбирается при оформлении заказа.",tj:"Бале, барои аксари молҳо рассрочка бо қарзи 0% дастрас аст — мӯҳлати қулайро ҳангоми фармоиш интихоб мекунед.",en:"Yes, most products are available with 0% installments — choose a convenient term at checkout."}},
+  a:{ru:"Наличными или картой при получении — вы платите только после того, как получили заказ на руки.",tj:"Нақд ё бо корт ҳангоми гирифтан — шумо танҳо пас аз ба даст гирифтани фармоиш пардохт мекунед.",en:"Cash or card on delivery — you pay only after the order is in your hands."}},
+ {q:{ru:"Можно проверить устройство перед оплатой?",tj:"Дастгоҳро пеш аз пардохт санҷидан мумкин аст?",en:"Can I check the device before paying?"},
+  a:{ru:"Да. При доставке вы спокойно осматриваете и проверяете устройство, и оплачиваете только после этого — оплата при получении.",tj:"Бале. Ҳангоми расонидан шумо дастгоҳро бемалол бинед ва месанҷед, ва танҳо пас аз он пардохт мекунед — пардохт ҳангоми гирифтан.",en:"Yes. On delivery you can calmly inspect and test the device, and pay only afterwards — payment on delivery."}},
  {q:{ru:"Как сделать заказ в ZAMON?",tj:"Дар ZAMON чӣ тавр фармоиш додан мумкин аст?",en:"How do I place an order at ZAMON?"},
   a:{ru:"Добавьте товар в корзину и оформите заказ на сайте, либо напишите нам в WhatsApp (+992 98 222 76 35) или Telegram (@vensurel) — поможем с выбором и доставкой.",tj:"Молро ба сабад илова кунед ва дар сайт фармоиш диҳед, ё ба мо дар WhatsApp (+992 98 222 76 35) ё Telegram (@vensurel) нависед — дар интихоб ва расонидан кӯмак мекунем.",en:"Add an item to the cart and check out on the site, or message us on WhatsApp (+992 98 222 76 35) or Telegram (@vensurel) — we'll help with the choice and delivery."}}
 ];
@@ -1272,7 +1279,7 @@ function cardHtml(p){return `<div class="pcard" data-id="${p.id}"><div class="ba
   <button class="wish-btn ${inWish(p.id)?"on":""}" data-wish="${p.id}" aria-label="${t("acc_wish")}">♥</button>
   <div class="media"${p.tint?` style="background:${p.tint}"`:""}><img src="${mainImg(p)}" data-emoji="${p.emoji}" alt="${p.name}" loading="lazy" onerror="imgFallback(this)"></div>
   ${swatchHtml(p,"p-sw")}<h3>${p.name}</h3><div class="ptag">${tr(p.tag)}</div>
-  <div class="p-price">${t("from")}${num(p.price)} ${t("cur")}${p.old?`<span class="old">${num(p.old)}</span>`:""}<small>${t("from")}${num(monthly(p.price))} ${t("cur")}${t("mo")} · 0%</small></div>
+  <div class="p-price">${t("from")}${num(p.price)} ${t("cur")}${p.old?`<span class="old">${num(p.old)}</span>`:""}</div>
   <div class="p-actions"><button class="add" data-add="${p.id}">${t("add")}</button><button class="more" data-buy="${p.id}">${t("details")}</button></div></div>`;}
 function renderCatalog(){
   const box=document.getElementById("catalog");if(!box)return;
@@ -1299,7 +1306,7 @@ function renderBuyGrid(){
       <div class="bg-media"><img src="${cols[0].img}" data-emoji="${p.emoji}" alt="${p.name}" loading="lazy" onerror="imgFallback(this)"></div>
       <h3>${p.name}</h3>
       ${cols.length>1?`<div class="bg-sw">${cols.map((c,i)=>`<span class="sw ${i===0?"active":""}" data-bsw="${p.id}" data-idx="${i}" title="${tr(c.n)}" style="background:${c.hex}"></span>`).join("")}</div>`:`<div class="bg-sw"></div>`}
-      <div class="bg-price">${t("from")}${num(p.price)} ${t("cur")}<small>${t("from")}${num(monthly(p.price))} ${t("cur")}${t("mo")} · 0%</small></div>
+      <div class="bg-price">${t("from")}${num(p.price)} ${t("cur")}</div>
       <div class="bg-trust"><span class="bg-tag">✓ ${t("c_cod")}</span><span class="bg-tag">✓ ${t("c_warr")}</span></div>
       <button class="add" data-buy="${p.id}">${t("pp_buy")}</button></div>`;
   }).join("")+`</div>`;
@@ -1403,23 +1410,14 @@ function renderConfigurator(){
         ${optRow(!CFG.trade,`data-trade="0"`,t("cfg_trade_none"),t("cfg_trade_none_sub"),null)}
         ${optRow(CFG.trade,`data-trade="1"`,t("cfg_trade_yes"),t("cfg_trade_est"),"−"+fmtPrice(TRADEIN[cat]||0))}</div>
 
-      <div class="cfg-group"><div class="cfg-q">${t("cfg_care")} <span>${t("cfg_care_sub")}</span></div>
-        ${optRow(!CFG.care,`data-care="0"`,t("cfg_care_none"),t("cfg_care_none_sub"),null)}
-        ${optRow(CFG.care,`data-care="1"`,t("cfg_care_yes"),t("cfg_care_yes_sub"),"+"+fmtPrice(CARE[cat]||0))}</div>
-
-      <div class="cfg-group"><div class="cfg-q">${t("cfg_pay")} <span>${t("cfg_pay_sub")}</span></div>
-        ${optRow(CFG.pay==="inst",`data-pay="inst"`,t("cfg_pay_inst"),t("cfg_pay_inst_sub"),fmtPrice(monthly(c.total))+t("mo"))}
-        ${optRow(CFG.pay==="full",`data-pay="full"`,t("cfg_pay_full"),t("cfg_pay_full_sub"),fmtPrice(c.total))}</div>
 
       <div class="cfg-summary">
         <div class="cfg-sum-h">${t("cfg_summary_h")}</div>
         <div class="cfg-rows">
           <div class="cfg-row"><span>${t("cfg_device")}</span><span>${fmtPrice(c.dev)}</span></div>
-          ${c.careAdd?`<div class="cfg-row"><span>AppleCare+</span><span>+${fmtPrice(c.careAdd)}</span></div>`:""}
           ${c.tradeVal?`<div class="cfg-row save"><span>${t("cfg_save")}</span><span>−${fmtPrice(c.tradeVal)}</span></div>`:""}
         </div>
         <div class="cfg-total"><span>${t("cfg_total")}</span><span>${fmtPrice(c.total)}</span></div>
-        ${CFG.pay==="inst"?`<div class="cfg-mo">${t("from")}${fmtPrice(monthly(c.total))}${t("mo")} ${t("cfg_mo_note")}</div>`:""}
         <div class="cfg-actions">
           <button class="btn btn-primary" id="cfgAdd">${t("cfg_add")}</button>
           <button class="btn btn-soft" id="cfgBuy">${t("cfg_buynow")}</button>
@@ -1465,7 +1463,7 @@ function buildBuyerFAQ(){
   const pfaq=[
     {q:{ru:"Сколько идёт доставка?",tj:"Расонидан чанд вақт мегирад?",en:"How long is delivery?"},a:{ru:"Доставляем курьером по всему Душанбе, часто в день заказа. Бесплатно от 500 сомони.",tj:"Бо курьер дар тамоми Душанбе мерасонем, аксаран дар рӯзи фармоиш. Ройгон аз 500 сом.",en:"We deliver by courier across Dushanbe, often same day. Free from 500 TJS."}},
     {q:{ru:"Это оригинал с гарантией?",tj:"Ин аслӣ бо кафолат аст?",en:"Is it genuine with warranty?"},a:{ru:"Да. Только оригинальная техника Apple с официальной гарантией. AppleCare+ можно добавить при оформлении для расширенной защиты.",tj:"Бале. Танҳо техникаи аслии Apple бо кафолати расмӣ. AppleCare+-ро ҳангоми харид илова кардан мумкин.",en:"Yes. Only genuine Apple products with official warranty. AppleCare+ can be added at checkout."}},
-    {q:{ru:"Можно купить в рассрочку?",tj:"Бо қарз харидан мумкин аст?",en:"Can I pay in instalments?"},a:{ru:"Да, кредит 0% до 24 месяцев. Ежемесячный платёж рассчитывается автоматически при оформлении заказа.",tj:"Бале, қарзи 0% то 24 моҳ. Пардохти моҳона худкор ҳисоб мешавад.",en:"Yes, 0% financing up to 24 months. The monthly payment is calculated automatically at checkout."}},
+    {q:{ru:"Как можно оплатить заказ?",tj:"Фармоишро чӣ тавр пардохт кардан мумкин аст?",en:"How can I pay for my order?"},a:{ru:"Оплата при получении — наличными или картой, когда курьер привезёт заказ. Никакой предоплаты.",tj:"Пардохт ҳангоми гирифтан — нақд ё бо корт, вақте ки курьер фармоишро меорад. Бе пешпардохт.",en:"Payment on delivery — cash or card when the courier brings your order. No prepayment."}},
     {q:{ru:"Примете старое устройство в зачёт?",tj:"Дастгоҳи кӯҳнаро қабул мекунед?",en:"Do you accept trade-ins?"},a:{ru:"Да. По Trade-In оценим ваше устройство и вычтем его стоимость из цены нового — выгода до 6 000 сомони.",tj:"Бале. Аз рӯи Trade-In дастгоҳатонро баҳо медиҳем ва аз нарх кам мекунем — то 6 000 сом.",en:"Yes. With Trade-In we appraise your device and deduct its value from the new one — save up to 6,000 TJS."}}];
   return `<section class="sec"><div class="wrap" style="max-width:780px"><div class="sec-head reveal"><h2>${tr({ru:"Частые вопросы",tj:"Саволҳои зуд-зуд",en:"Frequently asked"})}</h2></div>
     <div class="faq">${pfaq.map((f,i)=>`<div class="faq-item reveal ${i===0?"open":""}"><button class="faq-q">${tr(f.q)}<span class="faq-ic"></span></button><div class="faq-a"><p>${tr(f.a)}</p></div></div>`).join("")}</div></div></section>`;
@@ -1487,7 +1485,7 @@ function renderProduct(){
   const dark=p.darkMedia&&!p.buyColors;
   const hero=`<section class="phero ${dark?"dark":"light"} prod-hero">${p.new?`<div class="pe">NEW</div>`:`<div class="pe">${li.name||p.line}</div>`}
     <h1>${p.name}</h1><p class="psub">${tr(p.tag)}</p>
-    <p class="pprice">${t("from")}${fmtPrice(p.price)} · ${t("from")}${fmtPrice(monthly(p.price))}${t("mo")} · ${t("co_pay3")}</p>
+    <p class="pprice">${t("from")}${fmtPrice(p.price)}</p>
     <div class="phero-cta"><a class="btn btn-primary lg" href="buy.html?id=${id}">${t("pp_buy")}</a><button class="btn btn-ghost lg" id="prodAdd">${t("buy_add")}</button></div>
     <a class="btn btn-wa lg prod-wa" href="${waLink(tr({ru:"Здравствуйте! Хочу заказать ",tj:"Салом! Мехоҳам фармоиш диҳам ",en:"Hi! I'd like to order "})+p.name+" — "+t("from")+fmtPrice(p.price)+".")}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.5A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-2.8.7.7-2.7-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.7.9c-.1.1-.3.2-.5 0-.7-.3-1.4-.7-2-1.4-.4-.5-.7-1-.9-1.4-.1-.2 0-.4.1-.5l.4-.5c.1-.1.1-.2.2-.4 0-.1 0-.3 0-.4l-.7-1.7c-.2-.4-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.7.7-.9 1.6-.6 2.6.3 1.1 1 2.1 1.2 2.4 1.7 2.5 3.6 3.3 4.8 3.6.6.2 1.1.2 1.5.1.5-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1l-.3-.2Z"/></svg> ${tr({ru:"Заказать в WhatsApp",tj:"Фармоиш дар WhatsApp",en:"Order on WhatsApp"})}</a>
     ${cols.length>1?`<div class="prod-sw">${cols.map((c,i)=>`<button class="psw ${i===0?"active":""}" data-pi="${i}" style="background:${c.hex}" title="${tr(c.n)}" aria-label="${tr(c.n)}"></button>`).join("")}</div>`:""}
@@ -1511,7 +1509,7 @@ function renderProduct(){
   const faqSec=buildBuyerFAQ();
   const witbSec=buildWITB(p);
   const cta=`<section class="sec"><div class="wrap" style="text-align:center"><h2 style="font-size:clamp(1.8rem,4vw,2.6rem);margin-bottom:14px">${tr({ru:"Готовы к покупке?",tj:"Ба харид тайёред?",en:"Ready to buy?"})}</h2>
-    <p style="color:var(--text-2);max-width:520px;margin:0 auto 22px">${tr({ru:"Оригинал, официальная гарантия, кредит 0% и быстрая доставка по Душанбе.",tj:"Аслӣ, кафолати расмӣ, қарзи 0% ва расонидани зуд дар Душанбе.",en:"Genuine, official warranty, 0% financing and 24-hour delivery."})}</p>
+    <p style="color:var(--text-2);max-width:520px;margin:0 auto 22px">${tr({ru:"Оригинал, официальная гарантия и быстрая доставка по Душанбе.",tj:"Аслӣ, кафолати расмӣ ва расонидани зуд дар Душанбе.",en:"Genuine, official warranty and fast delivery across Dushanbe."})}</p>
     <div class="phero-cta" style="justify-content:center"><a class="btn btn-primary lg" href="buy.html?id=${id}">${t("pp_buy")} · ${fmtPrice(p.price)}</a><a class="btn btn-ghost lg" href="${li.page||"index.html"}">${t("details")} →</a></div></div></section>`;
   root.innerHTML=hero+feats+why+specsSec+witbSec+faqSec+cta;
   root.querySelectorAll("[data-pi]").forEach(b=>b.onclick=()=>{const i=+b.dataset.pi;document.getElementById("prodImg").src=cols[i].img;root.querySelectorAll("[data-pi]").forEach(s=>s.classList.toggle("active",s===b));});
@@ -1566,7 +1564,7 @@ function renderTradeIn(){
   const li=LIcat(TI.cat)||{};
   const conds=[[1,"ti_c1"],[0.7,"ti_c2"],[0.4,"ti_c3"]];
   root.innerHTML=`<div class="ct-head"><h1>${t("ti_title")}</h1><p class="sec-sub">${t("ti_sub")}</p></div>
-  <div class="tools-grid">
+  <div class="tools-grid solo">
     <div class="tool-card">
       <h3>${t("ti_title")}</h3>
       <label class="tool-lbl">${t("ti_device")}</label>
@@ -1576,16 +1574,6 @@ function renderTradeIn(){
       <div class="ti-result"><span>${t("ti_credit")}</span><div class="ti-amount">−${fmtPrice(credit)}</div></div>
       <p class="ti-note">${t("ti_note")}</p>
       <a class="btn btn-primary" href="${li.buyPage||"index.html#catalog"}" style="width:100%;justify-content:center">${t("ti_apply")}</a>
-    </div>
-    <div class="tool-card">
-      <h3>${t("calc_title")}</h3><p class="sec-sub" style="margin-bottom:18px">${t("calc_sub")}</p>
-      <label class="tool-lbl">${t("calc_product")}</label>
-      <select class="tool-select" id="calcSel">${tradeables.map(p=>`<option value="${p.id}" ${p.id===TI.calcId?"selected":""}>${p.name} — ${fmtPrice(p.price)}</option>`).join("")}</select>
-      <label class="tool-lbl">${t("calc_term")}</label>
-      <div class="ti-conds">${[12,24].map(m=>`<button class="ti-cond ${TI.term===m?"active":""}" data-term="${m}">${m} ${t("calc_mo")}</button>`).join("")}</div>
-      <label class="calc-care"><input type="checkbox" id="calcCare" ${TI.care?"checked":""}> ${t("calc_care")} ${CARE[cp.cat]?`(+${fmtPrice(CARE[cp.cat])})`:""}</label>
-      <div class="ti-result"><span>${t("calc_monthly")}</span><div class="ti-amount">${fmtPrice(monthly)}<small>/${t("calc_mo")} · 0%</small></div></div>
-      <div class="calc-total"><span>${t("calc_total")}</span><b>${fmtPrice(calcBase)}</b></div>
     </div>
   </div>`;
   root.querySelectorAll("[data-ticat]").forEach(b=>b.onclick=()=>{TI.cat=b.dataset.ticat;renderTradeIn();});
@@ -1603,9 +1591,9 @@ function renderSupport(){
    {ic:"🚚",h:{ru:"Доставка",tj:"Расонидан",en:"Delivery"},p:{ru:"Бесплатно от 500 сом., по всей стране за 24 часа.",tj:"Ройгон аз 500 сом., дар 24 соат.",en:"Free from 500 TJS, nationwide in 24 hours."},page:"index.html#services"},
    {ic:"🛡️",h:{ru:"Гарантия",tj:"Кафолат",en:"Warranty"},p:{ru:"Официальная гарантия 1–2 года на всю технику.",tj:"Кафолати расмии 1–2 сол.",en:"Official 1–2 year warranty on all devices."},page:"index.html#services"},
    {ic:"🔄",h:{ru:"Trade-In",tj:"Trade-In",en:"Trade-In"},p:{ru:"Сдайте старое устройство и сэкономьте до 6 000 сом.",tj:"Дастгоҳи кӯҳнаро супоред ва сарфа кунед.",en:"Trade in your old device, save up to 6,000 TJS."},page:"trade-in.html"},
-   {ic:"💳",h:{ru:"Кредит и оплата",tj:"Қарз ва пардохт",en:"Financing"},p:{ru:"Кредит 0% до 24 месяцев, наличные или карта.",tj:"Қарзи 0% то 24 моҳ, нақд ё корт.",en:"0% financing up to 24 months, cash or card."},page:"trade-in.html"},
+   {ic:"💳",h:{ru:"Оплата при получении",tj:"Пардохт ҳангоми гирифтан",en:"Pay on delivery"},p:{ru:"Платите наличными или картой, когда получили заказ. Без предоплаты.",tj:"Ҳангоми гирифтани фармоиш нақд ё бо корт пардохт кунед. Бе пешпардохт.",en:"Pay by cash or card when you receive your order. No prepayment."},page:"contact.html"},
    {ic:"↩️",h:{ru:"Возврат",tj:"Баргардонидан",en:"Returns"},p:{ru:"14 дней на возврат без объяснения причин.",tj:"14 рӯз барои баргардонидан.",en:"14-day returns, no questions asked."},page:"index.html#services"},
-   {ic:"➕",h:{ru:"AppleCare+",tj:"AppleCare+",en:"AppleCare+"},p:{ru:"Расширенная гарантия и защита от повреждений.",tj:"Кафолати васеъ ва ҳифз аз осеб.",en:"Extended warranty and damage protection."},page:"index.html#services"}];
+   {ic:"↩️",h:{ru:"Возврат 14 дней",tj:"Бозгашти 14 рӯз",en:"14-day returns"},p:{ru:"Не подошло — вернём деньги в течение 14 дней.",tj:"Мувофиқ нашуд — дар 14 рӯз пулро бармегардонем.",en:"Changed your mind? Full refund within 14 days."},page:"index.html#services"}];
   const faq=[
    {q:{ru:"Оригинальная ли у вас техника?",tj:"Техникаи шумо аслист?",en:"Is your tech genuine?"},a:{ru:"Да. ZAMON продаёт только 100% оригинальную технику Apple с официальной гарантией. Никаких реплик и серых поставок.",tj:"Бале. Танҳо техникаи 100% аслии Apple бо кафолати расмӣ.",en:"Yes. ZAMON sells only 100% genuine Apple products with official warranty."}},
    {q:{ru:"Сколько стоит доставка?",tj:"Расонидан чанд аст?",en:"How much is delivery?"},a:{ru:"Доставка бесплатна при заказе от 500 сомони. По всему Таджикистану — в течение 24 часов.",tj:"Ройгон аз 500 сомонӣ, дар 24 соат.",en:"Free for orders from 500 TJS, delivered within 24 hours across Tajikistan."}},

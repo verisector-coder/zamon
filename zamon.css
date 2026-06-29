@@ -1014,3 +1014,6 @@ img[data-emoji].img-loaded{opacity:1}
 .bg-tag{color:#2ea043;font-weight:500;white-space:nowrap}
 .lr-cod{font-size:.74rem;color:#2ea043;font-weight:600;margin-top:3px}
 [data-theme="dark"] .bg-tag,[data-theme="dark"] .lr-cod{color:#3fb950}
+
+/* Trade-In page: single tool card centered */
+.tools-grid.solo{grid-template-columns:minmax(0,560px);justify-content:center}

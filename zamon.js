@@ -650,7 +650,7 @@ function initExplorer(){
 const I18N={
  ru:{bar:"🚚 Бесплатная доставка по Душанбе от 500 сом. · Кредит 0% · Trade-In",region:"Таджикистан",
   n_store:"Магазин",n_mac:"Mac",n_ipad:"iPad",n_iphone:"iPhone",n_watch:"Watch",n_airpods:"AirPods",n_acc:"Аксессуары",n_support:"Поддержка",
-  cur:"сом.",from:"от ",mo:"/мес",add:"Купить",buy_now:"Купить",learn:"Узнать подробнее",details:"Подробнее",pieces:"шт.",remove:"Удалить",close:"Закрыть",gb:"ГБ",tb:"ТБ",cfg_storage:"Память",cfg_storage_sub:"Сколько места вам нужно?",
+  cur:"сом.",from:"от ",mo:"/мес",c_cod:"Оплата при получении",c_warr:"Гарантия 1 год",add:"Купить",buy_now:"Купить",learn:"Узнать подробнее",details:"Подробнее",pieces:"шт.",remove:"Удалить",close:"Закрыть",gb:"ГБ",tb:"ТБ",cfg_storage:"Память",cfg_storage_sub:"Сколько места вам нужно?",
   m_explore:"Обзор",m_shop:"Магазин",m_more:"Ещё",m_all:"Все модели",m_compare:"Сравнить",m_acc:"Аксессуары",m_trade:"Trade-In",m_credit:"Кредит 0%",m_support:"Поддержка",
   cart_title:"Корзина",cart_items:"Товаров",cart_total:"Итого",cart_checkout:"Оформить заказ",cart_clear:"Очистить корзину",cart_empty:"Ваша корзина пуста",cart_empty_sub:"Добавьте устройства из каталога",ship_free:"Бесплатная доставка по Душанбе",
   co_title:"Оформление заказа",co_sub:"Заполните данные — мы перезвоним для подтверждения.",co_name:"Имя и фамилия",co_phone:"Телефон",co_city:"Город",co_pay:"Способ оплаты",co_pay1:"Наличными при получении",co_pay2:"Картой при получении",co_pay3:"Кредит 0%",co_total:"К оплате",co_submit:"Подтвердить заказ",co_ok_h:"Заказ принят!",co_ok_p:"Спасибо за покупку в ZAMON. Менеджер свяжется с вами в течение 15 минут.",co_ok_btn:"Отлично",
@@ -691,7 +691,7 @@ const I18N={
 
  tj:{bar:"🚚 Расонидани ройгон дар Душанбе аз 500 сом. · Қарзи 0% · Trade-In",region:"Тоҷикистон",
   n_store:"Мағоза",n_mac:"Mac",n_ipad:"iPad",n_iphone:"iPhone",n_watch:"Watch",n_airpods:"AirPods",n_acc:"Лавозимот",n_support:"Дастгирӣ",
-  cur:"сом.",from:"аз ",mo:"/моҳ",add:"Харидан",buy_now:"Харидан",learn:"Муфассал",details:"Муфассал",pieces:"дона",remove:"Тоза кардан",close:"Пӯшидан",gb:"ГБ",tb:"ТБ",cfg_storage:"Хотира",cfg_storage_sub:"Чӣ қадар ҷой лозим аст?",
+  cur:"сом.",from:"аз ",mo:"/моҳ",c_cod:"Пардохт ҳангоми гирифтан",c_warr:"Кафолати 1 сол",add:"Харидан",buy_now:"Харидан",learn:"Муфассал",details:"Муфассал",pieces:"дона",remove:"Тоза кардан",close:"Пӯшидан",gb:"ГБ",tb:"ТБ",cfg_storage:"Хотира",cfg_storage_sub:"Чӣ қадар ҷой лозим аст?",
   m_explore:"Обзор",m_shop:"Мағоза",m_more:"Боз",m_all:"Ҳама моделҳо",m_compare:"Муқоиса",m_acc:"Лавозимот",m_trade:"Trade-In",m_credit:"Қарзи 0%",m_support:"Дастгирӣ",
   cart_title:"Сабад",cart_items:"Молҳо",cart_total:"Ҳамагӣ",cart_checkout:"Ба расмият даровардан",cart_clear:"Холӣ кардан",cart_empty:"Сабади шумо холист",cart_empty_sub:"Аз феҳрист дастгоҳ илова кунед",ship_free:"Расонидани ройгон дар Душанбе",
   co_title:"Ба расмият даровардан",co_sub:"Маълумотро пур кунед — занг мезанем.",co_name:"Ном ва насаб",co_phone:"Телефон",co_city:"Шаҳр",co_pay:"Тарзи пардохт",co_pay1:"Нақд ҳангоми гирифтан",co_pay2:"Корт ҳангоми гирифтан",co_pay3:"Қарзи 0%",co_total:"Барои пардохт",co_submit:"Тасдиқи фармоиш",co_ok_h:"Фармоиш қабул шуд!",co_ok_p:"Ташаккур! Менеҷер дар давоми 15 дақиқа тамос мегирад.",co_ok_btn:"Аъло",
@@ -732,7 +732,7 @@ const I18N={
 
  en:{bar:"🚚 Free delivery across Dushanbe from 500 TJS · 0% financing · Trade-In",region:"Tajikistan",
   n_store:"Store",n_mac:"Mac",n_ipad:"iPad",n_iphone:"iPhone",n_watch:"Watch",n_airpods:"AirPods",n_acc:"Accessories",n_support:"Support",
-  cur:"TJS",from:"from ",mo:"/mo",add:"Buy",buy_now:"Buy",learn:"Learn more",details:"Learn more",pieces:"pcs",remove:"Remove",close:"Close",gb:"GB",tb:"TB",cfg_storage:"Storage",cfg_storage_sub:"How much space do you need?",
+  cur:"TJS",from:"from ",mo:"/mo",c_cod:"Pay on delivery",c_warr:"1-year warranty",add:"Buy",buy_now:"Buy",learn:"Learn more",details:"Learn more",pieces:"pcs",remove:"Remove",close:"Close",gb:"GB",tb:"TB",cfg_storage:"Storage",cfg_storage_sub:"How much space do you need?",
   m_explore:"Explore",m_shop:"Shop",m_more:"More",m_all:"All models",m_compare:"Compare",m_acc:"Accessories",m_trade:"Trade-In",m_credit:"0% financing",m_support:"Support",
   cart_title:"Bag",cart_items:"Items",cart_total:"Total",cart_checkout:"Checkout",cart_clear:"Clear bag",cart_empty:"Your bag is empty",cart_empty_sub:"Add devices from the catalog",ship_free:"Free delivery across Dushanbe",
   co_title:"Checkout",co_sub:"Fill in your details — we'll call to confirm.",co_name:"Full name",co_phone:"Phone",co_city:"City",co_pay:"Payment method",co_pay1:"Cash on delivery",co_pay2:"Card on delivery",co_pay3:"0% financing",co_total:"To pay",co_submit:"Confirm order",co_ok_h:"Order received!",co_ok_p:"Thank you for shopping at ZAMON. Our manager will contact you within 15 minutes.",co_ok_btn:"Great",
@@ -1219,6 +1219,7 @@ function lineupRow(cat){
     <div class="lr-media"${p.tint?` style="background:${p.tint}"`:""}>${p.new?`<span class="lr-new">NEW</span>`:""}<img src="${shrinkCDN(p.lineImg||mainImg(p),460)}" data-emoji="${p.emoji}" alt="${p.name}" loading="lazy" decoding="async" onerror="imgFallback(this)"></div>
     <div class="lr-name">${p.name}</div>
     <div class="lr-from">${t("from")}${num(p.price)} ${t("cur")}</div>
+    <div class="lr-cod">✓ ${t("c_cod")}</div>
     <span class="lr-cta">${t("learn")} ${ARROW_R}</span></a>`).join("")}</div>
     <button class="lr-arrow next" aria-label="next">${ARROW_R}</button>
   </div>`;
@@ -1299,6 +1300,7 @@ function renderBuyGrid(){
       <h3>${p.name}</h3>
       ${cols.length>1?`<div class="bg-sw">${cols.map((c,i)=>`<span class="sw ${i===0?"active":""}" data-bsw="${p.id}" data-idx="${i}" title="${tr(c.n)}" style="background:${c.hex}"></span>`).join("")}</div>`:`<div class="bg-sw"></div>`}
       <div class="bg-price">${t("from")}${num(p.price)} ${t("cur")}<small>${t("from")}${num(monthly(p.price))} ${t("cur")}${t("mo")} · 0%</small></div>
+      <div class="bg-trust"><span class="bg-tag">✓ ${t("c_cod")}</span><span class="bg-tag">✓ ${t("c_warr")}</span></div>
       <button class="add" data-buy="${p.id}">${t("pp_buy")}</button></div>`;
   }).join("")+`</div>`;
   observeReveal();initTilt(".bgcard");

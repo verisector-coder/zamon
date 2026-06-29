@@ -779,7 +779,7 @@ const fmtPrice=n=>num(n)+" "+t("cur");
 const monthly=n=>Math.round(n/24);
 
 /* ===== SHELL: build nav + footer + overlays ===== */
-const MARK='<span class="mark"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M12 12.5h16v4.2l-9.3 6.6H28v4.2H12v-4.2l9.3-6.6H12z" fill="#fff"/></svg></span>';
+const MARK='<span class="mark"><svg viewBox="0 0 40 40" aria-hidden="true"><defs><linearGradient id="zcm" x1="8" y1="7" x2="33" y2="34" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#fcfcfe"/><stop offset=".42" stop-color="#c4c6cc"/><stop offset=".6" stop-color="#7a7d83"/><stop offset=".82" stop-color="#bcbec3"/><stop offset="1" stop-color="#e6e8ec"/></linearGradient></defs><rect x="8.5" y="8.5" width="23" height="23" rx="6.5" fill="none" stroke="url(#zcm)" stroke-width="2.4"/><path d="M14.6 14.2H26.2L14.4 25.8H26.4" fill="none" stroke="url(#zcm)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>';
 const NAVITEMS=[["store","n_store","index.html#showcase",null],["mac","n_mac","mac.html","mac"],["ipad","n_ipad","ipad.html","ipad"],
  ["iphone","n_iphone","iphone.html","iphone"],["watch","n_watch","watch.html","watch"],["airpods","n_airpods","airpods.html","airpods"],
  ["acc","n_acc","accessories.html",null],["support","n_support","support.html",null]];

@@ -48,6 +48,15 @@ function siteLD(){
 try{siteLD();}catch(e){}
 function productLD(p){try{setLD("product",{"@context":"https://schema.org","@type":"Product","name":p.name,"image":mainImg(p),"description":tr(p.tag||{ru:p.name,tj:p.name,en:p.name}),"sku":"ZAMON-"+p.id,"brand":{"@type":"Brand","name":"Apple"},"category":p.line||p.cat,"offers":{"@type":"Offer","priceCurrency":"TJS","price":p.price,"availability":"https://schema.org/InStock","url":location.href,"seller":{"@type":"Organization","name":"ZAMON"}}});}catch(e){}}
 
+/* ===== PRICING — цены привязаны к официальным ценам Apple США (USD) =====
+   Итог = цена_Apple_USD × курс × наценка. Чтобы обновить — поменяй ДВА числа ниже,
+   все цены (карточки, корзина, конфигуратор, рассрочка) пересчитаются автоматически. */
+const USD_TJS=9.5;   // курс доллара к сомони (с запасом на колебания)
+const MARGIN=1.30;   // наценка +30% к цене Apple
+const tjs=usd=>Math.round(usd*USD_TJS*MARGIN/10)*10;   // USD → сомони, округление до 10
+/* Официальные цены Apple США (USD) за базовую конфигурацию (память) */
+const APPLE_USD={1:1099,2:999,3:799,4:599,5:699,6:1599,7:1199,8:999,9:599,10:799,11:399,12:249,13:129,14:549,15:249,16:1099,18:1299,19:599,101:29,102:99,103:129,104:39,105:49,106:49};
+
 /* ===== PRODUCTS ===== */
 const PRODUCTS=[
  {id:1,line:"iPhone",name:"iPhone 17 Pro",cat:"phone",price:15990,old:0,rating:5,new:true,emoji:"📱",modelPage:"iphone-17-pro.html",
@@ -171,8 +180,8 @@ const WG=k=>"https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/"+
 const WBANDS_S=[
  {n:{ru:"Спортивный ремешок",tj:"Тасмаи варзишӣ",en:"Sport Band"},hex:"#2b2b2e",add:0,desc:{ru:"Мягкий флуороэластомер — на каждый день и спорт.",tj:"Флуороэластомери нарм — барои ҳар рӯз.",en:"Soft fluoroelastomer for everyday and sport."}},
  {n:{ru:"Спортивный браслет",tj:"Sport Loop",en:"Sport Loop"},hex:"#5d7d99",add:0,desc:{ru:"Дышащий нейлон с лёгкой регулировкой.",tj:"Нейлони нафаскашанда бо танзими осон.",en:"Breathable nylon with easy adjustment."}},
- {n:{ru:"Миланская петля",tj:"Milanese Loop",en:"Milanese Loop"},hex:"#c9b27d",add:1200,desc:{ru:"Плетёная нержавеющая сталь с магнитной застёжкой.",tj:"Пӯлоди зангногир бо басти магнитӣ.",en:"Woven stainless steel with a magnetic closure."}},
- {n:{ru:"Плетёный ремешок",tj:"Braided Loop",en:"Braided Solo Loop"},hex:"#6e6e73",add:600,desc:{ru:"Эластичный плетёный — без застёжек.",tj:"Эластикии бофта — бе баст.",en:"Stretchy braided design — no clasp."}}];
+ {n:{ru:"Миланская петля",tj:"Milanese Loop",en:"Milanese Loop"},hex:"#c9b27d",add:tjs(50),desc:{ru:"Плетёная нержавеющая сталь с магнитной застёжкой.",tj:"Пӯлоди зангногир бо басти магнитӣ.",en:"Woven stainless steel with a magnetic closure."}},
+ {n:{ru:"Плетёный ремешок",tj:"Braided Loop",en:"Braided Solo Loop"},hex:"#6e6e73",add:tjs(50),desc:{ru:"Эластичный плетёный — без застёжек.",tj:"Эластикии бофта — бе баст.",en:"Stretchy braided design — no clasp."}}];
 /* Watch Ultra 3 (titanium, 49mm) */
 delete P(10).card;P(10).tint="linear-gradient(180deg,#e6e8ec,#d3d7dd)";
 P(10).colors=[
@@ -182,8 +191,8 @@ P(10).gallery=[WG("ultra-case-unselect-gallery-1-202509"),WG("ultra-case-unselec
 P(10).bandImgs=[WG("ultra-band-unselect-gallery-1-202509"),WG("ultra-band-unselect-gallery-2-202509"),WG("ultra-band-unselect-gallery-3-202509")];
 P(10).bands=[
  {n:{ru:"Trail Loop",tj:"Trail Loop",en:"Trail Loop"},hex:"#3a3a3d",add:0,desc:{ru:"Лёгкий тканый — для бега и тренировок.",tj:"Бофтаи сабук — барои давидан.",en:"Light woven band for running and workouts."}},
- {n:{ru:"Alpine Loop",tj:"Alpine Loop",en:"Alpine Loop"},hex:"#c98a3d",add:300,desc:{ru:"Прочный двухслойный с титановым G-крюком.",tj:"Дуқабатаи мустаҳкам бо кармаки титанӣ.",en:"Rugged two-layer weave with a titanium G-hook."}},
- {n:{ru:"Ocean Band",tj:"Ocean Band",en:"Ocean Band"},hex:"#1f4d6b",add:300,desc:{ru:"Для водного спорта и дайвинга.",tj:"Барои варзиши обӣ ва ғаввосӣ.",en:"For water sports and recreational diving."}}];
+ {n:{ru:"Alpine Loop",tj:"Alpine Loop",en:"Alpine Loop"},hex:"#c98a3d",add:0,desc:{ru:"Прочный двухслойный с титановым G-крюком.",tj:"Дуқабатаи мустаҳкам бо кармаки титанӣ.",en:"Rugged two-layer weave with a titanium G-hook."}},
+ {n:{ru:"Ocean Band",tj:"Ocean Band",en:"Ocean Band"},hex:"#1f4d6b",add:0,desc:{ru:"Для водного спорта и дайвинга.",tj:"Барои варзиши обӣ ва ғаввосӣ.",en:"For water sports and recreational diving."}}];
 /* Watch Series 11 (aluminum + titanium, 42/46mm) */
 delete P(11).card;P(11).tint="linear-gradient(180deg,#f5f3f1,#ece8e4)";
 const S11_ALU=[
@@ -197,13 +206,13 @@ const S11_TI=[
  {n:{ru:"Натуральный титан",tj:"Титани табиӣ",en:"Natural Titanium"},hex:"#b9b2a8",img:WCASE("46","titanium","natural","cell","s11")}];
 P(11).colors=S11_ALU;
 P(11).materials=[
- {n:{ru:"Алюминий",tj:"Алюминий",en:"Aluminum"},add:0,fromPrice:4990,finishes:S11_ALU,
+ {n:{ru:"Алюминий",tj:"Алюминий",en:"Aluminum"},add:0,fromPrice:tjs(399),finishes:S11_ALU,
   desc:{ru:"Матовые и глянцевые финиши и прочное стекло Ion-X.",tj:"Финишҳои матт ва ялақ ва шишаи мустаҳками Ion-X.",en:"Matte and polished finishes with a durable Ion-X glass display."}},
- {n:{ru:"Титан",tj:"Титан",en:"Titanium"},add:2000,fromPrice:6990,finishes:S11_TI,
+ {n:{ru:"Титан",tj:"Титан",en:"Titanium"},add:tjs(300),fromPrice:tjs(699),finishes:S11_TI,
   desc:{ru:"Полированный авиационный титан и сапфировое стекло.",tj:"Титани ҳавопаймоии ялақ ва шишаи сапфир.",en:"Polished aerospace-grade titanium with a sapphire crystal display."}}];
 P(11).variants=[
  {n:{ru:"42 мм",tj:"42 мм",en:"42mm"},add:0,sub:{ru:"Компактный размер",tj:"Андозаи ҷайбӣ",en:"Compact size"}},
- {n:{ru:"46 мм",tj:"46 мм",en:"46mm"},add:800,sub:{ru:"Большой дисплей",tj:"Дисплейи калон",en:"Larger display"}}];
+ {n:{ru:"46 мм",tj:"46 мм",en:"46mm"},add:tjs(30),sub:{ru:"Большой дисплей",tj:"Дисплейи калон",en:"Larger display"}}];
 P(11).bands=WBANDS_S;
 P(11).gallery=[WG("s11-case-unselect-gallery-1-202509"),WG("s11-case-unselect-gallery-2-202509"),WG("s11-case-unselect-gallery-3-202509")];
 P(11).bandImgs=[WG("s11-band-unselect-gallery-1-202509")];
@@ -233,15 +242,18 @@ P(7).colors=[
 /* AirPods 4 — clean product image (was a lifestyle photo) */
 P(13).colors=[{n:{ru:"Белый",tj:"Сафед",en:"White"},hex:"#f2f2f2",img:WG("airpods-4-anc-select-202409")}];
 /* storage / config options [sizeGB, +price] */
-const STORAGE={1:[[256,0],[512,2200],[1024,4800]],2:[[256,0],[512,2200]],3:[[256,0],[512,2000]],4:[[128,0],[256,1500]],5:[[128,0],[256,1500]],6:[[512,0],[1024,5000],[2048,12000]],7:[[256,0],[512,2500],[1024,6000]],8:[[256,0],[512,2500],[1024,6000]],9:[[128,0],[256,2000]],16:[[256,0],[512,2200]],18:[[256,0],[512,2200],[1024,4800]],19:[[256,0],[512,2200],[1024,4800]]};
-PRODUCTS.forEach(p=>{const s=STORAGE[p.id];if(s)p.storage=s.map(([gb,add])=>({gb,add}));});
+/* доплаты за память — в долларах Apple (USD), конвертируются по курсу+наценке */
+const STORAGE={1:[[256,0],[512,200],[1024,400]],2:[[256,0],[512,200]],3:[[256,0],[512,200]],4:[[128,0],[256,100]],5:[[128,0],[256,100]],6:[[512,0],[1024,200],[2048,600]],7:[[256,0],[512,200],[1024,400]],8:[[256,0],[512,200],[1024,500]],9:[[128,0],[256,150]],16:[[256,0],[512,200]],18:[[256,0],[512,200],[1024,400]],19:[[256,0],[512,200],[1024,400]]};
+PRODUCTS.forEach(p=>{const s=STORAGE[p.id];if(s)p.storage=s.map(([gb,add])=>({gb,add:tjs(add)}));});
 /* submodel variants (size / Pro·Pro Max) [label, +price, sub] */
+/* доплаты за вариант (размер/Pro Max) — тоже в долларах Apple (USD) */
 const VARIANTS={
- 1:[[{ru:"iPhone 17 Pro",tj:"iPhone 17 Pro",en:"iPhone 17 Pro"},0,{ru:"Экран 6,3″",tj:"Экран 6,3″",en:"6.3″ display"}],[{ru:"iPhone 17 Pro Max",tj:"iPhone 17 Pro Max",en:"iPhone 17 Pro Max"},2500,{ru:"Экран 6,9″ · батарея больше",tj:"Экран 6,9″ · батареяи калонтар",en:"6.9″ display · bigger battery"}]],
- 6:[[{ru:"14″ MacBook Pro",tj:"14″ MacBook Pro",en:"14″ MacBook Pro"},0,{ru:"Компактный профи",tj:"Касбии ҷайбӣ",en:"Compact pro"}],[{ru:"16″ MacBook Pro",tj:"16″ MacBook Pro",en:"16″ MacBook Pro"},4000,{ru:"Большой экран · мощнее",tj:"Экрани калон · пурқувваттар",en:"Bigger display · more power"}]],
- 8:[[{ru:"11″ iPad Pro",tj:"11″ iPad Pro",en:"11″ iPad Pro"},0,{ru:"Лёгкий и портативный",tj:"Сабук ва портативӣ",en:"Light and portable"}],[{ru:"13″ iPad Pro",tj:"13″ iPad Pro",en:"13″ iPad Pro"},2500,{ru:"Больше места для работы",tj:"Ҷои бештар барои кор",en:"More room to work"}]]
+ 1:[[{ru:"iPhone 17 Pro",tj:"iPhone 17 Pro",en:"iPhone 17 Pro"},0,{ru:"Экран 6,3″",tj:"Экран 6,3″",en:"6.3″ display"}],[{ru:"iPhone 17 Pro Max",tj:"iPhone 17 Pro Max",en:"iPhone 17 Pro Max"},100,{ru:"Экран 6,9″ · батарея больше",tj:"Экран 6,9″ · батареяи калонтар",en:"6.9″ display · bigger battery"}]],
+ 6:[[{ru:"14″ MacBook Pro",tj:"14″ MacBook Pro",en:"14″ MacBook Pro"},0,{ru:"Компактный профи",tj:"Касбии ҷайбӣ",en:"Compact pro"}],[{ru:"16″ MacBook Pro",tj:"16″ MacBook Pro",en:"16″ MacBook Pro"},900,{ru:"Большой экран · мощнее",tj:"Экрани калон · пурқувваттар",en:"Bigger display · more power"}]],
+ 8:[[{ru:"11″ iPad Pro",tj:"11″ iPad Pro",en:"11″ iPad Pro"},0,{ru:"Лёгкий и портативный",tj:"Сабук ва портативӣ",en:"Light and portable"}],[{ru:"13″ iPad Pro",tj:"13″ iPad Pro",en:"13″ iPad Pro"},300,{ru:"Больше места для работы",tj:"Ҷои бештар барои кор",en:"More room to work"}]],
+ 15:[[{ru:"40 мм",tj:"40 мм",en:"40mm"},0,{ru:"Компактный размер",tj:"Андозаи ҷайбӣ",en:"Compact size"}],[{ru:"44 мм",tj:"44 мм",en:"44mm"},30,{ru:"Большой дисплей",tj:"Дисплейи калон",en:"Larger display"}]]
 };
-PRODUCTS.forEach(p=>{const v=VARIANTS[p.id];if(v)p.variants=v.map(([n,add,sub])=>({n,add,sub}));});
+PRODUCTS.forEach(p=>{const v=VARIANTS[p.id];if(v)p.variants=v.map(([n,add,sub])=>({n,add:tjs(add),sub}));});
 /* configurator add-ons (per category, TJS) */
 const CARE={phone:1490,laptop:2990,tablet:1490,watch:990,audio:490};
 const TRADEIN={phone:3000,laptop:5000,tablet:2500,watch:1200,audio:600};
@@ -257,6 +269,8 @@ PRODUCTS.push(
  {id:105,line:"Case",name:"iPhone Case · MagSafe",cat:"acc",price:390,rating:5,new:false,emoji:"📱",tag:{ru:"Защита с поддержкой MagSafe",tj:"Ҳифз бо дастгирии MagSafe",en:"Protection with MagSafe"},colors:[{n:{ru:"Прозрачный",tj:"Шаффоф",en:"Clear"},hex:"#dfe3e8",img:accImg("MHWJ4")}]},
  {id:106,line:"Case",name:"iPhone Clear Case",cat:"acc",price:390,rating:4,new:false,emoji:"📱",tag:{ru:"Прозрачный чехол с MagSafe",tj:"Ғилофи шаффоф бо MagSafe",en:"Clear case with MagSafe"},colors:[{n:{ru:"Прозрачный",tj:"Шаффоф",en:"Clear"},hex:"#dfe3e8",img:accImg("MHWC4")}]}
 );
+/* привязка базовых цен к Apple США (USD → сомони × наценка) */
+PRODUCTS.forEach(p=>{if(APPLE_USD[p.id]!=null)p.price=tjs(APPLE_USD[p.id]);});
 const stLabel=gb=>gb<1024?gb+" "+t("gb"):(gb/1024)+" "+t("tb");
 const priceOf=c=>{const p=P(c.id);return (c.price||(p?p.price:0));};
 const cartSum=()=>cart.reduce((s,c)=>s+priceOf(c)*c.qty,0);

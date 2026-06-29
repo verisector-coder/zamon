@@ -993,3 +993,15 @@ img[data-emoji]{position:relative;z-index:1;opacity:0;transition:opacity .5s eas
 img[data-emoji].img-loaded{opacity:1}
 /* reduced-motion: never keep images hidden, no shimmer */
 @media (prefers-reduced-motion:reduce){img[data-emoji]{opacity:1}.lr-media::after,.bg-media::after,.lc-media::after,.mc-img::after,.media::after,.sr-img::after,.ck-sli-img::after,.ao-img::after{display:none}}
+
+/* ===== FAQ (local SEO) ===== */
+.wrap.narrow{max-width:840px}
+.faq-list{margin-top:30px;border-top:1px solid var(--border)}
+.faq-item{border-bottom:1px solid var(--border)}
+.faq-item summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px 4px;font-size:1.1rem;font-weight:600;color:var(--text);transition:color .2s}
+.faq-item summary:hover{color:var(--accent)}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-ic{flex:none;font-size:1.5rem;font-weight:400;line-height:1;color:var(--text-2);transition:transform .25s}
+.faq-item[open] .faq-ic{transform:rotate(45deg)}
+.faq-a{padding:0 4px 24px;color:var(--text-2);line-height:1.65;max-width:720px;animation:faqIn .3s ease}
+@keyframes faqIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}

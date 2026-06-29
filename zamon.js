@@ -670,6 +670,7 @@ const I18N={
   cmp_zamon:"ZAMON",cmp_other:"Обычный магазин",cmp1:"Оригинальная техника Apple",cmp2:"Официальная гарантия",cmp3:"Кредит 0% и Trade-In",cmp4:"Доставка по стране за 24 часа",cmp5:"Поддержка на 3 языках 24/7",
   sc_tag:"Линейка Apple",sc_h:"Вся техника Apple — у нас",
   srv_tag:"Наш сервис",srv_h:"Премиальный сервис на каждом шаге",
+  faq_tag:"Вопросы и ответы",faq_h:"Покупка Apple в Душанбе — частые вопросы",
   s1h:"Только оригинал",s1p:"100% официальная техника Apple с гарантией.",s2h:"Доставка за 24 часа",s2p:"По всему Таджикистану. Бесплатно от 500 сомони.",s3h:"Кредит 0%",s3p:"Рассрочка до 12 месяцев без переплат.",s4h:"Trade-In",s4p:"Обмен старого устройства со скидкой до 6 000 сом.",s5h:"Поддержка 24/7",s5p:"Эксперты ZAMON помогут на трёх языках.",s6h:"AppleCare+",s6p:"Расширенная гарантия и защита от повреждений.",
   line_h:"Изучите всю линейку",line_all:"Сравнить все модели →",
   catalog_h:"Все модели",cat_all:"Все",pp_lineup:"Линейка",pp_buy:"Купить",pp_overview:"Обзор",pp_why:"Преимущества",pp_specs:"Главное",pp_highlights:"Главное",cmp_h:"Сравните модели",spec_price:"Цена",spec_chip:"Чип",spec_display:"Экран",spec_battery:"Батарея"},
@@ -710,6 +711,7 @@ const I18N={
   cmp_zamon:"ZAMON",cmp_other:"Мағозаи оддӣ",cmp1:"Техникаи аслии Apple",cmp2:"Кафолати расмӣ",cmp3:"Қарзи 0% ва Trade-In",cmp4:"Расонидан дар 24 соат",cmp5:"Дастгирӣ бо 3 забон 24/7",
   sc_tag:"Хатти Apple",sc_h:"Тамоми техникаи Apple — дар мо",
   srv_tag:"Хизмати мо",srv_h:"Хизматрасонии олӣ дар ҳар қадам",
+  faq_tag:"Саволу ҷавоб",faq_h:"Хариди Apple дар Душанбе — саволҳои маъмул",
   s1h:"Танҳо аслӣ",s1p:"100% техникаи расмии Apple бо кафолат.",s2h:"Расонидан дар 24 соат",s2p:"Ба тамоми Тоҷикистон. Ройгон аз 500 сомонӣ.",s3h:"Қарзи 0%",s3p:"Кредит то 12 моҳ бе пардохти иловагӣ.",s4h:"Trade-In",s4p:"Иваз бо тахфифи то 6 000 сом.",s5h:"Дастгирӣ 24/7",s5p:"Коршиносони ZAMON ба се забон кӯмак мекунанд.",s6h:"AppleCare+",s6p:"Кафолати васеъ ва ҳифз аз осеб.",
   line_h:"Тамоми хатти маҳсулот",line_all:"Муқоисаи ҳама →",
   catalog_h:"Ҳама моделҳо",cat_all:"Ҳама",pp_lineup:"Хатти маҳсулот",pp_buy:"Харидан",pp_overview:"Обзор",pp_why:"Бартариҳо",pp_specs:"Асосӣ",pp_highlights:"Асосӣ",cmp_h:"Моделҳоро муқоиса кунед",spec_price:"Нарх",spec_chip:"Чип",spec_display:"Экран",spec_battery:"Батарея"},
@@ -750,6 +752,7 @@ const I18N={
   cmp_zamon:"ZAMON",cmp_other:"Ordinary store",cmp1:"Genuine Apple products",cmp2:"Official warranty",cmp3:"0% financing & Trade-In",cmp4:"24-hour nationwide delivery",cmp5:"24/7 support in 3 languages",
   sc_tag:"The Apple lineup",sc_h:"All of Apple — right here",
   srv_tag:"Our service",srv_h:"Premium service at every step",
+  faq_tag:"Questions & answers",faq_h:"Buying Apple in Dushanbe — FAQ",
   s1h:"Genuine only",s1p:"100% official Apple products with warranty.",s2h:"24-hour delivery",s2p:"Across Tajikistan. Free from 500 somoni.",s3h:"0% financing",s3p:"Installments up to 12 months, no overpayments.",s4h:"Trade-In",s4p:"Trade your old device, save up to 6,000 TJS.",s5h:"24/7 support",s5p:"ZAMON experts help in three languages.",s6h:"AppleCare+",s6p:"Extended warranty and damage protection.",
   line_h:"Explore the lineup",line_all:"Compare all models →",
   catalog_h:"All models",cat_all:"All",pp_lineup:"The lineup",pp_buy:"Buy",pp_overview:"Overview",pp_why:"Why",pp_specs:"Highlights",pp_highlights:"Get the highlights",cmp_h:"Compare models",spec_price:"Price",spec_chip:"Chip",spec_display:"Display",spec_battery:"Battery"}
@@ -882,6 +885,7 @@ function applyLang(l){
   if(document.getElementById("lineupTrack"))renderLineup();
   if(document.getElementById("storebar"))renderStoreBar();
   if(document.getElementById("showcaseBox"))renderShowcase();
+  if(document.getElementById("faqBox"))renderFAQ();
   if(document.getElementById("catalog"))renderCatalog();
   if(document.getElementById("buygrid"))renderBuyGrid();
   if(document.getElementById("phero")){renderProductHero();renderSubnav();renderHighlights();renderFeatures();renderWhyProd();initSubnavSpy();}
@@ -1222,6 +1226,26 @@ function initLineupNav(){
 }
 function scLineup(cat,title){const sub=tr({ru:"Выберите свою модель.",tj:"Модели худро интихоб кунед.",en:"Choose the one that's right for you."});
   return `<div class="sc-lineup"><div class="sc-lineup-head reveal"><h3 class="lr-title">${title}</h3><p class="sec-sub">${sub}</p></div>${lineupRow(cat)}</div>`;}
+/* ===== FAQ (local SEO + FAQPage schema) ===== */
+const FAQS=[
+ {q:{ru:"Где купить iPhone в Душанбе?",tj:"iPhone-ро дар Душанбе аз куҷо харидан мумкин аст?",en:"Where to buy an iPhone in Dushanbe?"},
+  a:{ru:"В магазине ZAMON — оригинальные iPhone всех моделей с доставкой по Душанбе и всему Таджикистану. Оформить заказ можно прямо на сайте, в WhatsApp или Telegram, с оплатой при получении.",tj:"Дар мағозаи ZAMON — iPhone-ҳои аслии ҳама моделҳо бо расонидан ба Душанбе ва тамоми Тоҷикистон. Фармоишро дар сайт, WhatsApp ё Telegram бо пардохт ҳангоми гирифтан додан мумкин аст.",en:"At ZAMON — original iPhones of every model with delivery across Dushanbe and all of Tajikistan. Order on the site, WhatsApp or Telegram, pay on delivery."}},
+ {q:{ru:"Техника оригинальная? Есть гарантия?",tj:"Молҳо аслӣ ҳастанд? Кафолат ҳаст?",en:"Is the tech genuine? Is there a warranty?"},
+  a:{ru:"Да. В ZAMON только оригинальная техника Apple с официальной гарантией. На каждое устройство распространяется гарантия и сервисная поддержка.",tj:"Бале. Дар ZAMON танҳо техникаи аслии Apple бо кафолати расмӣ. Ба ҳар дастгоҳ кафолат ва дастгирии хизматрасонӣ дода мешавад.",en:"Yes. ZAMON sells only genuine Apple products with official warranty and service support on every device."}},
+ {q:{ru:"Как работает доставка по Таджикистану?",tj:"Расонидан дар Тоҷикистон чӣ тавр кор мекунад?",en:"How does delivery across Tajikistan work?"},
+  a:{ru:"По Душанбе — быстрая доставка курьером, по всему Таджикистану — за 24 часа. Стоимость зависит от региона, по Душанбе доставка бесплатна от 500 сомони.",tj:"Дар Душанбе — расонидани зуди курьерӣ, дар тамоми Тоҷикистон — дар 24 соат. Нарх аз минтақа вобаста аст, дар Душанбе аз 500 сомонӣ ройгон.",en:"Within Dushanbe — fast courier delivery; across Tajikistan — within 24 hours. Cost depends on the region; free in Dushanbe from 500 somoni."}},
+ {q:{ru:"Какие способы оплаты?",tj:"Тарзҳои пардохт кадомҳоянд?",en:"What payment methods are available?"},
+  a:{ru:"Оплата наличными или картой при получении. Также доступна рассрочка и кредит 0%.",tj:"Пардохт нақд ё бо корт ҳангоми гирифтан. Ҳамчунин рассрочка ва қарзи 0% дастрас аст.",en:"Cash or card on delivery. Installments and 0% credit are also available."}},
+ {q:{ru:"Можно купить в рассрочку (кредит 0%)?",tj:"Бо рассрочка (қарзи 0%) харидан мумкин аст?",en:"Can I buy in installments (0% credit)?"},
+  a:{ru:"Да, на большинство товаров доступна рассрочка с кредитом 0% — удобный срок выбирается при оформлении заказа.",tj:"Бале, барои аксари молҳо рассрочка бо қарзи 0% дастрас аст — мӯҳлати қулайро ҳангоми фармоиш интихоб мекунед.",en:"Yes, most products are available with 0% installments — choose a convenient term at checkout."}},
+ {q:{ru:"Как сделать заказ в ZAMON?",tj:"Дар ZAMON чӣ тавр фармоиш додан мумкин аст?",en:"How do I place an order at ZAMON?"},
+  a:{ru:"Добавьте товар в корзину и оформите заказ на сайте, либо напишите нам в WhatsApp (+992 98 222 76 35) или Telegram (@vensurel) — поможем с выбором и доставкой.",tj:"Молро ба сабад илова кунед ва дар сайт фармоиш диҳед, ё ба мо дар WhatsApp (+992 98 222 76 35) ё Telegram (@vensurel) нависед — дар интихоб ва расонидан кӯмак мекунем.",en:"Add an item to the cart and check out on the site, or message us on WhatsApp (+992 98 222 76 35) or Telegram (@vensurel) — we'll help with the choice and delivery."}}
+];
+function renderFAQ(){
+  const box=document.getElementById("faqBox");if(!box)return;
+  box.innerHTML=FAQS.map((f,i)=>`<details class="faq-item"${i===0?" open":""}><summary>${tr(f.q)}<span class="faq-ic">+</span></summary><div class="faq-a">${tr(f.a)}</div></details>`).join("");
+  try{setLD("faq",{"@context":"https://schema.org","@type":"FAQPage","mainEntity":FAQS.map(f=>({"@type":"Question","name":tr(f.q),"acceptedAnswer":{"@type":"Answer","text":tr(f.a)}}))});}catch(e){}
+}
 function renderShowcase(){const box=document.getElementById("showcaseBox");if(!box)return;
   box.innerHTML=scLineup("phone","iPhone")+scLineup("laptop","Mac")+scLineup("tablet","iPad")+scLineup("watch","Apple Watch")+scLineup("audio","AirPods");
   observeReveal();initLineupNav();}
@@ -1727,6 +1751,7 @@ document.addEventListener("DOMContentLoaded",()=>{
   if(document.getElementById("lineupTrack"))renderLineup();
   if(document.getElementById("storebar"))renderStoreBar();
   if(document.getElementById("showcaseBox"))renderShowcase();
+  if(document.getElementById("faqBox"))renderFAQ();
   if(document.getElementById("catalog"))renderCatalog();
   if(document.getElementById("buygrid"))renderBuyGrid();
   if(document.getElementById("phero")){renderProductHero();renderSubnav();renderHighlights();renderFeatures();renderWhyProd();initSubnavSpy();}

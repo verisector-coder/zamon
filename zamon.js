@@ -279,6 +279,9 @@ PRODUCTS.push(
 );
 /* привязка базовых цен к Apple США (USD → сомони × наценка) */
 PRODUCTS.forEach(p=>{if(APPLE_USD[p.id]!=null)p.price=tjs(APPLE_USD[p.id]);});
+/* категории аксессуаров (accessories.html — фильтр как у Apple) */
+const ACAT={101:"find",102:"find",103:"pencil",104:"charge",105:"case",106:"case"};
+const ACAT_CATS=[["all",{ru:"Все",tj:"Ҳама",en:"All"}],["case",{ru:"Чехлы и защита",tj:"Ғилофу ҳифз",en:"Cases & protection"}],["charge",{ru:"Зарядка",tj:"Заряд",en:"Power & cables"}],["find",{ru:"Поиск вещей",tj:"Ёфтани ашё",en:"Find My"}],["pencil",{ru:"Apple Pencil",tj:"Apple Pencil",en:"Apple Pencil"}]];
 /* свои лёгкие WebP-фото (img/pN.webp) для карточек/линеек/поиска — быстрая загрузка вместо тяжёлых apple.com */
 const LOCALIMG=new Set([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,18,19,101,102,103,104,105,106]);
 PRODUCTS.forEach(p=>{if(LOCALIMG.has(p.id)){const f="img/p"+p.id+".webp";p.card=f;if(p.lineImg)p.lineImg=f;}});
@@ -1599,13 +1602,18 @@ function renderProduct(){
 }
 
 /* ===== RENDER: accessories (accessories.html) ===== */
+let ACCFILTER="all";
 function renderAccessories(){
   const hero=document.getElementById("accHero");
   if(hero)hero.innerHTML=`<div class="pe">ZAMON</div><h1>${t("acc_h")}</h1><p class="psub">${t("acc_sub")}</p>`;
   const box=document.getElementById("accgrid");if(!box)return;
   document.title="ZAMON — "+t("acc_h");
-  const items=PRODUCTS.filter(p=>p.cat==="acc");
-  box.innerHTML=`<div class="acc-grid">`+items.map(cardHtml).join("")+`</div>`;
+  const all=PRODUCTS.filter(p=>p.cat==="acc");
+  const cats=ACAT_CATS.filter(([k])=>k==="all"||all.some(p=>ACAT[p.id]===k));
+  const items=ACCFILTER==="all"?all:all.filter(p=>ACAT[p.id]===ACCFILTER);
+  box.innerHTML=`<div class="acc-filters">${cats.map(([k,l])=>`<button class="acc-chip ${k===ACCFILTER?"active":""}" data-acc="${k}">${tr(l)}</button>`).join("")}</div>
+    <div class="acc-grid">`+items.map(cardHtml).join("")+`</div>`;
+  box.querySelectorAll("[data-acc]").forEach(b=>b.onclick=()=>{ACCFILTER=b.dataset.acc;renderAccessories();});
   observeReveal();
 }
 

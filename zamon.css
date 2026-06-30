@@ -87,7 +87,7 @@ header.gnav{position:sticky;top:0;z-index:1000}
 .cart-count.show{transform:scale(1)}
 .burger{display:none}
 /* mega-menu flyout */
-.megamenu{position:absolute;left:0;right:0;top:100%;background:var(--nav-bg);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--border-2);overflow:hidden;max-height:0;transition:max-height .4s var(--ease)}
+.megamenu{position:absolute;left:0;right:0;top:100%;background:var(--surface);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--border-2);box-shadow:0 24px 40px rgba(0,0,0,.12);overflow:hidden;max-height:0;transition:max-height .4s var(--ease)}
 .megamenu.open{max-height:520px}
 .mega-in{max-width:1024px;margin:0 auto;padding:26px 22px 38px;display:flex;gap:48px}
 .mega-left{display:flex;gap:40px;flex-shrink:0}
@@ -1044,3 +1044,9 @@ img[data-emoji].img-loaded{opacity:1}
 /* per-product hero video (pulled from Apple) */
 .prod-video-wrap{max-width:980px;margin:0 auto;border-radius:var(--r-lg);overflow:hidden;background:#000}
 .prod-video{width:100%;display:block}
+
+/* accessories category filter chips */
+.acc-filters{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:0 0 34px}
+.acc-chip{padding:9px 18px;border-radius:999px;border:1px solid var(--border-2);background:var(--surface);color:var(--text-2);font-weight:500;font-size:.92rem;cursor:pointer;transition:.2s var(--ease)}
+.acc-chip:hover{border-color:var(--accent);color:var(--text)}
+.acc-chip.active{background:var(--text);color:var(--bg);border-color:var(--text)}

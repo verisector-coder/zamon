@@ -299,7 +299,20 @@ header.gnav{position:sticky;top:0;z-index:1000}
 .lcard .lc-body{padding:6px 24px 26px;text-align:center}
 .lcard .lc-sw{display:flex;gap:7px;justify-content:center;margin-bottom:14px;min-height:14px}
 .sw{width:13px;height:13px;border-radius:50%;border:1px solid rgba(0,0,0,.18);cursor:pointer;transition:.2s;position:relative}
+.sw.sw-img{background-size:cover;background-position:center;border-color:var(--border-2)}
 .sw.active{box-shadow:0 0 0 2px var(--bg),0 0 0 3.5px var(--accent)}
+/* ===== chapternav (иконочная лента моделей категории, как у Apple) ===== */
+.chapnav{border-bottom:1px solid var(--border);background:var(--surface);overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.chapnav::-webkit-scrollbar{display:none}
+.chapnav-in{display:flex;gap:34px;align-items:flex-end;justify-content:center;max-width:1024px;margin:0 auto;padding:11px 22px;min-width:max-content}
+.chap-item{display:flex;flex-direction:column;align-items:center;gap:5px;color:var(--text-2);font-size:.74rem;font-weight:600;text-decoration:none;white-space:nowrap;transition:.2s var(--ease);flex:0 0 auto;padding-bottom:2px}
+.chap-item:hover{color:var(--text)}
+.chap-ic{width:52px;height:52px;display:grid;place-items:center}
+.chap-ic img{max-width:100%;max-height:100%;object-fit:contain}
+.chap-ic svg{width:28px;height:28px;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.chap-link .chap-ic{color:var(--text-3)}
+.chap-sep{width:1px;align-self:center;height:34px;background:var(--border);flex:0 0 auto}
+@media (max-width:760px){.chapnav-in{gap:24px;justify-content:flex-start}.chap-ic{width:46px;height:46px}}
 .lcard h3{font-size:1.5rem;margin-bottom:8px}
 .lcard .lc-desc{font-size:.95rem;color:var(--text-2);margin-bottom:12px;min-height:44px}
 .lcard .lc-price{font-size:.9rem;color:var(--text);font-weight:500}
@@ -611,6 +624,12 @@ html[data-theme="dark"] .pcard{background:var(--surface)}
 .psw.active{box-shadow:0 0 0 2px var(--bg),0 0 0 4px var(--accent)}
 .phero.dark .psw{border-color:rgba(255,255,255,.25)}
 .phero.dark .psw.active{box-shadow:0 0 0 2px #000,0 0 0 4px #fff}
+.prod-fit{margin:14px auto 6px;max-width:480px;text-align:center;animation:heroUp .85s .4s var(--ease) both}
+.prod-fit .pf-label{font-size:.8rem;font-weight:600;color:var(--text-2);margin-bottom:9px;letter-spacing:.01em}
+.prod-fit .pf-opts{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.prod-fit .pf-opt{padding:8px 15px;border-radius:980px;border:1.5px solid var(--border-2);background:var(--surface);color:var(--text);font-size:.86rem;cursor:pointer;transition:.2s var(--ease)}
+.prod-fit .pf-opt:hover{border-color:var(--accent)}
+.prod-fit .pf-opt.active{border-color:var(--accent);background:var(--accent);color:#fff}
 /* accessories grid */
 .acc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
 .acc-grid .pcard{width:auto;min-width:0}
@@ -864,7 +883,12 @@ a.ci-link:hover{color:var(--accent-2)}
 .cfg-mtab{padding:9px 17px;border:1.5px solid var(--border);border-radius:980px;font-size:.85rem;font-weight:600;cursor:pointer;transition:.2s;color:var(--text-2);background:transparent}
 .cfg-mtab:hover{border-color:var(--text-3)}
 .cfg-mtab.active{border-color:var(--accent);color:var(--accent);background:color-mix(in srgb,var(--accent) 9%,transparent)}
-.cfg-gallery{display:flex;flex-direction:column;gap:16px}
+.cfg-gallery{display:grid;grid-template-columns:2.15fr 1fr;gap:14px;align-items:stretch}
+.cfg-details{display:flex;flex-direction:column;gap:14px}
+.cfg-detail{flex:1;min-height:0;background:var(--bg-alt);border-radius:var(--r-lg);border:1.5px solid transparent;display:grid;place-items:center;overflow:hidden;cursor:pointer;padding:16px;transition:.2s var(--ease)}
+.cfg-detail img{max-width:90%;max-height:90%;object-fit:contain}
+.cfg-detail:hover{border-color:var(--text-3)}
+@media (max-width:760px){.cfg-gallery{grid-template-columns:1fr}.cfg-details{flex-direction:row}.cfg-detail{min-height:130px}}
 .cfg-bigimg{background:var(--bg-alt);border-radius:var(--r-lg);min-height:520px;display:grid;place-items:center;padding:36px;position:relative;overflow:hidden}
 .cfg-bigimg img{max-height:448px;max-width:100%;object-fit:contain;transition:.35s var(--ease);animation:cfgImgIn .42s var(--ease)}
 @keyframes cfgImgIn{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:none}}
@@ -981,7 +1005,11 @@ a.ci-link:hover{color:var(--accent-2)}
 .mobile-menu a{font-size:1.5rem;font-weight:600;padding:14px 0;border-bottom:1px solid var(--border-2)}
 
 /* ===== responsive ===== */
-@media (max-width:1024px){.services{grid-template-columns:repeat(3,1fr)}.buy-grid{grid-template-columns:1fr}.buy-media{border-radius:var(--r-lg) var(--r-lg) 0 0;min-height:300px}.buy-media img{max-height:260px}.cfg{grid-template-columns:1fr}.cfg-stage{position:static}.gf-dir{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:1024px){.services{grid-template-columns:repeat(3,1fr)}.buy-grid{grid-template-columns:1fr}.buy-media{border-radius:var(--r-lg) var(--r-lg) 0 0;min-height:300px}.buy-media img{max-height:260px}.cfg{grid-template-columns:1fr}.gf-dir{grid-template-columns:repeat(3,1fr)}
+/* мобильный конфигуратор: галерея залипает сверху → фото видно при выборе ремешка (не надо скроллить вверх) */
+.cfg-stage{position:sticky;top:48px;z-index:6;background:var(--bg);padding-bottom:10px}
+.cfg-bigimg{min-height:300px}.cfg-bigimg img{max-height:248px}}
+@media (max-width:760px){.cfg-details{display:none}.cfg-bigimg{min-height:260px}.cfg-bigimg img{max-height:212px}}
 @media (max-width:860px){.gnav-links{display:none}.burger{display:grid}.megamenu{display:none}.feature{grid-template-columns:1fr}.feature .fc{order:2;padding:40px}.feature.right .fc{order:2}.feature .fimg{min-height:300px}.feature .fimg img{max-height:300px}.services{grid-template-columns:1fr 1fr}.tgrid{grid-template-columns:1fr}.gf-dir{grid-template-columns:repeat(2,1fr)}}
 @media (max-width:560px){.sec{padding:60px 0}.services{grid-template-columns:1fr}.showcase-2{grid-template-columns:1fr}.lcard,.pcard{width:80vw;min-width:80vw}.color-opts{grid-template-columns:1fr}.gf-dir{grid-template-columns:1fr 1fr}.hero-stats{gap:30px}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}.car-track{scroll-behavior:auto}}

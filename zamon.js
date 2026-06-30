@@ -185,11 +185,17 @@ delete P(1).card;P(1).darkMedia=false;/* iPhone 17 Pro now uses clean png-alpha 
 /* Apple Watch — clean per-finish case images (store CDN _VW_34FR view, transparent 1:1) — image changes per finish, like Apple */
 const WCASE=(sz,mat,fin,conn,model)=>"https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/watch-case-"+sz+"-"+mat+"-"+fin+(conn?"-"+conn:"")+"-"+model+"_VW_34FR?wid=900&hei=900&fmt=png-alpha";
 const WG=k=>"https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/"+k+"?wid=900&hei=900&fmt=png-alpha";
+/* цвет ремешка: {n,hex} */
+const bcl=(...arr)=>arr.map(([ru,hex])=>({n:{ru,tj:ru,en:ru},hex}));
 const WBANDS_S=[
- {n:{ru:"Спортивный ремешок",tj:"Тасмаи варзишӣ",en:"Sport Band"},hex:"#2b2b2e",add:0,desc:{ru:"Мягкий флуороэластомер — на каждый день и спорт.",tj:"Флуороэластомери нарм — барои ҳар рӯз.",en:"Soft fluoroelastomer for everyday and sport."}},
- {n:{ru:"Спортивный браслет",tj:"Sport Loop",en:"Sport Loop"},hex:"#5d7d99",add:0,desc:{ru:"Дышащий нейлон с лёгкой регулировкой.",tj:"Нейлони нафаскашанда бо танзими осон.",en:"Breathable nylon with easy adjustment."}},
- {n:{ru:"Миланская петля",tj:"Milanese Loop",en:"Milanese Loop"},hex:"#c9b27d",add:tjs(50),desc:{ru:"Плетёная нержавеющая сталь с магнитной застёжкой.",tj:"Пӯлоди зангногир бо басти магнитӣ.",en:"Woven stainless steel with a magnetic closure."}},
- {n:{ru:"Плетёный ремешок",tj:"Braided Loop",en:"Braided Solo Loop"},hex:"#6e6e73",add:tjs(50),desc:{ru:"Эластичный плетёный — без застёжек.",tj:"Эластикии бофта — бе баст.",en:"Stretchy braided design — no clasp."}}];
+ {n:{ru:"Спортивный ремешок",tj:"Тасмаи варзишӣ",en:"Sport Band"},hex:"#2b2b2e",add:0,desc:{ru:"Мягкий флуороэластомер — на каждый день и спорт.",tj:"Флуороэластомери нарм — барои ҳар рӯз.",en:"Soft fluoroelastomer for everyday and sport."},
+  colors:bcl(["Чёрный","#1c1c1e"],["Сияющая звезда","#e8e0d2"],["Туманно-синий","#a9c4d6"],["Сливовый","#6f3a52"],["Оранжевый","#e8923c"])},
+ {n:{ru:"Спортивный браслет",tj:"Sport Loop",en:"Sport Loop"},hex:"#5d7d99",add:0,desc:{ru:"Дышащий нейлон с лёгкой регулировкой.",tj:"Нейлони нафаскашанда бо танзими осон.",en:"Breathable nylon with easy adjustment."},
+  colors:bcl(["Чёрный","#2b2b2e"],["Синий","#3f5e8c"],["Зелёное озеро","#5f7d5a"],["Светло-розовый","#e6c8c4"])},
+ {n:{ru:"Миланская петля",tj:"Milanese Loop",en:"Milanese Loop"},hex:"#c9b27d",add:tjs(50),desc:{ru:"Плетёная нержавеющая сталь с магнитной застёжкой.",tj:"Пӯлоди зангногир бо басти магнитӣ.",en:"Woven stainless steel with a magnetic closure."},
+  colors:bcl(["Натуральный","#d6d6d8"],["Золотой","#c9a96a"],["Графитовый","#45433f"])},
+ {n:{ru:"Плетёный ремешок",tj:"Braided Loop",en:"Braided Solo Loop"},hex:"#6e6e73",add:tjs(50),desc:{ru:"Эластичный плетёный — без застёжек.",tj:"Эластикии бофта — бе баст.",en:"Stretchy braided design — no clasp."},
+  colors:bcl(["Чёрный","#2b2b2e"],["Тёмно-синий","#4f6d8f"],["Графитовый","#555558"])}];
 /* Watch Ultra 3 (titanium, 49mm) */
 delete P(10).card;P(10).tint="linear-gradient(180deg,#e6e8ec,#d3d7dd)";
 P(10).colors=[
@@ -197,10 +203,26 @@ P(10).colors=[
  {n:{ru:"Чёрный титан",tj:"Титани сиёҳ",en:"Black Titanium"},hex:"#39383c",img:WCASE("49","titanium","black","","ultra3")}];
 P(10).gallery=[WG("ultra-case-unselect-gallery-1-202509"),WG("ultra-case-unselect-gallery-2-202509"),WG("ultra-case-unselect-gallery-3-202509")];
 P(10).bandImgs=[WG("ultra-band-unselect-gallery-1-202509"),WG("ultra-band-unselect-gallery-2-202509"),WG("ultra-band-unselect-gallery-3-202509")];
+/* цвет ремешка Ultra: img=ремешок крупно; pN/pB = part-номер ремешка для натур./чёрного корпуса (Scene7-слой) */
+const ubc=(ru,hex,key,pN,pB)=>({n:{ru,tj:ru,en:ru},hex,img:WG(key),pN,pB});
+/* композит «часы+ремешок» наложением слоёв Apple (Scene7 `+`, без подписи): ремешок + корпус(финиш) + циферблат.
+   Ultra: part зависит от финиша (pN/pB), циферблат по семейству. S11/SE3: part единый, циферблат выводится из корпуса. */
+function watchCombo(p,bd,bc,ci,col){
+  if(!bc||!col||!col.img)return null;
+  const m=col.img.match(/\/is\/([a-z0-9-]+)_VW_34FR/i);if(!m)return null;
+  const caseKey=m[1];
+  if(p.id===10){const part=ci===1?bc.pB:bc.pN;if(!part||!bd.family)return null;return WG(part+"_VW_34FR+"+caseKey+"_VW_34FR+watch-face-49-"+bd.family+"-ultra3_VW_34FR_GEO_US");}
+  if(!bc.part)return null;
+  const faceKey=caseKey.replace("watch-case","watch-face").replace(/-(nc|cell)-/,"-");
+  return WG(bc.part+"_VW_34FR+"+caseKey+"_VW_34FR+"+faceKey+"_VW_34FR");
+}
 P(10).bands=[
- {n:{ru:"Trail Loop",tj:"Trail Loop",en:"Trail Loop"},hex:"#3a3a3d",add:0,desc:{ru:"Лёгкий тканый — для бега и тренировок.",tj:"Бофтаи сабук — барои давидан.",en:"Light woven band for running and workouts."}},
- {n:{ru:"Alpine Loop",tj:"Alpine Loop",en:"Alpine Loop"},hex:"#c98a3d",add:0,desc:{ru:"Прочный двухслойный с титановым G-крюком.",tj:"Дуқабатаи мустаҳкам бо кармаки титанӣ.",en:"Rugged two-layer weave with a titanium G-hook."}},
- {n:{ru:"Ocean Band",tj:"Ocean Band",en:"Ocean Band"},hex:"#1f4d6b",add:0,desc:{ru:"Для водного спорта и дайвинга.",tj:"Барои варзиши обӣ ва ғаввосӣ.",en:"For water sports and recreational diving."}}];
+ {n:{ru:"Trail Loop",tj:"Trail Loop",en:"Trail Loop"},hex:"#3a3a3d",add:0,family:"trail",desc:{ru:"Лёгкий тканый — для бега и тренировок.",tj:"Бофтаи сабук — барои давидан.",en:"Light woven band for running and workouts."},
+  colors:[ubc("Чёрный/угольный","#3a3a3d","trail-loop-natural-titanium-black-band","MFT84ref","MG9T4ref"),ubc("Ярко-синий","#2f6db5","trail-loop-natural-titanium-blue-band","MFT64ref","MG9Q4ref"),ubc("Неоново-зелёный","#86c545","trail-loop-natural-titanium-green-band","MFT44ref","MG9N4ref")]},
+ {n:{ru:"Alpine Loop",tj:"Alpine Loop",en:"Alpine Loop"},hex:"#c98a3d",add:0,family:"alpine",desc:{ru:"Прочный двухслойный с титановым G-крюком.",tj:"Дуқабатаи мустаҳкам бо кармаки титанӣ.",en:"Rugged two-layer weave with a titanium G-hook."},
+  colors:[ubc("Чёрный","#2b2b2e","alpine-loop-natural-titanium-black-band","MFTE4ref","MG9G4ref"),ubc("Голубой","#8fb4cc","alpine-loop-natural-titanium-light-blue-band","MFTH4ref","MG9K4ref"),ubc("Терракота","#b5562f","alpine-loop-natural-titanium-terra-cotta-band","MFTA4ref","MG9D4ref")]},
+ {n:{ru:"Ocean Band",tj:"Ocean Band",en:"Ocean Band"},hex:"#1f4d6b",add:0,family:"ocean",desc:{ru:"Для водного спорта и дайвинга.",tj:"Барои варзиши обӣ ва ғаввосӣ.",en:"For water sports and recreational diving."},
+  colors:[ubc("Якорный синий","#3a5f7d","ocean-band-natural-titanium-anchor-blue-band","MGCC4","MGCJ4"),ubc("Чёрный","#20242a","ocean-band-natural-titanium-black-band","MXTL3ref","MYPD3ref"),ubc("Неоново-зелёный","#9fe04a","ocean-band-natural-titanium-neon-green-band","MGCF4","MGCL4")]}];
 /* Watch Series 11 (aluminum + titanium, 42/46mm) */
 delete P(11).card;P(11).tint="linear-gradient(180deg,#f5f3f1,#ece8e4)";
 const S11_ALU=[
@@ -221,7 +243,15 @@ P(11).materials=[
 P(11).variants=[
  {n:{ru:"42 мм",tj:"42 мм",en:"42mm"},add:0,sub:{ru:"Компактный размер",tj:"Андозаи ҷайбӣ",en:"Compact size"}},
  {n:{ru:"46 мм",tj:"46 мм",en:"46mm"},add:tjs(30),sub:{ru:"Большой дисплей",tj:"Дисплейи калон",en:"Larger display"}}];
-P(11).bands=WBANDS_S;
+/* ремешки Series 11 с part-номерами Apple → композит часы+ремешок наложением слоёв (любой финиш) */
+const s11c=(ru,hex,part,bandimg)=>({n:{ru,tj:ru,en:ru},hex,part,img:bandimg?WG(bandimg):undefined});
+P(11).bands=[
+ {n:{ru:"Спортивный ремешок",tj:"Тасмаи варзишӣ",en:"Sport Band"},hex:"#1c1c1e",add:0,desc:{ru:"Мягкий флуороэластомер — на каждый день и спорт.",tj:"Флуороэластомери нарм.",en:"Soft fluoroelastomer for everyday and sport."},
+  colors:[s11c("Яркая гуава","#e84a6f","MHYH4ref","sport-bright-guava-band"),s11c("Сияющая звезда","#e8e0d2","MXM63ref_FV99","sport-starlight-band"),s11c("Светло-розовый","#e6c8c4","MXM83ref_FV99"),s11c("Чёрный","#1c1c1e","MXM23ref_FV99")]},
+ {n:{ru:"Спортивный браслет",tj:"Sport Loop",en:"Sport Loop"},hex:"#2b5a3a",add:0,desc:{ru:"Дышащий нейлон с лёгкой регулировкой.",tj:"Нейлони нафаскашанда.",en:"Breathable nylon with easy adjustment."},
+  colors:[s11c("Лесной","#2b5a3a","MFFJ4")]},
+ {n:{ru:"Миланская петля",tj:"Milanese Loop",en:"Milanese Loop"},hex:"#d6d6d8",add:tjs(50),desc:{ru:"Плетёная нержавеющая сталь с магнитной застёжкой.",tj:"Пӯлоди зангногир бо басти магнитӣ.",en:"Woven stainless steel with a magnetic closure."},
+  colors:[s11c("Натуральный","#d6d6d8","MGJ24ref"),s11c("Золотой","#c9a96a","MGJ44ref"),s11c("Графитовый","#45433f","MGJ64ref")]}];
 P(11).gallery=[WG("s11-case-unselect-gallery-1-202509"),WG("s11-case-unselect-gallery-2-202509"),WG("s11-case-unselect-gallery-3-202509")];
 P(11).bandImgs=[WG("s11-band-unselect-gallery-1-202509")];
 /* Watch SE 3 (new — matches Apple lineup) */
@@ -234,6 +264,11 @@ PRODUCTS.push({id:15,line:"Apple Watch",name:"Watch SE 3",cat:"watch",price:6490
   {n:{ru:"40 мм",tj:"40 мм",en:"40mm"},add:0,sub:{ru:"Компактный размер",tj:"Андозаи ҷайбӣ",en:"Compact size"}},
   {n:{ru:"44 мм",tj:"44 мм",en:"44mm"},add:500,sub:{ru:"Большой дисплей",tj:"Дисплейи калон",en:"Larger display"}}],
  bands:[WBANDS_S[0],WBANDS_S[1]],gallery:[WG("s11-case-unselect-gallery-1-202509"),WG("s11-case-unselect-gallery-2-202509")]});
+/* реалистичные свотчи финиша часов (металл-градиент Apple): выводим _SW_COLOR из фото корпуса _VW_34FR */
+[10,11,15].forEach(id=>{const p=P(id);const groups=[];if(p.colors)groups.push(p.colors);if(p.materials)p.materials.forEach(m=>groups.push(m.finishes));groups.forEach(g=>g&&g.forEach(c=>{if(c.img&&c.img.indexOf("_VW_34FR")>-1&&!c.sw)c.sw=c.img.replace("_VW_34FR","_SW_COLOR");}));});
+/* богатые страницы моделей часов (эталон Ultra 3) */
+P(11).modelPage="apple-watch-series-11.html";P(15).modelPage="apple-watch-se-3.html";
+P(11).bandImgs=[WG("s11-band-unselect-gallery-1-202509")];P(15).bandImgs=[WG("s11-band-unselect-gallery-1-202509")];
 /* iPad Pro — clean per-finish images (store CDN), like watch */
 P(8).colors=[
  {n:{ru:"Серый космос",tj:"Хокистарӣ",en:"Space Black"},hex:"#3a3a3c",img:WG("ipad-pro-11-select-wifi-spaceblack-202405")},
@@ -269,32 +304,63 @@ const TRADEIN={phone:3000,laptop:5000,tablet:2500,watch:1200,audio:600};
 const ACCSC="https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/";
 const accImg=k=>ACCSC+k+"?wid=800&hei=800&fmt=png-alpha";
 /* строит набор цветов аксессуара из ключей Apple: свотч-картинка + галерея (главное фото + ракурсы AV1/AV2) */
-function accColors(keys,names){return keys.map((k,i)=>({n:(names&&names[i])||{ru:"Цвет "+(i+1),tj:"Ранг "+(i+1),en:"Color "+(i+1)},img:accImg(k),sw:accImg(k+"_SW_COLOR"),gal:[accImg(k),accImg(k+"_AV1"),accImg(k+"_AV2")]}));}
+function accColors(keys,av,names){av=av||0;return keys.map((k,i)=>{const gal=[accImg(k)];for(let n=1;n<=av;n++)gal.push(accImg(k+"_AV"+n));return {n:(names&&names[i])||{ru:"Цвет "+(i+1),tj:"Ранг "+(i+1),en:"Color "+(i+1)},img:accImg(k),sw:accImg(k+"_SW_COLOR"),gal};});}
+/* реальные имена цветов Apple (EN→{ru,tj,en}) */
+const CNAMES={"Bright Guava":{ru:"Яркая гуава",tj:"Яркая гуава",en:"Bright Guava"},"Light Moss":{ru:"Светлый мох",tj:"Светлый мох",en:"Light Moss"},"Vanilla":{ru:"Ваниль",tj:"Ваниль",en:"Vanilla"},"Black":{ru:"Чёрный",tj:"Сиёҳ",en:"Black"},"Purple Fog":{ru:"Пурпурный туман",tj:"Пурпурный туман",en:"Purple Fog"},"Anchor Blue":{ru:"Синий якорь",tj:"Синий якорь",en:"Anchor Blue"},"Electric Lavender":{ru:"Лавандовый",tj:"Лавандовый",en:"Electric Lavender"},"Orange":{ru:"Оранжевый",tj:"Норинҷӣ",en:"Orange"},"Terra Cotta":{ru:"Терракота",tj:"Терракота",en:"Terra Cotta"},"Midnight":{ru:"Тёмная ночь",tj:"Тёмная ночь",en:"Midnight"},"Sienna":{ru:"Сиена",tj:"Сиена",en:"Sienna"},"Blue":{ru:"Синий",tj:"Кабуд",en:"Blue"},"Green":{ru:"Зелёный",tj:"Сабз",en:"Green"},"Purple":{ru:"Фиолетовый",tj:"Фиолетовый",en:"Purple"},"Frost":{ru:"Морозный",tj:"Морозный",en:"Frost"},"Shadow":{ru:"Графитовый",tj:"Графитовый",en:"Shadow"},"Sage":{ru:"Шалфей",tj:"Шалфей",en:"Sage"},"Light Violet":{ru:"Светло-фиолетовый",tj:"Светло-фиолетовый",en:"Light Violet"},"Charcoal Gray":{ru:"Угольно-серый",tj:"Угольно-серый",en:"Charcoal Gray"},"Denim":{ru:"Деним",tj:"Деним",en:"Denim"}};
+const cn=en=>CNAMES[en]||{ru:en,tj:en,en:en};
 const ACC1=A+"/v/apple-pencil/ag/images/overview/hero/hero__cwrg2eertpyu_large_2x.png";
 PRODUCTS.push(
  {id:101,line:"AirTag",name:"AirTag",cat:"acc",price:290,rating:5,new:false,emoji:"🔵",tag:{ru:"Находите вещи без труда",tj:"Чизҳоро бе душворӣ ёбед",en:"Keep track of your things"},colors:[{n:{ru:"Серебристый",tj:"Нуқрагӣ",en:"Silver"},hex:"#e8e8ea",img:accImg("airtag-single-select-202104")}]},
  {id:102,line:"AirTag",name:"AirTag · 4-pack",cat:"acc",price:990,rating:5,new:false,emoji:"🔵",tag:{ru:"Комплект из четырёх",tj:"Маҷмӯи чаҳорто",en:"Pack of four"},colors:[{n:{ru:"Серебристый",tj:"Нуқрагӣ",en:"Silver"},hex:"#e8e8ea",img:accImg("HS942")}]},
  {id:103,line:"Apple Pencil",name:"Apple Pencil Pro",cat:"acc",price:1490,rating:5,new:true,emoji:"✏️",tag:{ru:"Пишите и рисуйте точно",tj:"Дақиқ нависед ва расм кашед",en:"Write and draw with precision"},colors:[{n:{ru:"Белый",tj:"Сафед",en:"White"},hex:"#f2f2f2",img:ACC1}]},
  {id:104,line:"MagSafe",name:"MagSafe Charger",cat:"acc",price:490,rating:5,new:false,emoji:"🔌",tag:{ru:"Быстрая беспроводная зарядка",tj:"Заряди тези бесим",en:"Fast wireless charging"},colors:[{n:{ru:"Белый",tj:"Сафед",en:"White"},hex:"#f2f2f2",img:accImg("HSG72")}]},
- {id:105,line:"Case",name:"iPhone Case · MagSafe",cat:"acc",price:390,rating:5,new:false,emoji:"📱",tag:{ru:"Защита с поддержкой MagSafe",tj:"Ҳифз бо дастгирии MagSafe",en:"Protection with MagSafe"},colors:[{n:{ru:"Прозрачный",tj:"Шаффоф",en:"Clear"},hex:"#dfe3e8",img:accImg("MHWJ4")}]},
- {id:106,line:"Case",name:"iPhone Clear Case",cat:"acc",price:390,rating:4,new:false,emoji:"📱",tag:{ru:"Прозрачный чехол с MagSafe",tj:"Ғилофи шаффоф бо MagSafe",en:"Clear case with MagSafe"},colors:[{n:{ru:"Прозрачный",tj:"Шаффоф",en:"Clear"},hex:"#dfe3e8",img:accImg("MHWC4")}]}
+ {id:105,line:"Case",name:"iPhone Case · MagSafe",cat:"acc",price:390,rating:5,new:false,emoji:"📱",tag:{ru:"Защита с поддержкой MagSafe",tj:"Ҳифз бо дастгирии MagSafe",en:"Protection with MagSafe"},colors:[{n:{ru:"Прозрачный",tj:"Шаффоф",en:"Clear"},hex:"#dfe3e8",img:accImg("MHWJ4"),gal:[accImg("MHWJ4"),accImg("MHWJ4_AV1"),accImg("MHWJ4_AV2"),accImg("MHWJ4_AV3"),accImg("MHWJ4_AV4")]}]},
+ {id:106,line:"Case",name:"iPhone Clear Case",cat:"acc",price:390,rating:4,new:false,emoji:"📱",tag:{ru:"Прозрачный чехол с MagSafe",tj:"Ғилофи шаффоф бо MagSafe",en:"Clear case with MagSafe"},colors:[{n:{ru:"Прозрачный",tj:"Шаффоф",en:"Clear"},hex:"#dfe3e8",img:accImg("MHWC4"),gal:[accImg("MHWC4"),accImg("MHWC4_AV1"),accImg("MHWC4_AV2"),accImg("MHWC4_AV3")]}]}
 );
 PRODUCTS.push(
- {id:107,line:"Case",name:"iPhone Tech Woven Case",cat:"acc",rating:5,new:true,emoji:"📱",tag:{ru:"Тканый чехол с MagSafe",tj:"Ғилофи бофта бо MagSafe",en:"Woven case with MagSafe"},colors:accColors(["MGF44","MGF34","MGF54","MGF64","MGF74"])},
- {id:108,line:"Case",name:"iPhone Silicone Case",cat:"acc",rating:5,new:true,emoji:"📱",tag:{ru:"Силиконовый чехол с MagSafe",tj:"Ғилофи силиконӣ бо MagSafe",en:"Silicone case with MagSafe"},colors:accColors(["MHVQ4","MGEW4","MGEX4","MGF04","MGF14","MHVM4","MHVT4"])},
- {id:109,line:"Strap",name:"iPhone Crossbody Strap",cat:"acc",rating:5,new:true,emoji:"📱",tag:{ru:"Ремешок через плечо для iPhone",tj:"Тасма аз китф барои iPhone",en:"Crossbody strap for iPhone"},colors:accColors(["MHYX4","MGGD4","MHYY4","MGGE4","MGGG4","MGGH4","MGGK4","MGGM4","MGGJ4","MGGL4","MGGN4","MGGF4"])},
- {id:110,line:"Case",name:"iPhone Air Clear Case",cat:"acc",rating:5,new:false,emoji:"📱",tag:{ru:"Прозрачный чехол для iPhone Air",tj:"Ғилофи шаффоф барои iPhone Air",en:"Clear case for iPhone Air"},colors:accColors(["MGH34","MGH24"])},
+ {id:107,line:"Case",name:"iPhone Tech Woven Case",cat:"acc",rating:5,new:true,emoji:"📱",tag:{ru:"Тканый чехол с MagSafe",tj:"Ғилофи бофта бо MagSafe",en:"Woven case with MagSafe"},colors:accColors(["MGF44","MGF34","MGF54","MGF64","MGF74"],4)},
+ {id:108,line:"Case",name:"iPhone Silicone Case",cat:"acc",rating:5,new:true,emoji:"📱",tag:{ru:"Силиконовый чехол с MagSafe",tj:"Ғилофи силиконӣ бо MagSafe",en:"Silicone case with MagSafe"},colors:accColors(["MHVQ4","MGEW4","MGEX4","MGF04","MGF14","MHVM4","MHVT4"],6)},
+ {id:109,line:"Strap",name:"iPhone Crossbody Strap",cat:"acc",rating:5,new:true,emoji:"📱",tag:{ru:"Ремешок через плечо для iPhone",tj:"Тасма аз китф барои iPhone",en:"Crossbody strap for iPhone"},colors:accColors(["MHYX4","MGGD4","MHYY4","MGGE4","MGGG4","MGGH4","MGGK4","MGGM4","MGGJ4","MGGL4","MGGN4","MGGF4"],2)},
+ {id:110,line:"Case",name:"iPhone Air Clear Case",cat:"acc",rating:5,new:false,emoji:"📱",tag:{ru:"Прозрачный чехол для iPhone Air",tj:"Ғилофи шаффоф барои iPhone Air",en:"Clear case for iPhone Air"},colors:accColors(["MGH34","MGH24"],5,[cn("Frost"),cn("Shadow")])},
  {id:111,line:"Keyboard",name:"Magic Keyboard для iPad",cat:"acc",rating:5,new:true,emoji:"⌨️",tag:{ru:"Клавиатура с трекпадом для iPad",tj:"Клавиатура бо трекпад барои iPad",en:"Keyboard with trackpad for iPad"},colors:[{n:{ru:"Чёрный",tj:"Сиёҳ",en:"Black"},hex:"#3a3a3c",img:accImg("MGYY4_FV401_GEO_US")}]},
- {id:112,line:"Case",name:"Smart Folio для iPad",cat:"acc",rating:5,new:false,emoji:"📱",tag:{ru:"Обложка Smart Folio для iPad",tj:"Муқоваи Smart Folio барои iPad",en:"Smart Folio cover for iPad"},colors:accColors(["MWK73","MWK53","MWK63","MWK83"])},
+ {id:112,line:"Case",name:"Smart Folio для iPad",cat:"acc",rating:5,new:false,emoji:"📱",tag:{ru:"Обложка Smart Folio для iPad",tj:"Муқоваи Smart Folio барои iPad",en:"Smart Folio cover for iPad"},colors:accColors(["MWK73","MWK53","MWK63","MWK83"],1,[cn("Sage"),cn("Charcoal Gray"),cn("Denim"),cn("Light Violet")])},
  {id:113,line:"Apple Pencil",name:"Apple Pencil (USB-C)",cat:"acc",rating:5,new:false,emoji:"✏️",tag:{ru:"Стилус с зарядкой через USB-C",tj:"Қалам бо заряди USB-C",en:"Stylus with USB-C charging"},colors:[{n:{ru:"Белый",tj:"Сафед",en:"White"},hex:"#f2f2f2",img:accImg("MUWA3")}]},
  {id:114,line:"Keyboard",name:"Magic Keyboard",cat:"acc",rating:5,new:false,emoji:"⌨️",tag:{ru:"Беспроводная клавиатура с Touch ID",tj:"Клавиатураи бесим бо Touch ID",en:"Wireless keyboard with Touch ID"},colors:[{n:{ru:"Чёрный",tj:"Сиёҳ",en:"Black"},hex:"#2e2e30",img:accImg("MXK83")}]},
  {id:115,line:"Mouse",name:"Magic Mouse",cat:"acc",rating:5,new:false,emoji:"🖱️",tag:{ru:"Беспроводная мышь Multi-Touch",tj:"Мушаки бесими Multi-Touch",en:"Multi-Touch wireless mouse"},colors:[{n:{ru:"Чёрный",tj:"Сиёҳ",en:"Black"},hex:"#2e2e30",img:accImg("MXK63")}]},
  {id:116,line:"Charger",name:"USB-C Power Adapter",cat:"acc",rating:5,new:false,emoji:"🔌",tag:{ru:"Быстрая зарядка USB-C",tj:"Заряди тези USB-C",en:"Fast USB-C charging"},colors:[{n:{ru:"Белый",tj:"Сафед",en:"White"},hex:"#f2f2f2",img:accImg("MGKN4")}]},
- {id:117,line:"Band",name:"Sport Band",cat:"acc",rating:5,new:true,emoji:"⌚",tag:{ru:"Спортивный ремешок для Apple Watch",tj:"Тасмаи варзишӣ барои Apple Watch",en:"Sport Band for Apple Watch"},colors:accColors(["MHYH4ref","MFGX4ref","MHYF4ref","MHYK4ref","MXLX3ref","MXM23ref","MXM63ref","MXM83ref"])},
- {id:118,line:"Band",name:"Alpine Loop",cat:"acc",rating:5,new:true,emoji:"⌚",tag:{ru:"Ремешок Alpine Loop для Apple Watch",tj:"Тасмаи Alpine Loop барои Apple Watch",en:"Alpine Loop for Apple Watch"},colors:accColors(["MFTA4ref","MFTE4ref","MFTH4ref"])}
+ {id:117,line:"Band",name:"Sport Band",cat:"acc",rating:5,new:true,emoji:"⌚",tag:{ru:"Спортивный ремешок для Apple Watch",tj:"Тасмаи варзишӣ барои Apple Watch",en:"Sport Band for Apple Watch"},colors:accColors(["MHYH4ref","MFGX4ref","MHYF4ref","MHYK4ref","MXLX3ref","MXM23ref","MXM63ref","MXM83ref"],2)},
+ {id:118,line:"Band",name:"Alpine Loop",cat:"acc",rating:5,new:true,emoji:"⌚",tag:{ru:"Ремешок Alpine Loop для Apple Watch",tj:"Тасмаи Alpine Loop барои Apple Watch",en:"Alpine Loop for Apple Watch"},colors:accColors(["MFTA4ref","MFTE4ref","MFTH4ref"],2)}
 );
 /* привязка базовых цен к Apple США (USD → сомони × наценка) */
 PRODUCTS.forEach(p=>{if(APPLE_USD[p.id]!=null)p.price=tjs(APPLE_USD[p.id]);});
+/* совместимость аксессуаров (выбор модели/размера — как у Apple, без изменения цены) */
+const FIT_IPH={ru:"Модель iPhone",tj:"Модели iPhone",en:"iPhone model"};
+const FIT_IPAD={ru:"Модель iPad",tj:"Модели iPad",en:"iPad model"};
+const FIT_SIZE={ru:"Размер",tj:"Андоза",en:"Size"};
+const IPH4=["iPhone Air","iPhone 17","iPhone 17 Pro","iPhone 17 Pro Max"];
+const IPAD4=["iPad Pro 11″","iPad Pro 13″","iPad Air 11″","iPad Air 13″"];
+/* простой селектор без смены фото: единственная модель (совместимость) или размер ремешка */
+const FITS={
+ 110:{l:FIT_IPH,o:["iPhone Air"]},
+ 112:{l:FIT_IPAD,o:["iPad Air 11″"]},
+ 117:{l:FIT_SIZE,o:[{ru:"S/M · 40–42 мм",tj:"S/M · 40–42 мм",en:"S/M · 40–42mm"},{ru:"M/L · 44–49 мм",tj:"M/L · 44–49 мм",en:"M/L · 44–49mm"}]},
+ 118:{l:FIT_SIZE,o:[{ru:"S · 46–49 мм",tj:"S · 46–49 мм",en:"S · 46–49mm"},{ru:"M · 46–49 мм",tj:"M · 46–49 мм",en:"M · 46–49mm"},{ru:"L · 46–49 мм",tj:"L · 46–49 мм",en:"L · 46–49mm"}]}
+};
+PRODUCTS.forEach(p=>{const f=FITS[p.id];if(f)p.fit={label:f.l,opts:f.o.map(o=>typeof o==="string"?{ru:o,tj:o,en:o}:o)};});
+/* выбор модели СО сменой фото+цветов: у каждой модели свои ключи Apple (камера-вырез разный) + своё число ракурсов */
+const mdl=name=>({ru:name,tj:name,en:name});
+const FITCOLORS={
+ 108:[
+  ["iPhone 17",["MHVQ4","MGEX4","MHVM4","MGF14","MGF04","MGEW4","MHVT4"],["Bright Guava","Light Moss","Vanilla","Black","Purple Fog","Anchor Blue","Electric Lavender"],6],
+  ["iPhone 17 Pro",["MGFE4","MGFK4","MHVX4","MGFJ4","MHW04","MGFG4","MGFH4"],["Orange","Black","Vanilla","Terra Cotta","Bright Guava","Purple Fog","Midnight"],4],
+  ["iPhone 17 Pro Max",["MGFR4","MGFQ4","MGFN4","MHW64","MGFL4","MGFP4","MHW54"],["Black","Terra Cotta","Purple Fog","Bright Guava","Orange","Midnight","Vanilla"],2]
+ ],
+ 107:[
+  ["iPhone 17 Pro",["MGF54","MGF74","MGF44","MGF34","MGF64"],["Purple","Green","Blue","Black","Sienna"],4],
+  ["iPhone 17 Pro Max",["MGF84","MGF94","MGFA4","MGFD4","MGFC4"],["Black","Blue","Purple","Green","Sienna"],2]
+ ]
+};
+PRODUCTS.forEach(p=>{const f=FITCOLORS[p.id];if(f){p.fitColors={label:FIT_IPH,models:f.map(([mn,keys,names,av])=>({n:mdl(mn),colors:accColors(keys,av,names.map(cn))}))};p.colors=p.fitColors.models[0].colors;}});
 /* категории аксессуаров (accessories.html — фильтр как у Apple) */
 const ACAT={101:"find",102:"find",103:"pencil",104:"charge",105:"case",106:"case",107:"case",108:"case",109:"case",110:"case",111:"input",112:"case",113:"pencil",114:"input",115:"input",116:"charge",117:"band",118:"band"};
 const ACAT_CATS=[["all",{ru:"Все",tj:"Ҳама",en:"All"}],["case",{ru:"Чехлы и защита",tj:"Ғилофу ҳифз",en:"Cases & protection"}],["input",{ru:"Клавиатуры и мыши",tj:"Клавиатура ва муш",en:"Keyboards & mice"}],["band",{ru:"Ремешки для Watch",tj:"Тасмаҳо барои Watch",en:"Watch bands"}],["charge",{ru:"Зарядка",tj:"Заряд",en:"Power & cables"}],["pencil",{ru:"Apple Pencil",tj:"Apple Pencil",en:"Apple Pencil"}],["find",{ru:"Поиск вещей",tj:"Ёфтани ашё",en:"Find My"}]];
@@ -444,6 +510,20 @@ function renderSubnav(){
     <a href="#lineup">${t("pp_overview")}</a><a href="#whyprod">${t("pp_why")}</a><a href="#highlights">${t("pp_specs")}</a>
     <a class="pn-buy" href="${li.buyPage||('buy.html?id='+firstId)}">${t("pp_buy")}</a></div>`;
 }
+/* ===== Apple-style chapternav: иконочная лента моделей категории + разделы ===== */
+function renderChapnav(){
+  const el=document.getElementById("chapnav");if(!el)return;
+  const cat=el.dataset.cat||"watch";
+  const models=PRODUCTS.filter(p=>p.cat===cat);
+  const cmpIc='<svg viewBox="0 0 24 24"><rect x="3" y="5" width="7" height="14" rx="1.5"/><rect x="14" y="5" width="7" height="14" rx="1.5"/></svg>';
+  const accIc='<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="7"/><path d="M12 3v3M12 18v3"/></svg>';
+  el.innerHTML=`<div class="chapnav-in">
+    ${models.map(p=>`<a class="chap-item" href="${productUrl(p)}" title="${p.name}"><span class="chap-ic"><img src="${shrinkCDN(mainImg(p),150)}" alt="${p.name}" loading="lazy" decoding="async" onerror="imgFallback(this)"></span><span class="chap-l">${p.name}</span></a>`).join("")}
+    <span class="chap-sep" aria-hidden="true"></span>
+    <a class="chap-item chap-link" href="compare.html"><span class="chap-ic">${cmpIc}</span><span class="chap-l">${tr({ru:"Сравнить",tj:"Муқоиса",en:"Compare"})}</span></a>
+    <a class="chap-item chap-link" href="accessories.html"><span class="chap-ic">${accIc}</span><span class="chap-l">${tr({ru:"Аксессуары",tj:"Лавозимот",en:"Accessories"})}</span></a>
+  </div>`;
+}
 function renderHighlights(){
   const el=document.getElementById("highlights");if(!el)return;const pd=PAGEDATA[curLine()];if(!pd)return;
   el.innerHTML=`<div class="wrap"><div class="sec-head reveal"><h2>${t("pp_highlights")}</h2></div>
@@ -516,6 +596,8 @@ function renderCompare(){
 
 /* ===== MODEL PAGE (Apple Watch Ultra 3 — 1:1) ===== */
 const WU=A+"/v/apple-watch-ultra-3/b/images/overview/";
+const WS=A+"/v/apple-watch-series-11/c/images/overview/";
+const WSE=A+"/v/apple-watch-se-3/b/images/overview/";
 const MODELS={
  ultra3:{name:"Apple Watch Ultra 3",productId:10,price:9990,eyebrow:"⌚ Watch Ultra 3",
   heroVideo:LI("watch").heroVideo,
@@ -624,6 +706,54 @@ const MODELS={
    {img:A+"/v/airpods/ae/images/overview/consider/card_hearing_health__ss2uxyv3j5m6_large.jpg",h:{ru:"Функции для здоровья слуха.",tj:"Функсияҳо барои саломатии шунавоӣ.",en:"Hearing health features."}},
    {img:A+"/v/airpods/ae/images/overview/consider/card_heart_rate_sensing__exas9s71qo4m_large.jpg",h:{ru:"Датчик пульса прямо в наушниках.",tj:"Сенсори набз дар гӯшмонак.",en:"Heart rate sensing, built in."}},
    {img:A+"/v/airpods/ae/images/overview/consider/card_live_translation__ep68h9wscbee_large.jpg",h:{ru:"Живой перевод в реальном времени.",tj:"Тарҷумаи зинда дар вақти воқеӣ.",en:"Live Translation on the go."}}]
+ },
+ s11:{name:"Apple Watch Series 11",productId:11,price:4990,eyebrow:"⌚ Watch Series 11",light:true,hlLight:true,
+  heroVideo:LI("watch").heroVideo,
+  heroImg:WS+"product-viewer/product_landing_endframe__eaytrp6zz6c2_large.jpg",
+  title:{ru:"Здоровье на новой высоте.",tj:"Саломатӣ дар баландии нав.",en:"A healthy leap ahead."},
+  highlights:[
+   {img:WS+"highlights/highlights_hypertension_endframe__bbpmzln3nniq_large.jpg",h:{ru:"Уведомления о гипертонии — новая забота о здоровье сердца.",tj:"Огоҳиҳо дар бораи гипертония — ғамхории нав барои дил.",en:"Hypertension notifications — a new layer of heart care."}},
+   {img:WS+"highlights/highlights_sleep_score__dl1y2j6kkouq_large.jpg",h:{ru:"Оценка сна каждое утро — понимайте свой отдых.",tj:"Баҳои хоб ҳар саҳар — истироҳати худро фаҳмед.",en:"A Sleep Score every morning — understand your rest."}},
+   {img:WS+"highlights/highlights_glass_endframe__f39nueq3bfiy_large.jpg",h:{ru:"Самое прочное переднее стекло Apple Watch.",tj:"Мустаҳкамтарин шишаи пеши Apple Watch.",en:"The most durable Apple Watch front glass ever."}},
+   {img:WS+"highlights/highlights_5g__bvrxbjoke2c2_large.jpg",h:{ru:"Связь <b>5G</b> — оставайтесь на связи без iPhone.",tj:"Алоқаи <b>5G</b> — бе iPhone дар тамос бошед.",en:"<b>5G</b> connectivity — stay connected without iPhone."}},
+   {img:WS+"highlights/highlights_workout_endframe__fozegosc7daq_large.jpg",h:{ru:"Умные тренировки и точные метрики фитнеса.",tj:"Машқҳои ақлӣ ва метрикаи дақиқи фитнес.",en:"Smarter workouts and precise fitness metrics."}},
+   {img:WS+"highlights/highlights_battery_endframe__d8dlmkib4qky_large.jpg",h:{ru:"До <b>24 часов</b> работы — на весь день.",tj:"То <b>24 соат</b> кор — барои тамоми рӯз.",en:"Up to <b>24 hours</b> of battery — all-day power."}}],
+  explorer:[
+   {label:{ru:"Корпус",tj:"Маводи корпус",en:"Finishes"},img:WS+"product-viewer/product_finishes_jet_black__blfwjso629w2_large.jpg",
+    desc:{ru:"Алюминий в 4 цветах и титан в 3 цветах.",tj:"Алюминий дар 4 ранг ва титан дар 3 ранг.",en:"Aluminum in 4 colors and titanium in 3 colors."},
+    sw:[{hex:"#2b2b2e",img:WS+"product-viewer/product_finishes_jet_black__blfwjso629w2_large.jpg"},{hex:"#e7c8b8",img:WS+"product-viewer/product_finishes_rose_gold__bhstyih3ki6a_large.jpg"},{hex:"#dcdee0",img:WS+"product-viewer/product_finishes_silver__cyyyc94lds02_large.jpg"},{hex:"#6e6e73",img:WS+"product-viewer/product_finishes_space_gray__z8jlhu1vgbmm_large.jpg"},{hex:"#c9a96a",img:WS+"product-viewer/product_finishes_titanium_gold__czj188e02ygm_large.jpg"},{hex:"#4a4744",img:WS+"product-viewer/product_finishes_titanium_slate__fz9rx562j0qe_large.jpg"},{hex:"#b9b2a8",img:WS+"product-viewer/product_finishes_titanium_natural__dv2dd6sekxaq_large.jpg"}]},
+   {label:{ru:"Дисплей",tj:"Дисплей",en:"Display"},img:WS+"product-viewer/product_display_endframe__baw4nxfmflbm_large.jpg",
+    desc:{ru:"Always-On дисплей — ярче и читается под широким углом.",tj:"Дисплейи Always-On — равшантар ва дар кунҷи васеъ хонда мешавад.",en:"Always-On display — brighter and readable at wide angles."}},
+   {label:{ru:"Батарея",tj:"Батарея",en:"Battery"},img:WS+"product-viewer/product_battery__fhmgm5ba3omm_large.jpg",
+    desc:{ru:"До 24 часов работы и быстрая зарядка.",tj:"То 24 соат кор ва заряди тез.",en:"Up to 24 hours of battery and fast charging."}},
+   {label:{ru:"Здоровье",tj:"Саломатӣ",en:"Health"},img:WS+"product-viewer/product_sensors__j8r1adunvqai_large.jpg",
+    desc:{ru:"Пульс, ЭКГ, кислород в крови и уведомления о гипертонии.",tj:"Набз, ЭКГ, оксиген ва огоҳиҳо дар бораи гипертония.",en:"Heart rate, ECG, blood oxygen and hypertension alerts."}},
+   {label:{ru:"Защита от воды",tj:"Муҳофизат аз об",en:"Water resistance"},img:WS+"product-viewer/product_resistance_alt_endframe__brc7bgls3602_large.jpg",
+    desc:{ru:"Водозащита до 50 м и пылезащита IP6X.",tj:"Муҳофизат аз об то 50 м ва IP6X.",en:"Water resistant to 50 m and IP6X dust resistant."}}]
+ },
+ se3:{name:"Apple Watch SE 3",productId:15,price:6490,eyebrow:"⌚ Watch SE 3",light:true,hlLight:true,
+  heroVideo:LI("watch").heroVideo,
+  heroImg:WSE+"product-viewer/product_landing__fn9ldzg4foey_large.jpg",
+  title:{ru:"Главное. По умной цене.",tj:"Асосӣ. Бо нархи оқилона.",en:"The essentials. Smartly priced."},
+  highlights:[
+   {img:WSE+"highlights/highlights_always_on__f4gfjwfcdl26_large.jpg",h:{ru:"Дисплей <b>Always-On</b> — впервые в Apple Watch SE.",tj:"Дисплейи <b>Always-On</b> — бори аввал дар SE.",en:"<b>Always-On</b> display — a first for Apple Watch SE."}},
+   {img:WSE+"highlights/highlights_sleep_score__gg1jx7w3zfee_large.jpg",h:{ru:"Оценка сна и отслеживание фаз отдыха.",tj:"Баҳои хоб ва пайгирии марҳилаҳои истироҳат.",en:"Sleep Score and sleep stage tracking."}},
+   {img:WSE+"highlights/highlights_battery_endframe__evrcjqzrfmie_large.jpg",h:{ru:"До <b>18 часов</b> работы и быстрая зарядка.",tj:"То <b>18 соат</b> кор ва заряди тез.",en:"Up to <b>18 hours</b> of battery and fast charging."}},
+   {img:WSE+"highlights/highlights_safety__ehj70sr1vygm_large.jpg",h:{ru:"Безопасность: распознавание аварии и падения.",tj:"Бехатарӣ: муайянкунии садама ва афтиш.",en:"Safety features: Crash and Fall Detection."}},
+   {img:WSE+"highlights/highlights_durability_endframe__cvvei6d85uwm_large.jpg",h:{ru:"Прочный корпус для активной жизни.",tj:"Корпуси мустаҳкам барои ҳаёти фаъол.",en:"A durable design for an active life."}},
+   {img:WSE+"highlights/highlights_sensor__b624ls8kmtiu_large.jpg",h:{ru:"Датчики здоровья и пульса прямо на запястье.",tj:"Сенсорҳои саломатӣ ва набз дар дастатон.",en:"Health and heart rate sensors on your wrist."}}],
+  explorer:[
+   {label:{ru:"Корпус",tj:"Маводи корпус",en:"Finishes"},img:WSE+"product-viewer/product_finishes_midnight__jgmf0mnpvwq6_large.jpg",
+    desc:{ru:"Алюминий: тёмная ночь и сияющая звезда.",tj:"Алюминий: шаби торик ва ситоравӣ.",en:"Aluminum in Midnight and Starlight."},
+    sw:[{hex:"#2e3138",img:WSE+"product-viewer/product_finishes_midnight__jgmf0mnpvwq6_large.jpg"},{hex:"#e9e0d2",img:WSE+"product-viewer/product_finishes_starlight__enr6i85tuqwm_large.jpg"}]},
+   {label:{ru:"Дисплей",tj:"Дисплей",en:"Display"},img:WSE+"product-viewer/product_display__d8qh865laqie_large.jpg",
+    desc:{ru:"Always-On Retina — теперь и в SE.",tj:"Always-On Retina — акнун дар SE.",en:"Always-On Retina display — now on SE."}},
+   {label:{ru:"Здоровье",tj:"Саломатӣ",en:"Health"},img:WSE+"product-viewer/product_health_sensors__c3xtx4ix08cy_large.jpg",
+    desc:{ru:"Пульс, уведомления о сердце и контроль активности.",tj:"Набз, огоҳиҳои дил ва назорати фаъолият.",en:"Heart rate, cardiac notifications and activity tracking."}},
+   {label:{ru:"Безопасность",tj:"Бехатарӣ",en:"Safety"},img:WSE+"product-viewer/product_motion_sensors__d15xde8xsc6e_large.jpg",
+    desc:{ru:"Распознавание аварии и падения, экстренный вызов SOS.",tj:"Муайянкунии садама ва афтиш, занги SOS.",en:"Crash and Fall Detection with Emergency SOS."}},
+   {label:{ru:"Защита от воды",tj:"Муҳофизат аз об",en:"Water resistance"},img:WSE+"product-viewer/product_water_resistance__fwm3ju4h4uqa_large.jpg",
+    desc:{ru:"Водозащита до 50 метров.",tj:"Муҳофизат аз об то 50 метр.",en:"Water resistant to 50 meters."}}]
  }
 };
 /* ===== TECH SPECS (per model-page) — value is string (universal) or {ru,tj,en} ===== */
@@ -658,6 +788,18 @@ const TECHSPECS={
   {t:G("Чип и звук","Чип ва садо","Chip & audio"),rows:[[G("Чип","Чип","Chip"),"Apple H3"],[G("Звук","Садо","Audio"),G("Адаптивный · Spatial Audio","Адаптивӣ · Spatial Audio","Adaptive · Spatial Audio")],[G("Шумоподавление","Бартарафсозии садо","ANC"),G("в 2× лучше","2× беҳтар","2× better")]]},
   {t:G("Аккумулятор","Батарея","Battery"),rows:[[G("С ANC","Бо ANC","With ANC"),G("до 8 часов","то 8 соат","up to 8 hrs")],[G("С кейсом","Бо кейс","With case"),G("до 30 часов","то 30 соат","up to 30 hrs")],[G("Зарядка","Заряд","Charging"),"USB-C · MagSafe · Qi"]]},
   {t:G("Возможности","Имкониятҳо","Features"),rows:[[G("Здоровье","Саломатӣ","Health"),G("Пульс · слух","Набз · шунавоӣ","Heart rate · hearing")],[G("Перевод","Тарҷума","Translation"),G("Живой перевод","Тарҷумаи зинда","Live Translation")],[G("Защита","Ҳифз","Resistance"),"IP57"]]}
+ ],
+ s11:[
+  {t:G("Корпус","Корпус","Case"),rows:[[G("Размеры","Андозаҳо","Sizes"),G("42 мм · 46 мм","42 мм · 46 мм","42mm · 46mm")],[G("Материал","Мавод","Material"),G("Алюминий или титан","Алюминий ё титан","Aluminum or titanium")],[G("Защита","Ҳифз","Resistance"),"50 m · IP6X"]]},
+  {t:G("Дисплей","Дисплей","Display"),rows:[[G("Тип","Навъ","Type"),"LTPO3 OLED Always-On"],[G("Яркость","Равшанӣ","Brightness"),G("до 2000 нит","то 2000 нит","up to 2000 nits")]]},
+  {t:G("Аккумулятор","Батарея","Battery"),rows:[[G("Работа","Кор","Battery life"),G("до 24 часов","то 24 соат","up to 24 hrs")],[G("Зарядка","Заряд","Charging"),G("Быстрая · USB-C","Тез · USB-C","Fast charge · USB-C")]]},
+  {t:G("Здоровье и связь","Саломатӣ ва алоқа","Health & more"),rows:[[G("Датчики","Сенсорҳо","Sensors"),G("Пульс · ЭКГ · O₂ · гипертония","Набз · ЭКГ · O₂ · гипертония","Heart · ECG · O₂ · hypertension")],[G("Связь","Алоқа","Connectivity"),"5G · Wi-Fi · BT 5.3"]]}
+ ],
+ se3:[
+  {t:G("Корпус","Корпус","Case"),rows:[[G("Размеры","Андозаҳо","Sizes"),G("40 мм · 44 мм","40 мм · 44 мм","40mm · 44mm")],[G("Материал","Мавод","Material"),G("Алюминий","Алюминий","Aluminum")],[G("Защита","Ҳифз","Resistance"),"50 m"]]},
+  {t:G("Дисплей","Дисплей","Display"),rows:[[G("Тип","Навъ","Type"),"Retina OLED Always-On"],[G("Особенности","Хусусиятҳо","Features"),G("Always-On — впервые в SE","Always-On — бори аввал","Always-On — first on SE")]]},
+  {t:G("Аккумулятор","Батарея","Battery"),rows:[[G("Работа","Кор","Battery life"),G("до 18 часов","то 18 соат","up to 18 hrs")],[G("Зарядка","Заряд","Charging"),G("Быстрая · USB-C","Тез · USB-C","Fast charge · USB-C")]]},
+  {t:G("Здоровье и безопасность","Саломатӣ ва бехатарӣ","Health & safety"),rows:[[G("Датчики","Сенсорҳо","Sensors"),G("Пульс · уведомления","Набз · огоҳиҳо","Heart rate · notifications")],[G("Безопасность","Бехатарӣ","Safety"),G("Авария · падение · SOS","Садама · афтиш · SOS","Crash · Fall · SOS")]]}
  ]
 };
 const ICON_PLAY='<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>';
@@ -741,7 +883,7 @@ const I18N={
   co_title:"Оформление заказа",co_sub:"Заполните данные — мы перезвоним для подтверждения.",co_name:"Имя и фамилия",co_phone:"Телефон",co_city:"Город",co_pay:"Способ оплаты",co_pay1:"Наличными при получении",co_pay2:"Картой при получении",co_pay3:"Кредит 0%",co_total:"К оплате",co_submit:"Подтвердить заказ",co_ok_h:"Заказ принят!",co_ok_p:"Спасибо за покупку в ZAMON. Менеджер свяжется с вами в течение 15 минут.",co_ok_btn:"Отлично",
   buy_color:"Цвет",buy_add:"Добавить в корзину",buy_perk1:"Бесплатная доставка по Душанбе",buy_perk2:"Гарантия 1 год",buy_perk3:"Возврат 14 дней",
   cfg_model:"Модель",cfg_model_sub:"Какая вам подходит?",cfg_finish:"Цвет",cfg_finish_sub:"Выберите любимый.",cfg_add:"Добавить в корзину",cfg_total:"Итого",
-  cfg_size:"Размер",cfg_size_sub:"Выберите размер.",cfg_storage_label:"Память",cfg_incl:"Включено",cfg_band:"Ремешок",cfg_band_sub:"Подберите свой стиль.",cfg_material:"Корпус",cfg_material_sub:"Начнём с материала и цвета.",
+  cfg_size:"Размер",cfg_size_sub:"Выберите размер.",cfg_fit_sub:"Под вашу модель.",cfg_storage_label:"Память",cfg_incl:"Включено",cfg_band:"Ремешок",cfg_band_sub:"Подберите свой стиль.",cfg_material:"Корпус",cfg_material_sub:"Начнём с материала и цвета.",
   cfg_help_size:"Не знаете, какой размер выбрать?",cfg_help_size_txt:"Больший размер — больше дисплей и ёмкость батареи. Меньший — компактнее и легче. Оба одинаково мощные.",cfg_help_band:"Какой ремешок подойдёт?",cfg_help_band_txt:"Спортивный — универсальный на каждый день. Sport Loop — мягкий и дышащий для тренировок. Миланская петля — элегантная сталь с магнитом. Плетёный — эластичный, без застёжки.",
   cfg_trade:"Trade-In",cfg_trade_sub:"Сдайте старое устройство и сэкономьте.",cfg_trade_none:"Без Trade-In",cfg_trade_none_sub:"Оплачу полную стоимость",cfg_trade_yes:"Сдать устройство",cfg_trade_est:"Ориентировочный зачёт",
   cfg_care:"Защита",cfg_care_sub:"Добавьте AppleCare+ для спокойствия.",cfg_care_none:"Без AppleCare+",cfg_care_none_sub:"Стандартная гарантия 1 год",cfg_care_yes:"AppleCare+ · 2 года",cfg_care_yes_sub:"Защита от поломок и кражи",
@@ -782,7 +924,7 @@ const I18N={
   co_title:"Ба расмият даровардан",co_sub:"Маълумотро пур кунед — занг мезанем.",co_name:"Ном ва насаб",co_phone:"Телефон",co_city:"Шаҳр",co_pay:"Тарзи пардохт",co_pay1:"Нақд ҳангоми гирифтан",co_pay2:"Корт ҳангоми гирифтан",co_pay3:"Қарзи 0%",co_total:"Барои пардохт",co_submit:"Тасдиқи фармоиш",co_ok_h:"Фармоиш қабул шуд!",co_ok_p:"Ташаккур! Менеҷер дар давоми 15 дақиқа тамос мегирад.",co_ok_btn:"Аъло",
   buy_color:"Ранг",buy_add:"Ба сабад илова",buy_perk1:"Расонидани ройгон дар Душанбе",buy_perk2:"Кафолати 1 сол",buy_perk3:"Баргардонидан 14 рӯз",
   cfg_model:"Модел",cfg_model_sub:"Кадомаш ба шумо мувофиқ аст?",cfg_finish:"Ранг",cfg_finish_sub:"Дӯстдоштаатонро интихоб кунед.",cfg_add:"Ба сабад илова",cfg_total:"Ҳамагӣ",
-  cfg_size:"Андоза",cfg_size_sub:"Андозаро интихоб кунед.",cfg_storage_label:"Хотира",cfg_incl:"Дохил аст",cfg_band:"Тасма",cfg_band_sub:"Услуби худро интихоб кунед.",cfg_material:"Корпус",cfg_material_sub:"Аз мавод ва ранг сар мекунем.",
+  cfg_size:"Андоза",cfg_size_sub:"Андозаро интихоб кунед.",cfg_fit_sub:"Барои модели шумо.",cfg_storage_label:"Хотира",cfg_incl:"Дохил аст",cfg_band:"Тасма",cfg_band_sub:"Услуби худро интихоб кунед.",cfg_material:"Корпус",cfg_material_sub:"Аз мавод ва ранг сар мекунем.",
   cfg_help_size:"Намедонед кадом андоза?",cfg_help_size_txt:"Андозаи калонтар — дисплей ва батареяи калонтар. Хурдтар — ҷайбӣ ва сабуктар. Ҳарду баробар пурқувватанд.",cfg_help_band:"Кадом тасма мувофиқ аст?",cfg_help_band_txt:"Варзишӣ — барои ҳар рӯз. Sport Loop — нарм барои машқ. Миланӣ — пӯлоди шево. Бофта — бе баст.",
   cfg_trade:"Trade-In",cfg_trade_sub:"Дастгоҳи кӯҳнаро супоред ва сарфа кунед.",cfg_trade_none:"Бе Trade-In",cfg_trade_none_sub:"Арзиши пурраро пардохт мекунам",cfg_trade_yes:"Супоридани дастгоҳ",cfg_trade_est:"Зачёти тахминӣ",
   cfg_care:"Ҳифз",cfg_care_sub:"Барои оромӣ AppleCare+ илова кунед.",cfg_care_none:"Бе AppleCare+",cfg_care_none_sub:"Кафолати стандартии 1 сол",cfg_care_yes:"AppleCare+ · 2 сол",cfg_care_yes_sub:"Ҳифз аз шикаст ва дуздӣ",
@@ -823,7 +965,7 @@ const I18N={
   co_title:"Checkout",co_sub:"Fill in your details — we'll call to confirm.",co_name:"Full name",co_phone:"Phone",co_city:"City",co_pay:"Payment method",co_pay1:"Cash on delivery",co_pay2:"Card on delivery",co_pay3:"0% financing",co_total:"To pay",co_submit:"Confirm order",co_ok_h:"Order received!",co_ok_p:"Thank you for shopping at ZAMON. Our manager will contact you within 15 minutes.",co_ok_btn:"Great",
   buy_color:"Color",buy_add:"Add to Bag",buy_perk1:"Free delivery in Dushanbe",buy_perk2:"1-year warranty",buy_perk3:"14-day returns",
   cfg_model:"Model",cfg_model_sub:"Which is best for you?",cfg_finish:"Finish",cfg_finish_sub:"Pick your favorite.",cfg_add:"Add to Bag",cfg_total:"Total",
-  cfg_size:"Size",cfg_size_sub:"Choose your size.",cfg_storage_label:"Storage",cfg_incl:"Included",cfg_band:"Band",cfg_band_sub:"Find your style.",cfg_material:"Case",cfg_material_sub:"Start with your material and finish.",
+  cfg_size:"Size",cfg_size_sub:"Choose your size.",cfg_fit_sub:"For your model.",cfg_storage_label:"Storage",cfg_incl:"Included",cfg_band:"Band",cfg_band_sub:"Find your style.",cfg_material:"Case",cfg_material_sub:"Start with your material and finish.",
   cfg_help_size:"Need help choosing a size?",cfg_help_size_txt:"A larger size means a bigger display and battery. A smaller one is more compact and lighter. Both are equally powerful.",cfg_help_band:"Which band is right for you?",cfg_help_band_txt:"Sport Band — versatile for everyday. Sport Loop — soft and breathable for workouts. Milanese Loop — elegant steel with a magnet. Braided — stretchy, no clasp.",
   cfg_trade:"Trade-In",cfg_trade_sub:"Trade in your old device and save.",cfg_trade_none:"No Trade-In",cfg_trade_none_sub:"I'll pay the full price",cfg_trade_yes:"Trade in a device",cfg_trade_est:"Estimated credit",
   cfg_care:"Protection",cfg_care_sub:"Add AppleCare+ for peace of mind.",cfg_care_none:"No AppleCare+",cfg_care_none_sub:"Standard 1-year warranty",cfg_care_yes:"AppleCare+ · 2 years",cfg_care_yes_sub:"Coverage for damage and theft",
@@ -989,6 +1131,7 @@ function applyLang(l){
   if(document.getElementById("guarantees"))renderGuarantees();
   if(document.getElementById("catalog"))renderCatalog();
   if(document.getElementById("buygrid"))renderBuyGrid();
+  if(document.getElementById("chapnav"))renderChapnav();
   if(document.getElementById("phero")){renderProductHero();renderSubnav();renderHighlights();renderFeatures();renderWhyProd();initSubnavSpy();}
   if(document.getElementById("compare-models"))renderCompare();
   if(document.getElementById("modelpage"))renderModelPage();
@@ -1011,7 +1154,22 @@ let cart=JSON.parse(localStorage.getItem("zamon-cart")||"[]");
 function saveCart(){localStorage.setItem("zamon-cart",JSON.stringify(cart));}
 function openCart(){document.getElementById("drawer").classList.add("open");document.getElementById("overlay").classList.add("open");document.body.style.overflow="hidden";}
 function closeCart(){document.getElementById("drawer").classList.remove("open");document.getElementById("overlay").classList.remove("open");document.body.style.overflow="";}
-function addToCart(id,colorIdx=0,silent=false,price){const ex=cart.find(c=>c.id===id&&c.color===colorIdx&&(c.price||0)===(price||0));if(ex)ex.qty++;else cart.push({id,color:colorIdx,qty:1,price:price});saveCart();updateCount();renderCart();if(!silent)toast(t("added"));}
+function addToCart(id,colorIdx=0,silent=false,price,fit,cfg){fit=fit||0;const cfgK=JSON.stringify(cfg||0);const ex=cart.find(c=>c.id===id&&c.color===colorIdx&&(c.price||0)===(price||0)&&(c.fit||0)===fit&&JSON.stringify(c.cfg||0)===cfgK);if(ex)ex.qty++;else cart.push({id,color:colorIdx,qty:1,price:price,fit:fit,cfg:cfg});saveCart();updateCount();renderCart();if(!silent)toast(t("added"));}
+/* активный набор цветов с учётом выбранной модели (fitColors) */
+function colsOf(p,fit){return (p.fitColors&&p.fitColors.models[fit||0])?p.fitColors.models[fit||0].colors:(p.buyColors||p.colors);}
+/* активный набор цветов позиции корзины с учётом материала (watch) и модели (fitColors) */
+function itemCols(p,c){const cfg=c.cfg||{};if(p.materials)return (p.materials[cfg.mi||0]||p.materials[0]).finishes;if(p.fitColors)return (p.fitColors.models[c.fit||0]||p.fitColors.models[0]).colors;return p.buyColors||p.colors;}
+function colOf(p,c){const cs=itemCols(p,c);return cs[c.color]||cs[0];}
+/* подпись варианта в корзине: цвет + выбранная модель/размер */
+function cartSub(p,c){const b=[];const cfg=c.cfg||{};
+  if(p.materials){const m=p.materials[cfg.mi||0]||p.materials[0];b.push(tr(m.n));}
+  const cs=itemCols(p,c);if(cs.length>1)b.push(tr((cs[c.color]||cs[0]).n));
+  if(p.variants){const v=p.variants[cfg.vi||0]||p.variants[0];b.push(tr(v.n));}
+  if(p.storage){const st=p.storage[cfg.si||0]||p.storage[0];b.push(stLabel(st.gb));}
+  if(p.bands){const bd=p.bands[cfg.bi||0]||p.bands[0];let bn=tr(bd.n);if(bd.colors&&bd.colors.length>1){const bc=bd.colors[cfg.bci||0]||bd.colors[0];bn+=" — "+tr(bc.n);}b.push(bn);}
+  if(p.fitColors){const m=p.fitColors.models[c.fit||0]||p.fitColors.models[0];b.push(tr(m.n));}
+  else if(p.fit&&p.fit.opts[c.fit||0])b.push(tr(p.fit.opts[c.fit||0]));
+  return b.join(" · ");}
 function updateCount(){const n=cart.reduce((s,c)=>s+c.qty,0);const el=document.getElementById("cartCount");if(!el)return;el.textContent=n;el.classList.toggle("show",n>0);}
 function renderCartPage(){
   const box=document.getElementById("cartpage");if(!box)return;
@@ -1020,9 +1178,9 @@ function renderCartPage(){
   const total=cartSum();
   const waCartMsg=tr({ru:"Здравствуйте! Хочу заказать:",tj:"Салом! Мехоҳам фармоиш диҳам:",en:"Hi! I'd like to order:"})+"\n"+cart.map(c=>{const p=P(c.id);return p?"• "+p.name+" × "+c.qty:"";}).filter(Boolean).join("\n")+"\n"+tr({ru:"Итого: ",tj:"Ҳамагӣ: ",en:"Total: "})+fmtPrice(total);
   box.innerHTML=`<div class="cp-head"><h1>${t("cart_title")}</h1><span>${cart.reduce((s,c)=>s+c.qty,0)} ${t("pieces")}</span></div>
-   <div class="cp-grid"><div class="cp-items">${cart.map((c,i)=>{const p=P(c.id);if(!p)return"";const col=p.colors[c.color]||p.colors[0];
+   <div class="cp-grid"><div class="cp-items">${cart.map((c,i)=>{const p=P(c.id);if(!p)return"";const col=colOf(p,c);
      return `<div class="cp-item"><div class="cp-img"><img src="${p.card||col.img}" data-emoji="${p.emoji}" alt="${p.name}" onerror="imgFallback(this)"></div>
-       <div class="cp-info"><h3>${p.name}</h3>${p.colors.length>1?`<div class="cp-sub">${tr(col.n)}</div>`:""}<div class="cp-unit">${fmtPrice(priceOf(c))}</div><button class="cp-rm" data-rm="${i}">${t("remove")}</button></div>
+       <div class="cp-info"><h3>${p.name}</h3>${cartSub(p,c)?`<div class="cp-sub">${cartSub(p,c)}</div>`:""}<div class="cp-unit">${fmtPrice(priceOf(c))}</div><button class="cp-rm" data-rm="${i}">${t("remove")}</button></div>
        <div class="cp-right"><div class="qty"><button data-dec="${i}">−</button><span>${c.qty}</span><button data-inc="${i}">+</button></div><div class="cp-price">${fmtPrice(priceOf(c)*c.qty)}</div></div></div>`;}).join("")}</div>
      <aside class="cp-sum"><h3>${t("cp_summary")}</h3>
        <div class="cp-row"><span>${t("cart_total")}</span><span>${fmtPrice(total)}</span></div>
@@ -1041,9 +1199,9 @@ function renderCart(){
   const box=document.getElementById("cartItems"),foot=document.getElementById("drawerFoot");if(!box)return;
   if(!cart.length){box.innerHTML=`<div class="empty-cart"><div class="ec-ico">🛍️</div><div style="font-weight:600;color:var(--text)">${t("cart_empty")}</div><div style="font-size:.85rem;margin-top:4px">${t("cart_empty_sub")}</div></div>`;foot.style.display="none";return;}
   foot.style.display="block";
-  box.innerHTML=cart.map((c,i)=>{const p=P(c.id);if(!p)return"";const col=p.colors[c.color]||p.colors[0];
+  box.innerHTML=cart.map((c,i)=>{const p=P(c.id);if(!p)return"";const col=colOf(p,c);
     return `<div class="ci"><div class="ci-img"><img src="${p.card||col.img}" data-emoji="${p.emoji}" alt="${p.name}" onerror="imgFallback(this)"></div>
-      <div class="ci-info"><h4>${p.name}</h4>${p.colors.length>1?`<div class="ci-sub">${tr(col.n)}</div>`:""}<div class="ci-price">${fmtPrice(priceOf(c))}</div>
+      <div class="ci-info"><h4>${p.name}</h4>${cartSub(p,c)?`<div class="ci-sub">${cartSub(p,c)}</div>`:""}<div class="ci-price">${fmtPrice(priceOf(c))}</div>
         <button class="ci-rm" data-rm="${i}">${t("remove")}</button></div>
       <div class="qty"><button data-dec="${i}">−</button><span>${c.qty}</span><button data-inc="${i}">+</button></div></div>`;}).join("");
   const total=cartSum();
@@ -1119,7 +1277,7 @@ function orderDate(ts){try{return new Date(ts).toLocaleDateString(LANG==="en"?"e
 /* ===== MULTI-STEP CHECKOUT (checkout.html) ===== */
 let CK=null;
 function buildOrderMsg(o){
-  const lines=o.items.map(it=>{const p=P(it.id);if(!p)return"";const col=p.colors[it.color]||p.colors[0];return "• "+p.name+" ("+tr(col.n)+") × "+it.qty;}).filter(Boolean).join("\n");
+  const lines=o.items.map(it=>{const p=P(it.id);if(!p)return"";const s=cartSub(p,it);return "• "+p.name+(s?" ("+s+")":"")+" × "+it.qty;}).filter(Boolean).join("\n");
   const dd=o.d;
   const deliv=dd.delivery==="courier"?(tr({ru:"Курьер",tj:"Курьер",en:"Courier"})+": "+dd.city+", "+dd.addr):tr({ru:"Самовывоз",tj:"Худбардорӣ",en:"Pickup"});
   return tr({ru:"🛒 НОВЫЙ ЗАКАЗ ZAMON",tj:"🛒 ФАРМОИШИ НАВ ZAMON",en:"🛒 NEW ZAMON ORDER"})+" №"+o.no+"\n\n"
@@ -1166,7 +1324,7 @@ function renderCheckout(){
       <div class="ck-nav"><a class="btn btn-soft" href="cart.html">${t("ck_back")}</a>
         <button class="btn btn-primary" id="ckNext">${t("ck_place")}</button></div></div>
       <aside class="ck-sum"><h3>${t("cp_summary")}</h3>
-        ${cart.map(c=>{const p=P(c.id);if(!p)return"";const col=p.colors[c.color]||p.colors[0];return `<div class="ck-sli"><div class="ck-sli-img"><img src="${p.card||col.img}" data-emoji="${p.emoji}" alt="${p.name}" onerror="imgFallback(this)"></div><div class="ck-sli-i"><span>${p.name}</span><small>${tr(col.n)} · ${c.qty} ${t("pieces")}</small></div><b>${fmtPrice(priceOf(c)*c.qty)}</b></div>`;}).join("")}
+        ${cart.map(c=>{const p=P(c.id);if(!p)return"";const col=colOf(p,c);return `<div class="ck-sli"><div class="ck-sli-img"><img src="${p.card||col.img}" data-emoji="${p.emoji}" alt="${p.name}" onerror="imgFallback(this)"></div><div class="ck-sli-i"><span>${p.name}</span><small>${cartSub(p,c)?cartSub(p,c)+" · ":""}${c.qty} ${t("pieces")}</small></div><b>${fmtPrice(priceOf(c)*c.qty)}</b></div>`;}).join("")}
         <div class="ck-ship">✓ <span>${t("ship_free")}</span></div>
         <div class="cp-grand"><span>${t("co_total")}</span><span>${fmtPrice(total)}</span></div></aside></div>`;
   root.querySelectorAll("[data-f]").forEach(i=>i.oninput=()=>{D[i.dataset.f]=i.value;});
@@ -1175,7 +1333,7 @@ function renderCheckout(){
   root.querySelector("#ckNext").onclick=()=>{
     if(!D.name||!D.phone){toast(tr({ru:"Укажите имя и телефон",tj:"Ном ва телефонро нависед",en:"Enter name and phone"}));return;}
     if(courier&&(!D.city||!D.addr)){toast(tr({ru:"Укажите город и адрес доставки",tj:"Шаҳр ва суроғаро нависед",en:"Enter city and delivery address"}));return;}
-    const o={no:"Z"+Date.now().toString().slice(-7),ts:Date.now(),items:cart.map(c=>({id:c.id,color:c.color,qty:c.qty,price:priceOf(c)})),total:cartSum(),d:Object.assign({},D)};
+    const o={no:"Z"+Date.now().toString().slice(-7),ts:Date.now(),items:cart.map(c=>({id:c.id,color:c.color,qty:c.qty,price:priceOf(c),fit:c.fit||0,cfg:c.cfg})),total:cartSum(),d:Object.assign({},D)};
     o.waMsg=buildOrderMsg(o);
     notifyShop(o);
     orders.unshift(o);saveOrders();cart=[];saveCart();updateCount();renderCart();
@@ -1267,7 +1425,7 @@ function initCarousel(root,dotsEl){
 }
 
 /* ===== SWATCHES (cards) ===== */
-function swatchHtml(p,cls,force){if(p.colors.length<2||(p.card&&!force))return "";return `<div class="${cls}">`+p.colors.map((c,i)=>`<span class="sw ${i===0?"active":""}" data-sw="${p.id}" data-idx="${i}" title="${tr(c.n)}" style="background:${c.hex}"></span>`).join("")+`</div>`;}
+function swatchHtml(p,cls,force){if(p.colors.length<2||(p.card&&!force))return "";return `<div class="${cls}">`+p.colors.map((c,i)=>`<span class="sw ${c.sw?"sw-img":""} ${i===0?"active":""}" data-sw="${p.id}" data-idx="${i}" title="${tr(c.n)}" style="${c.sw?`background-image:url('${shrinkCDN(c.sw,90)}')`:`background:${c.hex}`}"></span>`).join("")+`</div>`;}
 
 /* ===== RENDER: lineup ===== */
 function renderLineup(){
@@ -1423,11 +1581,11 @@ function renderConfigurator(){
   const root=document.getElementById("cfg");if(!root)return;
   if(!CFG){
     const id=+(new URLSearchParams(location.search).get("id")||1);
-    CFG={pid:(P(id)?id:PRODUCTS[0].id),ci:0,si:0,vi:0,bi:0,mi:0,gi:0,focus:"case",care:false,trade:false,pay:"inst"};
+    CFG={pid:(P(id)?id:PRODUCTS[0].id),ci:0,si:0,vi:0,bi:0,bci:0,mi:0,gi:0,fi:0,focus:"case",care:false,trade:false,pay:"inst"};
   }
   const p=P(CFG.pid)||PRODUCTS[0];
   const mats=p.materials;
-  const curCols=()=>mats?mats[CFG.mi].finishes:(p.buyColors||p.colors);
+  const curCols=()=>mats?mats[CFG.mi].finishes:(p.fitColors?p.fitColors.models[CFG.fi].colors:(p.buyColors||p.colors));
   const cat=p.cat;
   const li=LIcat(cat)||{};
   const hl=((PAGEDATA[li.key]||{}).highlights||[]).map(h=>h.img);
@@ -1436,8 +1594,21 @@ function renderConfigurator(){
   function gallery(){
     const cols=curCols();const col=cols[CFG.ci];
     // per-colour gallery (accessory: main + AV angles) wins; else recoloured main + product angles
-    if(col.gal&&col.gal.length)return col.gal.filter(Boolean).slice(0,6);
+    if(col.gal&&col.gal.length)return col.gal.filter(Boolean).slice(0,8);
     const angles=p.gallery||[];
+    // шаг «Ремешок»: главным — фото часов с выбранным ремешком в его цвете (как Apple Watch Studio)
+    if(CFG.focus==="band"&&p.bands){
+      const bd=p.bands[CFG.bi];const bc=bd&&bd.colors&&bd.colors[CFG.bci||0];
+      const pics=[];
+      const combo=watchCombo(p,bd,bc,CFG.ci,col);       // композит «часы+ремешок» наложением слоёв
+      if(combo)pics.push(combo);
+      else pics.push(col.img);                          // фолбэк: собранный корпус в финише
+      if(bc&&bc.img)pics.push(bc.img);                  // деталь: ремешок крупно
+      if(p.bandImgs&&p.bandImgs.length)pics.push(...p.bandImgs);
+      pics.push(col.img);
+      return pics.concat(angles).filter(Boolean).slice(0,6);
+    }
+    // шаг «Корпус/финиш»: часы в выбранном финише + ракурсы корпуса
     return [col.img].concat(angles).filter(Boolean).slice(0,5);
   }
   function calc(){
@@ -1453,7 +1624,12 @@ function renderConfigurator(){
   }
 
   function render(){
-    const cols=curCols();const c=calc(),imgs=gallery(),col=cols[CFG.ci];
+    if(p.fitColors&&CFG.fi>=p.fitColors.models.length)CFG.fi=0;
+    if(p.fit&&CFG.fi>=p.fit.opts.length)CFG.fi=0;
+    let cols=curCols();
+    if(CFG.ci>=cols.length)CFG.ci=0;
+    if(p.bands&&p.bands[CFG.bi]&&p.bands[CFG.bi].colors&&CFG.bci>=p.bands[CFG.bi].colors.length)CFG.bci=0;
+    const c=calc(),imgs=gallery(),col=cols[CFG.ci];
     if(CFG.gi>=imgs.length)CFG.gi=0;
     const optRow=(active,data,name,sub,price)=>`<div class="cfg-opt ${active?"active":""}" ${data}>
       <div><div class="o-name">${name}</div>${sub?`<div class="o-sub">${sub}</div>`:""}</div>
@@ -1473,7 +1649,7 @@ function renderConfigurator(){
         <img id="cfgBig" src="${imgs[CFG.gi]}" data-emoji="${p.emoji}" alt="${p.name}" onerror="imgFallback(this)">
         ${imgs.length>1?`<div class="cfg-gnav"><button class="cfg-arrow" id="cfgGPrev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg></button><button class="cfg-arrow" id="cfgGNext"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg></button></div>`:""}
       </div>
-      ${imgs.length>1?`<div class="cfg-thumbs">${imgs.map((im,i)=>`<button class="cfg-thumb ${i===CFG.gi?"active":""}" data-gi="${i}"><img src="${im}" alt="" onerror="var b=this.closest('.cfg-thumb');if(b)b.remove()"></button>`).join("")}</div>`:""}
+      ${imgs.length>1?`<div class="cfg-details">${imgs.map((im,i)=>({im,i})).filter(o=>o.i!==CFG.gi).slice(0,2).map(o=>`<button class="cfg-detail" data-gi="${o.i}"><img src="${o.im}" alt="" loading="lazy" onerror="var b=this.closest('.cfg-detail');if(b)b.remove()"></button>`).join("")}</div>`:""}
     </div></div>
 
     <div class="cfg-panel">
@@ -1491,8 +1667,15 @@ function renderConfigurator(){
 
       ${!mats?`<div class="cfg-group"><div class="cfg-q">${t("cfg_finish")} <span>${t("cfg_finish_sub")}</span></div>${finishSw}</div>`:""}
 
+      ${p.fitColors?`<div class="cfg-group"><div class="cfg-q">${tr(p.fitColors.label)} <span>${t("cfg_fit_sub")}</span></div>
+        ${p.fitColors.models.map((m,i)=>optRow(i===CFG.fi,`data-fi="${i}"`,tr(m.n),"",null)).join("")}</div>`:""}
+
+      ${p.fit?`<div class="cfg-group"><div class="cfg-q">${tr(p.fit.label)} <span>${t("cfg_fit_sub")}</span></div>
+        ${p.fit.opts.map((o,i)=>optRow(i===CFG.fi,`data-fi="${i}"`,tr(o),"",null)).join("")}</div>`:""}
+
       ${p.bands?`<div class="cfg-group"><div class="cfg-q">${t("cfg_band")} <span>${t("cfg_band_sub")}</span></div>
-        ${p.bands.map((b,i)=>optRow(i===CFG.bi,`data-bi="${i}"`,`<span class="cfg-banddot" style="background:${b.hex}"></span>${tr(b.n)}`,b.desc?tr(b.desc):"",plus(b.add))).join("")}
+        ${p.bands.map((b,i)=>{const cc=b.colors&&b.colors[i===CFG.bi?(CFG.bci||0):0];const dot=cc?cc.hex:b.hex;return optRow(i===CFG.bi,`data-bi="${i}"`,`<span class="cfg-banddot" style="background:${dot}"></span>${tr(b.n)}`,b.desc?tr(b.desc):"",plus(b.add));}).join("")}
+        ${(()=>{const bd=p.bands[CFG.bi];if(!bd||!bd.colors||bd.colors.length<2)return"";return `<div class="cfg-finish-row"><div class="cfg-sublabel">${tr({ru:"Цвет ремешка",tj:"Ранги тасма",en:"Band colour"})} — ${tr((bd.colors[CFG.bci||0]||bd.colors[0]).n)}</div><div class="cfg-colors">${bd.colors.map((cc,i)=>`<div class="cfg-color ${i===(CFG.bci||0)?"active":""}" data-bci="${i}" title="${tr(cc.n)}"><span class="cc-dot" style="background:${cc.hex}"></span><span class="cc-name">${tr(cc.n)}</span></div>`).join("")}</div></div>`;})()}
         <details class="cfg-help"><summary>${t("cfg_help_band")}</summary><p>${t("cfg_help_band_txt")}</p></details></div>`:""}
 
       ${p.storage?`<div class="cfg-group"><div class="cfg-q">${t("cfg_storage_label")} <span>${t("cfg_storage_sub")}</span></div>
@@ -1517,21 +1700,24 @@ function renderConfigurator(){
       </div>
     </div>`;
 
-    root.querySelectorAll("[data-pid]").forEach(b=>b.onclick=()=>{CFG.pid=+b.dataset.pid;CFG.ci=0;CFG.si=0;CFG.vi=0;CFG.bi=0;CFG.mi=0;CFG.gi=0;CFG.focus="case";CFG.care=false;CFG.trade=false;renderConfigurator();});
+    root.querySelectorAll("[data-pid]").forEach(b=>b.onclick=()=>{CFG.pid=+b.dataset.pid;CFG.ci=0;CFG.si=0;CFG.vi=0;CFG.bi=0;CFG.bci=0;CFG.mi=0;CFG.gi=0;CFG.fi=0;CFG.focus="case";CFG.care=false;CFG.trade=false;renderConfigurator();});
     root.querySelectorAll("[data-mi]").forEach(o=>o.onclick=()=>{CFG.mi=+o.dataset.mi;CFG.ci=0;CFG.gi=0;CFG.focus="case";render();});
     root.querySelectorAll("[data-vi]").forEach(o=>o.onclick=()=>{CFG.vi=+o.dataset.vi;CFG.focus="case";render();});
-    root.querySelectorAll("[data-bi]").forEach(o=>o.onclick=()=>{CFG.bi=+o.dataset.bi;CFG.gi=0;CFG.focus="band";render();});
-    root.querySelectorAll(".cfg-color").forEach(o=>o.onclick=()=>{CFG.ci=+o.dataset.ci;CFG.gi=0;CFG.focus="case";render();});
+    root.querySelectorAll("[data-bi]").forEach(o=>o.onclick=()=>{CFG.bi=+o.dataset.bi;CFG.bci=0;CFG.gi=0;CFG.focus="band";render();});
+    root.querySelectorAll("[data-bci]").forEach(o=>o.onclick=()=>{CFG.bci=+o.dataset.bci;CFG.gi=0;CFG.focus="band";render();});
+    root.querySelectorAll("[data-ci]").forEach(o=>o.onclick=()=>{CFG.ci=+o.dataset.ci;CFG.gi=0;CFG.focus="case";render();});
     root.querySelectorAll("[data-si]").forEach(o=>o.onclick=()=>{CFG.si=+o.dataset.si;CFG.focus="case";render();});
     root.querySelectorAll("[data-trade]").forEach(o=>o.onclick=()=>{CFG.trade=o.dataset.trade==="1";render();});
     root.querySelectorAll("[data-care]").forEach(o=>o.onclick=()=>{CFG.care=o.dataset.care==="1";render();});
     root.querySelectorAll("[data-pay]").forEach(o=>o.onclick=()=>{CFG.pay=o.dataset.pay;render();});
+    root.querySelectorAll("[data-fi]").forEach(o=>o.onclick=()=>{CFG.fi=+o.dataset.fi;if(p.fitColors){CFG.ci=0;CFG.gi=0;}render();});
     root.querySelectorAll("[data-gi]").forEach(o=>o.onclick=()=>{CFG.gi=+o.dataset.gi;render();});
     const gp=root.querySelector("#cfgGPrev"),gn=root.querySelector("#cfgGNext");
     if(gp)gp.onclick=()=>{CFG.gi=(CFG.gi-1+imgs.length)%imgs.length;render();};
     if(gn)gn.onclick=()=>{CFG.gi=(CFG.gi+1)%imgs.length;render();};
-    root.querySelector("#cfgAdd").onclick=()=>{addToCart(p.id,CFG.ci,false,c.total);openCart();};
-    root.querySelector("#cfgBuy").onclick=()=>{addToCart(p.id,CFG.ci,true,c.total);openCheckout();};
+    const cfgState=()=>({mi:CFG.mi,vi:CFG.vi,si:CFG.si,bi:CFG.bi,bci:CFG.bci||0});
+    root.querySelector("#cfgAdd").onclick=()=>{addToCart(p.id,CFG.ci,false,c.total,CFG.fi,cfgState());openCart();};
+    root.querySelector("#cfgBuy").onclick=()=>{addToCart(p.id,CFG.ci,true,c.total,CFG.fi,cfgState());openCheckout();};
   }
   render();
   document.title="ZAMON — "+p.name;
@@ -1571,7 +1757,8 @@ function renderProduct(){
   const id=+(new URLSearchParams(location.search).get("id")||1);const p=P(id)||PRODUCTS[0];
   document.title=tr({ru:"Купить "+p.name+" в Душанбе",tj:p.name+"-ро дар Душанбе харед",en:"Buy "+p.name+" in Dushanbe"})+" — ZAMON";
   productLD(p);
-  const li=LIcat(p.cat)||{};const key=li.key;const pd=PAGEDATA[key];const cols=p.buyColors||p.colors;
+  const li=LIcat(p.cat)||{};const key=li.key;const pd=PAGEDATA[key];let cols=colsOf(p,0);
+  const fitData=p.fitColors?{label:p.fitColors.label,opts:p.fitColors.models.map(m=>m.n)}:p.fit;
   const mkey=Object.keys(MODELS).find(k=>MODELS[k].productId===id);const ts=mkey?TECHSPECS[mkey]:null;
   const sp=SPECS[id]||{};const SL=x=>typeof x==="string"?x:tr(x);
   const dark=p.darkMedia&&!p.buyColors;
@@ -1581,7 +1768,8 @@ function renderProduct(){
     <div class="phero-cta"><a class="btn btn-primary lg" href="buy.html?id=${id}">${t("pp_buy")}</a><button class="btn btn-ghost lg" id="prodAdd">${t("buy_add")}</button></div>
     <a class="btn btn-wa lg prod-wa" href="${waLink(tr({ru:"Здравствуйте! Хочу заказать ",tj:"Салом! Мехоҳам фармоиш диҳам ",en:"Hi! I'd like to order "})+p.name+" — "+t("from")+fmtPrice(p.price)+".")}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.5A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-2.8.7.7-2.7-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.7.9c-.1.1-.3.2-.5 0-.7-.3-1.4-.7-2-1.4-.4-.5-.7-1-.9-1.4-.1-.2 0-.4.1-.5l.4-.5c.1-.1.1-.2.2-.4 0-.1 0-.3 0-.4l-.7-1.7c-.2-.4-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.7.7-.9 1.6-.6 2.6.3 1.1 1 2.1 1.2 2.4 1.7 2.5 3.6 3.3 4.8 3.6.6.2 1.1.2 1.5.1.5-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1l-.3-.2Z"/></svg> ${tr({ru:"Заказать в WhatsApp",tj:"Фармоиш дар WhatsApp",en:"Order on WhatsApp"})}</a>
     ${trustRowHTML()}
-    ${cols.length>1?`<div class="prod-sw">${cols.map((c,i)=>`<button class="psw ${c.sw?"psw-img":""} ${i===0?"active":""}" data-pi="${i}" style="${c.sw?`background-image:url(${c.sw})`:`background:${c.hex}`}" title="${tr(c.n)}" aria-label="${tr(c.n)}"></button>`).join("")}</div>`:""}
+    <div class="prod-sw" id="prodSw">${cols.length>1?cols.map((c,i)=>`<button class="psw ${c.sw?"psw-img":""} ${i===0?"active":""}" data-pi="${i}" style="${c.sw?`background-image:url(${c.sw})`:`background:${c.hex}`}" title="${tr(c.n)}" aria-label="${tr(c.n)}"></button>`).join(""):""}</div>
+    ${fitData?`<div class="prod-fit"><div class="pf-label">${tr(fitData.label)}</div><div class="pf-opts">${fitData.opts.map((o,i)=>`<button class="pf-opt ${i===0?"active":""}" data-fit="${i}">${tr(o)}</button>`).join("")}</div></div>`:""}
     <img class="phero-img" id="prodImg" src="${(cols[0].gal&&cols[0].gal[0])||cols[0].img}" data-emoji="${p.emoji}" alt="${p.name}" onerror="imgFallback(this)">
     <div class="prod-gallery" id="prodGal"></div></section>`;
   let specsHtml;
@@ -1615,10 +1803,14 @@ function renderProduct(){
     <div class="phero-cta" style="justify-content:center"><a class="btn btn-primary lg" href="buy.html?id=${id}">${t("pp_buy")} · ${fmtPrice(p.price)}</a><a class="btn btn-ghost lg" href="${li.page||"index.html"}">${t("details")} →</a></div></div></section>`;
   root.innerHTML=hero+(pdata?mediaSec:advSec)+specsSec+witbSec+faqSec+cta;
   function setProdGallery(ci){const c=cols[ci];const gal=(c.gal&&c.gal.length)?c.gal:[c.img];const main=document.getElementById("prodImg");if(main)main.src=gal[0];const gel=document.getElementById("prodGal");if(!gel)return;gel.innerHTML=gal.length>1?gal.map((g,j)=>`<button class="pg-thumb ${j===0?"active":""}" data-g="${j}"><img src="${g}" loading="lazy" alt="" onerror="var b=this.closest('.pg-thumb');if(b)b.remove()"></button>`).join(""):"";gel.querySelectorAll("[data-g]").forEach(b=>b.onclick=()=>{if(main)main.src=gal[+b.dataset.g];gel.querySelectorAll("[data-g]").forEach(x=>x.classList.toggle("active",x===b));});}
-  root.querySelectorAll("[data-pi]").forEach(b=>b.onclick=()=>{const i=+b.dataset.pi;setProdGallery(i);root.querySelectorAll("[data-pi]").forEach(s=>s.classList.toggle("active",s===b));});
+  let prodCi=0,prodFit=0;
+  function wireSw(){root.querySelectorAll("[data-pi]").forEach(b=>b.onclick=()=>{prodCi=+b.dataset.pi;setProdGallery(prodCi);root.querySelectorAll("[data-pi]").forEach(s=>s.classList.toggle("active",s===b));});}
+  function paintSw(){const sw=root.querySelector("#prodSw");if(sw){sw.innerHTML=cols.length>1?cols.map((c,i)=>`<button class="psw ${c.sw?"psw-img":""} ${i===prodCi?"active":""}" data-pi="${i}" style="${c.sw?`background-image:url(${c.sw})`:`background:${c.hex}`}" title="${tr(c.n)}" aria-label="${tr(c.n)}"></button>`).join(""):"";wireSw();}setProdGallery(prodCi);}
+  wireSw();
+  root.querySelectorAll("[data-fit]").forEach(b=>b.onclick=()=>{prodFit=+b.dataset.fit;prodCi=0;if(p.fitColors)cols=colsOf(p,prodFit);root.querySelectorAll("[data-fit]").forEach(s=>s.classList.toggle("active",s===b));paintSw();});
   setProdGallery(0);
   wireFAQ(root);
-  const add=root.querySelector("#prodAdd");if(add)add.onclick=()=>{addToCart(id,0);openCart();};
+  const add=root.querySelector("#prodAdd");if(add)add.onclick=()=>{addToCart(id,prodCi,false,undefined,prodFit);openCart();};
   if(pdata&&pdata.gallery){const c=root.querySelector("#pdCar");if(c)initCarousel(c,document.getElementById("pdDots"));}
   observeReveal();initTilt(".pf-card");
 }
@@ -1869,6 +2061,7 @@ document.addEventListener("DOMContentLoaded",()=>{
   if(document.getElementById("guarantees"))renderGuarantees();
   if(document.getElementById("catalog"))renderCatalog();
   if(document.getElementById("buygrid"))renderBuyGrid();
+  if(document.getElementById("chapnav"))renderChapnav();
   if(document.getElementById("phero")){renderProductHero();renderSubnav();renderHighlights();renderFeatures();renderWhyProd();initSubnavSpy();}
   if(document.getElementById("compare-models"))renderCompare();
   if(document.getElementById("modelpage"))renderModelPage();

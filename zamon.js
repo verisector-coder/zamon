@@ -423,9 +423,12 @@ function renderFeatures(){
 
 /* ===== COMPARE table (per category) ===== */
 const SPECS={
- 1:{chip:"A19 Pro",display:"6.3″ OLED",battery:"до 33 ч"},2:{chip:"A19 Pro",display:"6.5″ OLED",battery:"до 27 ч"},
- 3:{chip:"A19",display:"6.3″ OLED",battery:"до 30 ч"},4:{chip:"A19",display:"6.1″ OLED",battery:"до 26 ч"},5:{chip:"A18",display:"6.1″ OLED",battery:"до 22 ч"},
- 6:{chip:"M5 Pro / M5 Max",display:"14″ или 16″ XDR",battery:"до 24 ч"},7:{chip:"M4",display:"15″ Retina",battery:"до 18 ч"},16:{chip:"M5",display:"13″ Retina",battery:"до 18 ч"},18:{chip:"M4",display:"24″ 4.5K Retina"},19:{chip:"M4",display:"—"},
+ 1:{chip:"A19 Pro",display:"6,3″ Super Retina XDR OLED · 120 Гц",camera:"48 Мп + 48 Мп + 48 Мп · видео 4K",battery:"до 33 ч видео",build:"Титан · Ceramic Shield · IP68",conn:"5G · USB-C · Wi-Fi 7"},
+ 2:{chip:"A19 Pro",display:"6,5″ Super Retina XDR OLED · 120 Гц",camera:"48 Мп Fusion · видео 4K",battery:"до 27 ч видео",build:"Титан · Ceramic Shield · IP68",conn:"5G · USB-C · Wi-Fi 7"},
+ 3:{chip:"A19",display:"6,3″ Super Retina XDR OLED · 120 Гц",camera:"48 Мп + 12 Мп · видео 4K",battery:"до 30 ч видео",build:"Алюминий · Ceramic Shield · IP68",conn:"5G · USB-C · Wi-Fi 7"},
+ 4:{chip:"A19",display:"6,1″ Super Retina XDR OLED",camera:"48 Мп Fusion · видео 4K",battery:"до 26 ч видео",build:"Алюминий · Ceramic Shield · IP68",conn:"5G · USB-C"},
+ 5:{chip:"A18",display:"6,1″ Super Retina XDR OLED",camera:"48 Мп Fusion + 12 Мп сверхширокая · видео 4K",battery:"до 22 ч видео",build:"Алюминий · Ceramic Shield · IP68",conn:"5G · USB-C · Wi-Fi 7"},
+ 6:{chip:"M5 Pro / M5 Max",display:"14″ или 16″ XDR",battery:"до 24 ч"},7:{chip:"M4",display:"15″ Retina",battery:"до 18 ч"},16:{chip:"M5",display:"13″ Retina",battery:"до 18 ч"},18:{chip:"M4",display:"24″ 4,5K Retina",conn:"Thunderbolt · USB-C · Ethernet"},19:{chip:"M4",conn:"HDMI · 2×Thunderbolt 4 · Ethernet · USB-C"},
  8:{chip:"M5",display:"13″ XDR",battery:"до 10 ч"},9:{chip:"M3",display:"11″ Retina",battery:"до 10 ч"},
  10:{chip:"S11",display:"49 мм Ti",battery:"до 42 ч"},11:{chip:"S11",display:"46 мм",battery:"до 24 ч"},15:{chip:"S10",display:"44 мм OLED",battery:"до 18 ч"},
  12:{chip:"H3 · ANC",display:"USB-C",battery:"до 8 ч"},13:{chip:"H2",display:"USB-C",battery:"до 5 ч"},14:{chip:"H1 · ANC",display:"Over-ear",battery:"до 20 ч"}
@@ -1508,8 +1511,9 @@ function renderProduct(){
     <img class="phero-img" id="prodImg" src="${cols[0].img}" data-emoji="${p.emoji}" alt="${p.name}" onerror="imgFallback(this)"></section>`;
   let specsHtml;
   if(ts){specsHtml=`<div class="specs-grid">${ts.map(g=>`<div class="spec-group reveal"><h3>${SL(g.t)}</h3><dl>${g.rows.map(([k,v])=>`<div class="spec-row"><dt>${SL(k)}</dt><dd>${SL(v)}</dd></div>`).join("")}</dl></div>`).join("")}</div>`;}
-  else{const rows=[[t("spec_chip"),sp.chip],[t("spec_display"),sp.display],[t("spec_battery"),sp.battery],[t("spec_price"),fmtPrice(p.price)]].filter(r=>r[1]);
-    specsHtml=`<div class="specs-grid"><div class="spec-group reveal" style="max-width:520px;margin:0 auto"><h3>${p.name}</h3><dl>${rows.map(([k,v])=>`<div class="spec-row"><dt>${k}</dt><dd>${v}</dd></div>`).join("")}</dl></div></div>`;}
+  else{const stor=sp.storage||(p.storage?p.storage.map(s=>stLabel(s.gb)).join(" / "):"");
+    const rows=[[t("spec_chip"),sp.chip],[t("spec_display"),sp.display],[tr({ru:"Камера",tj:"Камера",en:"Camera"}),sp.camera],[t("spec_battery"),sp.battery],[tr({ru:"Память",tj:"Хотира",en:"Storage"}),stor],[tr({ru:"Корпус",tj:"Корпус",en:"Build"}),sp.build],[tr({ru:"Связь",tj:"Пайваст",en:"Connectivity"}),sp.conn],[tr({ru:"Цвета",tj:"Рангҳо",en:"Colors"}),(cols&&cols.length>1?cols.length+" "+tr({ru:"вариантов",tj:"вариант",en:"options"}):"")],[t("spec_price"),fmtPrice(p.price)]].filter(r=>r[1]);
+    specsHtml=`<div class="specs-grid"><div class="spec-group reveal" style="max-width:560px;margin:0 auto"><h3>${p.name}</h3><dl>${rows.map(([k,v])=>`<div class="spec-row"><dt>${k}</dt><dd>${v}</dd></div>`).join("")}</dl></div></div>`;}
   const flbl=p.cat==="audio"?[tr({ru:"Чип",tj:"Чип",en:"Chip"}),tr({ru:"Подключение",tj:"Пайвастшавӣ",en:"Connectivity"}),tr({ru:"Время работы",tj:"Батарея",en:"Battery"})]
     :p.cat==="watch"?[tr({ru:"Чип",tj:"Чип",en:"Chip"}),tr({ru:"Корпус",tj:"Корпус",en:"Case"}),tr({ru:"Батарея",tj:"Батарея",en:"Battery"})]
     :[t("spec_chip"),t("spec_display"),t("spec_battery")];
@@ -1518,26 +1522,20 @@ function renderProduct(){
   const featData=p.highlights||((sp.chip&&sp.display&&sp.battery)?[{ic:ficons[0],big:sp.chip,lbl:flbl[0]},{ic:ficons[1],big:sp.display,lbl:flbl[1]},{ic:ficons[2],big:sp.battery,lbl:flbl[2]}]:null);
   const feats=featData?`<section class="sec alt"><div class="wrap"><div class="sec-head reveal"><h2>${t("pp_highlights")}</h2><p class="sec-sub">${tr({ru:"Главное об устройстве — коротко.",tj:"Асосӣ дар бораи дастгоҳ.",en:"The key things at a glance."})}</p></div>
     <div class="prod-feats">${featData.map(f=>`<div class="pf-card reveal"><div class="pf-ic">${f.ic}</div><div class="pf-big">${SLV(f.big)}</div><div class="pf-lbl">${SLV(f.lbl)}</div></div>`).join("")}</div></div></section>`:"";
-  const richOk=pd&&pd.highlights&&pd.highlights.length&&p.cat!=="acc"&&p.id!==18&&p.id!==19;
+  const advOk=pd&&pd.adv&&p.cat!=="acc"&&p.id!==18&&p.id!==19;
   const lineWhy=tr({ru:"Почему "+(li.name||p.line),tj:"Чаро "+(li.name||p.line),en:"Why "+(li.name||p.line)});
-  const carouselSec=richOk?`<section class="sec alt" id="pdHl"><div class="wrap"><div class="sec-head reveal"><h2>${t("pp_highlights")}</h2><p class="sec-sub">${tr({ru:"Главное в деталях.",tj:"Асосӣ дар тафсил.",en:"The highlights, in detail."})}</p></div>
-    <div class="carousel" id="pdCar"><button class="car-arrow prev" aria-label="prev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></button>
-      <div class="car-viewport"><div class="car-track">${pd.highlights.map(h=>`<div class="hl-card ${h.dark?"dark":""}"><div class="hl-h">${tr(h.h)}</div><img class="hl-img" src="${h.img}" alt="" loading="lazy" onerror="this.style.display='none'"></div>`).join("")}</div></div>
-      <button class="car-arrow next" aria-label="next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></button>
-    </div><div class="car-dots" id="pdDots"></div></div></section>`:"";
-  const advSec=(richOk&&pd.adv)?`<section class="sec"><div class="wrap"><div class="sec-head reveal"><h2>${lineWhy}</h2></div>
+  const advSec=advOk?`<section class="sec alt"><div class="wrap"><div class="sec-head reveal"><h2>${lineWhy}</h2></div>
     <div class="why-adv">${pd.adv.map(a=>`<div class="wa reveal"><div class="wa-ic">${a.ic}</div><h4>${tr(a.h)}</h4><p>${tr(a.p)}</p></div>`).join("")}</div></div></section>`:feats;
-  const specsSec=`<section class="sec alt"><div class="wrap"><div class="sec-head reveal"><h2>${t("spec_h")}</h2></div>${specsHtml}</div></section>`;
+  const specsSec=`<section class="sec"><div class="wrap"><div class="sec-head reveal"><h2>${t("spec_h")}</h2></div>${specsHtml}</div></section>`;
   const faqSec=buildBuyerFAQ();
   const witbSec=buildWITB(p);
   const cta=`<section class="sec"><div class="wrap" style="text-align:center"><h2 style="font-size:clamp(1.8rem,4vw,2.6rem);margin-bottom:14px">${tr({ru:"Готовы к покупке?",tj:"Ба харид тайёред?",en:"Ready to buy?"})}</h2>
     <p style="color:var(--text-2);max-width:520px;margin:0 auto 22px">${tr({ru:"Оригинал, официальная гарантия и быстрая доставка по Душанбе.",tj:"Аслӣ, кафолати расмӣ ва расонидани зуд дар Душанбе.",en:"Genuine, official warranty and fast delivery across Dushanbe."})}</p>
     <div class="phero-cta" style="justify-content:center"><a class="btn btn-primary lg" href="buy.html?id=${id}">${t("pp_buy")} · ${fmtPrice(p.price)}</a><a class="btn btn-ghost lg" href="${li.page||"index.html"}">${t("details")} →</a></div></div></section>`;
-  root.innerHTML=hero+carouselSec+advSec+specsSec+witbSec+faqSec+cta;
+  root.innerHTML=hero+advSec+specsSec+witbSec+faqSec+cta;
   root.querySelectorAll("[data-pi]").forEach(b=>b.onclick=()=>{const i=+b.dataset.pi;document.getElementById("prodImg").src=cols[i].img;root.querySelectorAll("[data-pi]").forEach(s=>s.classList.toggle("active",s===b));});
   wireFAQ(root);
   const add=root.querySelector("#prodAdd");if(add)add.onclick=()=>{addToCart(id,0);openCart();};
-  if(richOk){const c=root.querySelector("#pdCar");if(c)initCarousel(c,document.getElementById("pdDots"));}
   observeReveal();initTilt(".pf-card");
 }
 

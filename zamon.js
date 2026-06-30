@@ -371,7 +371,7 @@ const PRODUCTDATA={
     gallery:[{img:"img/air-design.webp",h:{ru:"Самый тонкий iPhone. Прочный корпус из титана.",tj:"Тунуктарин iPhone. Корпуси титанӣ.",en:"The thinnest iPhone. Durable titanium design."}},
      {img:"img/air-camera.webp",h:{ru:"Камера 48 Мп Fusion для чётких фото и видео 4K.",tj:"Камераи 48 Мп Fusion барои аксу видеои 4K.",en:"48 MP Fusion camera for sharp photos and 4K video."}},
      {img:"img/air-chip.webp",h:{ru:"Чип A19 Pro — молниеносная производительность.",tj:"Чипи A19 Pro — иҷрои барқосо.",en:"A19 Pro chip — blazing performance."}}]},
- 3:{gallery:[
+ 3:{heroVideo:"https://www.apple.com/105/media/us/iphone-17/2025/b2c72de3-1cbc-4e24-b4d3-23c7abcec4ec/anim/hero/large.mp4",gallery:[
    {img:"img/p3-1.webp",h:{ru:"Прочный экран Ceramic Shield и продуманный дизайн.",tj:"Экрани мустаҳками Ceramic Shield ва тарҳи зебо.",en:"Durable Ceramic Shield front and refined design."}},
    {img:"img/p3-2.webp",h:{ru:"Продвинутая система камер 48 Мп и видео 4K.",tj:"Системаи камераи 48 Мп ва видеои 4K.",en:"Advanced 48 MP camera system and 4K video."}},
    {img:"img/p3-3.webp",h:{ru:"Мощный чип Apple — быстро и энергоэффективно.",tj:"Чипи пурқуввати Apple — зуд ва камсарф.",en:"Powerful Apple chip — fast and efficient."}}]},

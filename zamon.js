@@ -165,7 +165,7 @@ const PRODUCTS=[
    {n:{ru:"Оранжевый",tj:"Норанҷӣ",en:"Orange"},hex:"#e08a5b",img:A+"/v/airpods/ae/images/overview/airpods_max_orange__gln3ifz5o9ei_large.png"}]}
 ];
 const P=id=>PRODUCTS.find(p=>p.id===id);
-const mainImg=p=>p.card||p.colors[0].img;
+const mainImg=p=>p.card||(p.colors[0]&&p.colors[0].disp)||p.colors[0].img;
 
 /* per-model finish colors (store CDN, transparent PNG) for the Buy flow */
 const SC="https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/";
@@ -226,8 +226,8 @@ P(10).bands=[
 /* Watch Series 11 (aluminum + titanium, 42/46mm) */
 delete P(11).card;P(11).tint="linear-gradient(180deg,#f5f3f1,#ece8e4)";
 const S11_ALU=[
- {n:{ru:"Тёмная ночь",tj:"Шаби торик",en:"Jet Black"},hex:"#2b2b2e",img:WCASE("46","aluminum","jetblack","nc","s11")},
  {n:{ru:"Розовое золото",tj:"Тиллои гулобӣ",en:"Rose Gold"},hex:"#e7c8b8",img:WCASE("46","aluminum","rosegold","nc","s11")},
+ {n:{ru:"Тёмная ночь",tj:"Шаби торик",en:"Jet Black"},hex:"#2b2b2e",img:WCASE("46","aluminum","jetblack","nc","s11")},
  {n:{ru:"Серебристый",tj:"Нуқрагӣ",en:"Silver"},hex:"#dcdee0",img:WCASE("46","aluminum","silver","nc","s11")},
  {n:{ru:"Серый космос",tj:"Хокистарӣ",en:"Space Gray"},hex:"#6e6e73",img:WCASE("46","aluminum","spacegray","nc","s11")}];
 const S11_TI=[
@@ -253,6 +253,11 @@ P(11).bands=[
  {n:{ru:"Миланская петля",tj:"Milanese Loop",en:"Milanese Loop"},hex:"#d6d6d8",add:tjs(50),desc:{ru:"Плетёная нержавеющая сталь с магнитной застёжкой.",tj:"Пӯлоди зангногир бо басти магнитӣ.",en:"Woven stainless steel with a magnetic closure."},
   colors:[s11c("Натуральный","#d6d6d8","MGJ24ref"),s11c("Золотой","#c9a96a","MGJ44ref"),s11c("Графитовый","#45433f","MGJ64ref")]}];
 P(11).gallery=[WG("s11-case-unselect-gallery-1-202509"),WG("s11-case-unselect-gallery-2-202509"),WG("s11-case-unselect-gallery-3-202509")];
+/* «живые» фото часов для витрин/конфигуратора: композит дефолтный ремешок+корпус(финиш)+ЦИФЕРБЛАТ (экран «горит», как у Apple) */
+[10,11].forEach(id=>{const p=P(id);if(!p.bands||!p.bands[0]||!p.bands[0].colors||!p.bands[0].colors[0])return;
+  const bd0=p.bands[0],bc0=bd0.colors[0],groups=[];
+  if(p.materials)p.materials.forEach(m=>groups.push(m.finishes));else if(p.colors)groups.push(p.colors);
+  groups.forEach(g=>g.forEach((c,ci)=>{const d=watchCombo(p,bd0,bc0,ci,c);if(d)c.disp=shrinkCDN(d,480);}));});
 P(11).bandImgs=[WG("s11-band-unselect-gallery-1-202509")];
 /* Watch SE 3 (new — matches Apple lineup) */
 PRODUCTS.push({id:15,line:"Apple Watch",name:"Watch SE 3",cat:"watch",price:6490,old:0,rating:5,new:false,emoji:"⌚",
@@ -365,7 +370,7 @@ PRODUCTS.forEach(p=>{const f=FITCOLORS[p.id];if(f){p.fitColors={label:FIT_IPH,mo
 const ACAT={101:"find",102:"find",103:"pencil",104:"charge",105:"case",106:"case",107:"case",108:"case",109:"case",110:"case",111:"input",112:"case",113:"pencil",114:"input",115:"input",116:"charge",117:"band",118:"band"};
 const ACAT_CATS=[["all",{ru:"Все",tj:"Ҳама",en:"All"}],["case",{ru:"Чехлы и защита",tj:"Ғилофу ҳифз",en:"Cases & protection"}],["input",{ru:"Клавиатуры и мыши",tj:"Клавиатура ва муш",en:"Keyboards & mice"}],["band",{ru:"Ремешки для Watch",tj:"Тасмаҳо барои Watch",en:"Watch bands"}],["charge",{ru:"Зарядка",tj:"Заряд",en:"Power & cables"}],["pencil",{ru:"Apple Pencil",tj:"Apple Pencil",en:"Apple Pencil"}],["find",{ru:"Поиск вещей",tj:"Ёфтани ашё",en:"Find My"}]];
 /* свои лёгкие WebP-фото (img/pN.webp) для карточек/линеек/поиска — быстрая загрузка вместо тяжёлых apple.com */
-const LOCALIMG=new Set([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,18,19,101,102,103,104,105,106]);
+const LOCALIMG=new Set([1,2,3,4,5,6,7,8,9,12,13,14,15,16,18,19,101,102,103,104,105,106]);
 PRODUCTS.forEach(p=>{if(LOCALIMG.has(p.id)){const f="img/p"+p.id+".webp";p.card=f;if(p.lineImg)p.lineImg=f;}});
 const stLabel=gb=>gb<1024?gb+" "+t("gb"):(gb/1024)+" "+t("tb");
 const priceOf=c=>{const p=P(c.id);return (c.price||(p?p.price:0));};
@@ -1179,7 +1184,7 @@ function renderCartPage(){
   const waCartMsg=tr({ru:"Здравствуйте! Хочу заказать:",tj:"Салом! Мехоҳам фармоиш диҳам:",en:"Hi! I'd like to order:"})+"\n"+cart.map(c=>{const p=P(c.id);return p?"• "+p.name+" × "+c.qty:"";}).filter(Boolean).join("\n")+"\n"+tr({ru:"Итого: ",tj:"Ҳамагӣ: ",en:"Total: "})+fmtPrice(total);
   box.innerHTML=`<div class="cp-head"><h1>${t("cart_title")}</h1><span>${cart.reduce((s,c)=>s+c.qty,0)} ${t("pieces")}</span></div>
    <div class="cp-grid"><div class="cp-items">${cart.map((c,i)=>{const p=P(c.id);if(!p)return"";const col=colOf(p,c);
-     return `<div class="cp-item"><div class="cp-img"><img src="${p.card||col.img}" data-emoji="${p.emoji}" alt="${p.name}" onerror="imgFallback(this)"></div>
+     return `<div class="cp-item"><div class="cp-img"><img src="${p.card||col.disp||col.img}" data-emoji="${p.emoji}" alt="${p.name}" onerror="imgFallback(this)"></div>
        <div class="cp-info"><h3>${p.name}</h3>${cartSub(p,c)?`<div class="cp-sub">${cartSub(p,c)}</div>`:""}<div class="cp-unit">${fmtPrice(priceOf(c))}</div><button class="cp-rm" data-rm="${i}">${t("remove")}</button></div>
        <div class="cp-right"><div class="qty"><button data-dec="${i}">−</button><span>${c.qty}</span><button data-inc="${i}">+</button></div><div class="cp-price">${fmtPrice(priceOf(c)*c.qty)}</div></div></div>`;}).join("")}</div>
      <aside class="cp-sum"><h3>${t("cp_summary")}</h3>
@@ -1200,7 +1205,7 @@ function renderCart(){
   if(!cart.length){box.innerHTML=`<div class="empty-cart"><div class="ec-ico">🛍️</div><div style="font-weight:600;color:var(--text)">${t("cart_empty")}</div><div style="font-size:.85rem;margin-top:4px">${t("cart_empty_sub")}</div></div>`;foot.style.display="none";return;}
   foot.style.display="block";
   box.innerHTML=cart.map((c,i)=>{const p=P(c.id);if(!p)return"";const col=colOf(p,c);
-    return `<div class="ci"><div class="ci-img"><img src="${p.card||col.img}" data-emoji="${p.emoji}" alt="${p.name}" onerror="imgFallback(this)"></div>
+    return `<div class="ci"><div class="ci-img"><img src="${p.card||col.disp||col.img}" data-emoji="${p.emoji}" alt="${p.name}" onerror="imgFallback(this)"></div>
       <div class="ci-info"><h4>${p.name}</h4>${cartSub(p,c)?`<div class="ci-sub">${cartSub(p,c)}</div>`:""}<div class="ci-price">${fmtPrice(priceOf(c))}</div>
         <button class="ci-rm" data-rm="${i}">${t("remove")}</button></div>
       <div class="qty"><button data-dec="${i}">−</button><span>${c.qty}</span><button data-inc="${i}">+</button></div></div>`;}).join("");
@@ -1324,7 +1329,7 @@ function renderCheckout(){
       <div class="ck-nav"><a class="btn btn-soft" href="cart.html">${t("ck_back")}</a>
         <button class="btn btn-primary" id="ckNext">${t("ck_place")}</button></div></div>
       <aside class="ck-sum"><h3>${t("cp_summary")}</h3>
-        ${cart.map(c=>{const p=P(c.id);if(!p)return"";const col=colOf(p,c);return `<div class="ck-sli"><div class="ck-sli-img"><img src="${p.card||col.img}" data-emoji="${p.emoji}" alt="${p.name}" onerror="imgFallback(this)"></div><div class="ck-sli-i"><span>${p.name}</span><small>${cartSub(p,c)?cartSub(p,c)+" · ":""}${c.qty} ${t("pieces")}</small></div><b>${fmtPrice(priceOf(c)*c.qty)}</b></div>`;}).join("")}
+        ${cart.map(c=>{const p=P(c.id);if(!p)return"";const col=colOf(p,c);return `<div class="ck-sli"><div class="ck-sli-img"><img src="${p.card||col.disp||col.img}" data-emoji="${p.emoji}" alt="${p.name}" onerror="imgFallback(this)"></div><div class="ck-sli-i"><span>${p.name}</span><small>${cartSub(p,c)?cartSub(p,c)+" · ":""}${c.qty} ${t("pieces")}</small></div><b>${fmtPrice(priceOf(c)*c.qty)}</b></div>`;}).join("")}
         <div class="ck-ship">✓ <span>${t("ship_free")}</span></div>
         <div class="cp-grand"><span>${t("co_total")}</span><span>${fmtPrice(total)}</span></div></aside></div>`;
   root.querySelectorAll("[data-f]").forEach(i=>i.oninput=()=>{D[i.dataset.f]=i.value;});
@@ -1601,15 +1606,15 @@ function renderConfigurator(){
       const bd=p.bands[CFG.bi];const bc=bd&&bd.colors&&bd.colors[CFG.bci||0];
       const pics=[];
       const combo=watchCombo(p,bd,bc,CFG.ci,col);       // композит «часы+ремешок» наложением слоёв
-      if(combo)pics.push(combo);
+      if(combo)pics.push(shrinkCDN(combo,760));
       else pics.push(col.img);                          // фолбэк: собранный корпус в финише
       if(bc&&bc.img)pics.push(bc.img);                  // деталь: ремешок крупно
       if(p.bandImgs&&p.bandImgs.length)pics.push(...p.bandImgs);
       pics.push(col.img);
       return pics.concat(angles).filter(Boolean).slice(0,6);
     }
-    // шаг «Корпус/финиш»: часы в выбранном финише + ракурсы корпуса
-    return [col.img].concat(angles).filter(Boolean).slice(0,5);
+    // шаг «Корпус/финиш»: «живые» часы в выбранном финише (ремешок+корпус+циферблат) + ракурсы корпуса
+    return [(col.disp?shrinkCDN(col.disp,760):col.img)].concat(angles).filter(Boolean).slice(0,5);
   }
   function calc(){
     let dev=p.price;
@@ -2021,7 +2026,7 @@ document.addEventListener("click",e=>{
   const bsw=e.target.closest("[data-bsw]");
   if(bsw){const p=P(+bsw.dataset.bsw),idx=+bsw.dataset.idx,card=bsw.closest(".bgcard"),img=card&&card.querySelector("img"),cols=p.buyColors||p.colors;if(img)img.src=cols[idx].img;if(card)card.querySelectorAll("[data-bsw]").forEach(s=>s.classList.toggle("active",s===bsw));return;}
   const sw=e.target.closest("[data-sw]");
-  if(sw){const p=P(+sw.dataset.sw),idx=+sw.dataset.idx,card=sw.closest(".pcard,.lcard"),img=card&&card.querySelector("img");if(img)img.src=p.colors[idx].img;if(card)card.querySelectorAll("[data-sw]").forEach(s=>s.classList.toggle("active",s===sw));return;}
+  if(sw){const p=P(+sw.dataset.sw),idx=+sw.dataset.idx,card=sw.closest(".pcard,.lcard"),img=card&&card.querySelector("img");if(img)img.src=p.colors[idx].disp||p.colors[idx].img;if(card)card.querySelectorAll("[data-sw]").forEach(s=>s.classList.toggle("active",s===sw));return;}
   const wishBtn=e.target.closest("[data-wish]");if(wishBtn){e.preventDefault();e.stopPropagation();toggleWish(+wishBtn.dataset.wish);return;}
   const addBtn=e.target.closest("[data-add]");if(addBtn){e.stopPropagation();addToCart(+addBtn.dataset.add);return;}
   const buyBtn=e.target.closest("[data-buy]");if(buyBtn){e.stopPropagation();if(buyBtn.closest(".bgcard")){openBuy(+buyBtn.dataset.buy);}else{location.href=productUrl(P(+buyBtn.dataset.buy));}return;}

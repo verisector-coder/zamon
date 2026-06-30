@@ -1050,3 +1050,11 @@ img[data-emoji].img-loaded{opacity:1}
 .acc-chip{padding:9px 18px;border-radius:999px;border:1px solid var(--border-2);background:var(--surface);color:var(--text-2);font-weight:500;font-size:.92rem;cursor:pointer;transition:.2s var(--ease)}
 .acc-chip:hover{border-color:var(--accent);color:var(--text)}
 .acc-chip.active{background:var(--text);color:var(--bg);border-color:var(--text)}
+
+/* image-based color swatches + product photo gallery (Apple-style) */
+.psw.psw-img{background-size:cover;background-position:center;border:1px solid var(--border-2)}
+.prod-gallery{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:20px auto 0;max-width:600px}
+.pg-thumb{width:64px;height:64px;border-radius:12px;border:1.5px solid var(--border-2);background:var(--surface);overflow:hidden;cursor:pointer;padding:6px;transition:.2s var(--ease)}
+.pg-thumb img{width:100%;height:100%;object-fit:contain}
+.pg-thumb:hover{border-color:var(--accent)}
+.pg-thumb.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}

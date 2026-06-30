@@ -268,6 +268,8 @@ const TRADEIN={phone:3000,laptop:5000,tablet:2500,watch:1200,audio:600};
 /* accessories (cat:"acc" — excluded from lineups/catalog, shown on accessories.html; P()/cart/search work) */
 const ACCSC="https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/";
 const accImg=k=>ACCSC+k+"?wid=800&hei=800&fmt=png-alpha";
+/* строит набор цветов аксессуара из ключей Apple: свотч-картинка + галерея (главное фото + ракурсы AV1/AV2) */
+function accColors(keys,names){return keys.map((k,i)=>({n:(names&&names[i])||{ru:"Цвет "+(i+1),tj:"Ранг "+(i+1),en:"Color "+(i+1)},img:accImg(k),sw:accImg(k+"_SW_COLOR"),gal:[accImg(k),accImg(k+"_AV1"),accImg(k+"_AV2")]}));}
 const ACC1=A+"/v/apple-pencil/ag/images/overview/hero/hero__cwrg2eertpyu_large_2x.png";
 PRODUCTS.push(
  {id:101,line:"AirTag",name:"AirTag",cat:"acc",price:290,rating:5,new:false,emoji:"🔵",tag:{ru:"Находите вещи без труда",tj:"Чизҳоро бе душворӣ ёбед",en:"Keep track of your things"},colors:[{n:{ru:"Серебристый",tj:"Нуқрагӣ",en:"Silver"},hex:"#e8e8ea",img:accImg("airtag-single-select-202104")}]},
@@ -280,7 +282,7 @@ PRODUCTS.push(
 PRODUCTS.push(
  {id:107,line:"Case",name:"iPhone Tech Woven Case",cat:"acc",rating:5,new:true,emoji:"📱",tag:{ru:"Тканый чехол с MagSafe",tj:"Ғилофи бофта бо MagSafe",en:"Woven case with MagSafe"},colors:[{n:{ru:"Синий",tj:"Кабуд",en:"Blue"},hex:"#3a5a8c",img:accImg("MGF44")}]},
  {id:108,line:"Case",name:"iPhone Silicone Case",cat:"acc",rating:5,new:true,emoji:"📱",tag:{ru:"Силиконовый чехол с MagSafe",tj:"Ғилофи силиконӣ бо MagSafe",en:"Silicone case with MagSafe"},colors:[{n:{ru:"Лавандовый",tj:"Лаванда",en:"Lavender"},hex:"#b9aede",img:accImg("MHVQ4_FV401")}]},
- {id:109,line:"Strap",name:"iPhone Crossbody Strap",cat:"acc",rating:5,new:true,emoji:"📱",tag:{ru:"Ремешок через плечо для iPhone",tj:"Тасма аз китф барои iPhone",en:"Crossbody strap for iPhone"},colors:[{n:{ru:"Гуава",tj:"Гуава",en:"Guava"},hex:"#e0457b",img:accImg("MHYX4")}]},
+ {id:109,line:"Strap",name:"iPhone Crossbody Strap",cat:"acc",rating:5,new:true,emoji:"📱",tag:{ru:"Ремешок через плечо для iPhone",tj:"Тасма аз китф барои iPhone",en:"Crossbody strap for iPhone"},colors:accColors(["MHYX4","MGGD4","MHYY4","MGGE4","MGGG4","MGGH4","MGGK4","MGGM4","MGGJ4","MGGL4","MGGN4","MGGF4"])},
  {id:110,line:"Case",name:"iPhone Air Clear Case",cat:"acc",rating:5,new:false,emoji:"📱",tag:{ru:"Прозрачный чехол для iPhone Air",tj:"Ғилофи шаффоф барои iPhone Air",en:"Clear case for iPhone Air"},colors:[{n:{ru:"Прозрачный",tj:"Шаффоф",en:"Clear"},hex:"#dfe3e8",img:accImg("MGH34")}]},
  {id:111,line:"Keyboard",name:"Magic Keyboard для iPad",cat:"acc",rating:5,new:true,emoji:"⌨️",tag:{ru:"Клавиатура с трекпадом для iPad",tj:"Клавиатура бо трекпад барои iPad",en:"Keyboard with trackpad for iPad"},colors:[{n:{ru:"Чёрный",tj:"Сиёҳ",en:"Black"},hex:"#3a3a3c",img:accImg("MGYY4_FV401_GEO_US")}]},
  {id:112,line:"Case",name:"Smart Folio для iPad",cat:"acc",rating:5,new:false,emoji:"📱",tag:{ru:"Обложка Smart Folio для iPad",tj:"Муқоваи Smart Folio барои iPad",en:"Smart Folio cover for iPad"},colors:[{n:{ru:"Зелёный",tj:"Сабз",en:"Green"},hex:"#6f8f6a",img:accImg("MWK73")}]},
@@ -1576,8 +1578,9 @@ function renderProduct(){
     <div class="phero-cta"><a class="btn btn-primary lg" href="buy.html?id=${id}">${t("pp_buy")}</a><button class="btn btn-ghost lg" id="prodAdd">${t("buy_add")}</button></div>
     <a class="btn btn-wa lg prod-wa" href="${waLink(tr({ru:"Здравствуйте! Хочу заказать ",tj:"Салом! Мехоҳам фармоиш диҳам ",en:"Hi! I'd like to order "})+p.name+" — "+t("from")+fmtPrice(p.price)+".")}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.5A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-2.8.7.7-2.7-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.7.9c-.1.1-.3.2-.5 0-.7-.3-1.4-.7-2-1.4-.4-.5-.7-1-.9-1.4-.1-.2 0-.4.1-.5l.4-.5c.1-.1.1-.2.2-.4 0-.1 0-.3 0-.4l-.7-1.7c-.2-.4-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.7.7-.9 1.6-.6 2.6.3 1.1 1 2.1 1.2 2.4 1.7 2.5 3.6 3.3 4.8 3.6.6.2 1.1.2 1.5.1.5-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1l-.3-.2Z"/></svg> ${tr({ru:"Заказать в WhatsApp",tj:"Фармоиш дар WhatsApp",en:"Order on WhatsApp"})}</a>
     ${trustRowHTML()}
-    ${cols.length>1?`<div class="prod-sw">${cols.map((c,i)=>`<button class="psw ${i===0?"active":""}" data-pi="${i}" style="background:${c.hex}" title="${tr(c.n)}" aria-label="${tr(c.n)}"></button>`).join("")}</div>`:""}
-    <img class="phero-img" id="prodImg" src="${cols[0].img}" data-emoji="${p.emoji}" alt="${p.name}" onerror="imgFallback(this)"></section>`;
+    ${cols.length>1?`<div class="prod-sw">${cols.map((c,i)=>`<button class="psw ${c.sw?"psw-img":""} ${i===0?"active":""}" data-pi="${i}" style="${c.sw?`background-image:url(${c.sw})`:`background:${c.hex}`}" title="${tr(c.n)}" aria-label="${tr(c.n)}"></button>`).join("")}</div>`:""}
+    <img class="phero-img" id="prodImg" src="${(cols[0].gal&&cols[0].gal[0])||cols[0].img}" data-emoji="${p.emoji}" alt="${p.name}" onerror="imgFallback(this)">
+    <div class="prod-gallery" id="prodGal"></div></section>`;
   let specsHtml;
   if(ts){specsHtml=`<div class="specs-grid">${ts.map(g=>`<div class="spec-group reveal"><h3>${SL(g.t)}</h3><dl>${g.rows.map(([k,v])=>`<div class="spec-row"><dt>${SL(k)}</dt><dd>${SL(v)}</dd></div>`).join("")}</dl></div>`).join("")}</div>`;}
   else{const stor=sp.storage||(p.storage?p.storage.map(s=>stLabel(s.gb)).join(" / "):"");
@@ -1608,7 +1611,9 @@ function renderProduct(){
     <p style="color:var(--text-2);max-width:520px;margin:0 auto 22px">${tr({ru:"Оригинал, официальная гарантия и быстрая доставка по Душанбе.",tj:"Аслӣ, кафолати расмӣ ва расонидани зуд дар Душанбе.",en:"Genuine, official warranty and fast delivery across Dushanbe."})}</p>
     <div class="phero-cta" style="justify-content:center"><a class="btn btn-primary lg" href="buy.html?id=${id}">${t("pp_buy")} · ${fmtPrice(p.price)}</a><a class="btn btn-ghost lg" href="${li.page||"index.html"}">${t("details")} →</a></div></div></section>`;
   root.innerHTML=hero+(pdata?mediaSec:advSec)+specsSec+witbSec+faqSec+cta;
-  root.querySelectorAll("[data-pi]").forEach(b=>b.onclick=()=>{const i=+b.dataset.pi;document.getElementById("prodImg").src=cols[i].img;root.querySelectorAll("[data-pi]").forEach(s=>s.classList.toggle("active",s===b));});
+  function setProdGallery(ci){const c=cols[ci];const gal=(c.gal&&c.gal.length)?c.gal:[c.img];const main=document.getElementById("prodImg");if(main)main.src=gal[0];const gel=document.getElementById("prodGal");if(!gel)return;gel.innerHTML=gal.length>1?gal.map((g,j)=>`<button class="pg-thumb ${j===0?"active":""}" data-g="${j}"><img src="${g}" loading="lazy" alt=""></button>`).join(""):"";gel.querySelectorAll("[data-g]").forEach(b=>b.onclick=()=>{if(main)main.src=gal[+b.dataset.g];gel.querySelectorAll("[data-g]").forEach(x=>x.classList.toggle("active",x===b));});}
+  root.querySelectorAll("[data-pi]").forEach(b=>b.onclick=()=>{const i=+b.dataset.pi;setProdGallery(i);root.querySelectorAll("[data-pi]").forEach(s=>s.classList.toggle("active",s===b));});
+  setProdGallery(0);
   wireFAQ(root);
   const add=root.querySelector("#prodAdd");if(add)add.onclick=()=>{addToCart(id,0);openCart();};
   if(pdata&&pdata.gallery){const c=root.querySelector("#pdCar");if(c)initCarousel(c,document.getElementById("pdDots"));}

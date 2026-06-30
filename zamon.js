@@ -279,6 +279,9 @@ PRODUCTS.push(
 );
 /* привязка базовых цен к Apple США (USD → сомони × наценка) */
 PRODUCTS.forEach(p=>{if(APPLE_USD[p.id]!=null)p.price=tjs(APPLE_USD[p.id]);});
+/* свои лёгкие WebP-фото (img/pN.webp) для карточек/линеек/поиска — быстрая загрузка вместо тяжёлых apple.com */
+const LOCALIMG=new Set([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,18,19,101,102,103,104,105,106]);
+PRODUCTS.forEach(p=>{if(LOCALIMG.has(p.id)){const f="img/p"+p.id+".webp";p.card=f;if(p.lineImg)p.lineImg=f;}});
 const stLabel=gb=>gb<1024?gb+" "+t("gb"):(gb/1024)+" "+t("tb");
 const priceOf=c=>{const p=P(c.id);return (c.price||(p?p.price:0));};
 const cartSum=()=>cart.reduce((s,c)=>s+priceOf(c)*c.qty,0);

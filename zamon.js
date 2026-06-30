@@ -63,7 +63,7 @@ function marginFor(usd){
 }
 const tjs=usd=>Math.round(usd*USD_TJS*marginFor(usd)/10)*10;   // USD → сомони, округление до 10
 /* Официальные цены Apple США (USD) за базовую конфигурацию (память) */
-const APPLE_USD={1:1099,2:999,3:799,4:599,5:699,6:1599,7:1199,8:999,9:599,10:799,11:399,12:249,13:129,14:549,15:249,16:1099,18:1299,19:599,101:29,102:99,103:129,104:39,105:49,106:49};
+const APPLE_USD={1:1099,2:999,3:799,4:599,5:699,6:1599,7:1199,8:999,9:599,10:799,11:399,12:249,13:129,14:549,15:249,16:1099,18:1299,19:599,101:29,102:99,103:129,104:39,105:49,106:49,107:59,108:49,109:59,110:49,111:299,112:79,113:79,114:199,115:79,116:59,117:49,118:99};
 
 /* ===== PRODUCTS ===== */
 const PRODUCTS=[
@@ -277,11 +277,25 @@ PRODUCTS.push(
  {id:105,line:"Case",name:"iPhone Case · MagSafe",cat:"acc",price:390,rating:5,new:false,emoji:"📱",tag:{ru:"Защита с поддержкой MagSafe",tj:"Ҳифз бо дастгирии MagSafe",en:"Protection with MagSafe"},colors:[{n:{ru:"Прозрачный",tj:"Шаффоф",en:"Clear"},hex:"#dfe3e8",img:accImg("MHWJ4")}]},
  {id:106,line:"Case",name:"iPhone Clear Case",cat:"acc",price:390,rating:4,new:false,emoji:"📱",tag:{ru:"Прозрачный чехол с MagSafe",tj:"Ғилофи шаффоф бо MagSafe",en:"Clear case with MagSafe"},colors:[{n:{ru:"Прозрачный",tj:"Шаффоф",en:"Clear"},hex:"#dfe3e8",img:accImg("MHWC4")}]}
 );
+PRODUCTS.push(
+ {id:107,line:"Case",name:"iPhone Tech Woven Case",cat:"acc",rating:5,new:true,emoji:"📱",tag:{ru:"Тканый чехол с MagSafe",tj:"Ғилофи бофта бо MagSafe",en:"Woven case with MagSafe"},colors:[{n:{ru:"Синий",tj:"Кабуд",en:"Blue"},hex:"#3a5a8c",img:accImg("MGF44")}]},
+ {id:108,line:"Case",name:"iPhone Silicone Case",cat:"acc",rating:5,new:true,emoji:"📱",tag:{ru:"Силиконовый чехол с MagSafe",tj:"Ғилофи силиконӣ бо MagSafe",en:"Silicone case with MagSafe"},colors:[{n:{ru:"Лавандовый",tj:"Лаванда",en:"Lavender"},hex:"#b9aede",img:accImg("MHVQ4_FV401")}]},
+ {id:109,line:"Strap",name:"iPhone Crossbody Strap",cat:"acc",rating:5,new:true,emoji:"📱",tag:{ru:"Ремешок через плечо для iPhone",tj:"Тасма аз китф барои iPhone",en:"Crossbody strap for iPhone"},colors:[{n:{ru:"Гуава",tj:"Гуава",en:"Guava"},hex:"#e0457b",img:accImg("MHYX4")}]},
+ {id:110,line:"Case",name:"iPhone Air Clear Case",cat:"acc",rating:5,new:false,emoji:"📱",tag:{ru:"Прозрачный чехол для iPhone Air",tj:"Ғилофи шаффоф барои iPhone Air",en:"Clear case for iPhone Air"},colors:[{n:{ru:"Прозрачный",tj:"Шаффоф",en:"Clear"},hex:"#dfe3e8",img:accImg("MGH34")}]},
+ {id:111,line:"Keyboard",name:"Magic Keyboard для iPad",cat:"acc",rating:5,new:true,emoji:"⌨️",tag:{ru:"Клавиатура с трекпадом для iPad",tj:"Клавиатура бо трекпад барои iPad",en:"Keyboard with trackpad for iPad"},colors:[{n:{ru:"Чёрный",tj:"Сиёҳ",en:"Black"},hex:"#3a3a3c",img:accImg("MGYY4_FV401_GEO_US")}]},
+ {id:112,line:"Case",name:"Smart Folio для iPad",cat:"acc",rating:5,new:false,emoji:"📱",tag:{ru:"Обложка Smart Folio для iPad",tj:"Муқоваи Smart Folio барои iPad",en:"Smart Folio cover for iPad"},colors:[{n:{ru:"Зелёный",tj:"Сабз",en:"Green"},hex:"#6f8f6a",img:accImg("MWK73")}]},
+ {id:113,line:"Apple Pencil",name:"Apple Pencil (USB-C)",cat:"acc",rating:5,new:false,emoji:"✏️",tag:{ru:"Стилус с зарядкой через USB-C",tj:"Қалам бо заряди USB-C",en:"Stylus with USB-C charging"},colors:[{n:{ru:"Белый",tj:"Сафед",en:"White"},hex:"#f2f2f2",img:accImg("MUWA3")}]},
+ {id:114,line:"Keyboard",name:"Magic Keyboard",cat:"acc",rating:5,new:false,emoji:"⌨️",tag:{ru:"Беспроводная клавиатура с Touch ID",tj:"Клавиатураи бесим бо Touch ID",en:"Wireless keyboard with Touch ID"},colors:[{n:{ru:"Чёрный",tj:"Сиёҳ",en:"Black"},hex:"#2e2e30",img:accImg("MXK83")}]},
+ {id:115,line:"Mouse",name:"Magic Mouse",cat:"acc",rating:5,new:false,emoji:"🖱️",tag:{ru:"Беспроводная мышь Multi-Touch",tj:"Мушаки бесими Multi-Touch",en:"Multi-Touch wireless mouse"},colors:[{n:{ru:"Чёрный",tj:"Сиёҳ",en:"Black"},hex:"#2e2e30",img:accImg("MXK63")}]},
+ {id:116,line:"Charger",name:"USB-C Power Adapter",cat:"acc",rating:5,new:false,emoji:"🔌",tag:{ru:"Быстрая зарядка USB-C",tj:"Заряди тези USB-C",en:"Fast USB-C charging"},colors:[{n:{ru:"Белый",tj:"Сафед",en:"White"},hex:"#f2f2f2",img:accImg("MGKN4")}]},
+ {id:117,line:"Band",name:"Sport Band",cat:"acc",rating:5,new:true,emoji:"⌚",tag:{ru:"Спортивный ремешок для Apple Watch",tj:"Тасмаи варзишӣ барои Apple Watch",en:"Sport Band for Apple Watch"},colors:[{n:{ru:"Синий",tj:"Кабуд",en:"Blue"},hex:"#3b5a78",img:accImg("grid-sport-band-anchor-blue-s11")}]},
+ {id:118,line:"Band",name:"Alpine Loop",cat:"acc",rating:5,new:true,emoji:"⌚",tag:{ru:"Ремешок Alpine Loop для Apple Watch",tj:"Тасмаи Alpine Loop барои Apple Watch",en:"Alpine Loop for Apple Watch"},colors:[{n:{ru:"Голубой",tj:"Осмонӣ",en:"Light Blue"},hex:"#a9c4d6",img:accImg("grid-ultra-alpine-loop-light-blue-black-titanium-s11")}]}
+);
 /* привязка базовых цен к Apple США (USD → сомони × наценка) */
 PRODUCTS.forEach(p=>{if(APPLE_USD[p.id]!=null)p.price=tjs(APPLE_USD[p.id]);});
 /* категории аксессуаров (accessories.html — фильтр как у Apple) */
-const ACAT={101:"find",102:"find",103:"pencil",104:"charge",105:"case",106:"case"};
-const ACAT_CATS=[["all",{ru:"Все",tj:"Ҳама",en:"All"}],["case",{ru:"Чехлы и защита",tj:"Ғилофу ҳифз",en:"Cases & protection"}],["charge",{ru:"Зарядка",tj:"Заряд",en:"Power & cables"}],["find",{ru:"Поиск вещей",tj:"Ёфтани ашё",en:"Find My"}],["pencil",{ru:"Apple Pencil",tj:"Apple Pencil",en:"Apple Pencil"}]];
+const ACAT={101:"find",102:"find",103:"pencil",104:"charge",105:"case",106:"case",107:"case",108:"case",109:"case",110:"case",111:"input",112:"case",113:"pencil",114:"input",115:"input",116:"charge",117:"band",118:"band"};
+const ACAT_CATS=[["all",{ru:"Все",tj:"Ҳама",en:"All"}],["case",{ru:"Чехлы и защита",tj:"Ғилофу ҳифз",en:"Cases & protection"}],["input",{ru:"Клавиатуры и мыши",tj:"Клавиатура ва муш",en:"Keyboards & mice"}],["band",{ru:"Ремешки для Watch",tj:"Тасмаҳо барои Watch",en:"Watch bands"}],["charge",{ru:"Зарядка",tj:"Заряд",en:"Power & cables"}],["pencil",{ru:"Apple Pencil",tj:"Apple Pencil",en:"Apple Pencil"}],["find",{ru:"Поиск вещей",tj:"Ёфтани ашё",en:"Find My"}]];
 /* свои лёгкие WebP-фото (img/pN.webp) для карточек/линеек/поиска — быстрая загрузка вместо тяжёлых apple.com */
 const LOCALIMG=new Set([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,18,19,101,102,103,104,105,106]);
 PRODUCTS.forEach(p=>{if(LOCALIMG.has(p.id)){const f="img/p"+p.id+".webp";p.card=f;if(p.lineImg)p.lineImg=f;}});

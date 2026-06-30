@@ -280,18 +280,18 @@ PRODUCTS.push(
  {id:106,line:"Case",name:"iPhone Clear Case",cat:"acc",price:390,rating:4,new:false,emoji:"📱",tag:{ru:"Прозрачный чехол с MagSafe",tj:"Ғилофи шаффоф бо MagSafe",en:"Clear case with MagSafe"},colors:[{n:{ru:"Прозрачный",tj:"Шаффоф",en:"Clear"},hex:"#dfe3e8",img:accImg("MHWC4")}]}
 );
 PRODUCTS.push(
- {id:107,line:"Case",name:"iPhone Tech Woven Case",cat:"acc",rating:5,new:true,emoji:"📱",tag:{ru:"Тканый чехол с MagSafe",tj:"Ғилофи бофта бо MagSafe",en:"Woven case with MagSafe"},colors:[{n:{ru:"Синий",tj:"Кабуд",en:"Blue"},hex:"#3a5a8c",img:accImg("MGF44")}]},
- {id:108,line:"Case",name:"iPhone Silicone Case",cat:"acc",rating:5,new:true,emoji:"📱",tag:{ru:"Силиконовый чехол с MagSafe",tj:"Ғилофи силиконӣ бо MagSafe",en:"Silicone case with MagSafe"},colors:[{n:{ru:"Лавандовый",tj:"Лаванда",en:"Lavender"},hex:"#b9aede",img:accImg("MHVQ4_FV401")}]},
+ {id:107,line:"Case",name:"iPhone Tech Woven Case",cat:"acc",rating:5,new:true,emoji:"📱",tag:{ru:"Тканый чехол с MagSafe",tj:"Ғилофи бофта бо MagSafe",en:"Woven case with MagSafe"},colors:accColors(["MGF44","MGF34","MGF54","MGF64","MGF74"])},
+ {id:108,line:"Case",name:"iPhone Silicone Case",cat:"acc",rating:5,new:true,emoji:"📱",tag:{ru:"Силиконовый чехол с MagSafe",tj:"Ғилофи силиконӣ бо MagSafe",en:"Silicone case with MagSafe"},colors:accColors(["MHVQ4","MGEW4","MGEX4","MGF04","MGF14","MHVM4","MHVT4"])},
  {id:109,line:"Strap",name:"iPhone Crossbody Strap",cat:"acc",rating:5,new:true,emoji:"📱",tag:{ru:"Ремешок через плечо для iPhone",tj:"Тасма аз китф барои iPhone",en:"Crossbody strap for iPhone"},colors:accColors(["MHYX4","MGGD4","MHYY4","MGGE4","MGGG4","MGGH4","MGGK4","MGGM4","MGGJ4","MGGL4","MGGN4","MGGF4"])},
- {id:110,line:"Case",name:"iPhone Air Clear Case",cat:"acc",rating:5,new:false,emoji:"📱",tag:{ru:"Прозрачный чехол для iPhone Air",tj:"Ғилофи шаффоф барои iPhone Air",en:"Clear case for iPhone Air"},colors:[{n:{ru:"Прозрачный",tj:"Шаффоф",en:"Clear"},hex:"#dfe3e8",img:accImg("MGH34")}]},
+ {id:110,line:"Case",name:"iPhone Air Clear Case",cat:"acc",rating:5,new:false,emoji:"📱",tag:{ru:"Прозрачный чехол для iPhone Air",tj:"Ғилофи шаффоф барои iPhone Air",en:"Clear case for iPhone Air"},colors:accColors(["MGH34","MGH24"])},
  {id:111,line:"Keyboard",name:"Magic Keyboard для iPad",cat:"acc",rating:5,new:true,emoji:"⌨️",tag:{ru:"Клавиатура с трекпадом для iPad",tj:"Клавиатура бо трекпад барои iPad",en:"Keyboard with trackpad for iPad"},colors:[{n:{ru:"Чёрный",tj:"Сиёҳ",en:"Black"},hex:"#3a3a3c",img:accImg("MGYY4_FV401_GEO_US")}]},
- {id:112,line:"Case",name:"Smart Folio для iPad",cat:"acc",rating:5,new:false,emoji:"📱",tag:{ru:"Обложка Smart Folio для iPad",tj:"Муқоваи Smart Folio барои iPad",en:"Smart Folio cover for iPad"},colors:[{n:{ru:"Зелёный",tj:"Сабз",en:"Green"},hex:"#6f8f6a",img:accImg("MWK73")}]},
+ {id:112,line:"Case",name:"Smart Folio для iPad",cat:"acc",rating:5,new:false,emoji:"📱",tag:{ru:"Обложка Smart Folio для iPad",tj:"Муқоваи Smart Folio барои iPad",en:"Smart Folio cover for iPad"},colors:accColors(["MWK73","MWK53","MWK63","MWK83"])},
  {id:113,line:"Apple Pencil",name:"Apple Pencil (USB-C)",cat:"acc",rating:5,new:false,emoji:"✏️",tag:{ru:"Стилус с зарядкой через USB-C",tj:"Қалам бо заряди USB-C",en:"Stylus with USB-C charging"},colors:[{n:{ru:"Белый",tj:"Сафед",en:"White"},hex:"#f2f2f2",img:accImg("MUWA3")}]},
  {id:114,line:"Keyboard",name:"Magic Keyboard",cat:"acc",rating:5,new:false,emoji:"⌨️",tag:{ru:"Беспроводная клавиатура с Touch ID",tj:"Клавиатураи бесим бо Touch ID",en:"Wireless keyboard with Touch ID"},colors:[{n:{ru:"Чёрный",tj:"Сиёҳ",en:"Black"},hex:"#2e2e30",img:accImg("MXK83")}]},
  {id:115,line:"Mouse",name:"Magic Mouse",cat:"acc",rating:5,new:false,emoji:"🖱️",tag:{ru:"Беспроводная мышь Multi-Touch",tj:"Мушаки бесими Multi-Touch",en:"Multi-Touch wireless mouse"},colors:[{n:{ru:"Чёрный",tj:"Сиёҳ",en:"Black"},hex:"#2e2e30",img:accImg("MXK63")}]},
  {id:116,line:"Charger",name:"USB-C Power Adapter",cat:"acc",rating:5,new:false,emoji:"🔌",tag:{ru:"Быстрая зарядка USB-C",tj:"Заряди тези USB-C",en:"Fast USB-C charging"},colors:[{n:{ru:"Белый",tj:"Сафед",en:"White"},hex:"#f2f2f2",img:accImg("MGKN4")}]},
- {id:117,line:"Band",name:"Sport Band",cat:"acc",rating:5,new:true,emoji:"⌚",tag:{ru:"Спортивный ремешок для Apple Watch",tj:"Тасмаи варзишӣ барои Apple Watch",en:"Sport Band for Apple Watch"},colors:[{n:{ru:"Синий",tj:"Кабуд",en:"Blue"},hex:"#3b5a78",img:accImg("grid-sport-band-anchor-blue-s11")}]},
- {id:118,line:"Band",name:"Alpine Loop",cat:"acc",rating:5,new:true,emoji:"⌚",tag:{ru:"Ремешок Alpine Loop для Apple Watch",tj:"Тасмаи Alpine Loop барои Apple Watch",en:"Alpine Loop for Apple Watch"},colors:[{n:{ru:"Голубой",tj:"Осмонӣ",en:"Light Blue"},hex:"#a9c4d6",img:accImg("grid-ultra-alpine-loop-light-blue-black-titanium-s11")}]}
+ {id:117,line:"Band",name:"Sport Band",cat:"acc",rating:5,new:true,emoji:"⌚",tag:{ru:"Спортивный ремешок для Apple Watch",tj:"Тасмаи варзишӣ барои Apple Watch",en:"Sport Band for Apple Watch"},colors:accColors(["MHYH4ref","MFGX4ref","MHYF4ref","MHYK4ref","MXLX3ref","MXM23ref","MXM63ref","MXM83ref"])},
+ {id:118,line:"Band",name:"Alpine Loop",cat:"acc",rating:5,new:true,emoji:"⌚",tag:{ru:"Ремешок Alpine Loop для Apple Watch",tj:"Тасмаи Alpine Loop барои Apple Watch",en:"Alpine Loop for Apple Watch"},colors:accColors(["MFTA4ref","MFTE4ref","MFTH4ref"])}
 );
 /* привязка базовых цен к Apple США (USD → сомони × наценка) */
 PRODUCTS.forEach(p=>{if(APPLE_USD[p.id]!=null)p.price=tjs(APPLE_USD[p.id]);});
@@ -1473,7 +1473,7 @@ function renderConfigurator(){
         <img id="cfgBig" src="${imgs[CFG.gi]}" data-emoji="${p.emoji}" alt="${p.name}" onerror="imgFallback(this)">
         ${imgs.length>1?`<div class="cfg-gnav"><button class="cfg-arrow" id="cfgGPrev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg></button><button class="cfg-arrow" id="cfgGNext"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg></button></div>`:""}
       </div>
-      ${imgs.length>1?`<div class="cfg-thumbs">${imgs.map((im,i)=>`<button class="cfg-thumb ${i===CFG.gi?"active":""}" data-gi="${i}"><img src="${im}" alt="" onerror="this.style.display='none'"></button>`).join("")}</div>`:""}
+      ${imgs.length>1?`<div class="cfg-thumbs">${imgs.map((im,i)=>`<button class="cfg-thumb ${i===CFG.gi?"active":""}" data-gi="${i}"><img src="${im}" alt="" onerror="var b=this.closest('.cfg-thumb');if(b)b.remove()"></button>`).join("")}</div>`:""}
     </div></div>
 
     <div class="cfg-panel">
@@ -1498,9 +1498,9 @@ function renderConfigurator(){
       ${p.storage?`<div class="cfg-group"><div class="cfg-q">${t("cfg_storage_label")} <span>${t("cfg_storage_sub")}</span></div>
         ${p.storage.map((st,i)=>optRow(i===CFG.si,`data-si="${i}"`,stLabel(st.gb),"",plus(st.add))).join("")}</div>`:""}
 
-      <div class="cfg-group"><div class="cfg-q">${t("cfg_trade")} <span>${t("cfg_trade_sub")}</span></div>
+      ${cat!=="acc"?`<div class="cfg-group"><div class="cfg-q">${t("cfg_trade")} <span>${t("cfg_trade_sub")}</span></div>
         ${optRow(!CFG.trade,`data-trade="0"`,t("cfg_trade_none"),t("cfg_trade_none_sub"),null)}
-        ${optRow(CFG.trade,`data-trade="1"`,t("cfg_trade_yes"),t("cfg_trade_est"),"−"+fmtPrice(TRADEIN[cat]||0))}</div>
+        ${optRow(CFG.trade,`data-trade="1"`,t("cfg_trade_yes"),t("cfg_trade_est"),"−"+fmtPrice(TRADEIN[cat]||0))}</div>`:""}
 
 
       <div class="cfg-summary">
@@ -1614,7 +1614,7 @@ function renderProduct(){
     <p style="color:var(--text-2);max-width:520px;margin:0 auto 22px">${tr({ru:"Оригинал, официальная гарантия и быстрая доставка по Душанбе.",tj:"Аслӣ, кафолати расмӣ ва расонидани зуд дар Душанбе.",en:"Genuine, official warranty and fast delivery across Dushanbe."})}</p>
     <div class="phero-cta" style="justify-content:center"><a class="btn btn-primary lg" href="buy.html?id=${id}">${t("pp_buy")} · ${fmtPrice(p.price)}</a><a class="btn btn-ghost lg" href="${li.page||"index.html"}">${t("details")} →</a></div></div></section>`;
   root.innerHTML=hero+(pdata?mediaSec:advSec)+specsSec+witbSec+faqSec+cta;
-  function setProdGallery(ci){const c=cols[ci];const gal=(c.gal&&c.gal.length)?c.gal:[c.img];const main=document.getElementById("prodImg");if(main)main.src=gal[0];const gel=document.getElementById("prodGal");if(!gel)return;gel.innerHTML=gal.length>1?gal.map((g,j)=>`<button class="pg-thumb ${j===0?"active":""}" data-g="${j}"><img src="${g}" loading="lazy" alt=""></button>`).join(""):"";gel.querySelectorAll("[data-g]").forEach(b=>b.onclick=()=>{if(main)main.src=gal[+b.dataset.g];gel.querySelectorAll("[data-g]").forEach(x=>x.classList.toggle("active",x===b));});}
+  function setProdGallery(ci){const c=cols[ci];const gal=(c.gal&&c.gal.length)?c.gal:[c.img];const main=document.getElementById("prodImg");if(main)main.src=gal[0];const gel=document.getElementById("prodGal");if(!gel)return;gel.innerHTML=gal.length>1?gal.map((g,j)=>`<button class="pg-thumb ${j===0?"active":""}" data-g="${j}"><img src="${g}" loading="lazy" alt="" onerror="var b=this.closest('.pg-thumb');if(b)b.remove()"></button>`).join(""):"";gel.querySelectorAll("[data-g]").forEach(b=>b.onclick=()=>{if(main)main.src=gal[+b.dataset.g];gel.querySelectorAll("[data-g]").forEach(x=>x.classList.toggle("active",x===b));});}
   root.querySelectorAll("[data-pi]").forEach(b=>b.onclick=()=>{const i=+b.dataset.pi;setProdGallery(i);root.querySelectorAll("[data-pi]").forEach(s=>s.classList.toggle("active",s===b));});
   setProdGallery(0);
   wireFAQ(root);

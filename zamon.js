@@ -406,7 +406,15 @@ const PRODUCTDATA={
  19:{gallery:[
    {img:"img/p19-1.webp",h:{ru:"Компактный корпус, который поместится где угодно.",tj:"Корпуси ҷайбӣ, дар ҳама ҷо ҷойгир мешавад.",en:"A compact design that fits anywhere."}},
    {img:"img/p19-2.webp",h:{ru:"Чип Apple M — большая мощность в малом корпусе.",tj:"Чипи Apple M — қуввати калон дар андозаи хурд.",en:"Apple M chip — big power in a small form."}},
-   {img:"img/p19-3.webp",h:{ru:"Множество портов: Thunderbolt, HDMI, Ethernet.",tj:"Бисёр портҳо: Thunderbolt, HDMI, Ethernet.",en:"Plenty of ports: Thunderbolt, HDMI, Ethernet."}}]}
+   {img:"img/p19-3.webp",h:{ru:"Множество портов: Thunderbolt, HDMI, Ethernet.",tj:"Бисёр портҳо: Thunderbolt, HDMI, Ethernet.",en:"Plenty of ports: Thunderbolt, HDMI, Ethernet."}}]},
+ 4:{gallery:[
+   {img:"img/p4-1.webp",h:{ru:"Прочный и стильный корпус iPhone 17e.",tj:"Корпуси мустаҳкам ва шевои iPhone 17e.",en:"A durable, stylish iPhone 17e design."}},
+   {img:"img/p4-2.webp",h:{ru:"Камера 48 Мп Fusion для чётких фото и видео 4K.",tj:"Камераи 48 Мп Fusion барои аксу видеои 4K.",en:"48 MP Fusion camera for sharp photos and 4K video."}},
+   {img:"img/p4-3.webp",h:{ru:"Чип A19 — быстрая и плавная работа.",tj:"Чипи A19 — кори зуд ва ҳамвор.",en:"A19 chip — fast and smooth performance."}}]},
+ 16:{gallery:[
+   {img:"img/p16-1.webp",h:{ru:"Тонкий и лёгкий MacBook Neo — стиль и портативность.",tj:"MacBook Neo-и тунук ва сабук — услуб ва сабукӣ.",en:"Thin and light MacBook Neo — style and portability."}},
+   {img:"img/p16-2.webp",h:{ru:"Яркий и чёткий дисплей Liquid Retina.",tj:"Дисплейи равшан ва возеҳи Liquid Retina.",en:"A bright, sharp Liquid Retina display."}},
+   {img:"img/p16-3.webp",h:{ru:"Целый день работы от одной зарядки.",tj:"Тамоми рӯз кор аз як заряд.",en:"All-day battery life on a single charge."}}]}
 };
 function curLine(){const ph=document.getElementById("phero");return ph?ph.dataset.line:null;}
 function renderSubnav(){

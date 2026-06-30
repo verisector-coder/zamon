@@ -849,6 +849,9 @@ a.ci-link:hover{color:var(--accent-2)}
 .cfg-color .cc-dot{width:34px;height:34px;border-radius:50%;border:1px solid rgba(0,0,0,.15);transition:.2s}
 .cfg-color.active .cc-dot{box-shadow:0 0 0 2px var(--bg),0 0 0 4px var(--accent)}
 .cfg-color .cc-name{font-size:.74rem;color:var(--text-2)}
+.cc-dot.cc-img{background-size:cover;background-position:center;border:1px solid var(--border-2)}
+.cfg-colors-img{gap:11px}
+.cfg-colors-img .cfg-color .cc-dot{width:38px;height:38px}
 .cfg-summary{position:sticky;bottom:0;background:var(--surface);border-top:1px solid var(--border-2);padding:18px 0;margin-top:10px}
 .cfg-summary .cfg-total{display:flex;justify-content:space-between;font-size:1.2rem;font-weight:700;margin-bottom:6px}
 .cfg-summary .cfg-mo{font-size:.84rem;color:var(--text-2);margin-bottom:12px}

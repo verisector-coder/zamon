@@ -1434,9 +1434,11 @@ function renderConfigurator(){
   const siblings=PRODUCTS.filter(s=>s.cat===cat);
 
   function gallery(){
-    const cols=curCols();const angles=p.gallery||[];
-    // main image recolors per finish (cols[ci]); watch-with-band shots follow as angles
-    return [cols[CFG.ci].img].concat(angles).filter(Boolean).slice(0,5);
+    const cols=curCols();const col=cols[CFG.ci];
+    // per-colour gallery (accessory: main + AV angles) wins; else recoloured main + product angles
+    if(col.gal&&col.gal.length)return col.gal.filter(Boolean).slice(0,6);
+    const angles=p.gallery||[];
+    return [col.img].concat(angles).filter(Boolean).slice(0,5);
   }
   function calc(){
     let dev=p.price;
@@ -1457,7 +1459,8 @@ function renderConfigurator(){
       <div><div class="o-name">${name}</div>${sub?`<div class="o-sub">${sub}</div>`:""}</div>
       ${price!=null?`<div class="o-price">${price}</div>`:""}</div>`;
     const plus=n=>n>0?"+"+fmtPrice(n):t("cfg_incl");
-    const finishSw=`<div class="cfg-colors">${cols.map((cc,i)=>`<div class="cfg-color ${i===CFG.ci?"active":""}" data-ci="${i}"><span class="cc-dot" style="background:${cc.hex}"></span><span class="cc-name">${tr(cc.n)}</span></div>`).join("")}</div>${cols.length>1?`<div class="cfg-curname">${tr(col.n)}</div>`:""}`;
+    const isImgSw=!!(cols[0]&&cols[0].sw);
+    const finishSw=`<div class="cfg-colors ${isImgSw?"cfg-colors-img":""}">${cols.map((cc,i)=>`<div class="cfg-color ${i===CFG.ci?"active":""}" data-ci="${i}" title="${tr(cc.n)}"><span class="cc-dot ${cc.sw?"cc-img":""}" style="${cc.sw?`background-image:url('${cc.sw}')`:`background:${cc.hex}`}"></span>${isImgSw?"":`<span class="cc-name">${tr(cc.n)}</span>`}</div>`).join("")}</div>${cols.length>1&&!isImgSw?`<div class="cfg-curname">${tr(col.n)}</div>`:""}`;
 
     root.innerHTML=`
     <div class="cfg-top">

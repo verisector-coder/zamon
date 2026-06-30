@@ -325,14 +325,14 @@ const LIcat=cat=>LINE_INFO.find(l=>l.cat===cat);
 /* ===== PAGEDATA: rich product-page content (highlights + advantages) ===== */
 const IM=A+"/v/";
 const PAGEDATA={
- iphone:{why:{ru:"Почему iPhone 17 Pro",tj:"Чаро iPhone 17 Pro",en:"Why iPhone 17 Pro"},
+ iphone:{why:{ru:"Почему iPhone",tj:"Чаро iPhone",en:"Why iPhone"},
   highlights:[
-   {dark:1,img:IM+"iphone-17-pro/g/images/overview/cameras/intro/hero_camera__f42igewygpqy_large_2x.jpg",h:{ru:"Революционная система камер. Теперь до <b>48 Мп</b>.",tj:"Системаи камераи инқилобӣ. Акнун то <b>48 Мп</b>.",en:"A revolutionary camera system. Now up to <b>48 MP</b>."}},
-   {dark:1,img:IM+"iphone-17-pro/g/images/overview/design/design_endframe__7k7qs1qlnpu6_large_2x.jpg",h:{ru:"<b>Титановый</b> корпус. Невероятно прочный и лёгкий.",tj:"Корпуси <b>титанӣ</b>. Бениҳоят мустаҳкам ва сабук.",en:"<b>Titanium</b> design. Incredibly strong and light."}},
-   {dark:1,img:IM+"iphone-17-pro/g/images/overview/performance/chip/performance-hero_endframe__fazyny3rhsuy_large_2x.jpg",h:{ru:"Чип <b>A19 Pro</b> — самый мощный в iPhone.",tj:"Чипи <b>A19 Pro</b> — пурқувваттарин дар iPhone.",en:"The <b>A19 Pro</b> chip — the most powerful in iPhone."}}],
-  adv:[{ic:"🛡️",h:{ru:"Титановый корпус",tj:"Корпуси титанӣ",en:"Titanium design"},p:{ru:"Прочнее и легче стали — выдержит любой день.",tj:"Аз пӯлод мустаҳкамтар ва сабуктар.",en:"Stronger and lighter than steel."}},
-   {ic:"📷",h:{ru:"Камера 48 Мп",tj:"Камераи 48 Мп",en:"48 MP camera"},p:{ru:"Профессиональные фото и видео 4K.",tj:"Аксу видеои касбӣ 4K.",en:"Pro-level photos and 4K video."}},
-   {ic:"⚡",h:{ru:"Чип A19 Pro",tj:"Чипи A19 Pro",en:"A19 Pro chip"},p:{ru:"Молниеносная скорость и игры уровня консоли.",tj:"Суръати барқosa ва бозиҳои сатҳи консол.",en:"Blazing speed and console-level gaming."}}]},
+   {dark:1,img:IM+"iphone-17-pro/g/images/overview/cameras/intro/hero_camera__f42igewygpqy_large_2x.jpg",h:{ru:"Продвинутая система камер для чётких фото и детального видео.",tj:"Системаи камераи пешрафта барои аксу видеои возеҳ.",en:"An advanced camera system for sharp photos and detailed video."}},
+   {dark:1,img:IM+"iphone-17-pro/g/images/overview/design/design_endframe__7k7qs1qlnpu6_large_2x.jpg",h:{ru:"Прочный и элегантный корпус, приятный в руке.",tj:"Корпуси мустаҳкам ва шево, дар даст форам.",en:"A durable, elegant design that feels great in the hand."}},
+   {dark:1,img:IM+"iphone-17-pro/g/images/overview/performance/chip/performance-hero_endframe__fazyny3rhsuy_large_2x.jpg",h:{ru:"Мощный чип Apple — быстрая работа и игры без тормозов.",tj:"Чипи пурқуввати Apple — кор ва бозиҳои зуд.",en:"A powerful Apple chip — fast performance and smooth gaming."}}],
+  adv:[{ic:"📷",h:{ru:"Отличная камера",tj:"Камераи аъло",en:"Great camera"},p:{ru:"Чёткие фото и видео в любых условиях.",tj:"Аксу видеои возеҳ дар ҳама шароит.",en:"Sharp photos and video in any conditions."}},
+   {ic:"🛡️",h:{ru:"Надёжный корпус",tj:"Корпуси боэътимод",en:"Durable design"},p:{ru:"Прочные материалы и защита от воды и пыли.",tj:"Маводи мустаҳкам ва ҳифз аз об ва чанг.",en:"Tough materials with water and dust resistance."}},
+   {ic:"⚡",h:{ru:"Чип Apple",tj:"Чипи Apple",en:"Apple chip"},p:{ru:"Молниеносная скорость и плавная работа.",tj:"Суръати барқ ва кори ҳамвор.",en:"Lightning-fast speed and smooth performance."}}]},
  mac:{why:{ru:"Почему Mac",tj:"Чаро Mac",en:"Why Mac"},
   highlights:[
    {dark:0,img:IM+"macbook-air/z/images/overview/display/display_hero__fiig28r0yq2q_large_2x.jpg",h:{ru:"Дисплей <b>Liquid Retina</b>. Яркий, чёткий, красивый.",tj:"Дисплейи <b>Liquid Retina</b>. Равшан ва зебо.",en:"<b>Liquid Retina</b> display. Bright, sharp, beautiful."}},
@@ -341,7 +341,7 @@ const PAGEDATA={
   adv:[{ic:"⚡",h:{ru:"Чипы M4 / M5",tj:"Чипҳои M4 / M5",en:"M4 / M5 chips"},p:{ru:"Невероятная скорость при полной тишине.",tj:"Суръати бениҳоят дар оромии комил.",en:"Incredible speed, whisper quiet."}},
    {ic:"🔋",h:{ru:"До 18 часов",tj:"То 18 соат",en:"Up to 18 hours"},p:{ru:"Работает весь день без подзарядки.",tj:"Тамоми рӯз бе заряд кор мекунад.",en:"All-day battery, no charger needed."}},
    {ic:"🖥️",h:{ru:"Дисплей Retina",tj:"Дисплейи Retina",en:"Retina display"},p:{ru:"Миллиарды цветов и невероятная чёткость.",tj:"Миллиардҳо ранг ва возеҳии аҷиб.",en:"Billions of colors, stunning clarity."}}]},
- ipad:{why:{ru:"Почему iPad Pro",tj:"Чаро iPad Pro",en:"Why iPad Pro"},
+ ipad:{why:{ru:"Почему iPad",tj:"Чаро iPad",en:"Why iPad"},
   highlights:[
    {dark:1,img:IM+"ipad-pro/aw/images/overview/chip/chip_hero_endframe__becrgbad20j6_large_2x.jpg",h:{ru:"Чип <b>M5</b> — мощь компьютера в планшете.",tj:"Чипи <b>M5</b> — қуввати компютер дар планшет.",en:"The <b>M5</b> chip — computer power in a tablet."}},
    {dark:0,img:IM+"ipad-pro/aw/images/overview/display/display_hero_endframe__fr1073m9t56y_large_2x.jpg",h:{ru:"Дисплей <b>Ultra Retina XDR</b>. Невероятно тонкий.",tj:"Дисплейи <b>Ultra Retina XDR</b>. Бениҳоят тунук.",en:"<b>Ultra Retina XDR</b> display. Impossibly thin."}}],
@@ -1518,19 +1518,26 @@ function renderProduct(){
   const featData=p.highlights||((sp.chip&&sp.display&&sp.battery)?[{ic:ficons[0],big:sp.chip,lbl:flbl[0]},{ic:ficons[1],big:sp.display,lbl:flbl[1]},{ic:ficons[2],big:sp.battery,lbl:flbl[2]}]:null);
   const feats=featData?`<section class="sec alt"><div class="wrap"><div class="sec-head reveal"><h2>${t("pp_highlights")}</h2><p class="sec-sub">${tr({ru:"Главное об устройстве — коротко.",tj:"Асосӣ дар бораи дастгоҳ.",en:"The key things at a glance."})}</p></div>
     <div class="prod-feats">${featData.map(f=>`<div class="pf-card reveal"><div class="pf-ic">${f.ic}</div><div class="pf-big">${SLV(f.big)}</div><div class="pf-lbl">${SLV(f.lbl)}</div></div>`).join("")}</div></div></section>`:"";
-  const benefits=[{ic:"🛡️",h:t("s1h"),p:t("s1p")},{ic:"💳",h:t("s3h"),p:t("s3p")},{ic:"🚚",h:t("s2h"),p:t("s2p")}];
-  const why=`<section class="sec"><div class="wrap"><div class="sec-head reveal"><h2>${tr({ru:"Почему ZAMON",tj:"Чаро ZAMON",en:"Why ZAMON"})}</h2></div>
-    <div class="why-adv">${benefits.map(w=>`<div class="wa reveal"><div class="wa-ic">${w.ic}</div><h4>${w.h}</h4><p>${w.p}</p></div>`).join("")}</div></div></section>`;
+  const richOk=pd&&pd.highlights&&pd.highlights.length&&p.cat!=="acc"&&p.id!==18&&p.id!==19;
+  const lineWhy=tr({ru:"Почему "+(li.name||p.line),tj:"Чаро "+(li.name||p.line),en:"Why "+(li.name||p.line)});
+  const carouselSec=richOk?`<section class="sec alt" id="pdHl"><div class="wrap"><div class="sec-head reveal"><h2>${t("pp_highlights")}</h2><p class="sec-sub">${tr({ru:"Главное в деталях.",tj:"Асосӣ дар тафсил.",en:"The highlights, in detail."})}</p></div>
+    <div class="carousel" id="pdCar"><button class="car-arrow prev" aria-label="prev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></button>
+      <div class="car-viewport"><div class="car-track">${pd.highlights.map(h=>`<div class="hl-card ${h.dark?"dark":""}"><div class="hl-h">${tr(h.h)}</div><img class="hl-img" src="${h.img}" alt="" loading="lazy" onerror="this.style.display='none'"></div>`).join("")}</div></div>
+      <button class="car-arrow next" aria-label="next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></button>
+    </div><div class="car-dots" id="pdDots"></div></div></section>`:"";
+  const advSec=(richOk&&pd.adv)?`<section class="sec"><div class="wrap"><div class="sec-head reveal"><h2>${lineWhy}</h2></div>
+    <div class="why-adv">${pd.adv.map(a=>`<div class="wa reveal"><div class="wa-ic">${a.ic}</div><h4>${tr(a.h)}</h4><p>${tr(a.p)}</p></div>`).join("")}</div></div></section>`:feats;
   const specsSec=`<section class="sec alt"><div class="wrap"><div class="sec-head reveal"><h2>${t("spec_h")}</h2></div>${specsHtml}</div></section>`;
   const faqSec=buildBuyerFAQ();
   const witbSec=buildWITB(p);
   const cta=`<section class="sec"><div class="wrap" style="text-align:center"><h2 style="font-size:clamp(1.8rem,4vw,2.6rem);margin-bottom:14px">${tr({ru:"Готовы к покупке?",tj:"Ба харид тайёред?",en:"Ready to buy?"})}</h2>
     <p style="color:var(--text-2);max-width:520px;margin:0 auto 22px">${tr({ru:"Оригинал, официальная гарантия и быстрая доставка по Душанбе.",tj:"Аслӣ, кафолати расмӣ ва расонидани зуд дар Душанбе.",en:"Genuine, official warranty and fast delivery across Dushanbe."})}</p>
     <div class="phero-cta" style="justify-content:center"><a class="btn btn-primary lg" href="buy.html?id=${id}">${t("pp_buy")} · ${fmtPrice(p.price)}</a><a class="btn btn-ghost lg" href="${li.page||"index.html"}">${t("details")} →</a></div></div></section>`;
-  root.innerHTML=hero+feats+why+specsSec+witbSec+faqSec+cta;
+  root.innerHTML=hero+carouselSec+advSec+specsSec+witbSec+faqSec+cta;
   root.querySelectorAll("[data-pi]").forEach(b=>b.onclick=()=>{const i=+b.dataset.pi;document.getElementById("prodImg").src=cols[i].img;root.querySelectorAll("[data-pi]").forEach(s=>s.classList.toggle("active",s===b));});
   wireFAQ(root);
   const add=root.querySelector("#prodAdd");if(add)add.onclick=()=>{addToCart(id,0);openCart();};
+  if(richOk){const c=root.querySelector("#pdCar");if(c)initCarousel(c,document.getElementById("pdDots"));}
   observeReveal();initTilt(".pf-card");
 }
 

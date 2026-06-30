@@ -370,7 +370,43 @@ const PRODUCTDATA={
  2:{heroVideo:"https://www.apple.com/105/media/us/iphone-air/2025/731189b1-a606-493f-afa4-7c766a8fd08d/anim/highlights-design/large.mp4",
     gallery:[{img:"img/air-design.webp",h:{ru:"Самый тонкий iPhone. Прочный корпус из титана.",tj:"Тунуктарин iPhone. Корпуси титанӣ.",en:"The thinnest iPhone. Durable titanium design."}},
      {img:"img/air-camera.webp",h:{ru:"Камера 48 Мп Fusion для чётких фото и видео 4K.",tj:"Камераи 48 Мп Fusion барои аксу видеои 4K.",en:"48 MP Fusion camera for sharp photos and 4K video."}},
-     {img:"img/air-chip.webp",h:{ru:"Чип A19 Pro — молниеносная производительность.",tj:"Чипи A19 Pro — иҷрои барқосо.",en:"A19 Pro chip — blazing performance."}}]}
+     {img:"img/air-chip.webp",h:{ru:"Чип A19 Pro — молниеносная производительность.",tj:"Чипи A19 Pro — иҷрои барқосо.",en:"A19 Pro chip — blazing performance."}}]},
+ 3:{gallery:[
+   {img:"img/p3-1.webp",h:{ru:"Прочный экран Ceramic Shield и продуманный дизайн.",tj:"Экрани мустаҳками Ceramic Shield ва тарҳи зебо.",en:"Durable Ceramic Shield front and refined design."}},
+   {img:"img/p3-2.webp",h:{ru:"Продвинутая система камер 48 Мп и видео 4K.",tj:"Системаи камераи 48 Мп ва видеои 4K.",en:"Advanced 48 MP camera system and 4K video."}},
+   {img:"img/p3-3.webp",h:{ru:"Мощный чип Apple — быстро и энергоэффективно.",tj:"Чипи пурқуввати Apple — зуд ва камсарф.",en:"Powerful Apple chip — fast and efficient."}}]},
+ 7:{gallery:[
+   {img:"img/p7-1.webp",h:{ru:"Невероятно тонкий и лёгкий — всегда с собой.",tj:"Бениҳоят тунук ва сабук — ҳамеша бо худ.",en:"Incredibly thin and light — take it anywhere."}},
+   {img:"img/p7-2.webp",h:{ru:"Чип Apple M — мощно и абсолютно бесшумно.",tj:"Чипи Apple M — пурқувват ва ором.",en:"Apple M chip — powerful and silent."}},
+   {img:"img/p7-3.webp",h:{ru:"До 18 часов работы от одной зарядки.",tj:"То 18 соат кор аз як заряд.",en:"Up to 18 hours of battery life."}}]},
+ 9:{gallery:[
+   {img:"img/p9-1.webp",h:{ru:"Тонкий и портативный — 11″ или 13″.",tj:"Тунук ва сабук — 11″ ё 13″.",en:"Thin and portable — 11″ or 13″."}},
+   {img:"img/p9-2.webp",h:{ru:"Чип Apple M — справится с любой задачей.",tj:"Чипи Apple M — ҳар вазифаро иҷро мекунад.",en:"Apple M chip — handles any task."}},
+   {img:"img/p9-3.webp",h:{ru:"Поддержка Apple Pencil Pro для заметок и рисунков.",tj:"Дастгирии Apple Pencil Pro барои навису расм.",en:"Works with Apple Pencil Pro for notes and art."}}]},
+ 11:{gallery:[
+   {img:"img/p11-1.webp",h:{ru:"Прочный корпус и яркий дисплей Always-On.",tj:"Корпуси мустаҳкам ва дисплейи равшан Always-On.",en:"Durable case and bright Always-On display."}},
+   {img:"img/p11-2.webp",h:{ru:"Датчики здоровья: пульс, ЭКГ, сон и не только.",tj:"Сенсорҳои саломатӣ: набз, ЭКГ, хоб.",en:"Health sensors: heart rate, ECG, sleep and more."}},
+   {img:"img/p11-3.webp",h:{ru:"Точные метрики для тренировок и активности.",tj:"Метрикаи дақиқ барои машқу фаъолият.",en:"Precise metrics for workouts and activity."}}]},
+ 13:{gallery:[
+   {img:"img/p13-1.webp",h:{ru:"Удобная посадка и лёгкий дизайн на каждый день.",tj:"Шинондани қулай ва тарҳи сабук.",en:"Comfortable fit and light everyday design."}},
+   {img:"img/p13-2.webp",h:{ru:"Чистый звук нового поколения с чипом H2.",tj:"Садои тозаи насли нав бо чипи H2.",en:"Next-generation clear sound with the H2 chip."}},
+   {img:"img/p13-3.webp",h:{ru:"Компактный кейс с зарядкой через USB-C.",tj:"Кейси ҷайбӣ бо заряди USB-C.",en:"Compact case with USB-C charging."}}]},
+ 14:{gallery:[
+   {img:"img/p14-1.webp",h:{ru:"Премиальные материалы и продуманный дизайн.",tj:"Маводи дараҷаи олӣ ва тарҳи зебо.",en:"Premium materials and refined design."}},
+   {img:"img/p14-2.webp",h:{ru:"Звук высшего класса с насыщенными деталями.",tj:"Садои дараҷаи олӣ бо тафсилоти бой.",en:"High-fidelity sound with rich detail."}},
+   {img:"img/p14-3.webp",h:{ru:"Активное шумоподавление для полного погружения.",tj:"Бартарафсозии садо барои ғарқшавии пурра.",en:"Active Noise Cancellation for total immersion."}}]},
+ 15:{gallery:[
+   {img:"img/p15-1.webp",h:{ru:"Главные датчики здоровья по доступной цене.",tj:"Сенсорҳои асосии саломатӣ бо нархи дастрас.",en:"Essential health sensors at a great value."}},
+   {img:"img/p15-2.webp",h:{ru:"Прочный корпус, готовый к ежедневным нагрузкам.",tj:"Корпуси мустаҳкам барои ҳар рӯз.",en:"Durable case ready for everyday life."}},
+   {img:"img/p15-3.webp",h:{ru:"Отслеживание сна и активности 24/7.",tj:"Назорати хоб ва фаъолият 24/7.",en:"Sleep and activity tracking 24/7."}}]},
+ 18:{gallery:[
+   {img:"img/p18-1.webp",h:{ru:"Дисплей 24″ 4,5K Retina — яркий и чёткий.",tj:"Дисплейи 24″ 4,5K Retina — равшан ва возеҳ.",en:"24″ 4.5K Retina display — bright and sharp."}},
+   {img:"img/p18-2.webp",h:{ru:"Тонкий корпус в пяти ярких цветах.",tj:"Корпуси тунук дар панҷ ранги дурахшон.",en:"Slim design in five vibrant colors."}},
+   {img:"img/p18-3.webp",h:{ru:"Чип Apple M и Apple Intelligence для всего.",tj:"Чипи Apple M ва Apple Intelligence.",en:"Apple M chip and Apple Intelligence built in."}}]},
+ 19:{gallery:[
+   {img:"img/p19-1.webp",h:{ru:"Компактный корпус, который поместится где угодно.",tj:"Корпуси ҷайбӣ, дар ҳама ҷо ҷойгир мешавад.",en:"A compact design that fits anywhere."}},
+   {img:"img/p19-2.webp",h:{ru:"Чип Apple M — большая мощность в малом корпусе.",tj:"Чипи Apple M — қуввати калон дар андозаи хурд.",en:"Apple M chip — big power in a small form."}},
+   {img:"img/p19-3.webp",h:{ru:"Множество портов: Thunderbolt, HDMI, Ethernet.",tj:"Бисёр портҳо: Thunderbolt, HDMI, Ethernet.",en:"Plenty of ports: Thunderbolt, HDMI, Ethernet."}}]}
 };
 function curLine(){const ph=document.getElementById("phero");return ph?ph.dataset.line:null;}
 function renderSubnav(){

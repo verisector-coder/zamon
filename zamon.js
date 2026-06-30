@@ -364,6 +364,14 @@ const PAGEDATA={
    {ic:"🎧",h:{ru:"Пространственный звук",tj:"Садои фазоӣ",en:"Spatial Audio"},p:{ru:"Объёмное звучание вокруг вас.",tj:"Садои ҳаҷмӣ дар атрофи шумо.",en:"Immersive surround sound."}},
    {ic:"🔋",h:{ru:"До 30 часов",tj:"То 30 соат",en:"Up to 30 hours"},p:{ru:"Долгая работа вместе с зарядным кейсом.",tj:"Кори дароз бо кейси заряд.",en:"Long battery life with the charging case."}}]}
 };
+/* Per-product rich media pulled from Apple's own pages (own photos + hero video).
+   Заполняется по модели: фото скачаны в img/ (webp), видео — hotlink Apple CDN. */
+const PRODUCTDATA={
+ 2:{heroVideo:"https://www.apple.com/105/media/us/iphone-air/2025/731189b1-a606-493f-afa4-7c766a8fd08d/anim/highlights-design/large.mp4",
+    gallery:[{img:"img/air-design.webp",h:{ru:"Самый тонкий iPhone. Прочный корпус из титана.",tj:"Тунуктарин iPhone. Корпуси титанӣ.",en:"The thinnest iPhone. Durable titanium design."}},
+     {img:"img/air-camera.webp",h:{ru:"Камера 48 Мп Fusion для чётких фото и видео 4K.",tj:"Камераи 48 Мп Fusion барои аксу видеои 4K.",en:"48 MP Fusion camera for sharp photos and 4K video."}},
+     {img:"img/air-chip.webp",h:{ru:"Чип A19 Pro — молниеносная производительность.",tj:"Чипи A19 Pro — иҷрои барқосо.",en:"A19 Pro chip — blazing performance."}}]}
+};
 function curLine(){const ph=document.getElementById("phero");return ph?ph.dataset.line:null;}
 function renderSubnav(){
   const el=document.getElementById("subnav");if(!el)return;const li=LI(curLine());if(!li)return;
@@ -1526,16 +1534,23 @@ function renderProduct(){
   const lineWhy=tr({ru:"Почему "+(li.name||p.line),tj:"Чаро "+(li.name||p.line),en:"Why "+(li.name||p.line)});
   const advSec=advOk?`<section class="sec alt"><div class="wrap"><div class="sec-head reveal"><h2>${lineWhy}</h2></div>
     <div class="why-adv">${pd.adv.map(a=>`<div class="wa reveal"><div class="wa-ic">${a.ic}</div><h4>${tr(a.h)}</h4><p>${tr(a.p)}</p></div>`).join("")}</div></div></section>`:feats;
+  const pdata=PRODUCTDATA[id];
+  const mediaSec=pdata?`${pdata.heroVideo?`<section class="sec"><div class="wrap"><div class="prod-video-wrap reveal"><video class="prod-video" autoplay muted loop playsinline preload="auto"><source src="${pdata.heroVideo}" type="video/mp4"></video></div></div></section>`:""}${pdata.gallery?`<section class="sec alt"><div class="wrap"><div class="sec-head reveal"><h2>${t("pp_highlights")}</h2></div>
+    <div class="carousel" id="pdCar"><button class="car-arrow prev" aria-label="prev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></button>
+      <div class="car-viewport"><div class="car-track">${pdata.gallery.map(g=>`<div class="hl-card dark"><div class="hl-h">${tr(g.h)}</div><img class="hl-img" src="${g.img}" alt="${p.name}" loading="lazy" onerror="this.style.display='none'"></div>`).join("")}</div></div>
+      <button class="car-arrow next" aria-label="next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></button>
+    </div><div class="car-dots" id="pdDots"></div></div></section>`:""}`:"";
   const specsSec=`<section class="sec"><div class="wrap"><div class="sec-head reveal"><h2>${t("spec_h")}</h2></div>${specsHtml}</div></section>`;
   const faqSec=buildBuyerFAQ();
   const witbSec=buildWITB(p);
   const cta=`<section class="sec"><div class="wrap" style="text-align:center"><h2 style="font-size:clamp(1.8rem,4vw,2.6rem);margin-bottom:14px">${tr({ru:"Готовы к покупке?",tj:"Ба харид тайёред?",en:"Ready to buy?"})}</h2>
     <p style="color:var(--text-2);max-width:520px;margin:0 auto 22px">${tr({ru:"Оригинал, официальная гарантия и быстрая доставка по Душанбе.",tj:"Аслӣ, кафолати расмӣ ва расонидани зуд дар Душанбе.",en:"Genuine, official warranty and fast delivery across Dushanbe."})}</p>
     <div class="phero-cta" style="justify-content:center"><a class="btn btn-primary lg" href="buy.html?id=${id}">${t("pp_buy")} · ${fmtPrice(p.price)}</a><a class="btn btn-ghost lg" href="${li.page||"index.html"}">${t("details")} →</a></div></div></section>`;
-  root.innerHTML=hero+advSec+specsSec+witbSec+faqSec+cta;
+  root.innerHTML=hero+(pdata?mediaSec:advSec)+specsSec+witbSec+faqSec+cta;
   root.querySelectorAll("[data-pi]").forEach(b=>b.onclick=()=>{const i=+b.dataset.pi;document.getElementById("prodImg").src=cols[i].img;root.querySelectorAll("[data-pi]").forEach(s=>s.classList.toggle("active",s===b));});
   wireFAQ(root);
   const add=root.querySelector("#prodAdd");if(add)add.onclick=()=>{addToCart(id,0);openCart();};
+  if(pdata&&pdata.gallery){const c=root.querySelector("#pdCar");if(c)initCarousel(c,document.getElementById("pdDots"));}
   observeReveal();initTilt(".pf-card");
 }
 

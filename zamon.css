@@ -1040,3 +1040,7 @@ img[data-emoji].img-loaded{opacity:1}
 .trust-row{display:flex;flex-wrap:wrap;gap:8px 18px;justify-content:center;margin:18px auto 0;max-width:600px;font-size:.82rem}
 .trust-i{color:var(--text-2);white-space:nowrap;font-weight:500}
 .phero.dark .trust-row .trust-i{color:#c7c7cc}
+
+/* per-product hero video (pulled from Apple) */
+.prod-video-wrap{max-width:980px;margin:0 auto;border-radius:var(--r-lg);overflow:hidden;background:#000}
+.prod-video{width:100%;display:block}

@@ -74,10 +74,10 @@ const PRODUCTS=[
    {n:{ru:"Оранжевый",tj:"Норанҷӣ",en:"Orange"},hex:"#c8502d",img:A+"/v/iphone-17-pro/g/images/overview/product-viewer/colors_orange__cr2oq3n1dwk2_large_2x.jpg"},
    {n:{ru:"Синий",tj:"Кабуд",en:"Blue"},hex:"#4a5a78",img:A+"/v/iphone-17-pro/g/images/overview/product-viewer/colors_blue__li170wg4gkae_large_2x.jpg"},
    {n:{ru:"Серебристый",tj:"Нуқрагӣ",en:"Silver"},hex:"#dcdee0",img:A+"/v/iphone-17-pro/g/images/overview/product-viewer/colors_silver__eb8fu7zfvwmu_large_2x.jpg"}]},
- {id:2,line:"iPhone",name:"iPhone Air",cat:"phone",price:13490,old:0,rating:5,new:true,emoji:"📱",
+ {id:2,line:"iPhone",name:"iPhone Air",cat:"phone",price:13490,modelPage:"iphone-air.html",old:0,rating:5,new:true,emoji:"📱",
   tag:{ru:"Самый тонкий iPhone",tj:"Тунуктарин iPhone",en:"The thinnest iPhone ever"},
   colors:[{n:{ru:"Небесно-голубой",tj:"Осмонӣ",en:"Sky Blue"},hex:"#a9c4d6",img:A+"/v/iphone/home/cj/images/overview/select/iphone_air__b5qmgl05ojyq_large_2x.jpg"}]},
- {id:3,line:"iPhone",name:"iPhone 17",cat:"phone",price:10990,old:0,rating:5,new:true,emoji:"📱",
+ {id:3,line:"iPhone",name:"iPhone 17",cat:"phone",price:10990,modelPage:"iphone-17.html",old:0,rating:5,new:true,emoji:"📱",
   tag:{ru:"Новый дисплей и чип A19",tj:"Дисплейи нав ва A19",en:"New display and A19 chip"},
   colors:[{n:{ru:"Лавандовый",tj:"Бунафш",en:"Lavender"},hex:"#cbbfe0",img:A+"/v/iphone/home/cj/images/overview/select/iphone_17__fb1277oq3eaa_large_2x.jpg"}]},
  {id:4,line:"iPhone",name:"iPhone 17e",cat:"phone",price:7990,old:0,rating:4,new:false,emoji:"📱",
@@ -722,6 +722,28 @@ const MODELS={
    {label:{ru:"Кнопка действия",tj:"Тугмаи амал",en:"Action button"},img:A+"/v/iphone-17-pro/g/images/overview/product-viewer/action_button__efiof6bf182u_large.jpg",
     desc:{ru:"Настраиваемая кнопка действия для быстрого доступа.",tj:"Тугмаи танзимшавандаи амал барои дастрасии тез.",en:"A customizable Action button for fast access."}}]
  },
+ iphoneair:{name:"iPhone Air",productId:2,price:13490,eyebrow:"iPhone Air",light:true,hlLight:true,
+  heroVideo:A+"/105/media/us/iphone-air/2025/7bed1bdf-3f41-464b-83ce-b7a6b0d29f28/anim/hero/large.mp4",
+  heroImg:A+"/v/iphone-air/g/images/overview/design/hero_design__capuizdf0uuu_large.jpg",
+  title:{ru:"Самый тонкий iPhone. С мощью Pro внутри.",tj:"Тунуктарин iPhone. Бо қуввати Pro.",en:"The thinnest iPhone ever. With the power of pro inside."},
+  highlights:[
+   {img:A+"/v/iphone-air/g/images/overview/design/hero_design__capuizdf0uuu_large.jpg",h:{ru:"Самый тонкий iPhone за всю историю — титановый корпус.",tj:"Тунуктарин iPhone дар таърих — корпуси титанӣ.",en:"The thinnest iPhone ever — titanium design."}},
+   {img:A+"/v/iphone-air/g/images/overview/camera/camera__gl56mvovq6qi_large.jpg",h:{ru:"48 Мп камера Fusion — снимки уровня Pro.",tj:"Камераи 48 Мп Fusion — суратҳои сатҳи Pro.",en:"48MP Fusion camera — pro-level shots."}},
+   {img:A+"/v/iphone-air/g/images/overview/performance_battery/chip_endframe__ef1hdlqmu5me_large.jpg",h:{ru:"Чип <b>A19 Pro</b> — исключительная производительность.",tj:"Чипи <b>A19 Pro</b> — иҷрокунии истисноӣ.",en:"The <b>A19 Pro</b> chip — exceptional performance."}},
+   {img:A+"/v/iphone-air/g/images/overview/performance_battery/battery_life__d3o1grnzitoy_large.jpg",h:{ru:"Заряд на весь день, несмотря на тонкость.",tj:"Заряд барои тамоми рӯз.",en:"All-day battery life, even this thin."}},
+   {img:A+"/v/iphone-air/g/images/overview/camera/camera_control__evag1t2apriq_large.jpg",h:{ru:"Camera Control — съёмка одним касанием.",tj:"Camera Control — сурат бо як ламс.",en:"Camera Control — capture in one touch."}}]
+ },
+ iphone17:{name:"iPhone 17",productId:3,price:10990,eyebrow:"iPhone 17",light:true,hlLight:true,
+  heroVideo:A+"/105/media/us/iphone-17/2025/b2c72de3-1cbc-4e24-b4d3-23c7abcec4ec/anim/hero/large.mp4",
+  heroImg:A+"/v/iphone-17/g/images/overview/cameras/back-camera/hero_rear_camera__baka63bo73ma_large.png",
+  title:{ru:"iPhone 17. Магии ещё больше.",tj:"iPhone 17. Ҷодуи боз ҳам бештар.",en:"iPhone 17. Even more magic."},
+  highlights:[
+   {img:A+"/v/iphone-17/g/images/overview/cameras/back-camera/hero_rear_camera__baka63bo73ma_large.png",h:{ru:"Две камеры <b>48 Мп</b> — Fusion Main и Ultra Wide.",tj:"Ду камераи <b>48 Мп</b> — Fusion ва Ultra Wide.",en:"Dual <b>48MP</b> cameras — Fusion Main and Ultra Wide."}},
+   {img:A+"/v/iphone-17/g/images/overview/performance/chip_endframe__epkfgf5bhre6_large.jpg",h:{ru:"Чип <b>A19</b> и заряд на весь день.",tj:"Чипи <b>A19</b> ва заряд барои тамоми рӯз.",en:"The <b>A19</b> chip and all-day battery."}},
+   {img:A+"/v/iphone-17/g/images/overview/cameras/back-gallery/telephoto_lens__b4ad0o0ksro2_large.jpg",h:{ru:"Оптический зум для детальных снимков.",tj:"Зуми оптикӣ барои суратҳои муфассал.",en:"Optical-quality zoom for detailed shots."}},
+   {img:A+"/v/iphone-17/g/images/overview/cameras/back-gallery/night_mode__b2cn6zlk4lde_large.jpg",h:{ru:"Ночной режим — яркие фото в темноте.",tj:"Реҷаи шабона — суратҳои равшан дар торикӣ.",en:"Night mode — bright photos in the dark."}},
+   {img:A+"/v/iphone-17/g/images/overview/cameras/back-gallery/photographic_styles__mfkjax7ttwii_large.jpg",h:{ru:"Фотографические стили — ваш фирменный вид.",tj:"Сабкҳои аксбардорӣ — намуди шахсии шумо.",en:"Photographic Styles — your signature look."}}]
+ },
  macbookpro:{name:"MacBook Pro",productId:6,price:27990,eyebrow:"MacBook Pro",
   heroVideo:LI("mac").heroVideo,
   heroImg:A+"/v/macbook-pro/ax/images/overview/product-viewer/pv_hero_endframe__gc89p7dw1syi_large.jpg",
@@ -915,6 +937,18 @@ const TECHSPECS={
   {t:G("Камера","Камера","Camera"),rows:[[G("Основная","Асосӣ","Main"),"48 MP ƒ/1.78"],[G("Ультраширокая","Ултрафарох","Ultra Wide"),"48 MP ƒ/2.2"],[G("Телефото","Телефото","Telephoto"),G("48 MP · зум 4×","48 MP · зум 4×","48 MP · 4× zoom")],[G("Видео","Видео","Video"),"4K Dolby Vision · 120 fps"]]},
   {t:G("Аккумулятор","Батарея","Battery"),rows:[[G("Видео","Видео","Video"),G("до 33 часов","то 33 соат","up to 33 hrs")],[G("Зарядка","Заряд","Charging"),"USB-C · MagSafe · Qi2"],[G("Быстрая зарядка","Заряди тез","Fast charge"),G("50% за 20 мин","50% дар 20 дақ","50% in 20 min")]]},
   {t:G("Корпус и защита","Корпус ва ҳифз","Build"),rows:[[G("Материал","Мавод","Material"),G("Титан Grade 5","Титани Grade 5","Grade 5 Titanium")],[G("Стекло","Шиша","Glass"),"Ceramic Shield 2"],[G("Защита","Ҳифз","Resistance"),"IP68"],[G("Связь","Алоқа","Connectivity"),"5G · Wi-Fi 7 · BT 6 · eSIM"]]}
+ ],
+ iphoneair:[
+  {t:G("Дисплей","Дисплей","Display"),rows:[[G("Тип","Навъ","Type"),"6.5″ OLED ProMotion 120Hz"],[G("Яркость","Равшанӣ","Brightness"),G("до 3000 нит","то 3000 нит","up to 3000 nits")]]},
+  {t:G("Чип","Чип","Chip"),rows:[[G("Процессор","Протсессор","Processor"),"A19 Pro"],[G("Нейродвижок","Нейромотор","Neural Engine"),G("16-ядерный","16-ядрагӣ","16-core")]]},
+  {t:G("Камеры","Камераҳо","Cameras"),rows:[[G("Основная","Асосӣ","Main"),"48 Мп Fusion"],[G("Фронтальная","Пеш","Front"),G("18 Мп Center Stage","18 Мп Center Stage","18MP Center Stage")]]},
+  {t:G("Корпус и батарея","Корпус ва батарея","Design & battery"),rows:[[G("Корпус","Корпус","Design"),G("Титан · 5.6 мм","Титан · 5.6 мм","Titanium · 5.6mm")],[G("Работа","Кор","Battery"),G("на весь день","барои тамоми рӯз","all-day")],[G("Разъём","Пайваст","Port"),"USB-C"]]}
+ ],
+ iphone17:[
+  {t:G("Дисплей","Дисплей","Display"),rows:[[G("Тип","Навъ","Type"),"6.3″ OLED ProMotion 120Hz"],[G("Яркость","Равшанӣ","Brightness"),G("до 3000 нит","то 3000 нит","up to 3000 nits")]]},
+  {t:G("Чип","Чип","Chip"),rows:[[G("Процессор","Протсессор","Processor"),"A19"],[G("Графика","График","GPU"),G("5-ядерный","5-ядрагӣ","5-core")]]},
+  {t:G("Камеры","Камераҳо","Cameras"),rows:[[G("Основная","Асосӣ","Main"),"48 Мп Fusion"],[G("Сверхширокая","Фаровасеъ","Ultra Wide"),"48 Мп"],[G("Фронтальная","Пеш","Front"),"18 Мп Center Stage"]]},
+  {t:G("Батарея и связь","Батарея ва алоқа","Battery & more"),rows:[[G("Работа","Кор","Battery"),G("на весь день","барои тамоми рӯз","all-day")],[G("Разъём","Пайваст","Port"),"USB-C"],[G("Связь","Алоқа","Connectivity"),"5G · Wi-Fi 7"]]}
  ],
  macbookpro:[
   {t:G("Чип","Чип","Chip"),rows:[[G("Процессор","Просессор","Processor"),"Apple M5 Pro"],["CPU",G("до 14 ядер","то 14 ядро","up to 14-core")],["GPU",G("до 20 ядер","то 20 ядро","up to 20-core")],[G("Память","Хотира","Memory"),G("до 48 ГБ","то 48 ГБ","up to 48 GB")]]},

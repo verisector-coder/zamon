@@ -134,10 +134,30 @@ const PRODUCTS=[
   colors:[{n:{ru:"Серебристый",tj:"Нуқрагӣ",en:"Silver"},hex:"#dcdee0",img:SCH("mac-mini-select-202410")}]},
  {id:8,line:"iPad",name:"iPad Pro",cat:"tablet",price:13990,old:0,rating:5,new:true,emoji:"📲",modelPage:"ipad-pro.html",
   tag:{ru:"Чип M5 · Ultra Retina XDR",tj:"Чипи M5 · Ultra Retina XDR",en:"M5 · Ultra Retina XDR"},
-  colors:[{n:{ru:"Серебристый",tj:"Нуқрагӣ",en:"Silver"},hex:"#dcdee0",img:A+"/v/ipad-pro/aw/images/overview/design/design_hero_endframe__0uk1xnayimay_large.png"}]},
- {id:9,line:"iPad",name:"iPad Air",cat:"tablet",price:8490,old:0,rating:5,new:false,emoji:"📲",
+  colors:[
+   {n:{ru:"Космический чёрный",tj:"Сиёҳи кайҳонӣ",en:"Space Black"},hex:"#3a3b3d",img:WG("ipad-pro-finish-select-202405-11inch-spaceblack")},
+   {n:{ru:"Серебристый",tj:"Нуқрагӣ",en:"Silver"},hex:"#e3e4e6",img:WG("ipad-pro-finish-select-202405-11inch-silver")}]},
+ {id:9,line:"iPad",name:"iPad Air",cat:"tablet",price:8490,old:0,rating:5,new:true,emoji:"📲",modelPage:"ipad-air.html",
   tag:{ru:"Лёгкий, быстрый, универсальный",tj:"Сабук, тез, бисёрвазифа",en:"Light, fast, versatile"},
-  colors:[{n:{ru:"Серый космос",tj:"Хокистарӣ",en:"Space Gray"},hex:"#7d7e80",img:A+"/v/ipad-air/ah/images/overview/hero/hero_endframe__6gl84bccyaqi_large.png"}]},
+  colors:[
+   {n:{ru:"Синий",tj:"Кабуд",en:"Blue"},hex:"#cdd8ea",img:WG("ipad-air-select-11in-wifi-blue-202405")},
+   {n:{ru:"Фиолетовый",tj:"Бунафш",en:"Purple"},hex:"#ded9e8",img:WG("ipad-air-select-11in-wifi-purple-202405")},
+   {n:{ru:"Серый космос",tj:"Хокистарӣ",en:"Space Gray"},hex:"#7d7e80",img:WG("ipad-air-select-11in-wifi-spacegray-202405")},
+   {n:{ru:"Сияющая звезда",tj:"Ситоравӣ",en:"Starlight"},hex:"#efe9dd",img:WG("ipad-air-select-11in-wifi-starlight-202405")}]},
+ {id:20,line:"iPad",name:"iPad",cat:"tablet",price:4990,old:0,rating:5,new:true,emoji:"📲",modelPage:"ipad-11.html",
+  tag:{ru:"Чип A16 · экран 11″",tj:"Чипи A16 · экрани 11″",en:"A16 chip · 11″ display"},
+  colors:[
+   {n:{ru:"Синий",tj:"Кабуд",en:"Blue"},hex:"#a6c0dd",img:WG("ipad-2022-hero-blue-wifi-select")},
+   {n:{ru:"Розовый",tj:"Гулобӣ",en:"Pink"},hex:"#e6c7c2",img:WG("ipad-2022-hero-pink-wifi-select")},
+   {n:{ru:"Жёлтый",tj:"Зард",en:"Yellow"},hex:"#eed77e",img:WG("ipad-2022-hero-yellow-wifi-select")},
+   {n:{ru:"Серебристый",tj:"Нуқрагӣ",en:"Silver"},hex:"#e3e4e6",img:WG("ipad-2022-hero-silver-wifi-select")}]},
+ {id:21,line:"iPad",name:"iPad mini",cat:"tablet",price:6990,old:0,rating:5,new:true,emoji:"📲",modelPage:"ipad-mini.html",
+  tag:{ru:"Чип A17 Pro · 8,3″",tj:"Чипи A17 Pro · 8,3″",en:"A17 Pro · 8.3″"},
+  colors:[
+   {n:{ru:"Синий",tj:"Кабуд",en:"Blue"},hex:"#b8c4d4",img:WG("ipad-mini-select-wifi-blue-202410")},
+   {n:{ru:"Фиолетовый",tj:"Бунафш",en:"Purple"},hex:"#bcb6cc",img:WG("ipad-mini-select-wifi-purple-202410")},
+   {n:{ru:"Серый космос",tj:"Хокистарӣ",en:"Space Gray"},hex:"#7d7e80",img:WG("ipad-mini-select-wifi-spacegray-202410")},
+   {n:{ru:"Сияющая звезда",tj:"Ситоравӣ",en:"Starlight"},hex:"#efe9dd",img:WG("ipad-mini-select-wifi-starlight-202410")}]},
  {id:10,line:"Apple Watch",name:"Watch Ultra 3",cat:"watch",price:9990,old:0,rating:5,new:true,emoji:"⌚",modelPage:"apple-watch-ultra-3.html",
   tag:{ru:"Титан · GPS · до 42 часов",tj:"Титан · GPS · то 42 соат",en:"Titanium · GPS · up to 42h"},
   colors:[{n:{ru:"Натуральный титан",tj:"Титани табиӣ",en:"Natural Titanium"},hex:"#b9b2a8",img:A+"/v/apple-watch-ultra-3/b/images/overview/welcome/hero_endframe__e4ls9pihykya_large_2x.jpg"}]},
@@ -292,7 +312,7 @@ P(7).colors=[
 P(13).colors=[{n:{ru:"Белый",tj:"Сафед",en:"White"},hex:"#f2f2f2",img:WG("airpods-4-anc-select-202409")}];
 /* storage / config options [sizeGB, +price] */
 /* доплаты за память — в долларах Apple (USD), конвертируются по курсу+наценке */
-const STORAGE={1:[[256,0],[512,200],[1024,400]],2:[[256,0],[512,200]],3:[[256,0],[512,200]],4:[[128,0],[256,100]],5:[[128,0],[256,100]],6:[[512,0],[1024,200],[2048,600]],7:[[256,0],[512,200],[1024,400]],8:[[256,0],[512,200],[1024,500]],9:[[128,0],[256,150]],16:[[256,0],[512,200]],18:[[256,0],[512,200],[1024,400]],19:[[256,0],[512,200],[1024,400]]};
+const STORAGE={1:[[256,0],[512,200],[1024,400]],2:[[256,0],[512,200]],3:[[256,0],[512,200]],4:[[128,0],[256,100]],5:[[128,0],[256,100]],6:[[512,0],[1024,200],[2048,600]],7:[[256,0],[512,200],[1024,400]],8:[[256,0],[512,200],[1024,500],[2048,1000]],9:[[128,0],[256,150],[512,400],[1024,800]],16:[[256,0],[512,200]],18:[[256,0],[512,200],[1024,400]],19:[[256,0],[512,200],[1024,400]],20:[[128,0],[256,120],[512,320]],21:[[128,0],[256,120],[512,320]]};
 PRODUCTS.forEach(p=>{const s=STORAGE[p.id];if(s)p.storage=s.map(([gb,add])=>({gb,add:tjs(add)}));});
 /* submodel variants (size / Pro·Pro Max) [label, +price, sub] */
 /* доплаты за вариант (размер/Pro Max) — тоже в долларах Apple (USD) */
@@ -300,6 +320,7 @@ const VARIANTS={
  1:[[{ru:"iPhone 17 Pro",tj:"iPhone 17 Pro",en:"iPhone 17 Pro"},0,{ru:"Экран 6,3″",tj:"Экран 6,3″",en:"6.3″ display"}],[{ru:"iPhone 17 Pro Max",tj:"iPhone 17 Pro Max",en:"iPhone 17 Pro Max"},100,{ru:"Экран 6,9″ · батарея больше",tj:"Экран 6,9″ · батареяи калонтар",en:"6.9″ display · bigger battery"}]],
  6:[[{ru:"14″ MacBook Pro",tj:"14″ MacBook Pro",en:"14″ MacBook Pro"},0,{ru:"Компактный профи",tj:"Касбии ҷайбӣ",en:"Compact pro"}],[{ru:"16″ MacBook Pro",tj:"16″ MacBook Pro",en:"16″ MacBook Pro"},900,{ru:"Большой экран · мощнее",tj:"Экрани калон · пурқувваттар",en:"Bigger display · more power"}]],
  8:[[{ru:"11″ iPad Pro",tj:"11″ iPad Pro",en:"11″ iPad Pro"},0,{ru:"Лёгкий и портативный",tj:"Сабук ва портативӣ",en:"Light and portable"}],[{ru:"13″ iPad Pro",tj:"13″ iPad Pro",en:"13″ iPad Pro"},300,{ru:"Больше места для работы",tj:"Ҷои бештар барои кор",en:"More room to work"}]],
+ 9:[[{ru:"11″ iPad Air",tj:"11″ iPad Air",en:"11″ iPad Air"},0,{ru:"Лёгкий и портативный",tj:"Сабук ва портативӣ",en:"Light and portable"}],[{ru:"13″ iPad Air",tj:"13″ iPad Air",en:"13″ iPad Air"},200,{ru:"Больше места для работы",tj:"Ҷои бештар барои кор",en:"More room to work"}]],
  15:[[{ru:"40 мм",tj:"40 мм",en:"40mm"},0,{ru:"Компактный размер",tj:"Андозаи ҷайбӣ",en:"Compact size"}],[{ru:"44 мм",tj:"44 мм",en:"44mm"},30,{ru:"Большой дисплей",tj:"Дисплейи калон",en:"Larger display"}]]
 };
 PRODUCTS.forEach(p=>{const v=VARIANTS[p.id];if(v)p.variants=v.map(([n,add,sub])=>({n,add:tjs(add),sub}));});
@@ -619,7 +640,8 @@ const SPECS={
  4:{chip:"A19",display:"6,1″ Super Retina XDR OLED",camera:"48 Мп Fusion · видео 4K",battery:"до 26 ч видео",build:"Алюминий · Ceramic Shield · IP68",conn:"5G · USB-C"},
  5:{chip:"A18",display:"6,1″ Super Retina XDR OLED",camera:"48 Мп Fusion + 12 Мп сверхширокая · видео 4K",battery:"до 22 ч видео",build:"Алюминий · Ceramic Shield · IP68",conn:"5G · USB-C · Wi-Fi 7"},
  6:{chip:"M5 Pro / M5 Max",display:"14″ или 16″ XDR",battery:"до 24 ч"},7:{chip:"M4",display:"15″ Retina",battery:"до 18 ч"},16:{chip:"M5",display:"13″ Retina",battery:"до 18 ч"},18:{chip:"M4",display:"24″ 4,5K Retina",conn:"Thunderbolt · USB-C · Ethernet"},19:{chip:"M4",conn:"HDMI · 2×Thunderbolt 4 · Ethernet · USB-C"},
- 8:{chip:"M5",display:"13″ XDR",battery:"до 10 ч"},9:{chip:"M3",display:"11″ Retina",battery:"до 10 ч"},
+ 8:{chip:"M5",display:"11″/13″ Ultra Retina XDR · Tandem OLED · 120 Гц",camera:"12 Мп + LiDAR · фронт 12 Мп",battery:"до 10 ч",build:"Алюминий · 5,1 мм",conn:"USB-C (TB) · Wi-Fi 7 · 5G"},9:{chip:"M3",display:"11″/13″ Liquid Retina · 500 нит",camera:"12 Мп · фронт 12 Мп Center Stage",battery:"до 10 ч",build:"Алюминий",conn:"USB-C · Wi-Fi 6E · 5G"},
+ 20:{chip:"A16",display:"11″ Liquid Retina · 500 нит",camera:"12 Мп · фронт 12 Мп Center Stage",battery:"до 10 ч",build:"Алюминий",conn:"USB-C · Wi-Fi 6"},21:{chip:"A17 Pro",display:"8,3″ Liquid Retina · 500 нит",camera:"12 Мп · фронт 12 Мп Center Stage",battery:"до 10 ч",build:"Алюминий",conn:"USB-C · Wi-Fi 6E · 5G"},
  10:{chip:"S11",display:"49 мм Ti",battery:"до 42 ч"},11:{chip:"S11",display:"46 мм",battery:"до 24 ч"},15:{chip:"S10",display:"44 мм OLED",battery:"до 18 ч"},
  12:{chip:"H3 · ANC",display:"USB-C",battery:"до 8 ч"},13:{chip:"H2",display:"USB-C",battery:"до 5 ч"},14:{chip:"H1 · ANC",display:"Over-ear",battery:"до 20 ч"}
 };
@@ -750,7 +772,7 @@ const MODELS={
    {img:A+"/v/airpods/ae/images/overview/consider/card_noise_cancellation__bcl69t06noci_large.jpg",h:{ru:"Активное шумоподавление мирового класса.",tj:"Бартарафсозии садои дараҷаи ҷаҳонӣ.",en:"World-class Active Noise Cancellation."}},
    {img:A+"/v/airpods/ae/images/overview/consider/card_personalized_spatial_audio__d9ghs2utja82_large.jpg",h:{ru:"Персональный пространственный звук.",tj:"Садои фазоии шахсӣ.",en:"Personalized Spatial Audio."}},
    {img:A+"/v/airpods/ae/images/overview/consider/card_hearing_health__ss2uxyv3j5m6_large.jpg",h:{ru:"Функции для здоровья слуха.",tj:"Функсияҳо барои саломатии шунавоӣ.",en:"Hearing health features."}},
-   {img:A+"/v/airpods/ae/images/overview/consider/card_heart_rate_sensing__exas9s71qo4m_large.jpg",h:{ru:"Датчик пульса прямо в наушниках.",tj:"Сенсори набз дар гӯшмонак.",en:"Heart rate sensing, built in."}},
+   {video:A+"/105/media/us/airpods-pro/2025/7acffb13-4adb-40b1-9393-8f1c99bc6c90/anim/heart-rate/medium.mp4",img:A+"/v/airpods/ae/images/overview/consider/card_heart_rate_sensing__exas9s71qo4m_large.jpg",h:{ru:"Датчик пульса прямо в наушниках.",tj:"Сенсори набз дар гӯшмонак.",en:"Heart rate sensing, built in."}},
    {img:A+"/v/airpods/ae/images/overview/consider/card_live_translation__ep68h9wscbee_large.jpg",h:{ru:"Живой перевод в реальном времени.",tj:"Тарҷумаи зинда дар вақти воқеӣ.",en:"Live Translation on the go."}}]
  },
  s11:{name:"Apple Watch Series 11",productId:11,price:4990,eyebrow:"⌚ Watch Series 11",light:true,hlLight:true,

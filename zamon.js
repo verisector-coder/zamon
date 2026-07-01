@@ -262,14 +262,14 @@ P(11).bandImgs=[WG("s11-band-unselect-gallery-1-202509")];
 /* Watch SE 3 (new — matches Apple lineup) */
 PRODUCTS.push({id:15,line:"Apple Watch",name:"Watch SE 3",cat:"watch",price:6490,old:0,rating:5,new:false,emoji:"⌚",
  tag:{ru:"Главное о здоровье по доступной цене",tj:"Асосиҳои саломатӣ бо нархи дастрас",en:"Essential health features, great value"},tint:"linear-gradient(180deg,#e7f0fb,#d6e6f7)",
- card:"img/se3-midnight.webp",
+ card:"img/se3-mid.webp",
  colors:[
-  {n:{ru:"Тёмная ночь",tj:"Шаби торик",en:"Midnight"},hex:"#2e3138",img:"img/se3-midnight.webp",sw:WG("watch-case-44-aluminum-midnight-nc-se3_SW_COLOR"),gal:["img/se3-midnight.webp","img/se3-both.webp"]},
-  {n:{ru:"Сияющая звезда",tj:"Ситоравӣ",en:"Starlight"},hex:"#e9e0d2",img:"img/se3-starlight.webp",sw:WG("watch-case-44-aluminum-starlight-nc-se3_SW_COLOR"),gal:["img/se3-starlight.webp","img/se3-both.webp"]}],
+  {n:{ru:"Тёмная ночь",tj:"Шаби торик",en:"Midnight"},hex:"#2e3138",img:"img/se3-mid.webp",sw:WG("watch-case-44-aluminum-midnight-nc-se3_SW_COLOR"),gal:["img/se3-mid.webp","img/se3-duo.webp"]},
+  {n:{ru:"Сияющая звезда",tj:"Ситоравӣ",en:"Starlight"},hex:"#e9e0d2",img:"img/se3-star.webp",sw:WG("watch-case-44-aluminum-starlight-nc-se3_SW_COLOR"),gal:["img/se3-star.webp","img/se3-duo.webp"]}],
  variants:[
   {n:{ru:"40 мм",tj:"40 мм",en:"40mm"},add:0,sub:{ru:"Компактный размер",tj:"Андозаи ҷайбӣ",en:"Compact size"}},
   {n:{ru:"44 мм",tj:"44 мм",en:"44mm"},add:500,sub:{ru:"Большой дисплей",tj:"Дисплейи калон",en:"Larger display"}}],
- gallery:["img/se3-both.webp"]});
+ gallery:["img/se3-duo.webp"]});
 /* реалистичные свотчи финиша часов (металл-градиент Apple): выводим _SW_COLOR из фото корпуса _VW_34FR */
 [10,11,15].forEach(id=>{const p=P(id);const groups=[];if(p.colors)groups.push(p.colors);if(p.materials)p.materials.forEach(m=>groups.push(m.finishes));groups.forEach(g=>g&&g.forEach(c=>{if(c.img&&c.img.indexOf("_VW_34FR")>-1&&!c.sw)c.sw=c.img.replace("_VW_34FR","_SW_COLOR");}));});
 /* богатые страницы моделей часов (эталон Ultra 3) */

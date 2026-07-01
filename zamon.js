@@ -480,8 +480,10 @@ const PAGEDATA={
    {ic:"📡",h:{ru:"Всегда на связи",tj:"Ҳамеша дар тамос",en:"Always connected"},p:{ru:"Звонки, сообщения и Apple Pay прямо с запястья.",tj:"Занг, паём ва Apple Pay аз дастатон.",en:"Calls, messages and Apple Pay from your wrist."}}]},
  airpods:{why:{ru:"Почему AirPods",tj:"Чаро AirPods",en:"Why AirPods"},
   highlights:[
-   {dark:0,img:IM+"airpods/ae/images/overview/hero_endframe__calpooy4ucr6_large_2x.jpg",h:{ru:"Активное <b>шумоподавление</b> нового поколения.",tj:"<b>Бартарафсозии садо</b>и насли нав.",en:"Next-generation active <b>Noise Cancellation</b>."}},
-   {dark:0,img:IM+"airpods/ae/images/overview/airpods_max_blue__fsfaleh1smuu_large.png",h:{ru:"<b>AirPods Max</b> — звук высшего класса.",tj:"<b>AirPods Max</b> — садои дараҷаи олӣ.",en:"<b>AirPods Max</b> — high-fidelity sound."}}],
+   {dark:1,video:A+"/105/media/us/airpods-max/2024/e8f376d6-82b2-40ca-8a22-5f87de755d6b/anim/highlights-anc/large.mp4",h:{ru:"Активное <b>шумоподавление</b> высшего класса.",tj:"<b>Бартарафсозии садо</b>и дараҷаи олӣ.",en:"World-class active <b>Noise Cancellation</b>."}},
+   {dark:0,video:A+"/105/media/us/airpods-pro/2025/7acffb13-4adb-40b1-9393-8f1c99bc6c90/anim/fit-feel/medium.mp4",h:{ru:"Идеальная <b>посадка</b> и звукоизоляция.",tj:"<b>Насб</b>и идеалӣ ва садоизолятсия.",en:"A perfect <b>fit</b> and seal."}},
+   {dark:0,video:A+"/105/media/us/airpods-pro/2025/7acffb13-4adb-40b1-9393-8f1c99bc6c90/anim/heart-rate/medium.mp4",h:{ru:"Датчик <b>пульса</b> прямо в ушах.",tj:"Сенсори <b>набз</b> дар гӯшҳо.",en:"A <b>heart rate</b> sensor in your ears."}},
+   {dark:0,video:A+"/105/media/us/airpods-pro/2025/7acffb13-4adb-40b1-9393-8f1c99bc6c90/anim/connectivity/medium.mp4",h:{ru:"Мгновенное <b>переключение</b> между устройствами Apple.",tj:"Гузариши фаврӣ байни дастгоҳҳои Apple.",en:"Instant <b>switching</b> across Apple devices."}}],
   adv:[{ic:"🔇",h:{ru:"Шумоподавление",tj:"Бартарафсозии садо",en:"Noise Cancellation"},p:{ru:"Полное погружение в музыку где угодно.",tj:"Ғарқшавии пурра дар мусиқӣ.",en:"Total immersion in your music."}},
    {ic:"🎧",h:{ru:"Пространственный звук",tj:"Садои фазоӣ",en:"Spatial Audio"},p:{ru:"Объёмное звучание вокруг вас.",tj:"Садои ҳаҷмӣ дар атрофи шумо.",en:"Immersive surround sound."}},
    {ic:"🔋",h:{ru:"До 30 часов",tj:"То 30 соат",en:"Up to 30 hours"},p:{ru:"Долгая работа вместе с зарядным кейсом.",tj:"Кори дароз бо кейси заряд.",en:"Long battery life with the charging case."}}]}
@@ -566,7 +568,7 @@ function renderHighlights(){
   el.innerHTML=`<div class="wrap"><div class="sec-head reveal"><h2>${t("pp_highlights")}</h2></div>
     <div class="carousel" id="hlCar" data-dots="hlDots">
       <button class="car-arrow prev" aria-label="prev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></button>
-      <div class="car-viewport"><div class="car-track">${pd.highlights.map(h=>`<div class="hl-card ${h.dark?"dark":""}"><div class="hl-h">${tr(h.h)}</div><img class="hl-img" src="${h.img}" alt="" loading="lazy" onerror="this.style.display='none'"></div>`).join("")}</div></div>
+      <div class="car-viewport"><div class="car-track">${pd.highlights.map(h=>`<div class="hl-card ${h.dark?"dark":""}"><div class="hl-h">${tr(h.h)}</div>${h.video?`<video class="hl-img" autoplay muted loop playsinline preload="none"${h.img?` poster="${h.img}"`:""}><source src="${h.video}" type="video/mp4"></video>`:`<img class="hl-img" src="${h.img}" alt="" loading="lazy" onerror="this.style.display='none'">`}</div>`).join("")}</div></div>
       <button class="car-arrow next" aria-label="next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></button>
     </div><div class="car-dots" id="hlDots"></div></div>`;
   initCarousel(el.querySelector("#hlCar"),document.getElementById("hlDots"));observeReveal();

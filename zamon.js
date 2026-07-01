@@ -135,29 +135,29 @@ const PRODUCTS=[
  {id:8,line:"iPad",name:"iPad Pro",cat:"tablet",price:13990,old:0,rating:5,new:true,emoji:"📲",modelPage:"ipad-pro.html",
   tag:{ru:"Чип M5 · Ultra Retina XDR",tj:"Чипи M5 · Ultra Retina XDR",en:"M5 · Ultra Retina XDR"},
   colors:[
-   {n:{ru:"Космический чёрный",tj:"Сиёҳи кайҳонӣ",en:"Space Black"},hex:"#3a3b3d",img:WG("ipad-pro-finish-select-202405-11inch-spaceblack")},
-   {n:{ru:"Серебристый",tj:"Нуқрагӣ",en:"Silver"},hex:"#e3e4e6",img:WG("ipad-pro-finish-select-202405-11inch-silver")}]},
+   {n:{ru:"Космический чёрный",tj:"Сиёҳи кайҳонӣ",en:"Space Black"},hex:"#3a3b3d",img:SCH("ipad-pro-finish-select-202405-11inch-spaceblack")},
+   {n:{ru:"Серебристый",tj:"Нуқрагӣ",en:"Silver"},hex:"#e3e4e6",img:SCH("ipad-pro-finish-select-202405-11inch-silver")}]},
  {id:9,line:"iPad",name:"iPad Air",cat:"tablet",price:8490,old:0,rating:5,new:true,emoji:"📲",modelPage:"ipad-air.html",
   tag:{ru:"Лёгкий, быстрый, универсальный",tj:"Сабук, тез, бисёрвазифа",en:"Light, fast, versatile"},
   colors:[
-   {n:{ru:"Синий",tj:"Кабуд",en:"Blue"},hex:"#cdd8ea",img:WG("ipad-air-select-11in-wifi-blue-202405")},
-   {n:{ru:"Фиолетовый",tj:"Бунафш",en:"Purple"},hex:"#ded9e8",img:WG("ipad-air-select-11in-wifi-purple-202405")},
-   {n:{ru:"Серый космос",tj:"Хокистарӣ",en:"Space Gray"},hex:"#7d7e80",img:WG("ipad-air-select-11in-wifi-spacegray-202405")},
-   {n:{ru:"Сияющая звезда",tj:"Ситоравӣ",en:"Starlight"},hex:"#efe9dd",img:WG("ipad-air-select-11in-wifi-starlight-202405")}]},
+   {n:{ru:"Синий",tj:"Кабуд",en:"Blue"},hex:"#cdd8ea",img:SCH("ipad-air-select-11in-wifi-blue-202405")},
+   {n:{ru:"Фиолетовый",tj:"Бунафш",en:"Purple"},hex:"#ded9e8",img:SCH("ipad-air-select-11in-wifi-purple-202405")},
+   {n:{ru:"Серый космос",tj:"Хокистарӣ",en:"Space Gray"},hex:"#7d7e80",img:SCH("ipad-air-select-11in-wifi-spacegray-202405")},
+   {n:{ru:"Сияющая звезда",tj:"Ситоравӣ",en:"Starlight"},hex:"#efe9dd",img:SCH("ipad-air-select-11in-wifi-starlight-202405")}]},
  {id:20,line:"iPad",name:"iPad",cat:"tablet",price:4990,old:0,rating:5,new:true,emoji:"📲",modelPage:"ipad-11.html",
   tag:{ru:"Чип A16 · экран 11″",tj:"Чипи A16 · экрани 11″",en:"A16 chip · 11″ display"},
   colors:[
-   {n:{ru:"Синий",tj:"Кабуд",en:"Blue"},hex:"#a6c0dd",img:WG("ipad-2022-hero-blue-wifi-select")},
-   {n:{ru:"Розовый",tj:"Гулобӣ",en:"Pink"},hex:"#e6c7c2",img:WG("ipad-2022-hero-pink-wifi-select")},
-   {n:{ru:"Жёлтый",tj:"Зард",en:"Yellow"},hex:"#eed77e",img:WG("ipad-2022-hero-yellow-wifi-select")},
-   {n:{ru:"Серебристый",tj:"Нуқрагӣ",en:"Silver"},hex:"#e3e4e6",img:WG("ipad-2022-hero-silver-wifi-select")}]},
+   {n:{ru:"Синий",tj:"Кабуд",en:"Blue"},hex:"#a6c0dd",img:SCH("ipad-2022-hero-blue-wifi-select")},
+   {n:{ru:"Розовый",tj:"Гулобӣ",en:"Pink"},hex:"#e6c7c2",img:SCH("ipad-2022-hero-pink-wifi-select")},
+   {n:{ru:"Жёлтый",tj:"Зард",en:"Yellow"},hex:"#eed77e",img:SCH("ipad-2022-hero-yellow-wifi-select")},
+   {n:{ru:"Серебристый",tj:"Нуқрагӣ",en:"Silver"},hex:"#e3e4e6",img:SCH("ipad-2022-hero-silver-wifi-select")}]},
  {id:21,line:"iPad",name:"iPad mini",cat:"tablet",price:6990,old:0,rating:5,new:true,emoji:"📲",modelPage:"ipad-mini.html",
   tag:{ru:"Чип A17 Pro · 8,3″",tj:"Чипи A17 Pro · 8,3″",en:"A17 Pro · 8.3″"},
   colors:[
-   {n:{ru:"Синий",tj:"Кабуд",en:"Blue"},hex:"#b8c4d4",img:WG("ipad-mini-select-wifi-blue-202410")},
-   {n:{ru:"Фиолетовый",tj:"Бунафш",en:"Purple"},hex:"#bcb6cc",img:WG("ipad-mini-select-wifi-purple-202410")},
-   {n:{ru:"Серый космос",tj:"Хокистарӣ",en:"Space Gray"},hex:"#7d7e80",img:WG("ipad-mini-select-wifi-spacegray-202410")},
-   {n:{ru:"Сияющая звезда",tj:"Ситоравӣ",en:"Starlight"},hex:"#efe9dd",img:WG("ipad-mini-select-wifi-starlight-202410")}]},
+   {n:{ru:"Синий",tj:"Кабуд",en:"Blue"},hex:"#b8c4d4",img:SCH("ipad-mini-select-wifi-blue-202410")},
+   {n:{ru:"Фиолетовый",tj:"Бунафш",en:"Purple"},hex:"#bcb6cc",img:SCH("ipad-mini-select-wifi-purple-202410")},
+   {n:{ru:"Серый космос",tj:"Хокистарӣ",en:"Space Gray"},hex:"#7d7e80",img:SCH("ipad-mini-select-wifi-spacegray-202410")},
+   {n:{ru:"Сияющая звезда",tj:"Ситоравӣ",en:"Starlight"},hex:"#efe9dd",img:SCH("ipad-mini-select-wifi-starlight-202410")}]},
  {id:10,line:"Apple Watch",name:"Watch Ultra 3",cat:"watch",price:9990,old:0,rating:5,new:true,emoji:"⌚",modelPage:"apple-watch-ultra-3.html",
   tag:{ru:"Титан · GPS · до 42 часов",tj:"Титан · GPS · то 42 соат",en:"Titanium · GPS · up to 42h"},
   colors:[{n:{ru:"Натуральный титан",tj:"Титани табиӣ",en:"Natural Titanium"},hex:"#b9b2a8",img:A+"/v/apple-watch-ultra-3/b/images/overview/welcome/hero_endframe__e4ls9pihykya_large_2x.jpg"}]},
@@ -297,8 +297,8 @@ P(11).modelPage="apple-watch-series-11.html";P(15).modelPage="apple-watch-se-3.h
 P(11).bandImgs=[WG("s11-band-unselect-gallery-1-202509")];P(15).bandImgs=[WG("s11-band-unselect-gallery-1-202509")];
 /* iPad Pro — clean per-finish images (store CDN), like watch */
 P(8).colors=[
- {n:{ru:"Серый космос",tj:"Хокистарӣ",en:"Space Black"},hex:"#3a3a3c",img:WG("ipad-pro-11-select-wifi-spaceblack-202405")},
- {n:{ru:"Серебристый",tj:"Нуқрагӣ",en:"Silver"},hex:"#dcdee0",img:WG("ipad-pro-11-select-wifi-silver-202405")}];
+ {n:{ru:"Серый космос",tj:"Хокистарӣ",en:"Space Black"},hex:"#3a3a3c",img:SCH("ipad-pro-11-select-wifi-spaceblack-202405")},
+ {n:{ru:"Серебристый",tj:"Нуқрагӣ",en:"Silver"},hex:"#dcdee0",img:SCH("ipad-pro-11-select-wifi-silver-202405")}];
 /* Mac — clean per-finish store CDN images (pv_colors were on black → black box) */
 P(6).colors=[
  {n:{ru:"Космический чёрный",tj:"Сиёҳи кайҳонӣ",en:"Space Black"},hex:"#2e2c2e",img:WG("mbp14-spaceblack-select-202410")},
@@ -774,9 +774,9 @@ const MODELS={
    {img:A+"/v/ipad-air/ah/images/overview/apple-pencil-pro/modal/barrel_roll_endframe__d6cy5ij3s0k2_large.jpg",h:{ru:"Работает с Apple Pencil Pro и Magic Keyboard.",tj:"Бо Apple Pencil Pro ва Magic Keyboard кор мекунад.",en:"Works with Apple Pencil Pro and Magic Keyboard."}},
    {img:A+"/v/ipad-air/ah/images/overview/apple-intelligence/privacy_endframe__cmahnib2pzxy_large.jpg",h:{ru:"Apple Intelligence — прямо на iPad Air.",tj:"Apple Intelligence — дар iPad Air.",en:"Apple Intelligence, built right in."}}],
   explorer:[
-   {label:{ru:"Дизайн",tj:"Дизайн",en:"Design"},img:WG("ipad-air-select-11in-wifi-blue-202405"),
+   {label:{ru:"Дизайн",tj:"Дизайн",en:"Design"},img:SCH("ipad-air-select-11in-wifi-blue-202405"),
     desc:{ru:"Два размера — 11″ и 13″ — в четырёх цветах.",tj:"Ду андоза — 11″ ва 13″ — дар чор ранг.",en:"Two sizes — 11″ and 13″ — in four colors."},
-    sw:[{hex:"#cdd8ea",img:WG("ipad-air-select-11in-wifi-blue-202405")},{hex:"#ded9e8",img:WG("ipad-air-select-11in-wifi-purple-202405")},{hex:"#7d7e80",img:WG("ipad-air-select-11in-wifi-spacegray-202405")},{hex:"#efe9dd",img:WG("ipad-air-select-11in-wifi-starlight-202405")}]},
+    sw:[{hex:"#cdd8ea",img:SCH("ipad-air-select-11in-wifi-blue-202405")},{hex:"#ded9e8",img:SCH("ipad-air-select-11in-wifi-purple-202405")},{hex:"#7d7e80",img:SCH("ipad-air-select-11in-wifi-spacegray-202405")},{hex:"#efe9dd",img:SCH("ipad-air-select-11in-wifi-starlight-202405")}]},
    {label:{ru:"Чип M3",tj:"Чипи M3",en:"M3 chip"},img:A+"/v/ipad-air/ah/images/overview/chip/chip_middle_top_endframe__3zu8i1nab6ai_large.png",
     desc:{ru:"Быстрый для многозадачности, игр и Apple Intelligence.",tj:"Тез барои бисёрвазифагӣ, бозиҳо ва Apple Intelligence.",en:"Fast for multitasking, gaming and Apple Intelligence."}},
    {label:{ru:"Камеры",tj:"Камераҳо",en:"Cameras"},img:A+"/v/ipad-air/ah/images/overview/cameras/cameras_endframe__cv0fbgxrv2uu_large.png",
@@ -794,9 +794,9 @@ const MODELS={
    {img:A+"/v/ipad-11/d/images/overview/design/snap_endframe__ej9e60w545aq_large.jpg",h:{ru:"Прочный цельноалюминиевый корпус в четырёх цветах.",tj:"Корпуси якпораи алюминӣ дар чор ранг.",en:"A durable all-aluminum design in four colors."}},
    {img:A+"/v/ipad-11/d/images/overview/get-things-done/keyboard_endframe__f430b2lvfv2a_large.jpg",h:{ru:"Работает с Magic Keyboard Folio и Apple Pencil.",tj:"Бо Magic Keyboard Folio ва Apple Pencil кор мекунад.",en:"Works with Magic Keyboard Folio and Apple Pencil."}}],
   explorer:[
-   {label:{ru:"Дизайн",tj:"Дизайн",en:"Design"},img:WG("ipad-2022-hero-blue-wifi-select"),
+   {label:{ru:"Дизайн",tj:"Дизайн",en:"Design"},img:SCH("ipad-2022-hero-blue-wifi-select"),
     desc:{ru:"Цельный алюминий, экран 11″, четыре ярких цвета.",tj:"Алюминийи якпора, экрани 11″, чор ранги равшан.",en:"All-aluminum, 11″ display, four vivid colors."},
-    sw:[{hex:"#a6c0dd",img:WG("ipad-2022-hero-blue-wifi-select")},{hex:"#e6c7c2",img:WG("ipad-2022-hero-pink-wifi-select")},{hex:"#eed77e",img:WG("ipad-2022-hero-yellow-wifi-select")},{hex:"#e3e4e6",img:WG("ipad-2022-hero-silver-wifi-select")}]},
+    sw:[{hex:"#a6c0dd",img:SCH("ipad-2022-hero-blue-wifi-select")},{hex:"#e6c7c2",img:SCH("ipad-2022-hero-pink-wifi-select")},{hex:"#eed77e",img:SCH("ipad-2022-hero-yellow-wifi-select")},{hex:"#e3e4e6",img:SCH("ipad-2022-hero-silver-wifi-select")}]},
    {label:{ru:"Чип A16",tj:"Чипи A16",en:"A16 chip"},img:A+"/v/ipad-11/d/images/overview/get-things-done/chip__buvu5472f81y_large.jpg",
     desc:{ru:"Плавная работа приложений, задач и игр.",tj:"Кори ҳамвори барномаҳо, вазифаҳо ва бозиҳо.",en:"Smooth performance across apps, tasks and games."}},
    {label:{ru:"Камера",tj:"Камера",en:"Camera"},img:A+"/v/ipad-11/d/images/overview/connect/camera_endframe__qioefbh5aoyi_large.jpg",
@@ -814,9 +814,9 @@ const MODELS={
    {img:A+"/v/ipad-mini/v/images/overview/design/design_headline__cvgh51rmzq2q_large.png",h:{ru:"Дисплей Liquid Retina 8,3″ — удобно в одной руке.",tj:"Дисплейи Liquid Retina 8,3″ — дар як даст бароҳат.",en:"An 8.3″ Liquid Retina display — perfect in one hand."}},
    {img:A+"/v/ipad-mini/v/images/overview/camera/camera_headline__e8328uhkokii_large.png",h:{ru:"Камера 12 Мп со сканированием документов.",tj:"Камераи 12 Мп бо сканкунии ҳуҷҷатҳо.",en:"A 12MP camera with document scanning."}}],
   explorer:[
-   {label:{ru:"Дизайн",tj:"Дизайн",en:"Design"},img:WG("ipad-mini-select-wifi-blue-202410"),
+   {label:{ru:"Дизайн",tj:"Дизайн",en:"Design"},img:SCH("ipad-mini-select-wifi-blue-202410"),
     desc:{ru:"Компактный корпус 8,3″ в четырёх цветах.",tj:"Корпуси ҷайбии 8,3″ дар чор ранг.",en:"A compact 8.3″ design in four colors."},
-    sw:[{hex:"#b8c4d4",img:WG("ipad-mini-select-wifi-blue-202410")},{hex:"#bcb6cc",img:WG("ipad-mini-select-wifi-purple-202410")},{hex:"#7d7e80",img:WG("ipad-mini-select-wifi-spacegray-202410")},{hex:"#efe9dd",img:WG("ipad-mini-select-wifi-starlight-202410")}]},
+    sw:[{hex:"#b8c4d4",img:SCH("ipad-mini-select-wifi-blue-202410")},{hex:"#bcb6cc",img:SCH("ipad-mini-select-wifi-purple-202410")},{hex:"#7d7e80",img:SCH("ipad-mini-select-wifi-spacegray-202410")},{hex:"#efe9dd",img:SCH("ipad-mini-select-wifi-starlight-202410")}]},
    {label:{ru:"Чип A17 Pro",tj:"Чипи A17 Pro",en:"A17 Pro chip"},img:A+"/v/ipad-mini/v/images/overview/chip/powerful__fs81y3s8dfee_large.jpg",
     desc:{ru:"Мощь для игр, творчества и Apple Intelligence.",tj:"Қувва барои бозӣ, эҷод ва Apple Intelligence.",en:"Power for gaming, creativity and Apple Intelligence."}},
    {label:{ru:"Дисплей",tj:"Дисплей",en:"Display"},img:A+"/v/ipad-mini/v/images/overview/design/liquid_retina_1__eh1ihtzkw8wi_large.jpg",

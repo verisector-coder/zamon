@@ -168,10 +168,10 @@ const PRODUCTS=[
   tag:{ru:"Шумоподавление нового поколения",tj:"Бартарафсозии садо насли нав",en:"Next-gen noise cancellation"},
   box:[{ic:"🎧",n:"AirPods Pro 3"},{ic:"🔋",n:{ru:"Зарядный кейс MagSafe",tj:"Ғилофи шаржи MagSafe",en:"MagSafe Charging Case"}},{ic:"👂",n:{ru:"Амбушюры, 4 размера",tj:"Амбушюрҳо, 4 андоза",en:"Ear tips, 4 sizes"}},{ic:"🔌",n:{ru:"Кабель USB‑C",tj:"Сими USB‑C",en:"USB‑C cable"}}],
   colors:[{n:{ru:"Белый",tj:"Сафед",en:"White"},hex:"#f2f2f2",disp:"https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/airpods-pro-3-hero-select-202509?wid=760&hei=720&fmt=png-alpha",img:A+"/v/airpods/ae/images/overview/hero_endframe__calpooy4ucr6_large_2x.jpg"}]},
- {id:13,line:"AirPods",name:"AirPods 4",cat:"audio",price:1590,old:0,rating:4,new:false,emoji:"🎧",
+ {id:13,line:"AirPods",name:"AirPods 4",cat:"audio",price:1590,old:0,rating:4,new:false,emoji:"🎧",modelPage:"airpods-4.html",
   tag:{ru:"Удобная посадка и чистый звук",tj:"Шинонидани бароҳат ва садои тоза",en:"Comfy fit, crisp sound"},
   colors:[{n:{ru:"Белый",tj:"Сафед",en:"White"},hex:"#f2f2f2",disp:"https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/airpods-4-hero-select-202409?wid=760&hei=720&fmt=png-alpha",img:A+"/v/airpods/ae/images/overview/hero__gb4d3fd8jnu6_large_2x.jpg"}]},
- {id:14,line:"AirPods",name:"AirPods Max",cat:"audio",price:5990,old:0,rating:5,new:false,emoji:"🎧",
+ {id:14,line:"AirPods",name:"AirPods Max",cat:"audio",price:5990,old:0,rating:5,new:false,emoji:"🎧",modelPage:"airpods-max.html",
   tag:{ru:"Наушники высшего класса",tj:"Гӯшмонакҳои дараҷаи олӣ",en:"Premium over-ear sound"},
   highlights:[
    {ic:"🎧",big:"H1",lbl:{ru:"Чип",tj:"Чип",en:"Chip"}},
@@ -835,6 +835,28 @@ const MODELS={
    {video:A+"/105/media/us/airpods-pro/2025/7acffb13-4adb-40b1-9393-8f1c99bc6c90/anim/heart-rate/medium.mp4",img:A+"/v/airpods/ae/images/overview/consider/card_heart_rate_sensing__exas9s71qo4m_large.jpg",h:{ru:"Датчик пульса прямо в наушниках.",tj:"Сенсори набз дар гӯшмонак.",en:"Heart rate sensing, built in."}},
    {img:A+"/v/airpods/ae/images/overview/consider/card_live_translation__ep68h9wscbee_large.jpg",h:{ru:"Живой перевод в реальном времени.",tj:"Тарҷумаи зинда дар вақти воқеӣ.",en:"Live Translation on the go."}}]
  },
+ airpods4:{name:"AirPods 4",productId:13,price:1590,eyebrow:"AirPods 4",light:true,hlLight:true,
+  heroVideo:A+"/105/media/us/airpods-4/2024/62a51629-9227-413a-98ae-ba9e09984c00/anim/hero-airpods/large.mp4",
+  heroImg:A+"/v/airpods-4/g/images/overview/bento-gallery/bento_case_open__63kccmu775u6_large.jpg",
+  title:{ru:"Легендарные. Теперь на скорости звука.",tj:"Афсонавӣ. Акнун бо суръати садо.",en:"Iconic. Now supersonic."},
+  highlights:[
+   {video:A+"/105/media/us/airpods-4/2024/62a51629-9227-413a-98ae-ba9e09984c00/anim/chip/large.mp4",img:A+"/v/airpods-4/g/images/overview/contrast/chip_h2__eu62bmbnh0wi_large.png",h:{ru:"Чип <b>H2</b> — совершенно новый уровень звука.",tj:"Чипи <b>H2</b> — сатҳи тамоман нави садо.",en:"The <b>H2</b> chip — a transformed sound experience."}},
+   {img:A+"/v/airpods-4/g/images/overview/bento-gallery/bento_case_open__63kccmu775u6_large.jpg",h:{ru:"Активное шумоподавление — впервые в AirPods 4.",tj:"Бартарафсозии фаъоли садо — бори аввал дар AirPods 4.",en:"Active Noise Cancellation — a first for AirPods 4."}},
+   {img:A+"/v/airpods-4/g/images/overview/bento-gallery/bento_angle__b2i7xnzp5h7m_large.jpg",h:{ru:"Новый дизайн — удобная посадка на весь день.",tj:"Дизайни нав — шинондани бароҳат дар тӯли рӯз.",en:"Redesigned for all-day comfort."}},
+   {img:A+"/v/airpods-4/g/images/overview/contrast/person_spatialaudio__cabm1tfxfz9e_large.png",h:{ru:"Персональный пространственный звук с отслеживанием головы.",tj:"Садои фазоии шахсӣ бо пайгирии сар.",en:"Personalized Spatial Audio with head tracking."}},
+   {img:A+"/v/airpods-4/g/images/overview/contrast/battery_100percent__6n3pyba2z4im_large.png",h:{ru:"Быстрая зарядка и заряд на весь день.",tj:"Заряди тез ва кор дар тӯли рӯз.",en:"Charges fast and lasts all day."}}]
+ },
+ airpodsmax:{name:"AirPods Max",productId:14,price:5990,eyebrow:"AirPods Max",light:true,hlLight:true,
+  heroVideo:A+"/105/media/us/airpods-max/2024/e8f376d6-82b2-40ca-8a22-5f87de755d6b/anim/max-loop/large.mp4",
+  heroImg:A+"/v/airpods-max/k/images/overview/bento/blue/bento_1_airpod_max_blue__blqgkfdancya_large.jpg",
+  title:{ru:"Слушайте. В новой редакции.",tj:"Гӯш кунед. Дар таҳрири нав.",en:"Listening. Remastered."},
+  highlights:[
+   {video:A+"/105/media/us/airpods-max/2024/e8f376d6-82b2-40ca-8a22-5f87de755d6b/anim/highlights-anc/large.mp4",img:A+"/v/airpods-max/k/images/overview/bento/blue/bento_1_airpod_max_blue__blqgkfdancya_large.jpg",h:{ru:"Улучшенное активное шумоподавление.",tj:"Бартарафсозии беҳтаршудаи фаъоли садо.",en:"Improved Active Noise Cancellation."}},
+   {img:A+"/v/airpods-max/k/images/overview/bento/blue/bento_2_airpod_max_blue__f5acfya6r5e2_large.jpg",h:{ru:"Звук высокого разрешения и вычислительное аудио.",tj:"Садои баландсифат ва аудиои ҳисоббарорӣ.",en:"High-fidelity sound and computational audio."}},
+   {img:A+"/v/airpods-max/k/images/overview/bento/blue/bento_3_airpod_max_blue__z6fv5c2qemqa_large.jpg",h:{ru:"Живой перевод на базе Apple Intelligence.",tj:"Тарҷумаи зинда дар асоси Apple Intelligence.",en:"Live Translation powered by Apple Intelligence."}},
+   {img:A+"/v/airpods-max/k/images/overview/bento/blue/bento_4_airpod_max_blue__cfidljp9xd7m_large.jpg",h:{ru:"До 20 часов работы. Разъём USB-C.",tj:"То 20 соат кор. USB-C.",en:"Up to 20 hours of listening. USB-C."}},
+   {img:A+"/v/airpods-max/k/images/overview/bento/blue/bento_5_airpod_max_blue__galot3dk9nyq_large.jpg",h:{ru:"Digital Crown и Dynamic Head Tracking.",tj:"Digital Crown ва Dynamic Head Tracking.",en:"Digital Crown and Dynamic Head Tracking."}}]
+ },
  s11:{name:"Apple Watch Series 11",productId:11,price:4990,eyebrow:"⌚ Watch Series 11",light:true,hlLight:true,
   heroVideo:V_S11,
   heroImg:WS+"product-viewer/product_landing_endframe__eaytrp6zz6c2_large.jpg",
@@ -934,6 +956,18 @@ const TECHSPECS={
   {t:G("Чип и звук","Чип ва садо","Chip & audio"),rows:[[G("Чип","Чип","Chip"),"Apple H3"],[G("Звук","Садо","Audio"),G("Адаптивный · Spatial Audio","Адаптивӣ · Spatial Audio","Adaptive · Spatial Audio")],[G("Шумоподавление","Бартарафсозии садо","ANC"),G("в 2× лучше","2× беҳтар","2× better")]]},
   {t:G("Аккумулятор","Батарея","Battery"),rows:[[G("С ANC","Бо ANC","With ANC"),G("до 8 часов","то 8 соат","up to 8 hrs")],[G("С кейсом","Бо кейс","With case"),G("до 30 часов","то 30 соат","up to 30 hrs")],[G("Зарядка","Заряд","Charging"),"USB-C · MagSafe · Qi"]]},
   {t:G("Возможности","Имкониятҳо","Features"),rows:[[G("Здоровье","Саломатӣ","Health"),G("Пульс · слух","Набз · шунавоӣ","Heart rate · hearing")],[G("Перевод","Тарҷума","Translation"),G("Живой перевод","Тарҷумаи зинда","Live Translation")],[G("Защита","Ҳифз","Resistance"),"IP57"]]}
+ ],
+ airpods4:[
+  {t:G("Чип и звук","Чип ва садо","Chip & audio"),rows:[[G("Чип","Чип","Chip"),"Apple H2"],[G("Звук","Садо","Audio"),G("Пространственный · с отслеживанием головы","Фазоӣ · бо пайгирии сар","Spatial · head tracking")]]},
+  {t:G("Шумоподавление","Бартарафсозии садо","Noise control"),rows:[[G("Режимы*","Реҷаҳо*","Modes*"),G("ANC · Прозрачность · Адаптивный","ANC · Шаффофият · Адаптивӣ","ANC · Transparency · Adaptive")],[G("* в версии с ANC","* дар версияи ANC","* on ANC model"),"—"]]},
+  {t:G("Аккумулятор","Батарея","Battery"),rows:[[G("Наушники","Гӯшмонак","Earbuds"),G("до 5 часов","то 5 соат","up to 5 hrs")],[G("С кейсом","Бо кейс","With case"),G("до 30 часов","то 30 соат","up to 30 hrs")],[G("Зарядка","Заряд","Charging"),"USB-C"]]},
+  {t:G("Защита","Ҳифз","Resistance"),rows:[[G("Наушники и кейс","Гӯшмонак ва кейс","Buds & case"),"IP54"]]}
+ ],
+ airpodsmax:[
+  {t:G("Звук","Садо","Sound"),rows:[[G("Аудио","Аудио","Audio"),G("Вычислительное · Hi-Fi","Ҳисоббарорӣ · Hi-Fi","Computational · High-fidelity")],[G("Пространственный","Фазоӣ","Spatial"),G("с отслеживанием головы","бо пайгирии сар","with head tracking")]]},
+  {t:G("Шумоподавление","Бартарафсозии садо","Noise control"),rows:[[G("Режимы","Реҷаҳо","Modes"),G("ANC · Прозрачность · Адаптивный","ANC · Шаффофият · Адаптивӣ","ANC · Transparency · Adaptive")]]},
+  {t:G("Аккумулятор","Батарея","Battery"),rows:[[G("Работа","Кор","Listening"),G("до 20 часов","то 20 соат","up to 20 hrs")],[G("Зарядка","Заряд","Charging"),"USB-C"]]},
+  {t:G("Управление и функции","Идора ва функсияҳо","Controls & features"),rows:[[G("Колесо","Ғилдирак","Crown"),"Digital Crown"],[G("Apple Intelligence","Apple Intelligence","Apple Intelligence"),G("Живой перевод","Тарҷумаи зинда","Live Translation")]]}
  ],
  s11:[
   {t:G("Корпус","Корпус","Case"),rows:[[G("Размеры","Андозаҳо","Sizes"),G("42 мм · 46 мм","42 мм · 46 мм","42mm · 46mm")],[G("Материал","Мавод","Material"),G("Алюминий или титан","Алюминий ё титан","Aluminum or titanium")],[G("Защита","Ҳифз","Resistance"),"50 m · IP6X"]]},

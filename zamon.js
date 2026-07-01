@@ -1860,10 +1860,16 @@ function renderAccessories(){
   document.title="ZAMON — "+t("acc_h");
   const all=PRODUCTS.filter(p=>p.cat==="acc");
   const cats=ACAT_CATS.filter(([k])=>k==="all"||all.some(p=>ACAT[p.id]===k));
-  const items=ACCFILTER==="all"?all:all.filter(p=>ACAT[p.id]===ACCFILTER);
-  box.innerHTML=`<div class="acc-filters">${cats.map(([k,l])=>`<button class="acc-chip ${k===ACCFILTER?"active":""}" data-acc="${k}">${tr(l)}</button>`).join("")}</div>
-    <div class="acc-grid">`+items.map(cardHtml).join("")+`</div>`;
-  box.querySelectorAll("[data-acc]").forEach(b=>b.onclick=()=>{ACCFILTER=b.dataset.acc;renderAccessories();});
+  /* «Shop by category» — чипы-навигация */
+  const chips=`<div class="acc-filters">${cats.map(([k,l])=>`<button class="acc-chip ${k===ACCFILTER?"active":""}" data-acc="${k}">${tr(l)}</button>`).join("")}</div>`;
+  /* разделы по категориям (как на apple.com/shop/accessories): «Все» → все секции стопкой, чип → одна секция */
+  const showCats=(ACCFILTER==="all"?cats.filter(([k])=>k!=="all"):cats.filter(([k])=>k===ACCFILTER));
+  const sections=showCats.map(([k,l])=>{
+    const items=all.filter(p=>ACAT[p.id]===k);if(!items.length)return"";
+    return `<section class="acc-cat" id="acc-${k}"><div class="acc-cat-head"><h2 class="acc-cat-h">${tr(l)}</h2><span class="acc-cat-n">${items.length}</span></div><div class="acc-grid">${items.map(cardHtml).join("")}</div></section>`;
+  }).join("");
+  box.innerHTML=chips+sections;
+  box.querySelectorAll("[data-acc]").forEach(b=>b.onclick=()=>{ACCFILTER=b.dataset.acc;renderAccessories();const box2=document.getElementById("accgrid");if(box2)box2.scrollIntoView({behavior:"smooth",block:"start"});});
   observeReveal();
 }
 

@@ -1082,6 +1082,11 @@ img[data-emoji].img-loaded{opacity:1}
 .acc-chip{padding:9px 18px;border-radius:999px;border:1px solid var(--border-2);background:var(--surface);color:var(--text-2);font-weight:500;font-size:.92rem;cursor:pointer;transition:.2s var(--ease)}
 .acc-chip:hover{border-color:var(--accent);color:var(--text)}
 .acc-chip.active{background:var(--text);color:var(--bg);border-color:var(--text)}
+.acc-cat{margin-bottom:54px;animation:heroUp .7s var(--ease) both}
+.acc-cat:last-child{margin-bottom:0}
+.acc-cat-head{display:flex;align-items:baseline;gap:12px;margin:0 0 24px;padding-bottom:14px;border-bottom:1px solid var(--border-2)}
+.acc-cat-h{font-size:clamp(1.4rem,3vw,1.75rem);font-weight:700;letter-spacing:-.02em;margin:0}
+.acc-cat-n{font-size:.92rem;color:var(--text-2);font-weight:500}
 
 /* image-based color swatches + product photo gallery (Apple-style) */
 .psw.psw-img{background-size:cover;background-position:center;border:1px solid var(--border-2)}

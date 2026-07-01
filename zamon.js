@@ -407,7 +407,7 @@ const LINE_INFO=[
   feats:[{ru:"Чип M5",tj:"Чипи M5",en:"M5 chip"},{ru:"Дисплей Ultra Retina XDR",tj:"Ultra Retina XDR",en:"Ultra Retina XDR display"},{ru:"Поддержка Apple Pencil Pro",tj:"Дастгирии Apple Pencil Pro",en:"Apple Pencil Pro support"}]},
  {key:"watch",cat:"watch",page:"watch.html",buyPage:"buy-watch.html",dark:true,grad:"radial-gradient(circle at 50% 30%,#26262e,#08080b)",emoji:"⌚",new:true,
   img:"https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/watch-case-46-aluminum-jetblack-nc-s11_VW_34FR?wid=900&hei=900&fmt=png-alpha",name:"Apple Watch",
-  heroVideo:A+"/105/media/us/apple-watch-series-11/2025/ff7157de-c561-48f6-8427-90c1ce5498d1/anim/hero/medium.mp4",
+  noHeroMedia:true,
   tagline:{ru:"Здоровье и фитнес на запястье",tj:"Саломатӣ ва фитнес дар дастатон",en:"Health and fitness on your wrist"},
   desc:{ru:"От прочных Watch Ultra 3 для спорта до Watch Series 11 на каждый день — забота о здоровье 24/7.",tj:"Аз Watch Ultra 3-и мустаҳкам барои варзиш то Watch Series 11 барои ҳар рӯз — ғамхории саломатӣ 24/7.",en:"From the rugged Watch Ultra 3 to the everyday Watch Series 11 — 24/7 health tracking."},
   feats:[{ru:"Титановый корпус (Ultra)",tj:"Корпуси титанӣ (Ultra)",en:"Titanium case (Ultra)"},{ru:"GPS и сотовая связь",tj:"GPS ва алоқаи мобилӣ",en:"GPS + Cellular"},{ru:"До 42 часов работы",tj:"То 42 соат кор",en:"Up to 42h battery"}]},
@@ -1594,10 +1594,11 @@ function renderProductHero(){
   const el=document.getElementById("phero");if(!el)return;
   const li=LI(el.dataset.line);if(!li)return;
   const firstId=(PRODUCTS.find(p=>p.cat===li.cat)||{}).id||1;
-  el.className="phero "+(li.dark?"dark":"light");
-  const media=li.heroVideo
+  el.className="phero "+(li.dark?"dark":"light")+(li.noHeroMedia?" phero-compact":"");
+  const media=li.noHeroMedia?""
+    :li.heroVideo
     ? `<video class="phero-img phero-video" autoplay muted loop playsinline preload="auto" aria-label="${li.name}"><source src="${li.heroVideo}" type="video/mp4"></video>`
-    : `<img class="phero-img" data-emoji="${li.emoji}" src="${li.img}" alt="${li.name}" onerror="imgFallback(this)">`;
+    : `<img class="phero-img ${li.heroImg?"phero-wide":""}" data-emoji="${li.emoji}" src="${li.heroImg||li.img}" alt="${li.name}" onerror="imgFallback(this)">`;
   el.innerHTML=`${li.new?`<div class="pe">NEW</div>`:""}<h1>${li.name}</h1><p class="psub">${tr(li.tagline)}</p>
     <p class="pprice">${tr(li.desc)}</p>
     <div class="phero-cta"><a class="btn btn-primary lg" href="${li.buyPage||('buy.html?id='+firstId)}">${t("pp_buy")}</a><a class="btn btn-ghost lg" href="#lineup">${t("details")} →</a></div>

@@ -273,6 +273,7 @@ header.gnav{position:sticky;top:0;z-index:1000}
 .phero-cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:22px}
 .phero-img{max-height:520px;width:auto;margin:0 auto;object-fit:contain}
 .phero-video{max-width:min(900px,92%);max-height:560px;border-radius:24px;display:block;background:#000}
+.phero-compact{padding-bottom:52px}
 .mh-video{border-radius:24px;background:#000;object-fit:contain}
 
 /* ===== section heading ===== */

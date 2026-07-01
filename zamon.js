@@ -262,13 +262,14 @@ P(11).bandImgs=[WG("s11-band-unselect-gallery-1-202509")];
 /* Watch SE 3 (new — matches Apple lineup) */
 PRODUCTS.push({id:15,line:"Apple Watch",name:"Watch SE 3",cat:"watch",price:6490,old:0,rating:5,new:false,emoji:"⌚",
  tag:{ru:"Главное о здоровье по доступной цене",tj:"Асосиҳои саломатӣ бо нархи дастрас",en:"Essential health features, great value"},tint:"linear-gradient(180deg,#e7f0fb,#d6e6f7)",
+ card:"img/se3-midnight.webp",
  colors:[
-  {n:{ru:"Тёмная ночь",tj:"Шаби торик",en:"Midnight"},hex:"#2e3138",img:WCASE("44","aluminum","midnight","nc","se3")},
-  {n:{ru:"Сияющая звезда",tj:"Ситоравӣ",en:"Starlight"},hex:"#e9e0d2",img:WCASE("44","aluminum","starlight","nc","se3")}],
+  {n:{ru:"Тёмная ночь",tj:"Шаби торик",en:"Midnight"},hex:"#2e3138",img:"img/se3-midnight.webp",sw:WG("watch-case-44-aluminum-midnight-nc-se3_SW_COLOR"),gal:["img/se3-midnight.webp","img/se3-both.webp"]},
+  {n:{ru:"Сияющая звезда",tj:"Ситоравӣ",en:"Starlight"},hex:"#e9e0d2",img:"img/se3-starlight.webp",sw:WG("watch-case-44-aluminum-starlight-nc-se3_SW_COLOR"),gal:["img/se3-starlight.webp","img/se3-both.webp"]}],
  variants:[
   {n:{ru:"40 мм",tj:"40 мм",en:"40mm"},add:0,sub:{ru:"Компактный размер",tj:"Андозаи ҷайбӣ",en:"Compact size"}},
   {n:{ru:"44 мм",tj:"44 мм",en:"44mm"},add:500,sub:{ru:"Большой дисплей",tj:"Дисплейи калон",en:"Larger display"}}],
- bands:[WBANDS_S[0],WBANDS_S[1]],gallery:[WG("s11-case-unselect-gallery-1-202509"),WG("s11-case-unselect-gallery-2-202509")]});
+ gallery:["img/se3-both.webp"]});
 /* реалистичные свотчи финиша часов (металл-градиент Apple): выводим _SW_COLOR из фото корпуса _VW_34FR */
 [10,11,15].forEach(id=>{const p=P(id);const groups=[];if(p.colors)groups.push(p.colors);if(p.materials)p.materials.forEach(m=>groups.push(m.finishes));groups.forEach(g=>g&&g.forEach(c=>{if(c.img&&c.img.indexOf("_VW_34FR")>-1&&!c.sw)c.sw=c.img.replace("_VW_34FR","_SW_COLOR");}));});
 /* богатые страницы моделей часов (эталон Ultra 3) */
@@ -378,7 +379,7 @@ PRODUCTS.forEach(p=>{const f=FITCOLORS[p.id];if(f){p.fitColors={label:FIT_IPH,mo
 const ACAT={101:"find",102:"find",103:"pencil",104:"charge",105:"case",106:"case",107:"case",108:"case",109:"case",110:"case",111:"input",112:"case",113:"pencil",114:"input",115:"input",116:"charge",117:"band",118:"band",119:"band",120:"band",121:"band",122:"band"};
 const ACAT_CATS=[["all",{ru:"Все",tj:"Ҳама",en:"All"}],["case",{ru:"Чехлы и защита",tj:"Ғилофу ҳифз",en:"Cases & protection"}],["input",{ru:"Клавиатуры и мыши",tj:"Клавиатура ва муш",en:"Keyboards & mice"}],["band",{ru:"Ремешки для Watch",tj:"Тасмаҳо барои Watch",en:"Watch bands"}],["charge",{ru:"Зарядка",tj:"Заряд",en:"Power & cables"}],["pencil",{ru:"Apple Pencil",tj:"Apple Pencil",en:"Apple Pencil"}],["find",{ru:"Поиск вещей",tj:"Ёфтани ашё",en:"Find My"}]];
 /* свои лёгкие WebP-фото (img/pN.webp) для карточек/линеек/поиска — быстрая загрузка вместо тяжёлых apple.com */
-const LOCALIMG=new Set([1,2,3,4,5,6,7,8,9,12,13,14,15,16,18,19,101,102,103,104,105,106]);
+const LOCALIMG=new Set([1,2,3,4,5,6,7,8,9,12,13,14,16,18,19,101,102,103,104,105,106]);
 PRODUCTS.forEach(p=>{if(LOCALIMG.has(p.id)){const f="img/p"+p.id+".webp";p.card=f;if(p.lineImg)p.lineImg=f;}});
 const stLabel=gb=>gb<1024?gb+" "+t("gb"):(gb/1024)+" "+t("tb");
 const priceOf=c=>{const p=P(c.id);return (c.price||(p?p.price:0));};

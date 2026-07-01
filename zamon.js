@@ -1173,6 +1173,7 @@ function applyLang(l){
   if(document.getElementById("lineupTrack"))renderLineup();
   if(document.getElementById("storebar"))renderStoreBar();
   if(document.getElementById("showcaseBox"))renderShowcase();
+  if(document.getElementById("accMarqueeSec"))renderAccMarquee();
   if(document.getElementById("faqBox"))renderFAQ();
   if(document.getElementById("guarantees"))renderGuarantees();
   if(document.getElementById("catalog"))renderCatalog();
@@ -1567,6 +1568,16 @@ function renderFAQ(){
 function renderShowcase(){const box=document.getElementById("showcaseBox");if(!box)return;
   box.innerHTML=scLineup("phone","iPhone")+scLineup("laptop","Mac")+scLineup("tablet","iPad")+scLineup("watch","Apple Watch")+scLineup("audio","AirPods");
   observeReveal();initLineupNav();}
+/* авто-прокручиваемая лента иконок аксессуаров на главной (под AirPods) */
+function renderAccMarquee(){
+  const box=document.getElementById("accMarqueeSec");if(!box)return;
+  const items=PRODUCTS.filter(p=>p.cat==="acc");
+  const cell=p=>`<a class="acc-mq-item" href="product.html?id=${p.id}"><div class="acc-mq-ic"><img src="${shrinkCDN(mainImg(p),320)}" alt="${p.name}" loading="lazy" decoding="async" onerror="imgFallback(this)"></div><span class="acc-mq-n">${p.name}</span></a>`;
+  const row=items.map(cell).join("");
+  box.innerHTML=`<div class="wrap"><div class="sec-head reveal"><span class="sec-tag">${tr({ru:"Аксессуары",tj:"Лавозимот",en:"Accessories"})}</span><h2>${tr({ru:"Дополните вашу технику Apple",tj:"Техникаи Apple-и худро пурра кунед",en:"Complete your Apple setup"})}</h2></div></div>
+    <div class="acc-marquee"><div class="acc-mq-track">${row}${row}</div></div>
+    <div class="wrap acc-mq-cta"><a href="accessories.html" class="btn btn-ghost">${tr({ru:"Все аксессуары",tj:"Ҳамаи лавозимот",en:"All accessories"})} →</a></div>`;
+}
 
 /* ===== RENDER: catalog ===== */
 let currentFilter="all",currentSearch="";
@@ -2116,6 +2127,7 @@ document.addEventListener("DOMContentLoaded",()=>{
   if(document.getElementById("lineupTrack"))renderLineup();
   if(document.getElementById("storebar"))renderStoreBar();
   if(document.getElementById("showcaseBox"))renderShowcase();
+  if(document.getElementById("accMarqueeSec"))renderAccMarquee();
   if(document.getElementById("faqBox"))renderFAQ();
   if(document.getElementById("guarantees"))renderGuarantees();
   if(document.getElementById("catalog"))renderCatalog();

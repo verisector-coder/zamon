@@ -264,8 +264,8 @@ PRODUCTS.push({id:15,line:"Apple Watch",name:"Watch SE 3",cat:"watch",price:6490
  tag:{ru:"Главное о здоровье по доступной цене",tj:"Асосиҳои саломатӣ бо нархи дастрас",en:"Essential health features, great value"},tint:"linear-gradient(180deg,#e7f0fb,#d6e6f7)",
  card:"img/se3-mid.webp",
  colors:[
-  {n:{ru:"Тёмная ночь",tj:"Шаби торик",en:"Midnight"},hex:"#2e3138",img:"img/se3-mid.webp",sw:WG("watch-case-44-aluminum-midnight-nc-se3_SW_COLOR"),gal:["img/se3-mid.webp","img/se3-duo.webp"]},
-  {n:{ru:"Сияющая звезда",tj:"Ситоравӣ",en:"Starlight"},hex:"#e9e0d2",img:"img/se3-star.webp",sw:WG("watch-case-44-aluminum-starlight-nc-se3_SW_COLOR"),gal:["img/se3-star.webp","img/se3-duo.webp"]}],
+  {n:{ru:"Тёмная ночь",tj:"Шаби торик",en:"Midnight"},hex:"#2e3138",img:"img/se3-mid.webp",sw:WG("watch-case-44-aluminum-midnight-nc-se3_SW_COLOR"),gal:["img/se3-mid.webp","img/se3-mid-a.webp","img/se3-mid-b.webp","img/se3-duo.webp"]},
+  {n:{ru:"Сияющая звезда",tj:"Ситоравӣ",en:"Starlight"},hex:"#e9e0d2",img:"img/se3-star.webp",sw:WG("watch-case-44-aluminum-starlight-nc-se3_SW_COLOR"),gal:["img/se3-star.webp","img/se3-star-a.webp","img/se3-star-b.webp","img/se3-duo.webp"]}],
  variants:[
   {n:{ru:"40 мм",tj:"40 мм",en:"40mm"},add:0,sub:{ru:"Компактный размер",tj:"Андозаи ҷайбӣ",en:"Compact size"}},
   {n:{ru:"44 мм",tj:"44 мм",en:"44mm"},add:500,sub:{ru:"Большой дисплей",tj:"Дисплейи калон",en:"Larger display"}}],

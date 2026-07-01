@@ -354,6 +354,12 @@ PRODUCTS.push(
  {id:132,line:"Charger",name:"Apple Watch Fast Charger (USB-C)",cat:"acc",price:tjs(29),rating:5,new:false,emoji:"🔌",tag:{ru:"Быстрая зарядка Apple Watch",tj:"Заряди тези Apple Watch",en:"Fast charging for Apple Watch"},colors:[{n:{ru:"Белый",tj:"Сафед",en:"White"},hex:"#f2f2f2",img:accImg("MT0H3")}]},
  {id:133,line:"Mouse",name:"Magic Trackpad",cat:"acc",price:tjs(129),rating:5,new:false,emoji:"🖱️",tag:{ru:"Multi-Touch трекпад с Force Touch",tj:"Трекпади Multi-Touch бо Force Touch",en:"Multi-Touch trackpad with Force Touch"},colors:[{n:{ru:"Чёрный",tj:"Сиёҳ",en:"Black"},hex:"#2e2e30",img:accImg("MMMP3")},{n:{ru:"Белый",tj:"Сафед",en:"White"},hex:"#f2f2f2",img:accImg("MK2D3")}]}
 );
+PRODUCTS.push(
+ {id:134,line:"Wallet",name:"iPhone FineWoven Wallet",cat:"acc",price:tjs(59),rating:5,new:false,emoji:"👛",tag:{ru:"Кошелёк с MagSafe и Локатором",tj:"Ҳамён бо MagSafe ва Ёбанда",en:"MagSafe wallet with Find My"},colors:accColors(["MGH94","MGH64","MGH84","MGHA4","MGH74"])},
+ {id:135,line:"Band",name:"Braided Solo Loop",cat:"acc",price:tjs(99),rating:5,new:false,emoji:"⌚",tag:{ru:"Плетёный ремешок без застёжек",tj:"Тасмаи бофта бе баст",en:"Stretchy braided band, no clasp"},colors:accColors(["MFJU4ref","MFK64ref","MFKX4ref","MFKJ4ref","MGL14ref"])},
+ {id:136,line:"AirTag",name:"AirTag FineWoven Key Ring",cat:"acc",price:tjs(39),rating:5,new:false,emoji:"🔑",tag:{ru:"Брелок для AirTag",tj:"Ҷаббандаки AirTag",en:"Key ring for AirTag"},colors:[{n:{ru:"Оранжевый",tj:"Норинҷӣ",en:"Fox Orange"},hex:"#e8923c",img:accImg("MGFY4")}]},
+ {id:137,line:"Apple Pencil",name:"Apple Pencil (1‑го поколения)",cat:"acc",price:tjs(99),rating:5,new:false,emoji:"✏️",tag:{ru:"Стилус для совместимых iPad",tj:"Қалам барои iPad-и мувофиқ",en:"Stylus for compatible iPad"},colors:[{n:{ru:"Белый",tj:"Сафед",en:"White"},hex:"#f2f2f2",img:accImg("MK0C2")}]}
+);
 /* привязка базовых цен к Apple США (USD → сомони × наценка) */
 PRODUCTS.forEach(p=>{if(APPLE_USD[p.id]!=null)p.price=tjs(APPLE_USD[p.id]);});
 /* совместимость аксессуаров (выбор модели/размера — как у Apple, без изменения цены) */
@@ -393,7 +399,7 @@ const FITCOLORS={
 };
 PRODUCTS.forEach(p=>{const f=FITCOLORS[p.id];if(f){p.fitColors={label:(/iPad|iMac|Mac/.test(f[0][0])?FIT_IPAD:FIT_IPH),models:f.map(([mn,keys,names,av])=>({n:mdl(mn),colors:accColors(keys,av,names.map(cn))}))};p.colors=p.fitColors.models[0].colors;}});
 /* категории аксессуаров (accessories.html — фильтр как у Apple) */
-const ACAT={101:"find",102:"find",103:"pencil",104:"charge",105:"case",106:"case",107:"case",108:"case",109:"case",110:"case",111:"input",112:"case",113:"pencil",114:"input",115:"input",116:"charge",117:"band",118:"band",119:"band",120:"band",121:"band",122:"band",123:"cable",124:"cable",125:"cable",126:"cable",127:"cable",128:"charge",129:"charge",130:"charge",131:"charge",132:"charge",133:"input"};
+const ACAT={101:"find",102:"find",103:"pencil",104:"charge",105:"case",106:"case",107:"case",108:"case",109:"case",110:"case",111:"input",112:"case",113:"pencil",114:"input",115:"input",116:"charge",117:"band",118:"band",119:"band",120:"band",121:"band",122:"band",123:"cable",124:"cable",125:"cable",126:"cable",127:"cable",128:"charge",129:"charge",130:"charge",131:"charge",132:"charge",133:"input",134:"case",135:"band",136:"find",137:"pencil"};
 const ACAT_CATS=[["all",{ru:"Все",tj:"Ҳама",en:"All"}],["case",{ru:"Чехлы и защита",tj:"Ғилофу ҳифз",en:"Cases & protection"}],["input",{ru:"Клавиатуры и мыши",tj:"Клавиатура ва муш",en:"Keyboards & mice"}],["band",{ru:"Ремешки для Watch",tj:"Тасмаҳо барои Watch",en:"Watch bands"}],["charge",{ru:"Зарядка",tj:"Заряд",en:"Power"}],["cable",{ru:"Кабели и адаптеры",tj:"Симу адаптерҳо",en:"Cables & adapters"}],["pencil",{ru:"Apple Pencil",tj:"Apple Pencil",en:"Apple Pencil"}],["find",{ru:"Поиск вещей",tj:"Ёфтани ашё",en:"Find My"}]];
 /* свои лёгкие WebP-фото (img/pN.webp) для карточек/линеек/поиска — быстрая загрузка вместо тяжёлых apple.com */
 const LOCALIMG=new Set([1,2,3,4,5,6,7,8,9,12,13,14,16,18,19,101,102,103,104,105,106]);
@@ -1498,11 +1504,12 @@ const STOREBAR=[
  {name:"iPhone",page:"iphone.html",img:A+"/v/iphone/home/cj/images/overview/chapternav/nav_iphone_17pro__b8rt659h2ogi_large.png"},
  {name:"iPad",page:"ipad.html",img:WG("ipad-air-select-11in-wifi-blue-202405")},
  {name:"Apple Watch",page:"watch.html",img:"img/cat-watch.webp"},
- {name:"AirPods",page:"airpods.html",img:A+"/v/airpods/ae/images/overview/airpods_max_blue__fsfaleh1smuu_large.png"}
+ {name:"AirPods",page:"airpods.html",img:A+"/v/airpods/ae/images/overview/airpods_max_blue__fsfaleh1smuu_large.png"},
+ {name:{ru:"Аксессуары",tj:"Лавозимот",en:"Accessories"},page:"accessories.html",img:mainImg(P(108))}
 ];
 function renderStoreBar(){
   const box=document.getElementById("storebar");if(!box)return;
-  box.innerHTML=`<div class="storebar-row">`+STOREBAR.map(s=>`<a class="sb-item" href="${s.page}"><div class="sb-ic"><img src="${shrinkCDN(s.img,260)}" alt="${s.name}" loading="lazy" decoding="async" onerror="imgFallback(this)"></div><span>${s.name}</span></a>`).join("")+`</div>`;
+  box.innerHTML=`<div class="storebar-row">`+STOREBAR.map(s=>{const nm=typeof s.name==="string"?s.name:tr(s.name);return `<a class="sb-item" href="${s.page}"><div class="sb-ic"><img src="${shrinkCDN(s.img,260)}" alt="${nm}" loading="lazy" decoding="async" onerror="imgFallback(this)"></div><span>${nm}</span></a>`;}).join("")+`</div>`;
 }
 /* ===== Apple chapternav-style lineup row (all models of a category) ===== */
 function lineupRow(cat){

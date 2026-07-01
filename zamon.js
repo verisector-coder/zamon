@@ -331,7 +331,7 @@ PRODUCTS.push(
  {id:111,line:"Keyboard",name:"Magic Keyboard для iPad",cat:"acc",rating:5,new:true,emoji:"⌨️",tag:{ru:"Клавиатура с трекпадом для iPad",tj:"Клавиатура бо трекпад барои iPad",en:"Keyboard with trackpad for iPad"},colors:[{n:{ru:"Чёрный",tj:"Сиёҳ",en:"Black"},hex:"#3a3a3c",img:accImg("MGYY4_FV401_GEO_US")}]},
  {id:112,line:"Case",name:"Smart Folio для iPad",cat:"acc",rating:5,new:false,emoji:"📱",tag:{ru:"Обложка Smart Folio для iPad",tj:"Муқоваи Smart Folio барои iPad",en:"Smart Folio cover for iPad"},colors:accColors(["MWK73","MWK53","MWK63","MWK83"],1,[cn("Sage"),cn("Charcoal Gray"),cn("Denim"),cn("Light Violet")])},
  {id:113,line:"Apple Pencil",name:"Apple Pencil (USB-C)",cat:"acc",rating:5,new:false,emoji:"✏️",tag:{ru:"Стилус с зарядкой через USB-C",tj:"Қалам бо заряди USB-C",en:"Stylus with USB-C charging"},colors:[{n:{ru:"Белый",tj:"Сафед",en:"White"},hex:"#f2f2f2",img:accImg("MUWA3")}]},
- {id:114,line:"Keyboard",name:"Magic Keyboard",cat:"acc",rating:5,new:false,emoji:"⌨️",tag:{ru:"Беспроводная клавиатура с Touch ID",tj:"Клавиатураи бесим бо Touch ID",en:"Wireless keyboard with Touch ID"},colors:[{n:{ru:"Чёрный",tj:"Сиёҳ",en:"Black"},hex:"#2e2e30",img:accImg("MXK83")}]},
+ {id:114,line:"Keyboard",name:"Magic Keyboard",cat:"acc",rating:5,new:false,emoji:"⌨️",tag:{ru:"Беспроводная клавиатура с Touch ID",tj:"Клавиатураи бесим бо Touch ID",en:"Wireless keyboard with Touch ID"},colors:accColors(["MXK83","MXK73"],1,[{ru:"Чёрный",tj:"Сиёҳ",en:"Black"},{ru:"Белый",tj:"Сафед",en:"White"}])},
  {id:115,line:"Mouse",name:"Magic Mouse",cat:"acc",rating:5,new:false,emoji:"🖱️",tag:{ru:"Беспроводная мышь Multi-Touch",tj:"Мушаки бесими Multi-Touch",en:"Multi-Touch wireless mouse"},colors:[{n:{ru:"Чёрный",tj:"Сиёҳ",en:"Black"},hex:"#2e2e30",img:accImg("MXK63")}]},
  {id:116,line:"Charger",name:"USB-C Power Adapter",cat:"acc",rating:5,new:false,emoji:"🔌",tag:{ru:"Быстрая зарядка USB-C",tj:"Заряди тези USB-C",en:"Fast USB-C charging"},colors:[{n:{ru:"Белый",tj:"Сафед",en:"White"},hex:"#f2f2f2",img:accImg("MGKN4")}]},
  {id:117,line:"Band",name:"Sport Band",cat:"acc",rating:5,new:true,emoji:"⌚",tag:{ru:"Спортивный ремешок для Apple Watch",tj:"Тасмаи варзишӣ барои Apple Watch",en:"Sport Band for Apple Watch"},colors:accColors(["MHYH4ref","MFGX4ref","MHYF4ref","MHYK4ref","MXLX3ref","MXM23ref","MXM63ref","MXM83ref"],2)},
@@ -339,7 +339,7 @@ PRODUCTS.push(
  {id:119,line:"Band",name:"Milanese Loop",cat:"acc",rating:5,new:true,emoji:"⌚",price:tjs(99),tag:{ru:"Миланская петля для Apple Watch",tj:"Тасмаи Milanese Loop барои Apple Watch",en:"Milanese Loop for Apple Watch"},colors:accColors(["MGJ24ref","MGJ44ref","MGJ64ref"],0,[{ru:"Натуральный",tj:"Натуральный",en:"Natural"},{ru:"Золотой",tj:"Тиллоӣ",en:"Gold"},{ru:"Графитовый",tj:"Графитӣ",en:"Graphite"}])},
  {id:120,line:"Band",name:"Trail Loop",cat:"acc",rating:5,new:true,emoji:"⌚",price:tjs(99),tag:{ru:"Ремешок Trail Loop для Apple Watch",tj:"Тасмаи Trail Loop барои Apple Watch",en:"Trail Loop for Apple Watch"},colors:accColors(["MFT84ref","MFT64ref","MFT44ref"],0,[{ru:"Чёрный/угольный",tj:"Сиёҳ",en:"Black/Charcoal"},{ru:"Ярко-синий",tj:"Кабуд",en:"Blue"},{ru:"Неоново-зелёный",tj:"Сабз",en:"Green"}])},
  {id:121,line:"Band",name:"Ocean Band",cat:"acc",rating:5,new:true,emoji:"⌚",price:tjs(99),tag:{ru:"Ремешок Ocean Band для Apple Watch",tj:"Тасмаи Ocean Band барои Apple Watch",en:"Ocean Band for Apple Watch"},colors:accColors(["MGCC4","MXTL3ref","MGCF4"],0,[{ru:"Якорный синий",tj:"Кабуди лангар",en:"Anchor Blue"},{ru:"Чёрный",tj:"Сиёҳ",en:"Black"},{ru:"Неоново-зелёный",tj:"Сабз",en:"Neon Green"}])},
- {id:122,line:"Band",name:"Sport Loop",cat:"acc",rating:5,new:false,emoji:"⌚",price:tjs(49),tag:{ru:"Спортивный браслет для Apple Watch",tj:"Тасмаи варзишӣ Sport Loop",en:"Sport Loop for Apple Watch"},colors:accColors(["MFFJ4"],0,[{ru:"Лесной",tj:"Ҷангалӣ",en:"Forest"}])}
+ {id:122,line:"Band",name:"Sport Loop",cat:"acc",rating:5,new:false,emoji:"⌚",price:tjs(49),tag:{ru:"Спортивный браслет для Apple Watch",tj:"Тасмаи варзишӣ Sport Loop",en:"Sport Loop for Apple Watch"},colors:accColors(["MHYU4","MFFH4","MFFJ4","MHYV4","MHYW4","MFFM4ref"],2,[{ru:"Голубая дымка",tj:"Кабуди мулоим",en:"Blue Mist"},{ru:"Якорный синий",tj:"Кабуди лангар",en:"Anchor Blue"},{ru:"Лесной",tj:"Ҷангалӣ",en:"Forest"},{ru:"Канталупа",tj:"Норинҷӣ",en:"Cantaloupe"},{ru:"Розовый",tj:"Гулобӣ",en:"Pink"},{ru:"Чёрный",tj:"Сиёҳ",en:"Black"}])}
 );
 /* привязка базовых цен к Apple США (USD → сомони × наценка) */
 PRODUCTS.forEach(p=>{if(APPLE_USD[p.id]!=null)p.price=tjs(APPLE_USD[p.id]);});
@@ -603,7 +603,7 @@ function renderCompare(){
   const items=PRODUCTS.filter(p=>p.cat===box.dataset.cat);if(!items.length)return;
   const rows=[["spec_price",p=>fmtPrice(p.price)],["spec_chip",p=>(SPECS[p.id]||{}).chip||"—"],["spec_display",p=>(SPECS[p.id]||{}).display||"—"],["spec_battery",p=>(SPECS[p.id]||{}).battery||"—"]];
   box.innerHTML=`<div class="wrap"><div class="sec-head reveal"><h2>${t("cmp_h")}</h2></div>
-    <div class="cmp-scroll"><table class="cmp-table"><thead><tr><th></th>${items.map(p=>`<th><div class="cmp-prod"><img src="${(p.buyColors||p.colors)[0].img}" alt="${p.name}" loading="lazy" onerror="imgFallback(this)"><span>${p.name}</span><button class="add" data-buy="${p.id}">${t("pp_buy")}</button></div></th>`).join("")}</tr></thead>
+    <div class="cmp-scroll"><table class="cmp-table"><thead><tr><th></th>${items.map(p=>`<th><div class="cmp-prod"><img src="${mainImg(p)}" alt="${p.name}" loading="lazy" onerror="imgFallback(this)"><span>${p.name}</span><button class="add" data-buy="${p.id}">${t("pp_buy")}</button></div></th>`).join("")}</tr></thead>
     <tbody>${rows.map(([lbl,fn])=>`<tr><td class="cmp-lbl">${t(lbl)}</td>${items.map(p=>`<td>${fn(p)}</td>`).join("")}</tr>`).join("")}</tbody></table></div></div>`;
   observeReveal();
 }
@@ -1391,7 +1391,7 @@ function renderAccount(){
       <button class="btn btn-soft" id="accLogout">${t("acc_logout")}</button>`;
   }else if(ACCTAB==="orders"){
     content=orders.length?`<div class="acc-orders">${orders.map(o=>`<div class="acc-order"><div class="ao-head"><div><b>${t("order_num")} ${o.no}</b><span>${orderDate(o.ts)}</span></div><span class="ao-status">${t("acc_status")}</span></div>
-      <div class="ao-items">${o.items.map(it=>{const p=P(it.id);return p?`<div class="ao-img" title="${p.name} × ${it.qty}"><img src="${p.card||p.colors[0].img}" data-emoji="${p.emoji}" alt="${p.name}" onerror="imgFallback(this)"></div>`:"";}).join("")}</div>
+      <div class="ao-items">${o.items.map(it=>{const p=P(it.id);return p?`<div class="ao-img" title="${p.name} × ${it.qty}"><img src="${mainImg(p)}" data-emoji="${p.emoji}" alt="${p.name}" onerror="imgFallback(this)"></div>`:"";}).join("")}</div>
       <div class="ao-foot"><span>${o.items.reduce((s,i)=>s+i.qty,0)} ${t("pieces")}</span><b>${fmtPrice(o.total)}</b></div></div>`).join("")}</div>`
       :emptyBlock("📦",t("acc_no_orders"));
   }else{
@@ -1803,7 +1803,7 @@ function renderProduct(){
     ${trustRowHTML()}
     <div class="prod-sw" id="prodSw">${cols.length>1?cols.map((c,i)=>`<button class="psw ${c.sw?"psw-img":""} ${i===0?"active":""}" data-pi="${i}" style="${c.sw?`background-image:url(${c.sw})`:`background:${c.hex}`}" title="${tr(c.n)}" aria-label="${tr(c.n)}"></button>`).join(""):""}</div>
     ${fitData?`<div class="prod-fit"><div class="pf-label">${tr(fitData.label)}</div><div class="pf-opts">${fitData.opts.map((o,i)=>`<button class="pf-opt ${i===0?"active":""}" data-fit="${i}">${tr(o)}</button>`).join("")}</div></div>`:""}
-    <img class="phero-img" id="prodImg" src="${(cols[0].gal&&cols[0].gal[0])||cols[0].img}" data-emoji="${p.emoji}" alt="${p.name}" onerror="imgFallback(this)">
+    <img class="phero-img" id="prodImg" src="${(cols[0].gal&&cols[0].gal[0])||cols[0].disp||cols[0].img}" data-emoji="${p.emoji}" alt="${p.name}" onerror="imgFallback(this)">
     <div class="prod-gallery" id="prodGal"></div></section>`;
   let specsHtml;
   if(ts){specsHtml=`<div class="specs-grid">${ts.map(g=>`<div class="spec-group reveal"><h3>${SL(g.t)}</h3><dl>${g.rows.map(([k,v])=>`<div class="spec-row"><dt>${SL(k)}</dt><dd>${SL(v)}</dd></div>`).join("")}</dl></div>`).join("")}</div>`;}

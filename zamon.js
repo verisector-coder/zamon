@@ -764,6 +764,66 @@ const MODELS={
    {label:{ru:"Apple Pencil Pro",tj:"Apple Pencil Pro",en:"Apple Pencil"},img:A+"/v/ipad-pro/aw/images/overview/highlights/pencil__ef30gehj01yu_large.jpg",
     desc:{ru:"Новые жесты, тактильный отклик и поиск.",tj:"Имову ишораҳои нав ва бозхӯрди ламсӣ.",en:"New gestures, haptic feedback and Find My."}}]
  },
+ ipadair:{name:"iPad Air",productId:9,price:8490,eyebrow:"iPad Air",light:true,hlLight:true,
+  heroVideo:A+"/105/media/us/ipad-air/2026/fe27e8b5-d1fd-4e76-82a5-4ee1120a4d97/anim/highlights-chip/medium.mp4",
+  heroImg:A+"/v/ipad-air/ah/images/overview/hero/hero_endframe__6gl84bccyaqi_large.png",
+  title:{ru:"Лёгкий. Яркий. Полон сил.",tj:"Сабук. Равшан. Пур аз қувва.",en:"Light. Bright. Full of might."},
+  highlights:[
+   {img:A+"/v/ipad-air/ah/images/overview/chip/chip_top_endframe__bac7em7optua_large.png",h:{ru:"Чип <b>M3</b> — до 2× быстрее прошлого iPad Air.",tj:"Чипи <b>M3</b> — то 2× тезтар аз iPad Air-и пешин.",en:"The <b>M3</b> chip — up to 2× faster than before."}},
+   {img:A+"/v/ipad-air/ah/images/overview/cameras/cameras_endframe__cv0fbgxrv2uu_large.png",h:{ru:"Фронтальная камера по центру — идеально для видеозвонков.",tj:"Камераи пеши марказӣ — барои занги видеоӣ беҳтарин.",en:"Landscape front camera — perfect for video calls."}},
+   {img:A+"/v/ipad-air/ah/images/overview/apple-pencil-pro/modal/barrel_roll_endframe__d6cy5ij3s0k2_large.jpg",h:{ru:"Работает с Apple Pencil Pro и Magic Keyboard.",tj:"Бо Apple Pencil Pro ва Magic Keyboard кор мекунад.",en:"Works with Apple Pencil Pro and Magic Keyboard."}},
+   {img:A+"/v/ipad-air/ah/images/overview/apple-intelligence/privacy_endframe__cmahnib2pzxy_large.jpg",h:{ru:"Apple Intelligence — прямо на iPad Air.",tj:"Apple Intelligence — дар iPad Air.",en:"Apple Intelligence, built right in."}}],
+  explorer:[
+   {label:{ru:"Дизайн",tj:"Дизайн",en:"Design"},img:WG("ipad-air-select-11in-wifi-blue-202405"),
+    desc:{ru:"Два размера — 11″ и 13″ — в четырёх цветах.",tj:"Ду андоза — 11″ ва 13″ — дар чор ранг.",en:"Two sizes — 11″ and 13″ — in four colors."},
+    sw:[{hex:"#cdd8ea",img:WG("ipad-air-select-11in-wifi-blue-202405")},{hex:"#ded9e8",img:WG("ipad-air-select-11in-wifi-purple-202405")},{hex:"#7d7e80",img:WG("ipad-air-select-11in-wifi-spacegray-202405")},{hex:"#efe9dd",img:WG("ipad-air-select-11in-wifi-starlight-202405")}]},
+   {label:{ru:"Чип M3",tj:"Чипи M3",en:"M3 chip"},img:A+"/v/ipad-air/ah/images/overview/chip/chip_middle_top_endframe__3zu8i1nab6ai_large.png",
+    desc:{ru:"Быстрый для многозадачности, игр и Apple Intelligence.",tj:"Тез барои бисёрвазифагӣ, бозиҳо ва Apple Intelligence.",en:"Fast for multitasking, gaming and Apple Intelligence."}},
+   {label:{ru:"Камеры",tj:"Камераҳо",en:"Cameras"},img:A+"/v/ipad-air/ah/images/overview/cameras/cameras_endframe__cv0fbgxrv2uu_large.png",
+    desc:{ru:"Камера 12 Мп и фронтальная 12 Мп с Center Stage.",tj:"Камераи 12 Мп ва пеши 12 Мп бо Center Stage.",en:"12MP rear and 12MP landscape front camera with Center Stage."}},
+   {label:{ru:"Apple Pencil",tj:"Apple Pencil",en:"Apple Pencil"},img:A+"/v/ipad-air/ah/images/overview/apple-pencil-pro/modal/hover_endframe__fkkda8kjyne6_large.jpg",
+    desc:{ru:"Поддержка Apple Pencil Pro, USB-C и Magic Keyboard.",tj:"Дастгирии Apple Pencil Pro, USB-C ва Magic Keyboard.",en:"Supports Apple Pencil Pro, USB-C and Magic Keyboard."}}]
+ },
+ ipadbase:{name:"iPad",productId:20,price:4990,eyebrow:"iPad",light:true,hlLight:true,
+  heroVideo:A+"/105/media/us/ipad-11/2025/21af9618-666d-4368-9fb9-38822c35dc35/anim/modular/medium.mp4",
+  heroImg:A+"/v/ipad-11/d/images/overview/hero/hero__crzh9misvcuq_large.jpg",
+  title:{ru:"iPad. Как скажешь.",tj:"iPad. Чӣ хоҳӣ.",en:"iPad. Lovable. Drawable. Do-it-all-able."},
+  highlights:[
+   {video:A+"/105/media/us/ipad-11/2025/21af9618-666d-4368-9fb9-38822c35dc35/anim/center-stage/medium.mp4",img:A+"/v/ipad-11/d/images/overview/connect/center_stage_endframe__eu4x3duk262q_large.jpg",h:{ru:"Center Stage держит вас в центре кадра на видеозвонках.",tj:"Center Stage шуморо дар маркази кадр нигоҳ медорад.",en:"Center Stage keeps you in frame on video calls."}},
+   {img:A+"/v/ipad-11/d/images/overview/get-things-done/chip__buvu5472f81y_large.jpg",h:{ru:"Чип <b>A16</b> — шустрый для учёбы, работы и игр.",tj:"Чипи <b>A16</b> — тез барои таҳсил, кор ва бозӣ.",en:"The <b>A16</b> chip — fast for school, work and play."}},
+   {img:A+"/v/ipad-11/d/images/overview/design/snap_endframe__ej9e60w545aq_large.jpg",h:{ru:"Прочный цельноалюминиевый корпус в четырёх цветах.",tj:"Корпуси якпораи алюминӣ дар чор ранг.",en:"A durable all-aluminum design in four colors."}},
+   {img:A+"/v/ipad-11/d/images/overview/get-things-done/keyboard_endframe__f430b2lvfv2a_large.jpg",h:{ru:"Работает с Magic Keyboard Folio и Apple Pencil.",tj:"Бо Magic Keyboard Folio ва Apple Pencil кор мекунад.",en:"Works with Magic Keyboard Folio and Apple Pencil."}}],
+  explorer:[
+   {label:{ru:"Дизайн",tj:"Дизайн",en:"Design"},img:WG("ipad-2022-hero-blue-wifi-select"),
+    desc:{ru:"Цельный алюминий, экран 11″, четыре ярких цвета.",tj:"Алюминийи якпора, экрани 11″, чор ранги равшан.",en:"All-aluminum, 11″ display, four vivid colors."},
+    sw:[{hex:"#a6c0dd",img:WG("ipad-2022-hero-blue-wifi-select")},{hex:"#e6c7c2",img:WG("ipad-2022-hero-pink-wifi-select")},{hex:"#eed77e",img:WG("ipad-2022-hero-yellow-wifi-select")},{hex:"#e3e4e6",img:WG("ipad-2022-hero-silver-wifi-select")}]},
+   {label:{ru:"Чип A16",tj:"Чипи A16",en:"A16 chip"},img:A+"/v/ipad-11/d/images/overview/get-things-done/chip__buvu5472f81y_large.jpg",
+    desc:{ru:"Плавная работа приложений, задач и игр.",tj:"Кори ҳамвори барномаҳо, вазифаҳо ва бозиҳо.",en:"Smooth performance across apps, tasks and games."}},
+   {label:{ru:"Камера",tj:"Камера",en:"Camera"},img:A+"/v/ipad-11/d/images/overview/connect/camera_endframe__qioefbh5aoyi_large.jpg",
+    desc:{ru:"Камера 12 Мп и фронтальная 12 Мп с Center Stage.",tj:"Камераи 12 Мп ва пеши 12 Мп бо Center Stage.",en:"12MP rear and 12MP landscape front with Center Stage."}},
+   {label:{ru:"Разъёмы",tj:"Пайвастҳо",en:"Connectivity"},img:A+"/v/ipad-11/d/images/overview/ipad-accessories/usb_c_endframe__bo810y4gzrua_large.jpg",
+    desc:{ru:"Порт USB-C, Wi-Fi 6, аккумулятор на весь день.",tj:"Порти USB-C, Wi-Fi 6, батарея барои тамоми рӯз.",en:"USB-C port, Wi-Fi 6 and all-day battery."}}]
+ },
+ ipadmini:{name:"iPad mini",productId:21,price:6990,eyebrow:"iPad mini",light:true,hlLight:true,
+  heroVideo:A+"/105/media/us/ipad-mini/2024/ab503ae9-d404-4d31-8983-47a8cb46614f/anim/hand-rotation/medium.mp4",
+  heroImg:A+"/v/ipad-mini/v/images/overview/hero/hero_endframe__ck10nf4t7ely_large.png",
+  title:{ru:"Мега-мощь. Мини-размер.",tj:"Қуввати мега. Андозаи мини.",en:"Mega power. Mini size."},
+  highlights:[
+   {video:A+"/105/media/us/ipad-mini/2024/ab503ae9-d404-4d31-8983-47a8cb46614f/anim/express/medium.mp4",img:A+"/v/ipad-mini/v/images/overview/intelligence/personal_headline__f80s63iho8ya_large.png",h:{ru:"Apple Intelligence прямо в кармане.",tj:"Apple Intelligence дар кисаи шумо.",en:"Apple Intelligence, right in your pocket."}},
+   {img:A+"/v/ipad-mini/v/images/overview/chip/chip_headline__fwdrtscejfmi_large.png",h:{ru:"Чип <b>A17 Pro</b> — огромная мощь в компактном корпусе.",tj:"Чипи <b>A17 Pro</b> — қуввати бузург дар корпуси ҷайбӣ.",en:"The <b>A17 Pro</b> chip — huge power in a compact size."}},
+   {img:A+"/v/ipad-mini/v/images/overview/design/design_headline__cvgh51rmzq2q_large.png",h:{ru:"Дисплей Liquid Retina 8,3″ — удобно в одной руке.",tj:"Дисплейи Liquid Retina 8,3″ — дар як даст бароҳат.",en:"An 8.3″ Liquid Retina display — perfect in one hand."}},
+   {img:A+"/v/ipad-mini/v/images/overview/camera/camera_headline__e8328uhkokii_large.png",h:{ru:"Камера 12 Мп со сканированием документов.",tj:"Камераи 12 Мп бо сканкунии ҳуҷҷатҳо.",en:"A 12MP camera with document scanning."}}],
+  explorer:[
+   {label:{ru:"Дизайн",tj:"Дизайн",en:"Design"},img:WG("ipad-mini-select-wifi-blue-202410"),
+    desc:{ru:"Компактный корпус 8,3″ в четырёх цветах.",tj:"Корпуси ҷайбии 8,3″ дар чор ранг.",en:"A compact 8.3″ design in four colors."},
+    sw:[{hex:"#b8c4d4",img:WG("ipad-mini-select-wifi-blue-202410")},{hex:"#bcb6cc",img:WG("ipad-mini-select-wifi-purple-202410")},{hex:"#7d7e80",img:WG("ipad-mini-select-wifi-spacegray-202410")},{hex:"#efe9dd",img:WG("ipad-mini-select-wifi-starlight-202410")}]},
+   {label:{ru:"Чип A17 Pro",tj:"Чипи A17 Pro",en:"A17 Pro chip"},img:A+"/v/ipad-mini/v/images/overview/chip/powerful__fs81y3s8dfee_large.jpg",
+    desc:{ru:"Мощь для игр, творчества и Apple Intelligence.",tj:"Қувва барои бозӣ, эҷод ва Apple Intelligence.",en:"Power for gaming, creativity and Apple Intelligence."}},
+   {label:{ru:"Дисплей",tj:"Дисплей",en:"Display"},img:A+"/v/ipad-mini/v/images/overview/design/liquid_retina_1__eh1ihtzkw8wi_large.jpg",
+    desc:{ru:"Liquid Retina 8,3″ с True Tone и P3.",tj:"Liquid Retina 8,3″ бо True Tone ва P3.",en:"8.3″ Liquid Retina with True Tone and P3."}},
+   {label:{ru:"Камера",tj:"Камера",en:"Camera"},img:A+"/v/ipad-mini/v/images/overview/camera/camera_headline__e8328uhkokii_large.png",
+    desc:{ru:"Камера 12 Мп и фронтальная с Center Stage.",tj:"Камераи 12 Мп ва пеши бо Center Stage.",en:"12MP rear and Center Stage front camera."}}]
+ },
  airpodspro3:{name:"AirPods Pro 3",productId:12,price:2490,eyebrow:"AirPods Pro 3",light:true,hlLight:true,
   heroVideo:LI("airpods").heroVideo,
   heroImg:A+"/v/airpods/ae/images/overview/hero_endframe__calpooy4ucr6_large.jpg",
@@ -845,6 +905,24 @@ const TECHSPECS={
   {t:G("Чип","Чип","Chip"),rows:[[G("Процессор","Просессор","Processor"),"Apple M5"],["CPU",G("до 10 ядер","то 10 ядро","up to 10-core")],["GPU",G("10 ядер","10 ядро","10-core")]]},
   {t:G("Камеры","Камераҳо","Cameras"),rows:[[G("Задняя","Қафо","Rear"),"12 MP ƒ/1.8"],[G("Фронтальная","Пеш","Front"),G("12 MP · Center Stage","12 MP · Center Stage","12 MP · Center Stage")],[G("Видео","Видео","Video"),"4K ProRes"]]},
   {t:G("Аккумулятор и связь","Батарея ва алоқа","Battery & more"),rows:[[G("Работа","Кор","Battery life"),G("до 10 часов","то 10 соат","up to 10 hrs")],[G("Связь","Алоқа","Connectivity"),"USB-C · Wi-Fi 7 · 5G"],["Apple Pencil",G("Pencil Pro","Pencil Pro","Pencil Pro")]]}
+ ],
+ ipadair:[
+  {t:G("Дисплей","Дисплей","Display"),rows:[[G("Тип","Навъ","Type"),"Liquid Retina"],[G("Диагональ","Диагонал","Size"),"11″ / 13″"],[G("Разрешение","Возеҳӣ","Resolution"),"264 ppi"],[G("Яркость","Равшанӣ","Brightness"),G("500 нит","500 нит","500 nits")]]},
+  {t:G("Чип","Чип","Chip"),rows:[[G("Процессор","Просессор","Processor"),"Apple M3"],["CPU",G("8 ядер","8 ядро","8-core")],["GPU",G("9 ядер","9 ядро","9-core")],["Neural Engine",G("16 ядер","16 ядро","16-core")]]},
+  {t:G("Камеры","Камераҳо","Cameras"),rows:[[G("Задняя","Қафо","Rear"),"12 MP"],[G("Фронтальная","Пеш","Front"),G("12 MP · Center Stage (ландшафт)","12 MP · Center Stage","12 MP · Center Stage (landscape)")],[G("Видео","Видео","Video"),"4K"]]},
+  {t:G("Аккумулятор и связь","Батарея ва алоқа","Battery & more"),rows:[[G("Работа","Кор","Battery life"),G("до 10 часов","то 10 соат","up to 10 hrs")],[G("Связь","Алоқа","Connectivity"),"USB-C · Wi-Fi 6E · 5G"],["Apple Pencil",G("Pencil Pro · USB-C","Pencil Pro · USB-C","Pencil Pro · USB-C")]]}
+ ],
+ ipadbase:[
+  {t:G("Дисплей","Дисплей","Display"),rows:[[G("Тип","Навъ","Type"),"Liquid Retina"],[G("Диагональ","Диагонал","Size"),"11″"],[G("Разрешение","Возеҳӣ","Resolution"),"264 ppi"],[G("Яркость","Равшанӣ","Brightness"),G("500 нит","500 нит","500 nits")]]},
+  {t:G("Чип","Чип","Chip"),rows:[[G("Процессор","Просессор","Processor"),"Apple A16"],["CPU",G("5 ядер","5 ядро","5-core")],["GPU",G("4 ядра","4 ядро","4-core")]]},
+  {t:G("Камеры","Камераҳо","Cameras"),rows:[[G("Задняя","Қафо","Rear"),"12 MP"],[G("Фронтальная","Пеш","Front"),G("12 MP · Center Stage (ландшафт)","12 MP · Center Stage","12 MP · Center Stage (landscape)")],[G("Видео","Видео","Video"),"4K"]]},
+  {t:G("Аккумулятор и связь","Батарея ва алоқа","Battery & more"),rows:[[G("Работа","Кор","Battery life"),G("до 10 часов","то 10 соат","up to 10 hrs")],[G("Связь","Алоқа","Connectivity"),"USB-C · Wi-Fi 6"],["Apple Pencil",G("USB-C · 1-го поколения","USB-C · насли 1","USB-C · 1st gen")]]}
+ ],
+ ipadmini:[
+  {t:G("Дисплей","Дисплей","Display"),rows:[[G("Тип","Навъ","Type"),"Liquid Retina"],[G("Диагональ","Диагонал","Size"),"8,3″"],[G("Разрешение","Возеҳӣ","Resolution"),"326 ppi"],[G("Яркость","Равшанӣ","Brightness"),G("500 нит","500 нит","500 nits")]]},
+  {t:G("Чип","Чип","Chip"),rows:[[G("Процессор","Просессор","Processor"),"Apple A17 Pro"],["CPU",G("6 ядер","6 ядро","6-core")],["GPU",G("5 ядер","5 ядро","5-core")],["Neural Engine",G("16 ядер","16 ядро","16-core")]]},
+  {t:G("Камеры","Камераҳо","Cameras"),rows:[[G("Задняя","Қафо","Rear"),"12 MP"],[G("Фронтальная","Пеш","Front"),G("12 MP · Center Stage","12 MP · Center Stage","12 MP · Center Stage")],[G("Видео","Видео","Video"),"4K"]]},
+  {t:G("Аккумулятор и связь","Батарея ва алоқа","Battery & more"),rows:[[G("Работа","Кор","Battery life"),G("до 10 часов","то 10 соат","up to 10 hrs")],[G("Связь","Алоқа","Connectivity"),"USB-C · Wi-Fi 6E · 5G"],["Apple Pencil",G("Pencil Pro · USB-C","Pencil Pro · USB-C","Pencil Pro · USB-C")]]}
  ],
  ultra3:[
   {t:G("Корпус","Корпус","Case"),rows:[[G("Материал","Мавод","Material"),G("Титан 49 мм","Титани 49 мм","49mm Titanium")],[G("Стекло","Шиша","Glass"),G("Плоский сапфир","Сапфири ҳамвор","Flat sapphire")],[G("Защита","Ҳифз","Resistance"),"100 m · IP6X · EN13319"]]},

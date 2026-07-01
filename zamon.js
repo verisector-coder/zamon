@@ -1267,7 +1267,10 @@ function openSearch(){const o=document.getElementById("searchOverlay");if(!o)ret
   const inp=document.getElementById("searchInput");inp.value="";renderSearch("");setTimeout(()=>inp.focus(),80);}
 function closeSearch(){const o=document.getElementById("searchOverlay");if(!o)return;o.classList.remove("open");document.body.style.overflow="";}
 function openBuy(id){
-  const p=P(id);if(!p)return;let ci=0;const mi=document.getElementById("modalInner");
+  const p=P(id);if(!p)return;
+  /* сложная конфигурация (часы: ремешок/материал/размер; чехлы: модель iPhone) — открываем полный конфигуратор, а не упрощённое окно */
+  if(p.cat==="watch"||p.fitColors||p.bands||p.materials){location.href="buy.html?id="+id;return;}
+  let ci=0;const mi=document.getElementById("modalInner");
   const cols=p.buyColors||p.colors;let si=0;
   function render(){const col=cols[ci];const price=p.price+(p.storage?p.storage[si].add:0);mi.className="modal buy";
     mi.innerHTML=`<button class="close-x mclose" data-close>✕</button>
@@ -1579,7 +1582,7 @@ function renderBuyGrid(){
   box.innerHTML=`<div class="sec-head reveal"><h2>${tr({ru:"Все модели. Выбирайте.",tj:"Ҳама моделҳо. Интихоб кунед.",en:"All models. Take your pick."})}</h2></div>
    <div class="buy-grid-cards">`+items.map(p=>{const cols=p.buyColors||p.colors;
     return `<div class="bgcard" data-id="${p.id}">${p.new?`<div class="bg-new">NEW</div>`:""}
-      <div class="bg-media"><img src="${cols[0].img}" data-emoji="${p.emoji}" alt="${p.name}" loading="lazy" onerror="imgFallback(this)"></div>
+      <div class="bg-media"><img src="${cols[0].disp||cols[0].img}" data-emoji="${p.emoji}" alt="${p.name}" loading="lazy" onerror="imgFallback(this)"></div>
       <h3>${p.name}</h3>
       ${cols.length>1?`<div class="bg-sw">${cols.map((c,i)=>`<span class="sw ${i===0?"active":""}" data-bsw="${p.id}" data-idx="${i}" title="${tr(c.n)}" style="background:${c.hex}"></span>`).join("")}</div>`:`<div class="bg-sw"></div>`}
       <div class="bg-price">${t("from")}${num(p.price)} ${t("cur")}</div>
@@ -2052,7 +2055,7 @@ function initCounters(){const cio=new IntersectionObserver(es=>es.forEach(en=>{i
 /* ===== global click delegation ===== */
 document.addEventListener("click",e=>{
   const bsw=e.target.closest("[data-bsw]");
-  if(bsw){const p=P(+bsw.dataset.bsw),idx=+bsw.dataset.idx,card=bsw.closest(".bgcard"),img=card&&card.querySelector("img"),cols=p.buyColors||p.colors;if(img)img.src=cols[idx].img;if(card)card.querySelectorAll("[data-bsw]").forEach(s=>s.classList.toggle("active",s===bsw));return;}
+  if(bsw){const p=P(+bsw.dataset.bsw),idx=+bsw.dataset.idx,card=bsw.closest(".bgcard"),img=card&&card.querySelector("img"),cols=p.buyColors||p.colors;if(img)img.src=cols[idx].disp||cols[idx].img;if(card)card.querySelectorAll("[data-bsw]").forEach(s=>s.classList.toggle("active",s===bsw));return;}
   const sw=e.target.closest("[data-sw]");
   if(sw){const p=P(+sw.dataset.sw),idx=+sw.dataset.idx,card=sw.closest(".pcard,.lcard"),img=card&&card.querySelector("img");if(img)img.src=p.colors[idx].disp||p.colors[idx].img;if(card)card.querySelectorAll("[data-sw]").forEach(s=>s.classList.toggle("active",s===sw));return;}
   const wishBtn=e.target.closest("[data-wish]");if(wishBtn){e.preventDefault();e.stopPropagation();toggleWish(+wishBtn.dataset.wish);return;}

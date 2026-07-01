@@ -436,7 +436,7 @@ const LINE_INFO=[
   feats:[{ru:"Титановый корпус (Ultra)",tj:"Корпуси титанӣ (Ultra)",en:"Titanium case (Ultra)"},{ru:"GPS и сотовая связь",tj:"GPS ва алоқаи мобилӣ",en:"GPS + Cellular"},{ru:"До 42 часов работы",tj:"То 42 соат кор",en:"Up to 42h battery"}]},
  {key:"airpods",cat:"audio",page:"airpods.html",buyPage:"buy-airpods.html",grad:"linear-gradient(180deg,#f3f4f6,#e6e8ee)",emoji:"🎧",
   img:A+"/v/airpods/ae/images/overview/airpods_max_blue__fsfaleh1smuu_large.png",name:"AirPods",
-  heroVideo:A+"/105/media/us/airpods-pro/2025/7acffb13-4adb-40b1-9393-8f1c99bc6c90/anim/hero/medium.mp4",
+  heroVideo:A+"/105/media/us/airpods/2025/515ae144-8530-47d0-85d1-22a263f4b237/anim/hero/large.mp4",
   tagline:{ru:"Звук, который тебя окружает",tj:"Садое, ки шуморо иҳота мекунад",en:"Sound that surrounds you"},
   desc:{ru:"AirPods Pro 3 с топовым шумоподавлением, лёгкие AirPods 4 и полноразмерные AirPods Max.",tj:"AirPods Pro 3 бо бартарафсозии беҳтарини садо, AirPods 4-и сабук ва AirPods Max.",en:"AirPods Pro 3 with top-tier noise cancellation, lightweight AirPods 4 and over-ear AirPods Max."},
   feats:[{ru:"Активное шумоподавление",tj:"Бартарафсозии фаъоли садо",en:"Active Noise Cancellation"},{ru:"Пространственный звук",tj:"Садои фазоӣ",en:"Spatial Audio"},{ru:"До 30 часов с кейсом",tj:"То 30 соат бо кейс",en:"Up to 30h with case"}]}
@@ -1500,12 +1500,12 @@ function showcaseTile(li,full){return `<div class="promo reveal ${li.dark?"dark"
   <div class="promo-btns"><a class="btn-pill" href="${li.page}">${t("learn")}</a><a class="btn-pill ghost" href="${li.buyPage||li.page}">${t("add")}</a></div>
   <img class="pimg" data-emoji="${li.emoji}" src="${li.img}" alt="${li.name}" loading="lazy" onerror="imgFallback(this)"></div>`;}
 const STOREBAR=[
- {name:"Mac",page:"mac.html",img:A+"/v/macbook-air/z/images/overview/hero/hero_endframe__c67cz35iy9me_large_2x.png"},
- {name:"iPhone",page:"iphone.html",img:A+"/v/iphone/home/cj/images/overview/chapternav/nav_iphone_17pro__b8rt659h2ogi_large.png"},
- {name:"iPad",page:"ipad.html",img:WG("ipad-air-select-11in-wifi-blue-202405")},
- {name:"Apple Watch",page:"watch.html",img:"img/cat-watch.webp"},
- {name:"AirPods",page:"airpods.html",img:WG("airpods-pro-2-hero-select-202409")},
- {name:{ru:"Аксессуары",tj:"Лавозимот",en:"Accessories"},page:"accessories.html",img:mainImg(P(108))}
+ {name:"Mac",page:"mac.html",img:WG("store-card-13-mac-nav-202603")},
+ {name:"iPhone",page:"iphone.html",img:WG("store-card-13-iphone-nav-202509")},
+ {name:"iPad",page:"ipad.html",img:WG("store-card-13-ipad-nav-202405")},
+ {name:"Apple Watch",page:"watch.html",img:WG("store-card-13-watch-nav-202509")},
+ {name:"AirPods",page:"airpods.html",img:WG("store-card-13-airpods-nav-202509")},
+ {name:{ru:"Аксессуары",tj:"Лавозимот",en:"Accessories"},page:"accessories.html",img:WG("store-card-13-accessories-nav-202603")}
 ];
 function renderStoreBar(){
   const box=document.getElementById("storebar");if(!box)return;

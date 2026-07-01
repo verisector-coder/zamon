@@ -449,9 +449,9 @@ const PAGEDATA={
    {ic:"🖥️",h:{ru:"Ultra Retina XDR",tj:"Ultra Retina XDR",en:"Ultra Retina XDR"},p:{ru:"Самый продвинутый дисплей iPad.",tj:"Пешрафтатарин дисплейи iPad.",en:"The most advanced iPad display."}}]},
  watch:{why:{ru:"Почему Apple Watch",tj:"Чаро Apple Watch",en:"Why Apple Watch"},
   highlights:[
-   {dark:0,img:IM+"apple-watch-series-11/c/images/overview/health/health_hero__bs99gittogoi_large_2x.jpg",h:{ru:"Передовые датчики <b>здоровья</b> прямо на запястье.",tj:"Сенсорҳои пешрафтаи <b>саломатӣ</b> дар дастатон.",en:"Advanced <b>health</b> sensors right on your wrist."}},
-   {dark:0,img:IM+"apple-watch-series-11/c/images/overview/fitness/fitness_hero__f9uqyx14gmmq_large_2x.jpg",h:{ru:"Точные метрики для <b>бега</b> и любых тренировок.",tj:"Метрикаи дақиқ барои <b>давидан</b> ва машқҳо.",en:"Precise metrics for <b>running</b> and any workout."}},
-   {dark:0,img:IM+"apple-watch-series-11/c/images/overview/on-the-go/go_hero__ghlevcvsmr6u_large_2x.jpg",h:{ru:"Всегда на связи, даже без телефона рядом.",tj:"Ҳамеша дар тамос, ҳатто бе телефон.",en:"Always connected, even without your phone."}}],
+   {dark:0,img:IM+"apple-watch-series-11/c/images/overview/product-viewer/product_display_endframe__baw4nxfmflbm_large.jpg",h:{ru:"Самый яркий <b>Always-On</b> дисплей Retina.",tj:"Дисплейи <b>Always-On</b> Retina — равшантарин.",en:"The brightest <b>Always-On</b> Retina display."}},
+   {dark:0,img:IM+"apple-watch-series-11/c/images/overview/product-viewer/product_design_endframe__d7wjctwjpbo2_large.jpg",h:{ru:"Прочный корпус — <b>титан</b> или алюминий.",tj:"Корпуси мустаҳкам — <b>титан</b> ё алюминий.",en:"A durable case — <b>titanium</b> or aluminum."}},
+   {dark:0,img:IM+"apple-watch-series-11/c/images/overview/highlights/highlights_battery_endframe__d8dlmkib4qky_large.jpg",h:{ru:"До <b>24 часов</b> работы и быстрая зарядка.",tj:"То <b>24 соат</b> кор ва заряди тез.",en:"Up to <b>24 hours</b> and fast charging."}}],
   adv:[{ic:"❤️",h:{ru:"Здоровье 24/7",tj:"Саломатӣ 24/7",en:"Health 24/7"},p:{ru:"Пульс, ЭКГ, кислород в крови и контроль сна.",tj:"Набз, ЭКГ, оксиген ва назорати хоб.",en:"Heart rate, ECG, blood oxygen and sleep tracking."}},
    {ic:"🏃",h:{ru:"Фитнес и активность",tj:"Фитнес ва фаъолият",en:"Fitness and activity"},p:{ru:"Кольца активности и десятки видов тренировок.",tj:"Ҳалқаҳои фаъолият ва даҳҳо намуди машқ.",en:"Activity rings and dozens of workout types."}},
    {ic:"📡",h:{ru:"Всегда на связи",tj:"Ҳамеша дар тамос",en:"Always connected"},p:{ru:"Звонки, сообщения и Apple Pay прямо с запястья.",tj:"Занг, паём ва Apple Pay аз дастатон.",en:"Calls, messages and Apple Pay from your wrist."}}]},
@@ -1475,8 +1475,8 @@ function showcaseTile(li,full){return `<div class="promo reveal ${li.dark?"dark"
 const STOREBAR=[
  {name:"Mac",page:"mac.html",img:A+"/v/macbook-air/z/images/overview/hero/hero_endframe__c67cz35iy9me_large_2x.png"},
  {name:"iPhone",page:"iphone.html",img:A+"/v/iphone/home/cj/images/overview/chapternav/nav_iphone_17pro__b8rt659h2ogi_large.png"},
- {name:"iPad",page:"ipad.html",img:A+"/v/ipad-air/ah/images/overview/hero/hero_endframe__6gl84bccyaqi_large_2x.png"},
- {name:"Apple Watch",page:"watch.html",img:"https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/watch-case-46-aluminum-silver-nc-s11_VW_34FR?wid=500&hei=500&fmt=png-alpha"},
+ {name:"iPad",page:"ipad.html",img:WG("ipad-air-select-11in-wifi-blue-202405")},
+ {name:"Apple Watch",page:"watch.html",img:"img/cat-watch.webp"},
  {name:"AirPods",page:"airpods.html",img:A+"/v/airpods/ae/images/overview/airpods_max_blue__fsfaleh1smuu_large.png"}
 ];
 function renderStoreBar(){

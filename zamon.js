@@ -334,7 +334,11 @@ PRODUCTS.push(
  {id:115,line:"Mouse",name:"Magic Mouse",cat:"acc",rating:5,new:false,emoji:"🖱️",tag:{ru:"Беспроводная мышь Multi-Touch",tj:"Мушаки бесими Multi-Touch",en:"Multi-Touch wireless mouse"},colors:[{n:{ru:"Чёрный",tj:"Сиёҳ",en:"Black"},hex:"#2e2e30",img:accImg("MXK63")}]},
  {id:116,line:"Charger",name:"USB-C Power Adapter",cat:"acc",rating:5,new:false,emoji:"🔌",tag:{ru:"Быстрая зарядка USB-C",tj:"Заряди тези USB-C",en:"Fast USB-C charging"},colors:[{n:{ru:"Белый",tj:"Сафед",en:"White"},hex:"#f2f2f2",img:accImg("MGKN4")}]},
  {id:117,line:"Band",name:"Sport Band",cat:"acc",rating:5,new:true,emoji:"⌚",tag:{ru:"Спортивный ремешок для Apple Watch",tj:"Тасмаи варзишӣ барои Apple Watch",en:"Sport Band for Apple Watch"},colors:accColors(["MHYH4ref","MFGX4ref","MHYF4ref","MHYK4ref","MXLX3ref","MXM23ref","MXM63ref","MXM83ref"],2)},
- {id:118,line:"Band",name:"Alpine Loop",cat:"acc",rating:5,new:true,emoji:"⌚",tag:{ru:"Ремешок Alpine Loop для Apple Watch",tj:"Тасмаи Alpine Loop барои Apple Watch",en:"Alpine Loop for Apple Watch"},colors:accColors(["MFTA4ref","MFTE4ref","MFTH4ref"],2)}
+ {id:118,line:"Band",name:"Alpine Loop",cat:"acc",rating:5,new:true,emoji:"⌚",tag:{ru:"Ремешок Alpine Loop для Apple Watch",tj:"Тасмаи Alpine Loop барои Apple Watch",en:"Alpine Loop for Apple Watch"},colors:accColors(["MFTA4ref","MFTE4ref","MFTH4ref"],2)},
+ {id:119,line:"Band",name:"Milanese Loop",cat:"acc",rating:5,new:true,emoji:"⌚",price:tjs(99),tag:{ru:"Миланская петля для Apple Watch",tj:"Тасмаи Milanese Loop барои Apple Watch",en:"Milanese Loop for Apple Watch"},colors:accColors(["MGJ24ref","MGJ44ref","MGJ64ref"],0,[{ru:"Натуральный",tj:"Натуральный",en:"Natural"},{ru:"Золотой",tj:"Тиллоӣ",en:"Gold"},{ru:"Графитовый",tj:"Графитӣ",en:"Graphite"}])},
+ {id:120,line:"Band",name:"Trail Loop",cat:"acc",rating:5,new:true,emoji:"⌚",price:tjs(99),tag:{ru:"Ремешок Trail Loop для Apple Watch",tj:"Тасмаи Trail Loop барои Apple Watch",en:"Trail Loop for Apple Watch"},colors:accColors(["MFT84ref","MFT64ref","MFT44ref"],0,[{ru:"Чёрный/угольный",tj:"Сиёҳ",en:"Black/Charcoal"},{ru:"Ярко-синий",tj:"Кабуд",en:"Blue"},{ru:"Неоново-зелёный",tj:"Сабз",en:"Green"}])},
+ {id:121,line:"Band",name:"Ocean Band",cat:"acc",rating:5,new:true,emoji:"⌚",price:tjs(99),tag:{ru:"Ремешок Ocean Band для Apple Watch",tj:"Тасмаи Ocean Band барои Apple Watch",en:"Ocean Band for Apple Watch"},colors:accColors(["MGCC4","MXTL3ref","MGCF4"],0,[{ru:"Якорный синий",tj:"Кабуди лангар",en:"Anchor Blue"},{ru:"Чёрный",tj:"Сиёҳ",en:"Black"},{ru:"Неоново-зелёный",tj:"Сабз",en:"Neon Green"}])},
+ {id:122,line:"Band",name:"Sport Loop",cat:"acc",rating:5,new:false,emoji:"⌚",price:tjs(49),tag:{ru:"Спортивный браслет для Apple Watch",tj:"Тасмаи варзишӣ Sport Loop",en:"Sport Loop for Apple Watch"},colors:accColors(["MFFJ4"],0,[{ru:"Лесной",tj:"Ҷангалӣ",en:"Forest"}])}
 );
 /* привязка базовых цен к Apple США (USD → сомони × наценка) */
 PRODUCTS.forEach(p=>{if(APPLE_USD[p.id]!=null)p.price=tjs(APPLE_USD[p.id]);});
@@ -349,7 +353,11 @@ const FITS={
  110:{l:FIT_IPH,o:["iPhone Air"]},
  112:{l:FIT_IPAD,o:["iPad Air 11″"]},
  117:{l:FIT_SIZE,o:[{ru:"S/M · 40–42 мм",tj:"S/M · 40–42 мм",en:"S/M · 40–42mm"},{ru:"M/L · 44–49 мм",tj:"M/L · 44–49 мм",en:"M/L · 44–49mm"}]},
- 118:{l:FIT_SIZE,o:[{ru:"S · 46–49 мм",tj:"S · 46–49 мм",en:"S · 46–49mm"},{ru:"M · 46–49 мм",tj:"M · 46–49 мм",en:"M · 46–49mm"},{ru:"L · 46–49 мм",tj:"L · 46–49 мм",en:"L · 46–49mm"}]}
+ 118:{l:FIT_SIZE,o:[{ru:"S · 46–49 мм",tj:"S · 46–49 мм",en:"S · 46–49mm"},{ru:"M · 46–49 мм",tj:"M · 46–49 мм",en:"M · 46–49mm"},{ru:"L · 46–49 мм",tj:"L · 46–49 мм",en:"L · 46–49mm"}]},
+ 119:{l:FIT_SIZE,o:[{ru:"S/M · 42 мм",tj:"S/M · 42 мм",en:"S/M · 42mm"},{ru:"M/L · 46 мм",tj:"M/L · 46 мм",en:"M/L · 46mm"}]},
+ 120:{l:FIT_SIZE,o:[{ru:"S/M · 46–49 мм",tj:"S/M · 46–49 мм",en:"S/M · 46–49mm"},{ru:"M/L · 46–49 мм",tj:"M/L · 46–49 мм",en:"M/L · 46–49mm"}]},
+ 121:{l:FIT_SIZE,o:[{ru:"49 мм",tj:"49 мм",en:"49mm"}]},
+ 122:{l:FIT_SIZE,o:[{ru:"S/M · 40–42 мм",tj:"S/M · 40–42 мм",en:"S/M · 40–42mm"},{ru:"M/L · 44–46 мм",tj:"M/L · 44–46 мм",en:"M/L · 44–46mm"}]}
 };
 PRODUCTS.forEach(p=>{const f=FITS[p.id];if(f)p.fit={label:f.l,opts:f.o.map(o=>typeof o==="string"?{ru:o,tj:o,en:o}:o)};});
 /* выбор модели СО сменой фото+цветов: у каждой модели свои ключи Apple (камера-вырез разный) + своё число ракурсов */
@@ -367,7 +375,7 @@ const FITCOLORS={
 };
 PRODUCTS.forEach(p=>{const f=FITCOLORS[p.id];if(f){p.fitColors={label:FIT_IPH,models:f.map(([mn,keys,names,av])=>({n:mdl(mn),colors:accColors(keys,av,names.map(cn))}))};p.colors=p.fitColors.models[0].colors;}});
 /* категории аксессуаров (accessories.html — фильтр как у Apple) */
-const ACAT={101:"find",102:"find",103:"pencil",104:"charge",105:"case",106:"case",107:"case",108:"case",109:"case",110:"case",111:"input",112:"case",113:"pencil",114:"input",115:"input",116:"charge",117:"band",118:"band"};
+const ACAT={101:"find",102:"find",103:"pencil",104:"charge",105:"case",106:"case",107:"case",108:"case",109:"case",110:"case",111:"input",112:"case",113:"pencil",114:"input",115:"input",116:"charge",117:"band",118:"band",119:"band",120:"band",121:"band",122:"band"};
 const ACAT_CATS=[["all",{ru:"Все",tj:"Ҳама",en:"All"}],["case",{ru:"Чехлы и защита",tj:"Ғилофу ҳифз",en:"Cases & protection"}],["input",{ru:"Клавиатуры и мыши",tj:"Клавиатура ва муш",en:"Keyboards & mice"}],["band",{ru:"Ремешки для Watch",tj:"Тасмаҳо барои Watch",en:"Watch bands"}],["charge",{ru:"Зарядка",tj:"Заряд",en:"Power & cables"}],["pencil",{ru:"Apple Pencil",tj:"Apple Pencil",en:"Apple Pencil"}],["find",{ru:"Поиск вещей",tj:"Ёфтани ашё",en:"Find My"}]];
 /* свои лёгкие WebP-фото (img/pN.webp) для карточек/линеек/поиска — быстрая загрузка вместо тяжёлых apple.com */
 const LOCALIMG=new Set([1,2,3,4,5,6,7,8,9,12,13,14,15,16,18,19,101,102,103,104,105,106]);
@@ -526,7 +534,7 @@ function renderChapnav(){
     ${models.map(p=>`<a class="chap-item" href="${productUrl(p)}" title="${p.name}"><span class="chap-ic"><img src="${shrinkCDN(mainImg(p),150)}" alt="${p.name}" loading="lazy" decoding="async" onerror="imgFallback(this)"></span><span class="chap-l">${p.name}</span></a>`).join("")}
     <span class="chap-sep" aria-hidden="true"></span>
     <a class="chap-item chap-link" href="compare.html"><span class="chap-ic">${cmpIc}</span><span class="chap-l">${tr({ru:"Сравнить",tj:"Муқоиса",en:"Compare"})}</span></a>
-    <a class="chap-item chap-link" href="accessories.html"><span class="chap-ic">${accIc}</span><span class="chap-l">${tr({ru:"Аксессуары",tj:"Лавозимот",en:"Accessories"})}</span></a>
+    <a class="chap-item chap-link" href="accessories.html?for=${cat}"><span class="chap-ic">${accIc}</span><span class="chap-l">${tr({ru:"Аксессуары",tj:"Лавозимот",en:"Accessories"})}</span></a>
   </div>`;
 }
 function renderHighlights(){
@@ -603,9 +611,16 @@ function renderCompare(){
 const WU=A+"/v/apple-watch-ultra-3/b/images/overview/";
 const WS=A+"/v/apple-watch-series-11/c/images/overview/";
 const WSE=A+"/v/apple-watch-se-3/b/images/overview/";
+/* hero-видео каждой модели часов (свои, проверены 200 video/mp4) */
+const VMED=s=>A+"/105/media/us/"+s+"/anim/hero/medium.mp4";
+const V_ULTRA3=VMED("apple-watch-ultra-3/2025/7235c96b-e65b-4ba2-a99e-6cb15fa22668");
+const V_S11=VMED("apple-watch-series-11/2025/ff7157de-c561-48f6-8427-90c1ce5498d1");
+const V_SE3=VMED("apple-watch-se-3/2025/499c4097-d6f9-4dbe-b2c3-7cdf022ce822");
+/* видео-повторы фич (для highlights страниц моделей) */
+const AVID=(slug,uuid,seg)=>A+"/105/media/us/"+slug+"/2025/"+uuid+"/anim/"+seg+"/medium.mp4";
 const MODELS={
  ultra3:{name:"Apple Watch Ultra 3",productId:10,price:9990,eyebrow:"⌚ Watch Ultra 3",
-  heroVideo:LI("watch").heroVideo,
+  heroVideo:V_ULTRA3,
   heroImg:WU+"welcome/hero_endframe__e4ls9pihykya_large.jpg",
   title:{ru:"Личный зверь.",tj:"Ҳайвони шахсӣ.",en:"Personal beast."},
   highlights:[
@@ -713,7 +728,7 @@ const MODELS={
    {img:A+"/v/airpods/ae/images/overview/consider/card_live_translation__ep68h9wscbee_large.jpg",h:{ru:"Живой перевод в реальном времени.",tj:"Тарҷумаи зинда дар вақти воқеӣ.",en:"Live Translation on the go."}}]
  },
  s11:{name:"Apple Watch Series 11",productId:11,price:4990,eyebrow:"⌚ Watch Series 11",light:true,hlLight:true,
-  heroVideo:LI("watch").heroVideo,
+  heroVideo:V_S11,
   heroImg:WS+"product-viewer/product_landing_endframe__eaytrp6zz6c2_large.jpg",
   title:{ru:"Здоровье на новой высоте.",tj:"Саломатӣ дар баландии нав.",en:"A healthy leap ahead."},
   highlights:[
@@ -737,7 +752,7 @@ const MODELS={
     desc:{ru:"Водозащита до 50 м и пылезащита IP6X.",tj:"Муҳофизат аз об то 50 м ва IP6X.",en:"Water resistant to 50 m and IP6X dust resistant."}}]
  },
  se3:{name:"Apple Watch SE 3",productId:15,price:6490,eyebrow:"⌚ Watch SE 3",light:true,hlLight:true,
-  heroVideo:LI("watch").heroVideo,
+  heroVideo:V_SE3,
   heroImg:WSE+"product-viewer/product_landing__fn9ldzg4foey_large.jpg",
   title:{ru:"Главное. По умной цене.",tj:"Асосӣ. Бо нархи оқилона.",en:"The essentials. Smartly priced."},
   highlights:[
@@ -807,6 +822,14 @@ const TECHSPECS={
   {t:G("Здоровье и безопасность","Саломатӣ ва бехатарӣ","Health & safety"),rows:[[G("Датчики","Сенсорҳо","Sensors"),G("Пульс · уведомления","Набз · огоҳиҳо","Heart rate · notifications")],[G("Безопасность","Бехатарӣ","Safety"),G("Авария · падение · SOS","Садама · афтиш · SOS","Crash · Fall · SOS")]]}
  ]
 };
+/* видео-повторы Apple на карточках highlights страниц моделей часов (проверены 200 video/mp4) */
+(function(){const U="apple-watch-ultra-3",S="apple-watch-series-11",E="apple-watch-se-3",
+  uu="dabb0ca4-1556-466c-a314-ae3ba2cc088e",su="cb7dae4b-d675-49db-8fe3-d4f635c1a345",eu="499c4097-d6f9-4dbe-b2c3-7cdf022ce822";
+  const set=(m,i,slug,uuid,seg)=>{if(MODELS[m]&&MODELS[m].highlights[i])MODELS[m].highlights[i].video=AVID(slug,uuid,seg);};
+  set("ultra3",1,U,uu,"highlights-battery");set("ultra3",2,U,uu,"highlights-running");set("ultra3",4,U,uu,"health");
+  set("s11",0,S,su,"highlights-hypertension");set("s11",2,S,su,"highlights-glass");set("s11",4,S,su,"highlights-workout");set("s11",5,S,su,"highlights-battery");
+  set("se3",2,E,eu,"highlights-battery");set("se3",3,E,eu,"on-the-go");set("se3",4,E,eu,"highlights-durability");
+})();
 const ICON_PLAY='<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>';
 const ICON_PAUSE='<svg viewBox="0 0 24 24"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>';
 function renderModelPage(){
@@ -826,7 +849,7 @@ function renderModelPage(){
   const hl=`<section class="sec alt" id="mhl"><div class="wrap"><div class="sec-head reveal"><h2>${t("pp_highlights")}</h2></div>
     <div class="carousel" id="mhlCar">
       <button class="car-arrow prev" aria-label="prev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></button>
-      <div class="car-viewport"><div class="car-track">${m.highlights.map(h=>`<div class="hl-card ${m.hlLight?"":"dark"}"><div class="hl-h">${tr(h.h)}</div><img class="hl-img" src="${h.img}" alt="" loading="lazy" onerror="this.style.display='none'"></div>`).join("")}</div></div>
+      <div class="car-viewport"><div class="car-track">${m.highlights.map(h=>`<div class="hl-card ${m.hlLight?"":"dark"}"><div class="hl-h">${tr(h.h)}</div>${h.video?`<video class="hl-img" autoplay muted loop playsinline preload="none"${h.img?` poster="${h.img}"`:""}><source src="${h.video}" type="video/mp4"></video>`:`<img class="hl-img" src="${h.img}" alt="" loading="lazy" onerror="this.style.display='none'">`}</div>`).join("")}</div></div>
       <button class="car-arrow next" aria-label="next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></button>
     </div><div class="hl-controls"><div class="car-dots" id="mhlDots"></div><button class="hl-play" id="mhlPlay">${ICON_PAUSE}</button></div></div></section>`;
   const xp=!m.explorer?"":`<section class="sec xplor-sec" id="mxplor"><div class="sec-head reveal"><h2>${tr({ru:"Рассмотрите поближе.",tj:"Аз наздик бубинед.",en:"Take a closer look."})}</h2></div>
@@ -1821,8 +1844,11 @@ function renderProduct(){
 }
 
 /* ===== RENDER: accessories (accessories.html) ===== */
-let ACCFILTER="all";
+let ACCFILTER="all",ACCFOR_DONE=false;
+/* категория→тип аксессуара (для ?for=): часы→ремешки, iPhone/iPad→чехлы, Mac→клавиатуры/мыши */
+const ACC_FORMAP={watch:"band",phone:"case",tablet:"case",laptop:"input"};
 function renderAccessories(){
+  if(!ACCFOR_DONE&&document.getElementById("accgrid")){ACCFOR_DONE=true;const f=new URLSearchParams(location.search).get("for");if(f&&ACC_FORMAP[f])ACCFILTER=ACC_FORMAP[f];}
   const hero=document.getElementById("accHero");
   if(hero)hero.innerHTML=`<div class="pe">ZAMON</div><h1>${t("acc_h")}</h1><p class="psub">${t("acc_sub")}</p>`;
   const box=document.getElementById("accgrid");if(!box)return;

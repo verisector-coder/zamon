@@ -310,9 +310,9 @@ const TRADEIN={phone:3000,laptop:5000,tablet:2500,watch:1200,audio:600};
 const ACCSC="https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/";
 const accImg=k=>ACCSC+k+"?wid=800&hei=800&fmt=png-alpha";
 /* строит набор цветов аксессуара из ключей Apple: свотч-картинка + галерея (главное фото + ракурсы AV1/AV2) */
-function accColors(keys,av,names){av=av||0;return keys.map((k,i)=>{const gal=[accImg(k)];for(let n=1;n<=av;n++)gal.push(accImg(k+"_AV"+n));return {n:(names&&names[i])||{ru:"Цвет "+(i+1),tj:"Ранг "+(i+1),en:"Color "+(i+1)},img:accImg(k),sw:accImg(k+"_SW_COLOR"),gal};});}
+function accColors(keys,av,names){av=Math.max(av||0,5);return keys.map((k,i)=>{const gal=[accImg(k)];for(let n=1;n<=av;n++)gal.push(accImg(k+"_AV"+n));return {n:(names&&names[i])||{ru:"Цвет "+(i+1),tj:"Ранг "+(i+1),en:"Color "+(i+1)},img:accImg(k),sw:accImg(k+"_SW_COLOR"),gal};});}
 /* реальные имена цветов Apple (EN→{ru,tj,en}) */
-const CNAMES={"Bright Guava":{ru:"Яркая гуава",tj:"Яркая гуава",en:"Bright Guava"},"Light Moss":{ru:"Светлый мох",tj:"Светлый мох",en:"Light Moss"},"Vanilla":{ru:"Ваниль",tj:"Ваниль",en:"Vanilla"},"Black":{ru:"Чёрный",tj:"Сиёҳ",en:"Black"},"Purple Fog":{ru:"Пурпурный туман",tj:"Пурпурный туман",en:"Purple Fog"},"Anchor Blue":{ru:"Синий якорь",tj:"Синий якорь",en:"Anchor Blue"},"Electric Lavender":{ru:"Лавандовый",tj:"Лавандовый",en:"Electric Lavender"},"Orange":{ru:"Оранжевый",tj:"Норинҷӣ",en:"Orange"},"Terra Cotta":{ru:"Терракота",tj:"Терракота",en:"Terra Cotta"},"Midnight":{ru:"Тёмная ночь",tj:"Тёмная ночь",en:"Midnight"},"Sienna":{ru:"Сиена",tj:"Сиена",en:"Sienna"},"Blue":{ru:"Синий",tj:"Кабуд",en:"Blue"},"Green":{ru:"Зелёный",tj:"Сабз",en:"Green"},"Purple":{ru:"Фиолетовый",tj:"Фиолетовый",en:"Purple"},"Frost":{ru:"Морозный",tj:"Морозный",en:"Frost"},"Shadow":{ru:"Графитовый",tj:"Графитовый",en:"Shadow"},"Sage":{ru:"Шалфей",tj:"Шалфей",en:"Sage"},"Light Violet":{ru:"Светло-фиолетовый",tj:"Светло-фиолетовый",en:"Light Violet"},"Charcoal Gray":{ru:"Угольно-серый",tj:"Угольно-серый",en:"Charcoal Gray"},"Denim":{ru:"Деним",tj:"Деним",en:"Denim"}};
+const CNAMES={"Bright Guava":{ru:"Яркая гуава",tj:"Яркая гуава",en:"Bright Guava"},"Light Moss":{ru:"Светлый мох",tj:"Светлый мох",en:"Light Moss"},"Vanilla":{ru:"Ваниль",tj:"Ваниль",en:"Vanilla"},"Black":{ru:"Чёрный",tj:"Сиёҳ",en:"Black"},"Purple Fog":{ru:"Пурпурный туман",tj:"Пурпурный туман",en:"Purple Fog"},"Anchor Blue":{ru:"Синий якорь",tj:"Синий якорь",en:"Anchor Blue"},"Electric Lavender":{ru:"Лавандовый",tj:"Лавандовый",en:"Electric Lavender"},"Orange":{ru:"Оранжевый",tj:"Норинҷӣ",en:"Orange"},"Terra Cotta":{ru:"Терракота",tj:"Терракота",en:"Terra Cotta"},"Midnight":{ru:"Тёмная ночь",tj:"Тёмная ночь",en:"Midnight"},"Sienna":{ru:"Сиена",tj:"Сиена",en:"Sienna"},"Blue":{ru:"Синий",tj:"Кабуд",en:"Blue"},"Green":{ru:"Зелёный",tj:"Сабз",en:"Green"},"Purple":{ru:"Фиолетовый",tj:"Фиолетовый",en:"Purple"},"Frost":{ru:"Морозный",tj:"Морозный",en:"Frost"},"Shadow":{ru:"Графитовый",tj:"Графитовый",en:"Shadow"},"Sage":{ru:"Шалфей",tj:"Шалфей",en:"Sage"},"Light Violet":{ru:"Светло-фиолетовый",tj:"Светло-фиолетовый",en:"Light Violet"},"Charcoal Gray":{ru:"Угольно-серый",tj:"Угольно-серый",en:"Charcoal Gray"},"Denim":{ru:"Деним",tj:"Деним",en:"Denim"},"White":{ru:"Белый",tj:"Сафед",en:"White"}};
 const cn=en=>CNAMES[en]||{ru:en,tj:en,en:en};
 const ACC1=A+"/v/apple-pencil/ag/images/overview/hero/hero__cwrg2eertpyu_large_2x.png";
 PRODUCTS.push(
@@ -385,9 +385,13 @@ const FITCOLORS={
  107:[
   ["iPhone 17 Pro",["MGF54","MGF74","MGF44","MGF34","MGF64"],["Purple","Green","Blue","Black","Sienna"],4],
   ["iPhone 17 Pro Max",["MGF84","MGF94","MGFA4","MGFD4","MGFC4"],["Black","Blue","Purple","Green","Sienna"],2]
+ ],
+ 111:[
+  ["iPad Air 11″",["MGYX4","MDFV4"],["Black","White"],5],
+  ["iPad Air 13″",["MGYY4","MDFW4"],["Black","White"],5]
  ]
 };
-PRODUCTS.forEach(p=>{const f=FITCOLORS[p.id];if(f){p.fitColors={label:FIT_IPH,models:f.map(([mn,keys,names,av])=>({n:mdl(mn),colors:accColors(keys,av,names.map(cn))}))};p.colors=p.fitColors.models[0].colors;}});
+PRODUCTS.forEach(p=>{const f=FITCOLORS[p.id];if(f){p.fitColors={label:(/iPad|iMac|Mac/.test(f[0][0])?FIT_IPAD:FIT_IPH),models:f.map(([mn,keys,names,av])=>({n:mdl(mn),colors:accColors(keys,av,names.map(cn))}))};p.colors=p.fitColors.models[0].colors;}});
 /* категории аксессуаров (accessories.html — фильтр как у Apple) */
 const ACAT={101:"find",102:"find",103:"pencil",104:"charge",105:"case",106:"case",107:"case",108:"case",109:"case",110:"case",111:"input",112:"case",113:"pencil",114:"input",115:"input",116:"charge",117:"band",118:"band",119:"band",120:"band",121:"band",122:"band",123:"cable",124:"cable",125:"cable",126:"cable",127:"cable",128:"charge",129:"charge",130:"charge",131:"charge",132:"charge",133:"input"};
 const ACAT_CATS=[["all",{ru:"Все",tj:"Ҳама",en:"All"}],["case",{ru:"Чехлы и защита",tj:"Ғилофу ҳифз",en:"Cases & protection"}],["input",{ru:"Клавиатуры и мыши",tj:"Клавиатура ва муш",en:"Keyboards & mice"}],["band",{ru:"Ремешки для Watch",tj:"Тасмаҳо барои Watch",en:"Watch bands"}],["charge",{ru:"Зарядка",tj:"Заряд",en:"Power"}],["cable",{ru:"Кабели и адаптеры",tj:"Симу адаптерҳо",en:"Cables & adapters"}],["pencil",{ru:"Apple Pencil",tj:"Apple Pencil",en:"Apple Pencil"}],["find",{ru:"Поиск вещей",tj:"Ёфтани ашё",en:"Find My"}]];

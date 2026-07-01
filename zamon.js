@@ -424,7 +424,7 @@ const ACAT={101:"find",102:"find",103:"pencil",104:"charge",105:"case",106:"case
 const ACAT_CATS=[["all",{ru:"Все",tj:"Ҳама",en:"All"}],["case",{ru:"Чехлы и защита",tj:"Ғилофу ҳифз",en:"Cases & protection"}],["input",{ru:"Клавиатуры и мыши",tj:"Клавиатура ва муш",en:"Keyboards & mice"}],["band",{ru:"Ремешки для Watch",tj:"Тасмаҳо барои Watch",en:"Watch bands"}],["charge",{ru:"Зарядка",tj:"Заряд",en:"Power"}],["cable",{ru:"Кабели и адаптеры",tj:"Симу адаптерҳо",en:"Cables & adapters"}],["pencil",{ru:"Apple Pencil",tj:"Apple Pencil",en:"Apple Pencil"}],["find",{ru:"Поиск вещей",tj:"Ёфтани ашё",en:"Find My"}]];
 /* свои лёгкие WebP-фото (img/pN.webp) для карточек/линеек/поиска — быстрая загрузка вместо тяжёлых apple.com */
 const LOCALIMG=new Set([1,2,3,4,5,6,7,8,9,12,13,14,16,18,19,101,102,103,104,105,106]);
-PRODUCTS.forEach(p=>{if(LOCALIMG.has(p.id)){const f="img/p"+p.id+".webp?v=125";p.card=f;if(p.lineImg)p.lineImg=f;}});
+PRODUCTS.forEach(p=>{if(LOCALIMG.has(p.id)){const f="img/p"+p.id+".webp?v=126";p.card=f;if(p.lineImg)p.lineImg=f;}});
 const stLabel=gb=>gb<1024?gb+" "+t("gb"):(gb/1024)+" "+t("tb");
 const priceOf=c=>{const p=P(c.id);return (c.price||(p?p.price:0));};
 const cartSum=()=>cart.reduce((s,c)=>s+priceOf(c)*c.qty,0);

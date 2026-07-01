@@ -162,12 +162,12 @@ header.gnav{position:sticky;top:0;z-index:1000}
 .mhero.light{background:var(--bg-alt);color:var(--text)}
 .mhero .mh-img{max-height:64vh;width:auto;object-fit:contain;margin-top:auto;filter:drop-shadow(0 30px 60px rgba(0,0,0,.6))}
 .mhero.light .mh-img{filter:drop-shadow(0 24px 50px rgba(0,0,0,.18))}
-.buypill{position:fixed;bottom:22px;right:22px;z-index:200;display:flex;align-items:center;gap:14px;background:rgba(70,70,75,.62);backdrop-filter:saturate(180%) blur(16px);-webkit-backdrop-filter:saturate(180%) blur(16px);border:1px solid rgba(255,255,255,.2);border-radius:980px;padding:7px 7px 7px 20px;color:#fff;box-shadow:var(--shadow-lg);opacity:0;transform:translateY(20px);transition:.4s var(--ease);pointer-events:none}
+.buypill{position:fixed;bottom:22px;right:92px;z-index:200;display:flex;align-items:center;gap:14px;background:rgba(70,70,75,.62);backdrop-filter:saturate(180%) blur(16px);-webkit-backdrop-filter:saturate(180%) blur(16px);border:1px solid rgba(255,255,255,.2);border-radius:980px;padding:7px 7px 7px 20px;color:#fff;box-shadow:var(--shadow-lg);opacity:0;transform:translateY(20px);transition:.4s var(--ease);pointer-events:none}
 .buypill.show{opacity:1;transform:none;pointer-events:auto}
 .buypill .bp-price{font-size:.88rem;color:#f0f0f2;white-space:nowrap}
 .buypill .bp-buy{background:var(--accent);color:#fff;border:none;border-radius:980px;padding:9px 22px;font-weight:600;font-size:.9rem;cursor:pointer}
 .buypill .bp-buy:hover{background:var(--accent-2)}
-@media(max-width:560px){.buypill{left:14px;right:14px;justify-content:space-between;bottom:14px}}
+@media(max-width:560px){.buypill{left:14px;right:14px;justify-content:space-between;bottom:14px}body.pill-on .wa-float{bottom:86px}}
 
 /* ===== EXPLORER (Take a closer look) ===== */
 .xplor-sec{background:#000;color:#f5f5f7}

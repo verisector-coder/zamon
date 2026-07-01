@@ -167,10 +167,10 @@ const PRODUCTS=[
  {id:12,line:"AirPods",name:"AirPods Pro 3",cat:"audio",price:2490,old:0,rating:5,new:true,emoji:"🎧",modelPage:"airpods-pro.html",
   tag:{ru:"Шумоподавление нового поколения",tj:"Бартарафсозии садо насли нав",en:"Next-gen noise cancellation"},
   box:[{ic:"🎧",n:"AirPods Pro 3"},{ic:"🔋",n:{ru:"Зарядный кейс MagSafe",tj:"Ғилофи шаржи MagSafe",en:"MagSafe Charging Case"}},{ic:"👂",n:{ru:"Амбушюры, 4 размера",tj:"Амбушюрҳо, 4 андоза",en:"Ear tips, 4 sizes"}},{ic:"🔌",n:{ru:"Кабель USB‑C",tj:"Сими USB‑C",en:"USB‑C cable"}}],
-  colors:[{n:{ru:"Белый",tj:"Сафед",en:"White"},hex:"#f2f2f2",img:A+"/v/airpods/ae/images/overview/hero_endframe__calpooy4ucr6_large_2x.jpg"}]},
+  colors:[{n:{ru:"Белый",tj:"Сафед",en:"White"},hex:"#f2f2f2",disp:"https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/airpods-pro-3-hero-select-202509?wid=820&hei=780&fmt=jpeg&bgc=F5F5F7",img:A+"/v/airpods/ae/images/overview/hero_endframe__calpooy4ucr6_large_2x.jpg"}]},
  {id:13,line:"AirPods",name:"AirPods 4",cat:"audio",price:1590,old:0,rating:4,new:false,emoji:"🎧",
   tag:{ru:"Удобная посадка и чистый звук",tj:"Шинонидани бароҳат ва садои тоза",en:"Comfy fit, crisp sound"},
-  colors:[{n:{ru:"Белый",tj:"Сафед",en:"White"},hex:"#f2f2f2",img:A+"/v/airpods/ae/images/overview/hero__gb4d3fd8jnu6_large_2x.jpg"}]},
+  colors:[{n:{ru:"Белый",tj:"Сафед",en:"White"},hex:"#f2f2f2",disp:"https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/airpods-4-hero-select-202409?wid=820&hei=780&fmt=jpeg&bgc=F5F5F7",img:A+"/v/airpods/ae/images/overview/hero__gb4d3fd8jnu6_large_2x.jpg"}]},
  {id:14,line:"AirPods",name:"AirPods Max",cat:"audio",price:5990,old:0,rating:5,new:false,emoji:"🎧",
   tag:{ru:"Наушники высшего класса",tj:"Гӯшмонакҳои дараҷаи олӣ",en:"Premium over-ear sound"},
   highlights:[
@@ -999,7 +999,7 @@ function renderModelPage(){
   bp.innerHTML=`<span class="bp-price">${t("from")}${fmtPrice(m.price)}</span><button class="bp-buy">${t("pp_buy")}</button>`;
   bp.querySelector(".bp-buy").onclick=()=>openBuy(m.productId);
   if(window.__bpScroll)window.removeEventListener("scroll",window.__bpScroll);
-  window.__bpScroll=()=>bp.classList.toggle("show",window.scrollY>360);
+  window.__bpScroll=()=>{const on=window.scrollY>360;bp.classList.toggle("show",on);document.body.classList.toggle("pill-on",on);};
   window.addEventListener("scroll",window.__bpScroll);window.__bpScroll();
   initMHL();initExplorer();wireFAQ(root);observeReveal();initSubnavSpy();
 }

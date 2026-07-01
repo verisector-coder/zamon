@@ -1108,3 +1108,19 @@ img[data-emoji].img-loaded{opacity:1}
 .acc-mq-cta{text-align:center;margin-top:30px}
 @keyframes accScroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 @media(prefers-reduced-motion:reduce){.acc-mq-track{animation:none}}
+
+/* Apple-style accessory cards (accessories.html) */
+.acc-grid{gap:24px}
+.acc-grid .acard{width:auto;min-width:0}
+.acard{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--border-2);border-radius:20px;padding:22px 18px;text-decoration:none;color:var(--text);position:relative;transition:.3s var(--ease)}
+.acard:hover{border-color:transparent;box-shadow:0 16px 38px rgba(0,0,0,.13);transform:translateY(-5px)}
+.acard-new{position:absolute;top:16px;left:18px;font-size:.68rem;font-weight:700;letter-spacing:.07em;color:var(--new)}
+.acard-media{height:196px;display:grid;place-items:center;margin-bottom:16px}
+.acard-media img{max-height:178px;max-width:86%;object-fit:contain;transition:.4s var(--ease)}
+.acard:hover .acard-media img{transform:scale(1.05)}
+.acard-sw{display:flex;gap:6px;justify-content:center;align-items:center;min-height:16px;margin-bottom:12px;flex-wrap:wrap}
+.asw{width:15px;height:15px;border-radius:50%;border:1px solid var(--border-2)}
+.asw-img{background-size:cover;background-position:center}
+.asw-more{font-size:.72rem;color:var(--text-2);font-weight:600;margin-left:2px}
+.acard-name{font-size:1.06rem;font-weight:600;text-align:center;margin:0 0 7px;line-height:1.25}
+.acard-price{text-align:center;font-size:.98rem;font-weight:600;color:var(--text)}

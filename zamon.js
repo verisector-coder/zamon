@@ -1504,7 +1504,7 @@ const STOREBAR=[
  {name:"iPhone",page:"iphone.html",img:A+"/v/iphone/home/cj/images/overview/chapternav/nav_iphone_17pro__b8rt659h2ogi_large.png"},
  {name:"iPad",page:"ipad.html",img:WG("ipad-air-select-11in-wifi-blue-202405")},
  {name:"Apple Watch",page:"watch.html",img:"img/cat-watch.webp"},
- {name:"AirPods",page:"airpods.html",img:A+"/v/airpods/ae/images/overview/airpods_max_blue__fsfaleh1smuu_large.png"},
+ {name:"AirPods",page:"airpods.html",img:WG("airpods-pro-2-hero-select-202409")},
  {name:{ru:"Аксессуары",tj:"Лавозимот",en:"Accessories"},page:"accessories.html",img:mainImg(P(108))}
 ];
 function renderStoreBar(){
@@ -1595,6 +1595,14 @@ function cardHtml(p){return `<div class="pcard" data-id="${p.id}"><div class="ba
   ${swatchHtml(p,"p-sw")}<h3>${p.name}</h3><div class="ptag">${tr(p.tag)}</div>
   <div class="p-price">${t("from")}${num(p.price)} ${t("cur")}${p.old?`<span class="old">${num(p.old)}</span>`:""}</div>
   <div class="p-actions"><button class="add" data-add="${p.id}">${t("add")}</button><button class="more" data-buy="${p.id}">${t("details")}</button></div></div>`;}
+/* карточка аксессуара в стиле Apple: фото + свотчи + имя + цена, вся карточка — ссылка (без кнопок) */
+function accCardHtml(p){
+  const sw=p.colors.length>1?`<div class="acard-sw">${p.colors.slice(0,7).map(c=>`<span class="asw ${c.sw?"asw-img":""}" title="${tr(c.n)}" style="${c.sw?`background-image:url('${shrinkCDN(c.sw,80)}')`:`background:${c.hex}`}"></span>`).join("")}${p.colors.length>7?`<span class="asw-more">+${p.colors.length-7}</span>`:""}</div>`:`<div class="acard-sw"></div>`;
+  return `<a class="acard reveal" href="product.html?id=${p.id}">${p.new?`<span class="acard-new">NEW</span>`:""}
+    <div class="acard-media"><img src="${shrinkCDN(mainImg(p),520)}" data-emoji="${p.emoji}" alt="${p.name}" loading="lazy" decoding="async" onerror="imgFallback(this)"></div>
+    ${sw}<h3 class="acard-name">${p.name}</h3>
+    <div class="acard-price">${t("from")}${num(p.price)} ${t("cur")}</div></a>`;
+}
 function renderCatalog(){
   const box=document.getElementById("catalog");if(!box)return;
   const only=box.getAttribute("data-cat");const q=currentSearch.toLowerCase();
@@ -1901,7 +1909,7 @@ function renderAccessories(){
   const showCats=(ACCFILTER==="all"?cats.filter(([k])=>k!=="all"):cats.filter(([k])=>k===ACCFILTER));
   const sections=showCats.map(([k,l])=>{
     const items=all.filter(p=>ACAT[p.id]===k);if(!items.length)return"";
-    return `<section class="acc-cat" id="acc-${k}"><div class="acc-cat-head"><h2 class="acc-cat-h">${tr(l)}</h2><span class="acc-cat-n">${items.length}</span></div><div class="acc-grid">${items.map(cardHtml).join("")}</div></section>`;
+    return `<section class="acc-cat" id="acc-${k}"><div class="acc-cat-head"><h2 class="acc-cat-h">${tr(l)}</h2><span class="acc-cat-n">${items.length}</span></div><div class="acc-grid">${items.map(accCardHtml).join("")}</div></section>`;
   }).join("");
   box.innerHTML=chips+sections;
   box.querySelectorAll("[data-acc]").forEach(b=>b.onclick=()=>{ACCFILTER=b.dataset.acc;renderAccessories();const box2=document.getElementById("accgrid");if(box2)box2.scrollIntoView({behavior:"smooth",block:"start"});});

@@ -1124,3 +1124,13 @@ img[data-emoji].img-loaded{opacity:1}
 .asw-more{font-size:.72rem;color:var(--text-2);font-weight:600;margin-left:2px}
 .acard-name{font-size:1.06rem;font-weight:600;text-align:center;margin:0 0 7px;line-height:1.25}
 .acard-price{text-align:center;font-size:.98rem;font-weight:600;color:var(--text)}
+
+/* home lead (clean light — replaces the old blue hero) */
+.home-lead{text-align:center;padding:56px 0 22px}
+.home-lead .hero-eyebrow{color:#86868b}
+.home-lead-h{font-size:clamp(2.4rem,6vw,4rem);font-weight:800;letter-spacing:-.045em;margin:6px 0 12px;color:var(--text)}
+.home-lead-sub{font-size:clamp(1rem,2.2vw,1.28rem);color:var(--text-2);max-width:560px;margin:0 auto;font-weight:500}
+/* social-proof stats band (moved out of hero) */
+.stats-band{padding:34px 0}
+.stats-band .hero-stats{padding:0}
+.stats-band .lbl{color:var(--text-2)}

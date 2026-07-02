@@ -20,35 +20,17 @@
 <link rel="preconnect" href="https://www.apple.com" crossorigin>
 <link rel="preconnect" href="https://store.storeimages.cdn-apple.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="zamon.css?v=129">
+<link rel="stylesheet" href="zamon.css?v=130">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 </head>
 <body>
 
-<!-- HERO (brand ZAMON) -->
-<section class="hero">
-  <span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span>
-  <div class="reveal in">
+<!-- HOME LEAD (clean, light — replaces blue hero) -->
+<section class="sec home-lead">
+  <div class="wrap reveal in">
     <div class="hero-eyebrow" data-i="hero_eyebrow">Apple Premium Store · Таджикистан</div>
-    <h1 class="brand">ZAMON</h1>
-    <p class="sub" data-i="hero_sub"></p>
-    <div class="hero-chips">
-      <span class="hero-chip"><span class="ck">✓</span> <span data-i="chip1"></span></span>
-      <span class="hero-chip"><span class="ck">✓</span> <span data-i="chip2"></span></span>
-      <span class="hero-chip"><span class="ck">✓</span> <span data-i="chip3"></span></span>
-      <span class="hero-chip"><span class="ck">✓</span> <span data-i="chip4"></span></span>
-    </div>
-    <div class="hero-cta">
-      <a href="#showcase" class="btn btn-primary lg" data-i="hero_cta1"></a>
-      <a href="#why" class="btn btn-ghost lg" data-i="hero_cta2"></a>
-    </div>
-  </div>
-  <div class="wrap">
-    <div class="hero-stats reveal in">
-      <div><div class="num" data-count="1000">0</div><div class="lbl" data-i="stat1"></div></div>
-      <div><div class="num" data-count="100">0</div><div class="lbl" data-i="stat2"></div></div>
-      <div><div class="num" data-count="2">0</div><div class="lbl" data-i="stat3"></div></div>
-    </div>
+    <h1 class="home-lead-h">ZAMON</h1>
+    <p class="home-lead-sub" data-i="hero_sub"></p>
   </div>
 </section>
 
@@ -67,6 +49,15 @@
 
 <!-- ACCESSORIES MARQUEE (auto-scrolling icons) -->
 <section class="sec alt" id="accMarqueeSec"></section>
+
+<!-- SOCIAL PROOF (moved from hero) -->
+<section class="sec stats-band">
+  <div class="wrap"><div class="hero-stats reveal">
+    <div><div class="num" data-count="1000">0</div><div class="lbl" data-i="stat1"></div></div>
+    <div><div class="num" data-count="100">0</div><div class="lbl" data-i="stat2"></div></div>
+    <div><div class="num" data-count="2">0</div><div class="lbl" data-i="stat3"></div></div>
+  </div></div>
+</section>
 
 <!-- GUARANTEES (risk-reversal) -->
 <section class="sec guarantees-sec" id="guaranteesSec">
@@ -115,6 +106,6 @@
   </div>
 </section>
 
-<script src="zamon.js?v=129"></script>
+<script src="zamon.js?v=130"></script>
 </body>
 </html>
